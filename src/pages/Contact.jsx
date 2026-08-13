@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Button from '../components/ui/Button';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: '', phone: '', message: '' });
+  const { t, lang } = useLanguage();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,12 +23,12 @@ export default function Contact() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         <div className="text-center max-w-xl mx-auto space-y-2">
-          <span className="text-xs font-bold text-accent uppercase tracking-widest">যোগাযোগ</span>
+          <span className="text-xs font-bold text-accent uppercase tracking-widest">{t('nav.contact')}</span>
           <h1 className="font-display font-bold text-3xl sm:text-4xl text-primary">
-            আমাদের সাথে যুক্ত হন
+            {t('contact.title')}
           </h1>
           <p className="text-xs text-muted font-bn-sans">
-            যেকোনো প্রশ্ন, পণ্যের সন্ধান কিংবা পাইকারি অর্ডারের জন্য বার্তা লিখুন।
+            {t('contact.sub')}
           </p>
         </div>
 
@@ -35,7 +37,7 @@ export default function Contact() {
           {/* Contact Details */}
           <div className="lg:col-span-5 bg-surface border border-line rounded-3xl p-6 sm:p-8 space-y-6">
             <h2 className="font-display font-bold text-xl text-primary pb-3 border-b border-line">
-              হটলাইন ও এড্রেস
+              {lang === 'bn' ? 'হটলাইন ও এড্রেস' : 'Hotline & Address'}
             </h2>
 
             <div className="space-y-4 text-xs font-bn-sans">
@@ -44,8 +46,8 @@ export default function Contact() {
                   <Phone size={20} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-primary text-sm">হটলাইন ও হোয়াটসঅ্যাপ</h4>
-                  <p className="text-muted mt-0.5">+880 1712-345678 (সকাল ৯টা - রাত ১০টা)</p>
+                  <h4 className="font-bold text-primary text-sm">{t('nav.helpline')}</h4>
+                  <p className="text-muted mt-0.5">+880 1712-345678 (9 AM - 10 PM)</p>
                 </div>
               </div>
 
@@ -54,7 +56,7 @@ export default function Contact() {
                   <Mail size={20} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-primary text-sm">ইমেইল সাপোর্টিং</h4>
+                  <h4 className="font-bold text-primary text-sm">{t('contact.email')}</h4>
                   <p className="text-muted mt-0.5">support@prokritibarta.com</p>
                 </div>
               </div>
@@ -64,8 +66,8 @@ export default function Contact() {
                   <MapPin size={20} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-primary text-sm">প্রধান কার্যালয়</h4>
-                  <p className="text-muted mt-0.5">হাউস ৪২, রোড ১১, ব্লক ডি, বনানী, ঢাকা-১২১৩</p>
+                  <h4 className="font-bold text-primary text-sm">{lang === 'bn' ? 'প্রধান কার্যালয়' : 'Head Office'}</h4>
+                  <p className="text-muted mt-0.5">{t('footer.address')}</p>
                 </div>
               </div>
             </div>
@@ -78,24 +80,21 @@ export default function Contact() {
                 <div className="w-16 h-16 bg-accent/20 text-accent rounded-full flex items-center justify-center mx-auto">
                   <CheckCircle2 size={36} />
                 </div>
-                <h3 className="font-display font-bold text-xl text-primary">আপনার বার্তাটি গ্রহণ করা হয়েছে</h3>
-                <p className="text-xs text-muted max-w-sm mx-auto font-bn-sans">
-                  আমাদের প্রতিনিধি অতি শীঘ্রই আপনার প্রদানকৃত মোবাইল নম্বরে যোগাযোগ করবেন।
-                </p>
-                <Button variant="secondary" onClick={() => setSubmitted(false)}>নতুন বার্তা লিখুন</Button>
+                <h3 className="font-display font-bold text-xl text-primary">{t('contact.success')}</h3>
+                <Button variant="secondary" onClick={() => setSubmitted(false)}>{t('contact.send')}</Button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4 text-xs">
                 <h2 className="font-display font-bold text-xl text-primary pb-3 border-b border-line">
-                  বার্তা পাঠান
+                  {t('contact.send')}
                 </h2>
 
                 <div>
-                  <label className="block font-bold text-ink mb-1">আপনার নাম *</label>
+                  <label className="block font-bold text-ink mb-1">{t('contact.name')} *</label>
                   <input
                     type="text"
                     required
-                    placeholder="আপনার নাম"
+                    placeholder={lang === 'bn' ? 'আপনার নাম' : 'Your Name'}
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     className="w-full bg-bg text-ink px-4 py-2.5 rounded-xl border border-line focus:border-accent outline-none"
@@ -103,7 +102,7 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label className="block font-bold text-ink mb-1">ফোন নম্বর *</label>
+                  <label className="block font-bold text-ink mb-1">{t('register.phone')} *</label>
                   <input
                     type="tel"
                     required
@@ -115,11 +114,11 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label className="block font-bold text-ink mb-1">আপনার বক্তব্য বা প্রশ্ন *</label>
+                  <label className="block font-bold text-ink mb-1">{t('contact.message')} *</label>
                   <textarea
                     required
                     rows="4"
-                    placeholder="আপনার বার্তাটি লিখুন..."
+                    placeholder={lang === 'bn' ? 'আপনার বার্তাটি লিখুন...' : 'Write your message here...'}
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
                     className="w-full bg-bg text-ink px-4 py-2.5 rounded-xl border border-line focus:border-accent outline-none"
@@ -127,7 +126,7 @@ export default function Contact() {
                 </div>
 
                 <Button type="submit" variant="accent" size="lg" className="w-full gap-2">
-                  পাঠিয়ে দিন <Send size={16} />
+                  {t('contact.send')} <Send size={16} />
                 </Button>
               </form>
             )}

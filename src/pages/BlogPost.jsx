@@ -4,9 +4,11 @@ import { Clock, User, Calendar, ArrowLeft } from 'lucide-react';
 import blogsData from '../data/blogs.json';
 import { motion } from 'framer-motion';
 import AlponaDivider from '../components/ui/AlponaDivider';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function BlogPost() {
   const { slug } = useParams();
+  const { t, lang } = useLanguage();
   const blog = blogsData.find((b) => b.slug === slug) || blogsData[0];
 
   return (
@@ -18,13 +20,13 @@ export default function BlogPost() {
     >
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <Link to="/blog" className="inline-flex items-center gap-1.5 text-xs text-muted hover:text-accent">
-          <ArrowLeft size={15} /> ব্লগে ফেরত যান
+          <ArrowLeft size={15} /> {t('btn.backToBlog')}
         </Link>
 
         <div className="space-y-3">
           <span className="text-xs font-bold text-accent uppercase tracking-widest">{blog.category}</span>
           <h1 className="font-display font-bold text-3xl sm:text-4xl text-primary leading-tight">
-            {blog.title}
+            {lang === 'bn' ? blog.title : (blog.titleEn || blog.title)}
           </h1>
 
           <div className="flex flex-wrap items-center gap-4 text-xs text-muted font-bn-sans pt-2 border-b border-line pb-4">

@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom';
 import { Clock, User, ArrowRight } from 'lucide-react';
 import blogsData from '../data/blogs.json';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Blog() {
+  const { t, lang } = useLanguage();
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -14,12 +17,12 @@ export default function Blog() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-xs font-bold text-accent uppercase tracking-wider">অর্গানিক ব্লগ ও স্বাস্থ্যকথা</span>
+          <span className="text-xs font-bold text-accent uppercase tracking-wider">{t('nav.blog')}</span>
           <h1 className="font-display font-bold text-3xl sm:text-4xl text-primary mt-1">
-            স্বাস্থ্যকণিকা ও লোকজ রন্ধন ঐতিহ্য
+            {t('blog.title')}
           </h1>
           <p className="text-xs sm:text-sm text-muted font-bn-sans mt-2">
-            অর্গানিক খাদ্যাভ্যাস, মধু চেনার উপায় এবং ঐতিহ্যবাহী রান্নার রহস্য নিয়ে গুরুত্বপূর্ণ ব্লগ।
+            {t('blog.sub')}
           </p>
         </div>
 
@@ -36,7 +39,7 @@ export default function Blog() {
                     <span className="flex items-center gap-1"><Clock size={12} /> {blog.readTime}</span>
                   </div>
                   <Link to={`/blog/${blog.slug}`} className="block font-display font-bold text-lg text-primary hover:text-accent line-clamp-2">
-                    {blog.title}
+                    {lang === 'bn' ? blog.title : (blog.titleEn || blog.title)}
                   </Link>
                   <p className="text-xs text-muted font-bn-sans line-clamp-3 leading-relaxed">
                     {blog.excerpt}
@@ -46,7 +49,7 @@ export default function Blog() {
                 <div className="pt-4 border-t border-line/60 flex items-center justify-between">
                   <span className="text-[11px] text-muted flex items-center gap-1"><User size={12} /> {blog.author}</span>
                   <Link to={`/blog/${blog.slug}`} className="text-xs font-bold text-accent hover:underline flex items-center gap-1">
-                    পড়ুন <ArrowRight size={14} />
+                    {t('btn.readMore')}
                   </Link>
                 </div>
               </div>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Droplet, Flame, Wheat, Sparkles, Coffee, Nut } from 'lucide-react';
 import categories from '../../data/categories.json';
+import { useLanguage } from '../../context/LanguageContext';
 
 const iconMap = {
   Droplet,
@@ -14,18 +15,20 @@ const iconMap = {
 };
 
 export default function CategoryStrip() {
+  const { t, lang } = useLanguage();
+
   return (
     <section className="py-10 bg-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-end justify-between mb-6">
           <div>
-            <span className="text-xs font-bold text-accent uppercase tracking-wider">ক্যাটাগরি সমূহ</span>
+            <span className="text-xs font-bold text-accent uppercase tracking-wider">{t('catstrip.tag')}</span>
             <h2 className="font-display font-bold text-2xl sm:text-3xl text-primary mt-1">
-              প্রকৃতির খাঁটি রত্নভাণ্ডার
+              {t('catstrip.title')}
             </h2>
           </div>
           <Link to="/shop" className="text-xs font-semibold text-accent hover:underline hidden sm:block">
-            সব ক্যাটাগরি দেখুন →
+            {t('btn.viewAllCat')}
           </Link>
         </div>
 
@@ -59,9 +62,9 @@ export default function CategoryStrip() {
                   </div>
 
                   <h3 className="font-display font-bold text-sm text-primary group-hover:text-accent transition-colors line-clamp-1">
-                    {cat.bnName}
+                    {lang === 'bn' ? cat.bnName : cat.name}
                   </h3>
-                  <p className="text-[11px] text-muted font-sans mt-0.5">{cat.itemCount} টি পণ্য</p>
+                  <p className="text-[11px] text-muted font-sans mt-0.5">{cat.itemCount} {t('catstrip.items')}</p>
                 </Link>
               </motion.div>
             );

@@ -4,6 +4,7 @@ import { ShoppingBag, Heart, ShieldCheck, Truck, RefreshCw, CheckCircle, ArrowLe
 import { motion } from 'framer-motion';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
+import { useLanguage } from '../context/LanguageContext';
 import productsData from '../data/products.json';
 import RatingStars from '../components/ui/RatingStars';
 import Badge from '../components/ui/Badge';
@@ -15,6 +16,7 @@ export default function ProductDetails() {
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
+  const { t, lang } = useLanguage();
 
   const product = productsData.find((p) => p.slug === slug) || productsData[0];
   const [selectedImg, setSelectedImg] = useState(0);
@@ -49,7 +51,7 @@ export default function ProductDetails() {
           to="/shop"
           className="inline-flex items-center gap-1.5 text-xs font-semibold text-muted hover:text-accent mb-6 transition-colors"
         >
-          <ArrowLeft size={16} /> শপ লিস্টে ফিরে যান
+          <ArrowLeft size={16} /> {lang === 'bn' ? 'শপ লিস্টে ফিরে যান' : 'Back to Shop'}
         </Link>
 
         {/* Product Details Layout */}
@@ -65,7 +67,7 @@ export default function ProductDetails() {
               />
               {discountPercent > 0 && (
                 <div className="absolute top-3 left-3">
-                  <Badge variant="discount">-{discountPercent}% ছাড়</Badge>
+                  <Badge variant="discount">-{discountPercent}% {t('badge.off')}</Badge>
                 </div>
               )}
             </div>
@@ -95,17 +97,19 @@ export default function ProductDetails() {
                 <Badge variant="primary" className="uppercase font-mono">{product.category}</Badge>
                 {product.inStock ? (
                   <span className="text-xs text-primary font-bold flex items-center gap-1">
-                    <CheckCircle size={14} className="text-accent" /> ইন স্টক (In Stock)
+                    <CheckCircle size={14} className="text-accent" /> {t('pd.inStock')}
                   </span>
                 ) : (
-                  <span className="text-xs text-accent-2 font-bold">স্টক শেষ</span>
+                  <span className="text-xs text-accent-2 font-bold">{t('pd.outOfStock')}</span>
                 )}
               </div>
 
               <h1 className="font-display font-bold text-2xl sm:text-3xl text-primary">
-                {product.name}
+                {lang === 'bn' ? (product.bnName || product.name) : product.name}
               </h1>
-              <p className="text-sm font-bn-sans text-muted">{product.bnName}</p>
+              <p className="text-sm font-bn-sans text-muted">
+                {lang === 'bn' ? product.name : product.bnName}
+              </p>
 
               {/* Rating */}
               <div className="flex items-center gap-2 pt-1">
@@ -128,7 +132,7 @@ export default function ProductDetails() {
 
               {/* Quantity Controls */}
               <div className="flex items-center gap-4 pt-2">
-                <span className="text-xs font-bold text-muted uppercase">পরিমাণ:</span>
+                <span className="text-xs font-bold text-muted uppercase">{t('pd.quantity')}</span>
                 <div className="flex items-center border border-line rounded-xl bg-bg">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -154,7 +158,7 @@ export default function ProductDetails() {
                   onClick={() => addToCart(product, quantity)}
                   className="flex-1 shadow-md"
                 >
-                  <ShoppingBag size={18} /> কার্টে যোগ করুন
+                  <ShoppingBag size={18} /> {t('btn.addToCart')}
                 </Button>
                 <Button
                   variant="primary"
@@ -162,7 +166,7 @@ export default function ProductDetails() {
                   onClick={handleBuyNow}
                   className="flex-1"
                 >
-                  সরাসরি অর্ডার করুন
+                  {t('btn.buyNow')}
                 </Button>
                 <button
                   onClick={() => toggleWishlist(product)}
@@ -180,13 +184,13 @@ export default function ProductDetails() {
               {/* Assurance Badges */}
               <div className="grid grid-cols-3 gap-2 pt-4 border-t border-line text-[11px] text-muted font-medium">
                 <div className="flex items-center gap-1.5">
-                  <ShieldCheck size={16} className="text-accent" /> ১০০% খাঁটি অর্গানিক
+                  <ShieldCheck size={16} className="text-accent" /> {t('footer.pure.title')}
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Truck size={16} className="text-accent" /> দ্রুত হোম ডেলিভারি
+                  <Truck size={16} className="text-accent" /> {t('footer.cod.title')}
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <RefreshCw size={16} className="text-accent" /> ৭ দিনে ইজি রিটার্ন
+                  <RefreshCw size={16} className="text-accent" /> {t('footer.return.title')}
                 </div>
               </div>
             </div>
@@ -202,7 +206,7 @@ export default function ProductDetails() {
                 activeTab === 'description' ? 'text-accent' : 'text-muted hover:text-ink'
               }`}
             >
-              বিস্তারিত বর্ণনা
+              {lang === 'bn' ? 'বিস্তারিত বর্ণনা' : 'Description'}
               {activeTab === 'description' && <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent" />}
             </button>
             <button
@@ -211,7 +215,7 @@ export default function ProductDetails() {
                 activeTab === 'ingredients' ? 'text-accent' : 'text-muted hover:text-ink'
               }`}
             >
-              উপাদান (Ingredients)
+              {t('pd.ingredients')}
               {activeTab === 'ingredients' && <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent" />}
             </button>
             <button
@@ -220,7 +224,7 @@ export default function ProductDetails() {
                 activeTab === 'benefits' ? 'text-accent' : 'text-muted hover:text-ink'
               }`}
             >
-              স্বাস্থ্য উপকারিতা
+              {t('pd.benefits')}
               {activeTab === 'benefits' && <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent" />}
             </button>
           </div>
@@ -244,7 +248,7 @@ export default function ProductDetails() {
         {relatedProducts.length > 0 && (
           <div className="mt-14">
             <h2 className="font-display font-bold text-2xl text-primary mb-6">
-              আরও কিছু পছন্দ হতে পারে
+              {t('pd.related')}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {relatedProducts.map((rel) => (

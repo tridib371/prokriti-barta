@@ -3,15 +3,18 @@ import { motion } from 'framer-motion';
 import { Quote, CheckCircle } from 'lucide-react';
 import RatingStars from '../ui/RatingStars';
 import reviews from '../../data/reviews.json';
+import { useLanguage } from '../../context/LanguageContext';
 
 export default function ReviewsCarousel() {
+  const { t } = useLanguage();
+
   return (
     <section className="py-12 bg-bg border-t border-line">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <span className="text-xs font-bold text-accent uppercase tracking-wider">গ্রাহকদের মতামত</span>
+          <span className="text-xs font-bold text-accent uppercase tracking-wider">{t('reviews.tag')}</span>
           <h2 className="font-display font-bold text-2xl sm:text-3xl text-primary mt-1">
-            সুখী গ্রাহকদের অনুভূতির গল্প
+            {t('reviews.title')}
           </h2>
         </div>
 
@@ -41,7 +44,7 @@ export default function ReviewsCarousel() {
                 </div>
                 {rev.verifiedPurchase && (
                   <span className="flex items-center gap-1 text-[10px] text-accent font-medium">
-                    <CheckCircle size={12} /> Verified
+                    <CheckCircle size={12} /> {t('reviews.verified')}
                   </span>
                 )}
               </div>

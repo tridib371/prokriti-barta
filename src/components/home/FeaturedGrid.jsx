@@ -2,11 +2,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import ProductCard from '../shop/ProductCard';
 import products from '../../data/products.json';
-import { Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Sparkles, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Button from '../ui/Button';
+import { useLanguage } from '../../context/LanguageContext';
 
 export default function FeaturedGrid() {
+  const { t, lang } = useLanguage();
   const featuredProduct = products.find(p => p.id === 'honey-sundarban-500') || products[0];
   const bentoSmallProducts = products.filter(p => p.id !== featuredProduct.id).slice(0, 6);
 
@@ -17,15 +19,15 @@ export default function FeaturedGrid() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
           <div>
             <div className="inline-flex items-center gap-1 text-xs font-bold text-accent uppercase tracking-wider mb-1">
-              <Sparkles size={14} /> আমাদের বিশেষ কালেকশন
+              <Sparkles size={14} /> {t('featured.tag')}
             </div>
             <h2 className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl text-primary">
-              জনপ্রিয় অর্গানিক সমাহার
+              {t('featured.title')}
             </h2>
           </div>
           <Link to="/shop">
             <Button variant="outline" size="sm" className="gap-1">
-              সব পণ্য দেখুন <ArrowRight size={15} />
+              {t('btn.viewAll')} <ArrowRight size={15} />
             </Button>
           </Link>
         </div>
@@ -42,10 +44,10 @@ export default function FeaturedGrid() {
           >
             <div className="relative z-10 space-y-3 max-w-md">
               <span className="px-3 py-1 rounded-full bg-accent/20 text-accent font-bold text-xs">
-                আজকের ফিচার্ড প্রোডাক্ট
+                {t('featured.todayBadge')}
               </span>
               <h3 className="font-display font-bold text-2xl sm:text-3xl text-primary">
-                {featuredProduct.name}
+                {lang === 'bn' ? featuredProduct.bnName : featuredProduct.name}
               </h3>
               <p className="text-muted text-sm font-bn-sans leading-relaxed">
                 {featuredProduct.shortDesc}
@@ -60,7 +62,7 @@ export default function FeaturedGrid() {
               </div>
               <Link to={`/product/${featuredProduct.slug}`} className="inline-block pt-2">
                 <Button variant="accent" size="md">
-                  বিস্তারিত ও অর্ডারের নিয়ম <ArrowRight size={16} />
+                  {t('btn.details')} <ArrowRight size={16} />
                 </Button>
               </Link>
             </div>
@@ -109,18 +111,18 @@ export default function FeaturedGrid() {
           {/* Banner Bento Filler Box */}
           <div className="sm:col-span-2 bg-primary text-surface rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden">
             <div className="space-y-2 z-10">
-              <span className="text-xs text-accent font-bold uppercase tracking-wider">কৃষকের হাসি</span>
+              <span className="text-xs text-accent font-bold uppercase tracking-wider">{t('featured.farmerTag')}</span>
               <h3 className="font-display font-bold text-xl sm:text-2xl text-surface">
-                ন্যায্য মূল্যে সরাসরি খামার থেকে সংগৃহীত
+                {t('featured.farmerTitle')}
               </h3>
               <p className="text-xs text-surface/80 font-bn-sans">
-                প্রতিটি কেনাকাটায় লোকজ কৃষক ও খাঁটি খামারিরা পাচ্ছেন তাদের শ্রমের সঠিক মূল্য।
+                {t('featured.farmerSub')}
               </p>
             </div>
             <div className="pt-4 z-10">
               <Link to="/about">
                 <Button variant="accent" size="sm">
-                  আমাদের কৃষকদের গল্প পড়ুন
+                  {t('btn.farmersStory')}
                 </Button>
               </Link>
             </div>

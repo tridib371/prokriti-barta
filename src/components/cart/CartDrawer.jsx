@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ShoppingBag, Trash2, ArrowRight, Truck } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
+import { useLanguage } from '../../context/LanguageContext';
 import { drawerSlide } from '../../lib/motionVariants';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '../ui/Button';
@@ -17,6 +18,7 @@ export default function CartDrawer() {
     freeShippingThreshold,
     isFreeShipping,
   } = useCart();
+  const { t, lang } = useLanguage();
 
   const navigate = useNavigate();
 
@@ -53,9 +55,9 @@ export default function CartDrawer() {
             <div className="p-4 sm:p-5 border-b border-line flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <ShoppingBag className="text-accent" size={22} />
-                <h2 className="font-display font-bold text-lg text-primary">আপনার কার্ট (Cart)</h2>
+                <h2 className="font-display font-bold text-lg text-primary">{t('cartdrawer.title')}</h2>
                 <span className="text-xs bg-accent/20 text-ink px-2 py-0.5 rounded-full font-medium">
-                  {cart.reduce((a, b) => a + b.quantity, 0)} items
+                  {cart.reduce((a, b) => a + b.quantity, 0)} {t('cart.items')}
                 </span>
               </div>
               <button
@@ -72,10 +74,10 @@ export default function CartDrawer() {
               <div className="flex items-center gap-2 text-xs font-medium text-ink mb-1.5">
                 <Truck size={15} className="text-accent" />
                 {isFreeShipping ? (
-                  <span className="text-primary font-semibold">🎉 অভিনন্দন! আপনি ফ্রি ডেলিভারি পাচ্ছেন।</span>
+                  <span className="text-primary font-semibold">{t('cartdrawer.freeReached')}</span>
                 ) : (
                   <span>
-                    ফ্রি ডেলিভারির জন্য আরো <strong className="text-accent-2">৳{amountToFreeShipping}</strong> টাকার কেনাকাটা করুন
+                    {t('cartdrawer.freeRemaining')} <strong className="text-accent-2">৳{amountToFreeShipping}</strong> {t('cartdrawer.freeMore')}
                   </span>
                 )}
               </div>
@@ -94,12 +96,12 @@ export default function CartDrawer() {
                   <div className="p-4 bg-bg rounded-full text-muted">
                     <ShoppingBag size={40} />
                   </div>
-                  <h3 className="font-display font-semibold text-lg">আপনার কার্ট খালি</h3>
+                  <h3 className="font-display font-semibold text-lg">{t('cartdrawer.empty.title')}</h3>
                   <p className="text-xs text-muted max-w-xs">
-                    আমাদের খাঁটি সুন্দরবনের মধু, ঘি ও প্রাকৃতিক সামগ্রী দেখতে শপ পেজে যান।
+                    {t('cartdrawer.empty.sub')}
                   </p>
                   <Button variant="accent" onClick={() => { closeCart(); navigate('/shop'); }}>
-                    শপ ভিজিট করুন
+                    {t('cartdrawer.empty.btn')}
                   </Button>
                 </div>
               ) : (
@@ -120,9 +122,11 @@ export default function CartDrawer() {
                           onClick={closeCart}
                           className="font-medium text-sm text-primary hover:text-accent line-clamp-1 transition-colors"
                         >
-                          {product.name}
+                          {lang === 'bn' ? (product.bnName || product.name) : product.name}
                         </Link>
-                        <p className="text-xs text-muted font-bn-sans">{product.bnName}</p>
+                        <p className="text-xs text-muted font-bn-sans">
+                          {lang === 'bn' ? product.name : product.bnName}
+                        </p>
                         <div className="mt-1 font-semibold text-accent text-sm">
                           ৳{product.price}{' '}
                           <span className="text-[11px] font-normal text-muted">x {quantity} = ৳{product.price * quantity}</span>
@@ -166,19 +170,19 @@ export default function CartDrawer() {
             {cart.length > 0 && (
               <div className="p-4 sm:p-5 border-t border-line bg-surface space-y-3">
                 <div className="flex justify-between items-center text-sm">
-                  <span className="text-muted">সাবটোটাল (Subtotal)</span>
+                  <span className="text-muted">{t('cartdrawer.subtotal')}</span>
                   <span className="font-display font-bold text-lg text-primary">৳{subtotal}</span>
                 </div>
                 <p className="text-[11px] text-muted">
-                  ডেলিভারি চার্জ ও ট্যাক্স চেকআউটে হিসাব করা হবে।
+                  {t('cartdrawer.notice')}
                 </p>
 
                 <div className="grid grid-cols-2 gap-2 pt-1">
                   <Button variant="secondary" onClick={() => { closeCart(); navigate('/cart'); }}>
-                    কার্ট পেজ
+                    {t('cartdrawer.cartpage')}
                   </Button>
                   <Button variant="accent" onClick={handleCheckout} className="gap-1.5">
-                    চেকআউট <ArrowRight size={16} />
+                    {t('btn.checkout')} <ArrowRight size={16} />
                   </Button>
                 </div>
               </div>

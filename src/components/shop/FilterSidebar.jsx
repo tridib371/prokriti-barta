@@ -1,7 +1,7 @@
 import React from 'react';
 import { RotateCcw, Filter } from 'lucide-react';
 import categories from '../../data/categories.json';
-import Button from '../ui/Button';
+import { useLanguage } from '../../context/LanguageContext';
 
 export default function FilterSidebar({
   selectedCategory,
@@ -12,23 +12,25 @@ export default function FilterSidebar({
   setMinRating,
   onResetFilters
 }) {
+  const { t, lang } = useLanguage();
+
   return (
     <div className="bg-surface border border-line rounded-2xl p-5 space-y-6">
       <div className="flex items-center justify-between pb-3 border-b border-line">
         <h3 className="font-display font-bold text-base text-primary flex items-center gap-2">
-          <Filter size={18} className="text-accent" /> ফিল্টার সমূহ
+          <Filter size={18} className="text-accent" /> {t('shop.filter.title')}
         </h3>
         <button
           onClick={onResetFilters}
           className="text-xs text-accent-2 hover:underline flex items-center gap-1 font-medium"
         >
-          <RotateCcw size={12} /> রিসেট
+          <RotateCcw size={12} /> {t('shop.resetFilter')}
         </button>
       </div>
 
       {/* Category List */}
       <div className="space-y-2">
-        <h4 className="font-bold text-xs uppercase tracking-wider text-muted font-sans">ক্যাটাগরি</h4>
+        <h4 className="font-bold text-xs uppercase tracking-wider text-muted font-sans">{t('shop.filter.category')}</h4>
         <div className="space-y-1 text-xs">
           <button
             onClick={() => setSelectedCategory('')}
@@ -36,7 +38,7 @@ export default function FilterSidebar({
               selectedCategory === '' ? 'bg-accent/15 text-accent font-bold' : 'text-ink hover:bg-bg'
             }`}
           >
-            <span>সব পণ্য (All Products)</span>
+            <span>{t('shop.filter.all')}</span>
           </button>
           {categories.map((cat) => (
             <button
@@ -46,7 +48,7 @@ export default function FilterSidebar({
                 selectedCategory === cat.slug ? 'bg-accent/15 text-accent font-bold' : 'text-ink hover:bg-bg'
               }`}
             >
-              <span>{cat.bnName}</span>
+              <span>{lang === 'bn' ? cat.bnName : cat.name}</span>
               <span className="text-[10px] text-muted">({cat.itemCount})</span>
             </button>
           ))}
@@ -56,7 +58,7 @@ export default function FilterSidebar({
       {/* Price Filter */}
       <div className="space-y-3 pt-3 border-t border-line">
         <div className="flex justify-between items-center text-xs">
-          <h4 className="font-bold uppercase tracking-wider text-muted font-sans">সর্বোচ্চ দাম</h4>
+          <h4 className="font-bold uppercase tracking-wider text-muted font-sans">{t('shop.filter.price')}</h4>
           <span className="font-bold text-primary font-mono">৳{priceRange}</span>
         </div>
         <input
@@ -69,14 +71,16 @@ export default function FilterSidebar({
           className="w-full accent-accent cursor-pointer"
         />
         <div className="flex justify-between text-[10px] text-muted font-mono">
-          <span>৳১৫০</span>
-          <span>৳১৫০০</span>
+          <span>৳150</span>
+          <span>৳1500</span>
         </div>
       </div>
 
       {/* Rating Filter */}
       <div className="space-y-2 pt-3 border-t border-line">
-        <h4 className="font-bold text-xs uppercase tracking-wider text-muted font-sans">সর্বনিম্ন রেটিং</h4>
+        <h4 className="font-bold text-xs uppercase tracking-wider text-muted font-sans">
+          {lang === 'bn' ? 'সর্বনিম্ন রেটিং' : 'Minimum Rating'}
+        </h4>
         <div className="flex gap-2">
           {[0, 4, 4.5, 4.8].map((rate) => (
             <button

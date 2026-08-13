@@ -1,15 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, ShoppingBag, Eye } from 'lucide-react';
+import { Heart, ShoppingBag } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
+import { useLanguage } from '../../context/LanguageContext';
 import RatingStars from '../ui/RatingStars';
 import Badge from '../ui/Badge';
 
 export default function ProductCard({ product }) {
   const { addToCart } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
+  const { t, lang } = useLanguage();
 
   const isLiked = isInWishlist(product.id);
   const discountPercent = product.originalPrice
@@ -33,11 +35,11 @@ export default function ProductCard({ product }) {
         {/* Badges Overlay */}
         <div className="absolute top-2.5 left-2.5 flex flex-col gap-1 z-10">
           {discountPercent > 0 && (
-            <Badge variant="discount">-{discountPercent}% ছাড়</Badge>
+            <Badge variant="discount">-{discountPercent}% {t('badge.off')}</Badge>
           )}
-          {product.isNew && <Badge variant="accent">নতুন</Badge>}
+          {product.isNew && <Badge variant="accent">{t('badge.new')}</Badge>}
           {product.tags?.includes('Bestseller') && (
-            <Badge variant="primary">বেস্টসেলার</Badge>
+            <Badge variant="primary">{t('badge.bestseller')}</Badge>
           )}
         </div>
 
@@ -65,7 +67,7 @@ export default function ProductCard({ product }) {
             onClick={() => addToCart(product, 1)}
             className="w-full bg-accent text-ink hover:bg-accent/90 py-2 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-md active:scale-95 transition-all"
           >
-            <ShoppingBag size={15} /> কার্টে যোগ করুন
+            <ShoppingBag size={15} /> {t('btn.addToCart')}
           </button>
         </div>
       </div>
@@ -80,9 +82,11 @@ export default function ProductCard({ product }) {
             to={`/product/${product.slug}`}
             className="block font-display font-semibold text-sm sm:text-base text-primary hover:text-accent transition-colors line-clamp-1 mt-0.5"
           >
-            {product.name}
+            {lang === 'bn' ? (product.bnName || product.name) : product.name}
           </Link>
-          <p className="text-xs text-muted font-bn-sans line-clamp-1 mt-0.5">{product.bnName}</p>
+          <p className="text-xs text-muted font-bn-sans line-clamp-1 mt-0.5">
+            {lang === 'bn' ? product.name : product.bnName}
+          </p>
 
           <div className="mt-2">
             <RatingStars rating={product.rating} reviewCount={product.reviewCount} size={13} />
