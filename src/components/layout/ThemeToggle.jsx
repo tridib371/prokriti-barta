@@ -9,7 +9,7 @@ export default function ThemeToggle({ className = '' }) {
   return (
     <button
       onClick={toggleTheme}
-      className={`p-2 rounded-xl text-ink hover:bg-surface transition-colors focus-visible:ring-2 focus-visible:ring-accent ${className}`}
+      className={`p-1.5 rounded-xl text-white hover:bg-white/10 transition-colors focus-visible:ring-2 focus-visible:ring-accent cursor-pointer ${className}`}
       aria-label="Toggle light/dark theme"
       title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
     >
@@ -20,9 +20,9 @@ export default function ThemeToggle({ className = '' }) {
         transition={{ duration: 0.25 }}
       >
         {theme === 'dark' ? (
-          <Sun size={20} className="text-accent hover:rotate-45 transition-transform" />
+          <Sun size={18} className="text-accent hover:rotate-45 transition-transform" />
         ) : (
-          <Moon size={20} className="text-primary hover:-rotate-12 transition-transform" />
+          <Moon size={18} className="text-white hover:-rotate-12 transition-transform" />
         )}
       </motion.div>
     </button>
