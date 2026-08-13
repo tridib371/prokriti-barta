@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Search, ShoppingBag, Heart, User, Menu, X, ChevronDown, Sparkles } from 'lucide-react';
+import { Search, ShoppingBag, Heart, User, Menu, X, ChevronDown, Sparkles, LogIn, UserPlus, LogOut } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
+import { useAuth } from '../../context/AuthContext';
 import ThemeToggle from './ThemeToggle';
 import categories from '../../data/categories.json';
 
@@ -12,6 +13,7 @@ export default function Navbar() {
   const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
   const { itemCount, openCart } = useCart();
   const { wishlistCount } = useWishlist();
+  const { user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -24,7 +26,8 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { name: 'হোম', path: '/' },
+    { name: 'ল্যান্ডিং পেজ', path: '/landing' },
+    { name: 'হোম (Home)', path: '/' },
     { name: 'শপ (Shop)', path: '/shop' },
     { name: 'অফারসমুহ (Offers)', path: '/offers', badge: 'DEALS' },
     { name: 'আমাদের কথা (About)', path: '/about' },
@@ -57,7 +60,6 @@ export default function Navbar() {
           </button>
 
           <Link to="/" className="flex items-center gap-2 group">
-            {/* SVG Alpona Petal Logo Icon */}
             <div className="w-10 h-10 rounded-xl bg-primary text-accent flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform">
               <svg width="24" height="24" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20 4 C14 12, 14 28, 20 36 C26 28, 26 12, 20 4 Z" fill="currentColor" opacity="0.9" />
@@ -130,13 +132,41 @@ export default function Navbar() {
             <span className="hidden lg:inline text-xs font-semibold text-primary">কার্ট</span>
           </button>
 
-          <Link
-            to="/profile"
-            className="p-2.5 rounded-xl text-ink hover:bg-bg transition-colors hidden sm:flex"
-            title="My Account"
-          >
-            <User size={21} />
-          </Link>
+          {/* User Auth Buttons / Profile Avatar */}
+          {isAuthenticated ? (
+            <div className="flex items-center gap-2 pl-2 border-l border-line/60">
+              <Link
+                to="/profile"
+                className="flex items-center gap-2 p-1.5 hover:bg-bg rounded-xl transition-colors"
+                title="My Account"
+              >
+                <div className="w-8 h-8 rounded-lg bg-accent/20 text-accent font-bold flex items-center justify-center text-xs">
+                  {user?.name?.charAt(0) || 'U'}
+                </div>
+                <span className="hidden xl:inline text-xs font-bold text-primary line-clamp-1">{user?.name}</span>
+              </Link>
+              <button
+                onClick={logout}
+                className="p-2 text-muted hover:text-accent-2 transition-colors hidden sm:block"
+                title="Log Out"
+              >
+                <LogOut size={18} />
+              </button>
+            </div>
+          ) : (
+            <div className="flex items-center gap-1.5 pl-2">
+              <Link to="/login">
+                <button className="px-3 py-1.5 text-xs font-semibold text-primary hover:bg-bg rounded-xl transition-colors hidden sm:flex items-center gap-1">
+                  <LogIn size={15} /> সাইন ইন
+                </button>
+              </Link>
+              <Link to="/register">
+                <button className="px-3 py-1.5 bg-accent text-ink hover:bg-accent/90 text-xs font-bold rounded-xl transition-colors flex items-center gap-1 shadow-xs">
+                  <UserPlus size={15} /> সাইন আপ
+                </button>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
 
@@ -214,8 +244,32 @@ export default function Navbar() {
               </button>
             </div>
 
+            {/* Mobile Auth status */}
+            {!isAuthenticated ? (
+              <div className="my-4 flex gap-2">
+                <Link to="/login" onClick={() => setMobileMenuOpen(false)} className="flex-1">
+                  <button className="w-full py-2 bg-bg border border-line rounded-xl text-xs font-bold text-primary flex items-center justify-center gap-1">
+                    <LogIn size={14} /> সাইন ইন
+                  </button>
+                </Link>
+                <Link to="/register" onClick={() => setMobileMenuOpen(false)} className="flex-1">
+                  <button className="w-full py-2 bg-accent text-ink rounded-xl text-xs font-bold flex items-center justify-center gap-1">
+                    <UserPlus size={14} /> সাইন আপ
+                  </button>
+                </Link>
+              </div>
+            ) : (
+              <div className="my-4 p-3 bg-bg rounded-xl flex items-center justify-between">
+                <div>
+                  <p className="font-bold text-xs text-primary">{user?.name}</p>
+                  <p className="text-[10px] text-muted">{user?.email}</p>
+                </div>
+                <button onClick={logout} className="text-xs text-accent-2 font-bold">লগআউট</button>
+              </div>
+            )}
+
             {/* Mobile Search */}
-            <form onSubmit={handleSearchSubmit} className="my-4">
+            <form onSubmit={handleSearchSubmit} className="mb-4">
               <input
                 type="text"
                 placeholder="পণ্য খুঁজুন..."

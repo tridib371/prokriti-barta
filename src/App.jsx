@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import { CartProvider } from './context/CartContext';
 import { WishlistProvider } from './context/WishlistContext';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import { useLenis } from './lib/lenis';
 
 // Layout
@@ -11,6 +12,7 @@ import Footer from './components/layout/Footer';
 import CartDrawer from './components/cart/CartDrawer';
 
 // Pages
+import LandingPage from './pages/LandingPage';
 import Home from './pages/Home';
 import Shop from './pages/Shop';
 import ProductDetails from './pages/ProductDetails';
@@ -40,6 +42,7 @@ function ScrollToTop() {
 
 function MainLayout() {
   useLenis();
+  const { isAuthenticated } = useAuth();
 
   return (
     <div className="flex flex-col min-h-screen bg-bg text-ink">
@@ -48,7 +51,10 @@ function MainLayout() {
       <CartDrawer />
       <main className="flex-1">
         <Routes>
-          <Route path="/" element={<Home />} />
+          {/* Unauthenticated landing page by default on root, or full Home for returning users */}
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/landing" element={<LandingPage />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/product/:slug" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart />} />
@@ -75,14 +81,16 @@ function MainLayout() {
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <CartProvider>
-        <WishlistProvider>
-          <BrowserRouter>
-            <MainLayout />
-          </BrowserRouter>
-        </WishlistProvider>
-      </CartProvider>
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider>
+        <CartProvider>
+          <WishlistProvider>
+            <BrowserRouter>
+              <MainLayout />
+            </BrowserRouter>
+          </WishlistProvider>
+        </CartProvider>
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
