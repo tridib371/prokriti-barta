@@ -52,7 +52,7 @@ export default function HeroSlider() {
     return () => clearInterval(timer);
   }, [slides.length]);
 
-  const slide = slides[current];
+  const slide = slides[current] || slides[0];
 
   return (
     <section className="relative overflow-hidden bg-bg py-8 lg:py-14 border-b border-line">
