@@ -3,12 +3,14 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { User, Mail, Phone, Lock, ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
 import Button from '../components/ui/Button';
 
 export default function Register() {
   const navigate = useNavigate();
   const location = useLocation();
   const { register } = useAuth();
+  const { t } = useLanguage();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -18,7 +20,7 @@ export default function Register() {
   const handleRegister = (e) => {
     e.preventDefault();
     if (!name || !email || !phone || !password) {
-      setError('অনুগ্রহ করে সকল তথ্য পূরণ করুন।');
+      setError(t('register.error'));
       return;
     }
     register(name, email, phone, password);
@@ -59,8 +61,8 @@ export default function Register() {
         {/* Right Side Form */}
         <div className="p-6 sm:p-10 flex flex-col justify-center space-y-5">
           <div className="space-y-1">
-            <h1 className="font-display font-bold text-2xl text-primary">নতুন একাউন্ট খুলুন</h1>
-            <p className="text-xs text-muted font-bn-sans">আপনার সঠিক তথ্য প্রদান করে সাইন আপ সম্পন্ন করুন</p>
+            <h1 className="font-display font-bold text-2xl text-primary">{t('register.title')}</h1>
+            <p className="text-xs text-muted font-bn-sans">{t('register.subtitle')}</p>
           </div>
 
           {error && (
@@ -71,7 +73,7 @@ export default function Register() {
 
           <form onSubmit={handleRegister} className="space-y-3.5 text-xs">
             <div>
-              <label className="block font-bold text-ink mb-1">আপনার পূর্ণ নাম *</label>
+              <label className="block font-bold text-ink mb-1">{t('register.name')} *</label>
               <div className="relative">
                 <input
                   type="text"
@@ -86,7 +88,7 @@ export default function Register() {
             </div>
 
             <div>
-              <label className="block font-bold text-ink mb-1">ইমেইল এড্রেস *</label>
+              <label className="block font-bold text-ink mb-1">{t('login.email')} *</label>
               <div className="relative">
                 <input
                   type="email"
@@ -101,7 +103,7 @@ export default function Register() {
             </div>
 
             <div>
-              <label className="block font-bold text-ink mb-1">মোবাইল নম্বর *</label>
+              <label className="block font-bold text-ink mb-1">{t('register.phone')} *</label>
               <div className="relative">
                 <input
                   type="tel"
@@ -116,7 +118,7 @@ export default function Register() {
             </div>
 
             <div>
-              <label className="block font-bold text-ink mb-1">পাসওয়ার্ড *</label>
+              <label className="block font-bold text-ink mb-1">{t('login.password')} *</label>
               <div className="relative">
                 <input
                   type="password"
@@ -131,12 +133,12 @@ export default function Register() {
             </div>
 
             <Button type="submit" variant="accent" size="lg" className="w-full gap-2 shadow-md">
-              রেজিস্ট্রেশন করুন (Sign Up) <ArrowRight size={16} />
+              {t('btn.register')} <ArrowRight size={16} />
             </Button>
           </form>
 
           <p className="text-xs text-muted text-center font-bn-sans">
-            ইতিমধ্যে একাউন্ট আছে? <Link to="/login" className="text-accent font-bold hover:underline">লগইন করুন</Link>
+            {t('register.haveAccount')} <Link to="/login" className="text-accent font-bold hover:underline">{t('register.loginLink')}</Link>
           </p>
         </div>
 

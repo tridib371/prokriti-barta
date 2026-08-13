@@ -3,12 +3,14 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Lock, Mail, ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
 import Button from '../components/ui/Button';
 
 export default function Login() {
   const navigate = useNavigate();
   const location = useLocation();
   const { login } = useAuth();
+  const { t } = useLanguage();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -16,7 +18,7 @@ export default function Login() {
   const handleLogin = (e) => {
     e.preventDefault();
     if (!email || !password) {
-      setError('অনুগ্রহ করে ইমেইল ও পাসওয়ার্ড প্রদান করুন।');
+      setError(t('login.error'));
       return;
     }
     login(email, password);
@@ -41,10 +43,10 @@ export default function Login() {
               প্রকৃতি বার্তা সাইন ইন
             </span>
             <h2 className="font-display font-bold text-3xl text-surface leading-tight">
-              আবারও স্বাগতম আপনার পছন্দের অর্গানিক শপে
+              {t('login.banner.title')}
             </h2>
             <p className="text-xs text-surface/80 font-bn-sans leading-relaxed">
-              আপনার সংরক্ষিত উইশলিস্ট, কার্ট এবং সহজ চেকআউটের সুবিধা পেতে লগইন করুন।
+              {t('login.banner.subtitle')}
             </p>
           </div>
 
@@ -58,8 +60,8 @@ export default function Login() {
         {/* Right Side Form */}
         <div className="p-6 sm:p-10 flex flex-col justify-center space-y-6">
           <div className="space-y-1">
-            <h1 className="font-display font-bold text-2xl text-primary">একাউন্টে লগইন করুন</h1>
-            <p className="text-xs text-muted font-bn-sans">আপনার নিবন্ধিত ইমেইল ও পাসওয়ার্ড লিখুন</p>
+            <h1 className="font-display font-bold text-2xl text-primary">{t('login.title')}</h1>
+            <p className="text-xs text-muted font-bn-sans">{t('login.subtitle')}</p>
           </div>
 
           {error && (
@@ -70,7 +72,7 @@ export default function Login() {
 
           <form onSubmit={handleLogin} className="space-y-4 text-xs">
             <div>
-              <label className="block font-bold text-ink mb-1">ইমেইল এড্রেস</label>
+              <label className="block font-bold text-ink mb-1">{t('login.email')}</label>
               <div className="relative">
                 <input
                   type="email"
@@ -85,7 +87,7 @@ export default function Login() {
             </div>
 
             <div>
-              <label className="block font-bold text-ink mb-1">পাসওয়ার্ড</label>
+              <label className="block font-bold text-ink mb-1">{t('login.password')}</label>
               <div className="relative">
                 <input
                   type="password"
@@ -100,12 +102,12 @@ export default function Login() {
             </div>
 
             <Button type="submit" variant="accent" size="lg" className="w-full gap-2 shadow-md">
-              লগইন করুন <ArrowRight size={16} />
+              {t('btn.login')} <ArrowRight size={16} />
             </Button>
           </form>
 
           <p className="text-xs text-muted text-center font-bn-sans">
-            নতুন গ্রাহক? <Link to="/register" className="text-accent font-bold hover:underline">একাউন্ট তৈরি করুন</Link>
+            {t('login.noAccount')} <Link to="/register" className="text-accent font-bold hover:underline">{t('login.createAccount')}</Link>
           </p>
         </div>
 

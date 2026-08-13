@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingBag, Trash2, ArrowRight, Truck, ArrowLeft, LogIn } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import Button from '../components/ui/Button';
 
@@ -20,6 +21,7 @@ export default function Cart() {
   } = useCart();
 
   const { isAuthenticated } = useAuth();
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const [showAuthBanner, setShowAuthBanner] = useState(false);
 
@@ -42,13 +44,13 @@ export default function Cart() {
         <div className="p-5 bg-surface rounded-full text-muted border border-line mb-4">
           <ShoppingBag size={48} />
         </div>
-        <h1 className="font-display font-bold text-2xl text-primary">আপনার শপিং কার্ট খালি</h1>
+        <h1 className="font-display font-bold text-2xl text-primary">{t('cart.empty.title')}</h1>
         <p className="text-xs text-muted max-w-sm font-bn-sans mt-2 mb-6">
-          সুন্দরবনের বুনো মধু, খাঁটি বিলোনা ঘি ও কাঠের ঘানির তেল দেখতে আমাদের শপে যান।
+          {t('cart.empty.subtitle')}
         </p>
         <Link to="/shop">
           <Button variant="accent" size="lg">
-            শপে যান
+            {t('btn.goToShop')}
           </Button>
         </Link>
       </div>
@@ -64,11 +66,11 @@ export default function Cart() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link to="/shop" className="inline-flex items-center gap-1.5 text-xs text-muted hover:text-accent mb-4">
-          <ArrowLeft size={15} /> কেনাকাটা চালিয়ে যান
+          <ArrowLeft size={15} /> {t('btn.continueShopping')}
         </Link>
 
         <h1 className="font-display font-bold text-3xl text-primary mb-6">
-          আপনার কার্ট ({cart.reduce((a, b) => a + b.quantity, 0)} টি পণ্য)
+          {t('cart.title')} ({cart.reduce((a, b) => a + b.quantity, 0)} {t('cart.items')})
         </h1>
 
         {/* Free Shipping Alert Banner */}
@@ -79,10 +81,10 @@ export default function Cart() {
             </div>
             <div className="text-xs font-bn-sans">
               {isFreeShipping ? (
-                <p className="text-primary font-bold">🎉 আপনি ১০০০+ টাকার অর্ডারে ফ্রি ডেলিভারি পাচ্ছেন!</p>
+                <p className="text-primary font-bold">{t('cart.freeShipping.reached')}</p>
               ) : (
                 <p className="text-ink">
-                  ফ্রি ডেলিভারির জন্য আরও <strong className="text-accent-2">৳{amountToFreeShipping}</strong> টাকার পণ্য যোগ করুন।
+                  {t('cart.freeShipping.remaining')} <strong className="text-accent-2">৳{amountToFreeShipping}</strong> {t('cart.freeShipping.remainingMore')}
                 </p>
               )}
             </div>
@@ -151,7 +153,7 @@ export default function Cart() {
                 onClick={clearCart}
                 className="text-xs text-accent-2 font-semibold hover:underline"
               >
-                কার্ট খালি করুন
+                {t('btn.clearCart')}
               </button>
             </div>
           </div>
@@ -160,22 +162,22 @@ export default function Cart() {
           <div className="lg:col-span-4">
             <div className="bg-surface border border-line rounded-3xl p-6 space-y-4 sticky top-24">
               <h2 className="font-display font-bold text-lg text-primary pb-3 border-b border-line">
-                অর্ডার সামারি (Order Summary)
+                {t('cart.summary.title')}
               </h2>
 
               <div className="space-y-2.5 text-xs text-ink">
                 <div className="flex justify-between">
-                  <span className="text-muted">পণ্যের মূল্য (Subtotal)</span>
+                  <span className="text-muted">{t('cart.summary.subtotal')}</span>
                   <span className="font-bold font-mono">৳{subtotal}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted">ডেলিভারি চার্জ</span>
-                  <span className="font-bold font-mono">{deliveryCharge === 0 ? 'ফ্রি' : `৳${deliveryCharge}`}</span>
+                  <span className="text-muted">{t('cart.summary.delivery')}</span>
+                  <span className="font-bold font-mono">{deliveryCharge === 0 ? t('cart.summary.free') : `৳${deliveryCharge}`}</span>
                 </div>
               </div>
 
               <div className="pt-3 border-t border-line flex justify-between items-center">
-                <span className="font-bold text-sm text-primary">সর্বমোট (Total)</span>
+                <span className="font-bold text-sm text-primary">{t('cart.summary.total')}</span>
                 <span className="font-display font-bold text-2xl text-accent">৳{total}</span>
               </div>
               {/* Auth required banner */}
@@ -189,22 +191,14 @@ export default function Cart() {
                   >
                     <LogIn size={15} className="text-accent-2 mt-0.5 shrink-0" />
                     <span className="font-bn-sans text-ink">
-                      অর্ডার করতে{' '}
-                      <Link
-                        to="/login"
-                        state={{ from: '/checkout' }}
-                        className="font-bold text-accent-2 underline underline-offset-2"
-                      >
-                        লগইন করুন
+                      {t('cart.auth.prompt')}{' '}
+                      <Link to="/login" state={{ from: '/checkout' }} className="font-bold text-accent-2 underline underline-offset-2">
+                        {t('cart.auth.login')}
                       </Link>{' '}
-                      অথবা{' '}
-                      <Link
-                        to="/register"
-                        state={{ from: '/checkout' }}
-                        className="font-bold text-accent underline underline-offset-2"
-                      >
-                        অ্যাকাউন্ট তৈরি করুন
-                      </Link>।
+                      {t('cart.auth.or')}{' '}
+                      <Link to="/register" state={{ from: '/checkout' }} className="font-bold text-accent underline underline-offset-2">
+                        {t('cart.auth.register')}
+                      </Link>。
                     </span>
                   </motion.div>
                 )}
@@ -216,7 +210,7 @@ export default function Cart() {
                 onClick={handleCheckout}
                 className="w-full shadow-md gap-2"
               >
-                চেকআউটে যান <ArrowRight size={18} />
+                {t('btn.checkout')} <ArrowRight size={18} />
               </Button>
             </div>
           </div>

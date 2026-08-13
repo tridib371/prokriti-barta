@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Search, ShoppingBag, Heart, User, Menu, X, ChevronDown, Sparkles, LogIn, UserPlus, LogOut } from 'lucide-react';
+import { Search, ShoppingBag, Heart, Menu, X, ChevronDown, Sparkles, LogIn, UserPlus, LogOut } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
 import { useAuth } from '../../context/AuthContext';
+import { useLanguage } from '../../context/LanguageContext';
 import ThemeToggle from './ThemeToggle';
+import LanguageToggle from './LanguageToggle';
 import categories from '../../data/categories.json';
 
 export default function Navbar() {
@@ -14,6 +16,7 @@ export default function Navbar() {
   const { itemCount, openCart } = useCart();
   const { wishlistCount } = useWishlist();
   const { user, isAuthenticated, logout } = useAuth();
+  const { t, lang } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -26,14 +29,13 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { name: 'হোম (Home)', path: '/' },
-    { name: 'শপ (Shop)', path: '/shop' },
-    { name: 'অফারসমুহ (Offers)', path: '/offers', badge: 'DEALS' },
-    { name: 'আমাদের কথা (About)', path: '/about' },
-    { name: 'ব্লগ (Blog)', path: '/blog' },
-    { name: 'যোগাযোগ (Contact)', path: '/contact' },
+    { key: 'nav.home', path: '/' },
+    { key: 'nav.shop', path: '/shop' },
+    { key: 'nav.offers', path: '/offers', badge: 'DEALS' },
+    { key: 'nav.about', path: '/about' },
+    { key: 'nav.blog', path: '/blog' },
+    { key: 'nav.contact', path: '/contact' },
   ];
-
 
   return (
     <header className="sticky top-0 z-40 w-full bg-surface/90 backdrop-blur-md border-b border-line transition-colors">
@@ -41,10 +43,10 @@ export default function Navbar() {
       <div className="bg-primary text-surface text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-3">
         <span className="flex items-center gap-1">
           <Sparkles size={14} className="text-accent animate-spin" style={{ animationDuration: '6s' }} />
-          ১০০০ টাকার যেকোনো অর্ডারে সারা বাংলাদেশে ডেলিভারি একদম ফ্রি!
+          {t('nav.announcement')}
         </span>
         <span className="hidden sm:inline text-surface/40">|</span>
-        <span className="hidden sm:inline">হেল্পলাইন: +880 1712-345678</span>
+        <span className="hidden sm:inline">{t('nav.helpline')}</span>
       </div>
 
       {/* Main Bar */}
@@ -69,7 +71,7 @@ export default function Navbar() {
             </div>
             <div className="flex flex-col">
               <span className="font-display font-bold text-xl sm:text-2xl text-primary tracking-tight leading-tight">
-                প্রকৃতি বার্তা
+                {lang === 'bn' ? 'প্রকৃতি বার্তা' : 'Prokriti Barta'}
               </span>
               <span className="text-[10px] tracking-widest text-muted uppercase font-sans font-medium">
                 Prokriti-Barta
@@ -82,7 +84,7 @@ export default function Navbar() {
         <form onSubmit={handleSearchSubmit} className="hidden md:flex flex-1 max-w-md relative">
           <input
             type="text"
-            placeholder="খুঁজুন... (যেমন: মধু, ঘি, চা, তেল)"
+            placeholder={t('nav.search.placeholder')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full bg-bg text-ink text-sm px-4 py-2.5 pl-10 pr-10 rounded-full border border-line focus:border-accent focus:bg-surface transition-all outline-none"
@@ -101,6 +103,7 @@ export default function Navbar() {
 
         {/* Right Actions */}
         <div className="flex items-center gap-1 sm:gap-2">
+          <LanguageToggle />
           <ThemeToggle />
 
           <Link
@@ -129,7 +132,7 @@ export default function Navbar() {
                 </span>
               )}
             </div>
-            <span className="hidden lg:inline text-xs font-semibold text-primary">কার্ট</span>
+            <span className="hidden lg:inline text-xs font-semibold text-primary">{t('nav.cart')}</span>
           </button>
 
           {/* User Auth Buttons / Profile Avatar */}
@@ -148,7 +151,7 @@ export default function Navbar() {
               <button
                 onClick={logout}
                 className="p-2 text-muted hover:text-accent-2 transition-colors hidden sm:block"
-                title="Log Out"
+                title={t('nav.logout')}
               >
                 <LogOut size={18} />
               </button>
@@ -157,12 +160,12 @@ export default function Navbar() {
             <div className="flex items-center gap-1.5 pl-2">
               <Link to="/login">
                 <button className="px-3 py-1.5 text-xs font-semibold text-primary hover:bg-bg rounded-xl transition-colors hidden sm:flex items-center gap-1">
-                  <LogIn size={15} /> সাইন ইন
+                  <LogIn size={15} /> {t('nav.signin')}
                 </button>
               </Link>
               <Link to="/register">
                 <button className="px-3 py-1.5 bg-accent text-ink hover:bg-accent/90 text-xs font-bold rounded-xl transition-colors flex items-center gap-1 shadow-xs">
-                  <UserPlus size={15} /> সাইন আপ
+                  <UserPlus size={15} /> {t('nav.signup')}
                 </button>
               </Link>
             </div>
@@ -179,7 +182,7 @@ export default function Navbar() {
               onClick={() => setCategoryDropdownOpen(prev => !prev)}
               className="py-2.5 px-4 bg-primary text-surface font-medium flex items-center gap-2 rounded-t-xl hover:bg-primary/90 transition-colors"
             >
-              <span>ক্যাটাগরি সমূহ</span>
+              <span>{t('nav.categories')}</span>
               <ChevronDown size={16} className={`transition-transform ${categoryDropdownOpen ? 'rotate-180' : ''}`} />
             </button>
 
@@ -196,7 +199,7 @@ export default function Navbar() {
                     onClick={() => setCategoryDropdownOpen(false)}
                     className="flex items-center justify-between px-4 py-2.5 text-ink hover:bg-bg hover:text-accent transition-colors"
                   >
-                    <span className="font-bn-sans">{cat.bnName}</span>
+                    <span className="font-bn-sans">{lang === 'bn' ? cat.bnName : cat.name}</span>
                     <span className="text-[11px] text-muted">{cat.itemCount} items</span>
                   </Link>
                 ))}
@@ -216,7 +219,7 @@ export default function Navbar() {
                     isActive ? 'text-accent font-semibold' : 'text-ink hover:text-primary'
                   }`}
                 >
-                  <span>{link.name}</span>
+                  <span>{t(link.key)}</span>
                   {link.badge && (
                     <span className="text-[9px] bg-accent-2 text-surface px-1.5 py-0.2 rounded font-bold">
                       {link.badge}
@@ -238,10 +241,13 @@ export default function Navbar() {
           <div className="fixed inset-0 bg-ink/60 backdrop-blur-xs" onClick={() => setMobileMenuOpen(false)} />
           <div className="relative w-4/5 max-w-sm bg-surface h-full shadow-2xl flex flex-col p-5 overflow-y-auto">
             <div className="flex items-center justify-between pb-4 border-b border-line">
-              <span className="font-display font-bold text-lg text-primary">মেন্যু (Menu)</span>
-              <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-muted hover:text-ink">
-                <X size={20} />
-              </button>
+              <span className="font-display font-bold text-lg text-primary">{t('nav.menu')}</span>
+              <div className="flex items-center gap-2">
+                <LanguageToggle />
+                <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-muted hover:text-ink">
+                  <X size={20} />
+                </button>
+              </div>
             </div>
 
             {/* Mobile Auth status */}
@@ -249,12 +255,12 @@ export default function Navbar() {
               <div className="my-4 flex gap-2">
                 <Link to="/login" onClick={() => setMobileMenuOpen(false)} className="flex-1">
                   <button className="w-full py-2 bg-bg border border-line rounded-xl text-xs font-bold text-primary flex items-center justify-center gap-1">
-                    <LogIn size={14} /> সাইন ইন
+                    <LogIn size={14} /> {t('nav.signin')}
                   </button>
                 </Link>
                 <Link to="/register" onClick={() => setMobileMenuOpen(false)} className="flex-1">
                   <button className="w-full py-2 bg-accent text-ink rounded-xl text-xs font-bold flex items-center justify-center gap-1">
-                    <UserPlus size={14} /> সাইন আপ
+                    <UserPlus size={14} /> {t('nav.signup')}
                   </button>
                 </Link>
               </div>
@@ -264,7 +270,7 @@ export default function Navbar() {
                   <p className="font-bold text-xs text-primary">{user?.name}</p>
                   <p className="text-[10px] text-muted">{user?.email}</p>
                 </div>
-                <button onClick={logout} className="text-xs text-accent-2 font-bold">লগআউট</button>
+                <button onClick={logout} className="text-xs text-accent-2 font-bold">{t('nav.logout')}</button>
               </div>
             )}
 
@@ -272,7 +278,7 @@ export default function Navbar() {
             <form onSubmit={handleSearchSubmit} className="mb-4">
               <input
                 type="text"
-                placeholder="পণ্য খুঁজুন..."
+                placeholder={t('nav.search.mobile')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full bg-bg text-ink text-sm px-4 py-2 rounded-xl border border-line"
@@ -288,7 +294,7 @@ export default function Navbar() {
                   onClick={() => setMobileMenuOpen(false)}
                   className="py-2 text-ink hover:text-accent border-b border-line/40 flex items-center justify-between"
                 >
-                  <span>{link.name}</span>
+                  <span>{t(link.key)}</span>
                   {link.badge && (
                     <span className="text-[10px] bg-accent-2 text-surface px-1.5 py-0.5 rounded">
                       {link.badge}
@@ -300,7 +306,7 @@ export default function Navbar() {
 
             {/* Mobile Categories */}
             <div className="mt-6 pt-4 border-t border-line">
-              <h4 className="text-xs uppercase tracking-wider text-muted font-bold mb-3">ক্যাটাগরি</h4>
+              <h4 className="text-xs uppercase tracking-wider text-muted font-bold mb-3">{t('nav.categories.mobile')}</h4>
               <div className="space-y-2">
                 {categories.map((cat) => (
                   <Link
@@ -309,7 +315,7 @@ export default function Navbar() {
                     onClick={() => setMobileMenuOpen(false)}
                     className="block text-sm text-ink hover:text-primary py-1"
                   >
-                    {cat.bnName}
+                    {lang === 'bn' ? cat.bnName : cat.name}
                   </Link>
                 ))}
               </div>

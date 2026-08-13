@@ -4,6 +4,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import { CartProvider } from './context/CartContext';
 import { WishlistProvider } from './context/WishlistContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import { LanguageProvider } from './context/LanguageContext';
 import { useLenis } from './lib/lenis';
 
 // Layout
@@ -81,16 +82,18 @@ function MainLayout() {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <ThemeProvider>
-        <CartProvider>
-          <WishlistProvider>
-            <BrowserRouter>
-              <MainLayout />
-            </BrowserRouter>
-          </WishlistProvider>
-        </CartProvider>
-      </ThemeProvider>
-    </AuthProvider>
+    <LanguageProvider>
+      <AuthProvider>
+        <ThemeProvider>
+          <CartProvider>
+            <WishlistProvider>
+              <BrowserRouter>
+                <MainLayout />
+              </BrowserRouter>
+            </WishlistProvider>
+          </CartProvider>
+        </ThemeProvider>
+      </AuthProvider>
+    </LanguageProvider>
   );
 }
