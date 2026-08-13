@@ -7,6 +7,7 @@ const banglaDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '�
 
 function convertDigits(val, lang) {
   if (val === null || val === undefined) return '';
+  if (typeof val !== 'string' && typeof val !== 'number') return val;
   const str = String(val);
   if (lang === 'bn') {
     return str.replace(/\d/g, (digit) => banglaDigits[digit]);
@@ -18,7 +19,8 @@ export function LanguageProvider({ children }) {
   // Default: Bangla
   const [lang, setLang] = useState(() => {
     try {
-      return localStorage.getItem('pb-lang') || 'bn';
+      const saved = localStorage.getItem('pb-lang');
+      return (saved === 'bn' || saved === 'en') ? saved : 'bn';
     } catch {
       return 'bn';
     }
@@ -34,6 +36,7 @@ export function LanguageProvider({ children }) {
 
   /** Translate a key. Auto-converts embedded digits if lang === 'bn'. */
   const t = useCallback((key) => {
+    if (typeof key !== 'string') return key;
     const entry = translations[key];
     if (!entry) return convertDigits(key, lang);
     const text = entry[lang] ?? entry['bn'] ?? key;

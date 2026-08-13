@@ -7,7 +7,10 @@ export function WishlistProvider({ children }) {
     if (typeof window !== 'undefined') {
       try {
         const saved = localStorage.getItem('pb_wishlist');
-        return saved ? JSON.parse(saved) : [];
+        const parsed = saved ? JSON.parse(saved) : [];
+        if (Array.isArray(parsed)) {
+          return parsed.filter(item => item && item.id);
+        }
       } catch (e) {
         console.error('Failed to parse wishlist from localStorage:', e);
         return [];
@@ -17,25 +20,31 @@ export function WishlistProvider({ children }) {
   });
 
   useEffect(() => {
-    localStorage.setItem('pb_wishlist', JSON.stringify(wishlist));
+    try {
+      localStorage.setItem('pb_wishlist', JSON.stringify(wishlist));
+    } catch (e) {
+      console.error('Failed to save wishlist to localStorage:', e);
+    }
   }, [wishlist]);
 
   const toggleWishlist = (product) => {
+    if (!product || !product.id) return;
     setWishlist(prev => {
-      const exists = prev.some(item => item.id === product.id);
+      const exists = prev.some(item => item && item.id === product.id);
       if (exists) {
-        return prev.filter(item => item.id !== product.id);
+        return prev.filter(item => item && item.id !== product.id);
       }
       return [...prev, product];
     });
   };
 
   const isInWishlist = (productId) => {
-    return wishlist.some(item => item.id === productId);
+    if (!productId) return false;
+    return wishlist.some(item => item && item.id === productId);
   };
 
   const removeFromWishlist = (productId) => {
-    setWishlist(prev => prev.filter(item => item.id !== productId));
+    setWishlist(prev => prev.filter(item => item && item.id !== productId));
   };
 
   const clearWishlist = () => {

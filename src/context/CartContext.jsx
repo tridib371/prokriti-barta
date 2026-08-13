@@ -9,7 +9,8 @@ function cartReducer(state, action) {
   switch (action.type) {
     case 'ADD_ITEM': {
       const { product, quantity = 1 } = action.payload;
-      const existingIndex = state.findIndex(item => item.product.id === product.id);
+      if (!product || !product.id) return state;
+      const existingIndex = state.findIndex(item => item && item.product && item.product.id === product.id);
       if (existingIndex > -1) {
         const updated = [...state];
         updated[existingIndex].quantity += quantity;
@@ -18,15 +19,15 @@ function cartReducer(state, action) {
       return [...state, { product, quantity }];
     }
     case 'REMOVE_ITEM': {
-      return state.filter(item => item.product.id !== action.payload);
+      return state.filter(item => item && item.product && item.product.id !== action.payload);
     }
     case 'UPDATE_QTY': {
       const { productId, quantity } = action.payload;
       if (quantity <= 0) {
-        return state.filter(item => item.product.id !== productId);
+        return state.filter(item => item && item.product && item.product.id !== productId);
       }
       return state.map(item =>
-        item.product.id === productId ? { ...item, quantity } : item
+        item && item.product && item.product.id === productId ? { ...item, quantity } : item
       );
     }
     case 'CLEAR_CART': {
@@ -45,7 +46,10 @@ export function CartProvider({ children }) {
     if (typeof window !== 'undefined') {
       try {
         const saved = localStorage.getItem('pb_cart');
-        return saved ? JSON.parse(saved) : [];
+        const parsed = saved ? JSON.parse(saved) : [];
+        if (Array.isArray(parsed)) {
+          return parsed.filter(item => item && item.product && item.product.id && typeof item.product.price === 'number');
+        }
       } catch (e) {
         console.error('Failed to parse cart from localStorage:', e);
         return [];
@@ -57,10 +61,15 @@ export function CartProvider({ children }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem('pb_cart', JSON.stringify(cart));
+    try {
+      localStorage.setItem('pb_cart', JSON.stringify(cart));
+    } catch (e) {
+      console.error('Failed to save cart to localStorage:', e);
+    }
   }, [cart]);
 
   const addToCart = (product, quantity = 1) => {
+    if (!product) return;
     dispatch({ type: 'ADD_ITEM', payload: { product, quantity } });
     setIsCartOpen(true);
   };
@@ -78,11 +87,14 @@ export function CartProvider({ children }) {
   };
 
   const subtotal = useMemo(() => {
-    return cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
+    return cart.reduce((acc, item) => {
+      if (!item || !item.product || typeof item.product.price !== 'number') return acc;
+      return acc + item.product.price * (item.quantity || 1);
+    }, 0);
   }, [cart]);
 
   const itemCount = useMemo(() => {
-    return cart.reduce((acc, item) => acc + item.quantity, 0);
+    return cart.reduce((acc, item) => acc + (item?.quantity || 0), 0);
   }, [cart]);
 
   const isFreeShipping = subtotal >= FREE_SHIPPING_THRESHOLD;
