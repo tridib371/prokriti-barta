@@ -1,27 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  /* Warm Organic Linen Light Theme */
-  --bg: #FAF7F2;
+  /* Crisp Fresh Emerald & Golden Amber Light Theme */
+  --bg: #F7FAF8;
   --surface: #FFFFFF;
-  --ink: #1A2620;
-  --muted: #68776D;
-  --primary: #234235;
-  --accent: #D97706;
-  --accent-2: #D95338;
-  --line: #E9E3D8;
+  --ink: #0F172A;
+  --muted: #475569;
+  --primary: #046A38;
+  --accent: #F59E0B;
+  --accent-2: #EA580C;
+  --line: #E2E8F0;
 }
 
 [data-theme="dark"] {
-  /* Midnight Forest Dark Theme */
-  --bg: #0E1511;
-  --surface: #16221C;
-  --ink: #F4F0E6;
-  --muted: #8E9F94;
-  --primary: #34D399;
+  /* Obsidian Midnight Forest Dark Theme */
+  --bg: #0A130E;
+  --surface: #14241B;
+  --ink: #F8FAFC;
+  --muted: #94A3B8;
+  --primary: #10B981;
   --accent: #F59E0B;
   --accent-2: #FB923C;
-  --line: #23342A;
+  --line: #1F3328;
 }
 
 @theme {
@@ -85,19 +85,19 @@ html.lenis, html.lenis body {
 
 /* Glassmorphism & Soft Shadow Utilities */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.90);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 
 [data-theme="dark"] .glass-panel {
-  background: rgba(22, 34, 28, 0.88);
+  background: rgba(20, 36, 27, 0.90);
 }
 
 .shadow-card {
-  box-shadow: 0 4px 20px -2px rgba(35, 66, 53, 0.05);
+  box-shadow: 0 10px 30px -5px rgba(4, 106, 56, 0.06);
 }
 
 [data-theme="dark"] .shadow-card {
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
 }
