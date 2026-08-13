@@ -72,10 +72,10 @@ export default function Navbar() {
           </button>
 
           <Link to="/" className="flex items-center gap-3 group">
-            <img 
-              src="/f.png" 
-              alt="Prokriti Barta Logo" 
-              className="w-11 h-11 object-contain group-hover:scale-105 transition-transform drop-shadow-xs" 
+            <img
+              src="/PB.jpg"
+              alt="Prokriti Barta Logo"
+              className="w-11 h-11 object-contain group-hover:scale-105 transition-transform drop-shadow-xs"
             />
             <div className="flex flex-col">
               <span className="font-display font-bold text-2xl text-primary tracking-tight leading-none">
@@ -233,9 +233,8 @@ export default function Navbar() {
                   <Link
                     key={link.path}
                     to={link.path}
-                    className={`py-3 transition-colors relative flex items-center gap-1.5 ${
-                      isActive ? 'text-accent font-bold' : 'text-ink/80 hover:text-primary'
-                    }`}
+                    className={`py-3 transition-colors relative flex items-center gap-1.5 ${isActive ? 'text-accent font-bold' : 'text-ink/80 hover:text-primary'
+                      }`}
                   >
                     <span>{t(link.key)}</span>
                     {link.badge && (

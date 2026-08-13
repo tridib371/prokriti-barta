@@ -8,7 +8,7 @@ import { useLanguage } from '../context/LanguageContext';
 
 export default function BlogPost() {
   const { slug } = useParams();
-  const { t, lang } = useLanguage();
+  const { t, n, lang } = useLanguage();
   const blog = blogsData.find((b) => b.slug === slug) || blogsData[0];
 
   return (

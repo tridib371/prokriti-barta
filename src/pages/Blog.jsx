@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function Blog() {
-  const { t, lang } = useLanguage();
+  const { t, n, lang } = useLanguage();
 
   return (
     <motion.div

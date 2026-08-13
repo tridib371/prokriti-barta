@@ -72,10 +72,10 @@ export default function Footer() {
         {/* Brand Column */}
         <div className="lg:col-span-2 space-y-4">
           <Link to="/" className="flex items-center gap-2.5">
-            <img 
-              src="/f.png" 
-              alt="Prokriti Barta Logo" 
-              className="w-10 h-10 object-contain drop-shadow-xs" 
+            <img
+              src="/PB.jpg"
+              alt="Prokriti Barta Logo"
+              className="w-10 h-10 object-contain drop-shadow-xs"
             />
             <span className="font-display font-bold text-xl text-primary">
               {lang === 'bn' ? 'প্রকৃতি বার্তা' : 'Prokriti Barta'}
@@ -124,7 +124,7 @@ export default function Footer() {
         <div>
           <h4 className="font-display font-bold text-sm text-primary mb-4">{t('footer.newsletter')}</h4>
           <p className="text-xs text-muted mb-3">{t('footer.newsletter.desc')}</p>
-          
+
           {subscribed ? (
             <div className="bg-accent/15 border border-accent/30 p-3 rounded-xl flex items-center gap-2 text-xs text-accent font-medium">
               <CheckCircle size={16} /> {t('footer.newsletter.success')}
