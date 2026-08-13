@@ -1,27 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  /* Day Mode: Fresh Botanical Light Theme */
-  --bg: #F4F7F4;
+  /* Light Mode: Deep Imperial Moss Green & Warm Terracotta Saffron */
+  --bg: #F4F6F4;
   --surface: #FFFFFF;
-  --ink: #0D1F17;
-  --muted: #52665A;
-  --primary: #0F4C3A;
-  --accent: #E89814;
-  --accent-2: #E05A36;
-  --line: #E2E8E4;
+  --ink: #111C16;
+  --muted: #57685D;
+  --primary: #1B3B2B;
+  --accent: #C86D3B;
+  --accent-2: #3E7A5E;
+  --line: #E1E6E2;
 }
 
 [data-theme="dark"] {
-  /* Night Mode: Total Black Obsidian Vibe */
-  --bg: #050505;
-  --surface: #121214;
-  --ink: #FAFAFA;
-  --muted: #A1A1AA;
-  --primary: #10B981;
-  --accent: #F59E0B;
-  --accent-2: #F97316;
-  --line: #27272A;
+  /* Dark Mode: Refined Midnight Sage & Warm Coral Saffron (Zero Neon!) */
+  --bg: #0F1713;
+  --surface: #17241E;
+  --ink: #F0F5F2;
+  --muted: #8E9F94;
+  --primary: #2E5B46;
+  --accent: #E07A5F;
+  --accent-2: #4A9372;
+  --line: #22332A;
 }
 
 @theme {
@@ -85,19 +85,19 @@ html.lenis, html.lenis body {
 
 /* Glow & Glass Utilities */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 
 [data-theme="dark"] .glass-panel {
-  background: rgba(18, 18, 20, 0.88);
+  background: rgba(23, 36, 30, 0.88);
 }
 
-.gradient-organic {
-  background: linear-gradient(135deg, #0F4C3A 0%, #16654F 100%);
+.shadow-card {
+  box-shadow: 0 8px 24px -4px rgba(27, 59, 43, 0.06);
 }
 
-.gradient-amber {
-  background: linear-gradient(135deg, #E89814 0%, #F59E0B 100%);
+[data-theme="dark"] .shadow-card {
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.4);
 }
