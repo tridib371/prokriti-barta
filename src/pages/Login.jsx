@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Lock, Mail, ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
@@ -7,6 +7,7 @@ import Button from '../components/ui/Button';
 
 export default function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,7 +20,9 @@ export default function Login() {
       return;
     }
     login(email, password);
-    navigate('/shop');
+    // Redirect back to intended page (e.g. /checkout) or default to /shop
+    const destination = location.state?.from || '/shop';
+    navigate(destination, { replace: true });
   };
 
   return (

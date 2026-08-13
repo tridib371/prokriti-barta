@@ -12,7 +12,7 @@ import Footer from './components/layout/Footer';
 import CartDrawer from './components/cart/CartDrawer';
 
 // Pages
-import LandingPage from './pages/LandingPage';
+
 import Home from './pages/Home';
 import Shop from './pages/Shop';
 import ProductDetails from './pages/ProductDetails';
@@ -31,6 +31,7 @@ import Delivery from './pages/Delivery';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import NotFound from './pages/NotFound';
+import ProtectedRoute from './components/auth/ProtectedRoute';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -51,18 +52,17 @@ function MainLayout() {
       <CartDrawer />
       <main className="flex-1">
         <Routes>
-          {/* Unauthenticated landing page by default on root, or full Home for returning users */}
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/landing" element={<LandingPage />} />
+          {/* Home page as root */}
+          <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/product/:slug" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/wishlist" element={<Wishlist />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/order-success/:id" element={<OrderSuccess />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/profile/orders" element={<OrderHistory />} />
+          <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
+          <Route path="/order-success/:id" element={<ProtectedRoute><OrderSuccess /></ProtectedRoute>} />
+          <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+          <Route path="/profile/orders" element={<ProtectedRoute><OrderHistory /></ProtectedRoute>} />
           <Route path="/about" element={<About />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />

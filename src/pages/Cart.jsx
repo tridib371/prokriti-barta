@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ShoppingBag, Trash2, ArrowRight, Truck, ArrowLeft } from 'lucide-react';
+import { ShoppingBag, Trash2, ArrowRight, Truck, ArrowLeft, LogIn } from 'lucide-react';
 import { useCart } from '../context/CartContext';
-import { motion } from 'framer-motion';
+import { useAuth } from '../context/AuthContext';
+import { motion, AnimatePresence } from 'framer-motion';
 import Button from '../components/ui/Button';
 
 export default function Cart() {
@@ -18,9 +19,22 @@ export default function Cart() {
     freeShippingThreshold
   } = useCart();
 
+  const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
+  const [showAuthBanner, setShowAuthBanner] = useState(false);
+
+  const handleCheckout = () => {
+    if (!isAuthenticated) {
+      setShowAuthBanner(true);
+      // Auto-hide after 4 seconds
+      setTimeout(() => setShowAuthBanner(false), 4000);
+    } else {
+      navigate('/checkout');
+    }
+  };
 
   const amountToFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
+
 
   if (cart.length === 0) {
     return (
@@ -164,17 +178,49 @@ export default function Cart() {
                 <span className="font-bold text-sm text-primary">সর্বমোট (Total)</span>
                 <span className="font-display font-bold text-2xl text-accent">৳{total}</span>
               </div>
+              {/* Auth required banner */}
+              <AnimatePresence>
+                {showAuthBanner && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    className="flex items-start gap-2 bg-accent-2/10 border border-accent-2/30 rounded-2xl p-3 text-xs"
+                  >
+                    <LogIn size={15} className="text-accent-2 mt-0.5 shrink-0" />
+                    <span className="font-bn-sans text-ink">
+                      অর্ডার করতে{' '}
+                      <Link
+                        to="/login"
+                        state={{ from: '/checkout' }}
+                        className="font-bold text-accent-2 underline underline-offset-2"
+                      >
+                        লগইন করুন
+                      </Link>{' '}
+                      অথবা{' '}
+                      <Link
+                        to="/register"
+                        state={{ from: '/checkout' }}
+                        className="font-bold text-accent underline underline-offset-2"
+                      >
+                        অ্যাকাউন্ট তৈরি করুন
+                      </Link>।
+                    </span>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               <Button
                 variant="accent"
                 size="lg"
-                onClick={() => navigate('/checkout')}
+                onClick={handleCheckout}
                 className="w-full shadow-md gap-2"
               >
                 চেকআউটে যান <ArrowRight size={18} />
               </Button>
             </div>
           </div>
+
         </div>
 
       </div>

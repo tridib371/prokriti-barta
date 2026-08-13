@@ -26,7 +26,6 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { name: 'ল্যান্ডিং পেজ', path: '/landing' },
     { name: 'হোম (Home)', path: '/' },
     { name: 'শপ (Shop)', path: '/shop' },
     { name: 'অফারসমুহ (Offers)', path: '/offers', badge: 'DEALS' },
@@ -34,6 +33,7 @@ export default function Navbar() {
     { name: 'ব্লগ (Blog)', path: '/blog' },
     { name: 'যোগাযোগ (Contact)', path: '/contact' },
   ];
+
 
   return (
     <header className="sticky top-0 z-40 w-full bg-surface/90 backdrop-blur-md border-b border-line transition-colors">
