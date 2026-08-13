@@ -71,13 +71,12 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
         {/* Brand Column */}
         <div className="lg:col-span-2 space-y-4">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-xl bg-primary text-accent flex items-center justify-center">
-              <svg width="20" height="20" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 4 C14 12, 14 28, 20 36 C26 28, 26 12, 20 4 Z" fill="currentColor" />
-                <path d="M4 20 C12 14, 28 14, 36 20 C28 26, 12 26, 4 20 Z" fill="currentColor" />
-              </svg>
-            </div>
+          <Link to="/" className="flex items-center gap-2.5">
+            <img 
+              src="/f.png" 
+              alt="Prokriti Barta Logo" 
+              className="w-10 h-10 object-contain drop-shadow-xs" 
+            />
             <span className="font-display font-bold text-xl text-primary">
               {lang === 'bn' ? 'প্রকৃতি বার্তা' : 'Prokriti Barta'}
             </span>

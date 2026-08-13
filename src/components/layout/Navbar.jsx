@@ -72,13 +72,11 @@ export default function Navbar() {
           </button>
 
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-2xl bg-primary text-accent flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
-              <svg width="26" height="26" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 4 C14 12, 14 28, 20 36 C26 28, 26 12, 20 4 Z" fill="currentColor" opacity="0.95" />
-                <path d="M4 20 C12 14, 28 14, 36 20 C28 26, 12 26, 4 20 Z" fill="currentColor" opacity="0.95" />
-                <circle cx="20" cy="20" r="3.5" fill="var(--primary)" />
-              </svg>
-            </div>
+            <img 
+              src="/f.png" 
+              alt="Prokriti Barta Logo" 
+              className="w-11 h-11 object-contain group-hover:scale-105 transition-transform drop-shadow-xs" 
+            />
             <div className="flex flex-col">
               <span className="font-display font-bold text-2xl text-primary tracking-tight leading-none">
                 {lang === 'bn' ? 'প্রকৃতি বার্তা' : 'Prokriti Barta'}
