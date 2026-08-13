@@ -1,25 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #F4F7F4;
+  /* Warm Organic Linen Light Theme */
+  --bg: #FAF7F2;
   --surface: #FFFFFF;
-  --ink: #0D1F17;
-  --muted: #52665A;
-  --primary: #0F4C3A;
-  --accent: #E89814;
-  --accent-2: #E05A36;
-  --line: #E2E8E4;
+  --ink: #1A2620;
+  --muted: #68776D;
+  --primary: #234235;
+  --accent: #D97706;
+  --accent-2: #D95338;
+  --line: #E9E3D8;
 }
 
 [data-theme="dark"] {
-  --bg: #0A1410;
-  --surface: #12211B;
-  --ink: #F0F7F3;
-  --muted: #8A9E94;
-  --primary: #10B981;
+  /* Midnight Forest Dark Theme */
+  --bg: #0E1511;
+  --surface: #16221C;
+  --ink: #F4F0E6;
+  --muted: #8E9F94;
+  --primary: #34D399;
   --accent: #F59E0B;
-  --accent-2: #F97316;
-  --line: #1E332B;
+  --accent-2: #FB923C;
+  --line: #23342A;
 }
 
 @theme {
@@ -81,21 +83,21 @@ html.lenis, html.lenis body {
   outline-offset: 2px;
 }
 
-/* Glow & Glass Utilities */
+/* Glassmorphism & Soft Shadow Utilities */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 
 [data-theme="dark"] .glass-panel {
-  background: rgba(18, 33, 27, 0.85);
+  background: rgba(22, 34, 28, 0.88);
 }
 
-.gradient-organic {
-  background: linear-gradient(135deg, #0F4C3A 0%, #16654F 100%);
+.shadow-card {
+  box-shadow: 0 4px 20px -2px rgba(35, 66, 53, 0.05);
 }
 
-.gradient-amber {
-  background: linear-gradient(135deg, #E89814 0%, #F59E0B 100%);
+[data-theme="dark"] .shadow-card {
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
 }
