@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 :root {
+  /* Day Mode: Fresh Botanical Light Theme */
   --bg: #F4F7F4;
   --surface: #FFFFFF;
   --ink: #0D1F17;
@@ -12,14 +13,15 @@
 }
 
 [data-theme="dark"] {
-  --bg: #0A1410;
-  --surface: #12211B;
-  --ink: #F0F7F3;
-  --muted: #8A9E94;
+  /* Night Mode: Total Black Obsidian Vibe */
+  --bg: #050505;
+  --surface: #121214;
+  --ink: #FAFAFA;
+  --muted: #A1A1AA;
   --primary: #10B981;
   --accent: #F59E0B;
   --accent-2: #F97316;
-  --line: #1E332B;
+  --line: #27272A;
 }
 
 @theme {
@@ -89,7 +91,7 @@ html.lenis, html.lenis body {
 }
 
 [data-theme="dark"] .glass-panel {
-  background: rgba(18, 33, 27, 0.85);
+  background: rgba(18, 18, 20, 0.88);
 }
 
 .gradient-organic {
