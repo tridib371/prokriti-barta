@@ -1,27 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  /* Crisp Fresh Emerald & Golden Amber Light Theme */
-  --bg: #F7FAF8;
-  --surface: #FFFFFF;
-  --ink: #0F172A;
-  --muted: #475569;
-  --primary: #046A38;
-  --accent: #F59E0B;
-  --accent-2: #EA580C;
-  --line: #E2E8F0;
+  --bg: #F7F2E7;
+  --surface: #FFFDF8;
+  --ink: #1F2A22;
+  --muted: #6B7263;
+  --primary: #1F3A2E;
+  --accent: #E3A83B;
+  --accent-2: #C6633B;
+  --line: #E4DCC8;
 }
 
 [data-theme="dark"] {
-  /* Obsidian Midnight Forest Dark Theme */
-  --bg: #0A130E;
-  --surface: #14241B;
-  --ink: #F8FAFC;
-  --muted: #94A3B8;
-  --primary: #10B981;
-  --accent: #F59E0B;
-  --accent-2: #FB923C;
-  --line: #1F3328;
+  --bg: #131C16;
+  --surface: #1B2620;
+  --ink: #F2EDDF;
+  --muted: #A5AC9B;
+  --primary: #E3A83B;
+  --accent: #E3A83B;
+  --accent-2: #E08A5C;
+  --line: #2B372F;
 }
 
 @theme {
@@ -72,7 +70,7 @@ html.lenis, html.lenis body {
   overflow: hidden;
 }
 
-/* Custom Organic Wave Divider */
+/* Custom Organic Shapes */
 .clip-organic-wave {
   clip-path: polygon(0 0, 100% 0, 100% 92%, 85% 97%, 60% 93%, 35% 99%, 10% 95%, 0 97%);
 }
@@ -81,23 +79,4 @@ html.lenis, html.lenis body {
 *:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
-}
-
-/* Glassmorphism & Soft Shadow Utilities */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.90);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-[data-theme="dark"] .glass-panel {
-  background: rgba(20, 36, 27, 0.90);
-}
-
-.shadow-card {
-  box-shadow: 0 10px 30px -5px rgba(4, 106, 56, 0.06);
-}
-
-[data-theme="dark"] .shadow-card {
-  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
 }
