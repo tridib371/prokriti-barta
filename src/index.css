@@ -1,25 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #F7F2E7;
-  --surface: #FFFDF8;
-  --ink: #1F2A22;
-  --muted: #6B7263;
-  --primary: #1F3A2E;
-  --accent: #E3A83B;
-  --accent-2: #C6633B;
-  --line: #E4DCC8;
+  /* Day Mode (Light): Organic Forest Green + Earthy Terracotta */
+  --bg: #F4F7F4;
+  --surface: #FFFFFF;
+  --ink: #0F1F17;
+  --muted: #586B60;
+  --primary: #1B4D3E;
+  --accent: #C85A32;
+  --accent-2: #2D6A4F;
+  --line: #E2E8E2;
 }
 
 [data-theme="dark"] {
-  --bg: #131C16;
-  --surface: #1B2620;
-  --ink: #F2EDDF;
-  --muted: #A5AC9B;
-  --primary: #E3A83B;
-  --accent: #E3A83B;
-  --accent-2: #E08A5C;
-  --line: #2B372F;
+  /* Night Mode (Dark): Consistent Emerald Jade + Warm Terracotta Accent */
+  --bg: #0A130E;
+  --surface: #13221A;
+  --ink: #F2F7F4;
+  --muted: #8E9F95;
+  --primary: #2D6A4F;
+  --accent: #E07A5F;
+  --accent-2: #48BB78;
+  --line: #1E3328;
 }
 
 @theme {
@@ -70,7 +72,7 @@ html.lenis, html.lenis body {
   overflow: hidden;
 }
 
-/* Custom Organic Shapes */
+/* Custom Organic Wave Divider */
 .clip-organic-wave {
   clip-path: polygon(0 0, 100% 0, 100% 92%, 85% 97%, 60% 93%, 35% 99%, 10% 95%, 0 97%);
 }

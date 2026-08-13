@@ -19,7 +19,7 @@ export default function HeroSlider() {
       ctaLink: "/shop",
       badge: t('hero.slide1.badge'),
       image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=1200&q=80",
-      accentColor: "#E3A83B"
+      accentColor: "#C85A32"
     },
     {
       id: 2,
@@ -30,7 +30,7 @@ export default function HeroSlider() {
       ctaLink: "/shop?category=ghee-oils",
       badge: t('hero.slide2.badge'),
       image: "https://images.unsplash.com/photo-1631451095765-2c91616fc9e6?auto=format&fit=crop&w=1200&q=80",
-      accentColor: "#C6633B"
+      accentColor: "#2D6A4F"
     },
     {
       id: 3,
@@ -41,7 +41,7 @@ export default function HeroSlider() {
       ctaLink: "/shop?category=ghee-oils",
       badge: t('hero.slide3.badge'),
       image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=1200&q=80",
-      accentColor: "#E3A83B"
+      accentColor: "#C85A32"
     }
   ];
 
@@ -57,7 +57,7 @@ export default function HeroSlider() {
   return (
     <section className="relative overflow-hidden bg-bg py-8 lg:py-14 border-b border-line">
       {/* Background Subtle Grid Pattern */}
-      <div className="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#1F3A2E_1px,transparent_1px)] [background-size:24px_24px]" />
+      <div className="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#1B4D3E_1px,transparent_1px)] [background-size:24px_24px]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
