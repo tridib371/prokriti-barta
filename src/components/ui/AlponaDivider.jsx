@@ -4,7 +4,7 @@ import { pathDraw } from '../../lib/motionVariants';
 
 export default function AlponaDivider({ className = '', height = 36 }) {
   return (
-    <div className={`w-full flex items-center justify-center my-6 overflow-hidden select-none text-line ${className}`}>
+    <div className={`w-full flex items-center justify-center my-6 overflow-hidden select-none text-primary/30 ${className}`}>
       <motion.svg
         width="100%"
         height={height}

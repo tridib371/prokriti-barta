@@ -57,7 +57,7 @@ export default function HeroSlider() {
   return (
     <section className="relative overflow-hidden bg-bg py-8 lg:py-14 border-b border-line">
       {/* Background Subtle Grid Pattern */}
-      <div className="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#1F3A2E_1px,transparent_1px)] [background-size:24px_24px]" />
+      <div className="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#0F4C3A_1px,transparent_1px)] [background-size:24px_24px]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">

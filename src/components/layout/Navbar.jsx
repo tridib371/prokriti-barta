@@ -66,7 +66,7 @@ export default function Navbar() {
               <svg width="24" height="24" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20 4 C14 12, 14 28, 20 36 C26 28, 26 12, 20 4 Z" fill="currentColor" opacity="0.9" />
                 <path d="M4 20 C12 14, 28 14, 36 20 C28 26, 12 26, 4 20 Z" fill="currentColor" opacity="0.9" />
-                <circle cx="20" cy="20" r="3" fill="#1F3A2E" />
+                <circle cx="20" cy="20" r="3" fill="var(--primary)" />
               </svg>
             </div>
             <div className="flex flex-col">
