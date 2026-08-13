@@ -10,7 +10,7 @@ import { useLanguage } from '../context/LanguageContext';
 
 export default function Shop() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { t, lang } = useLanguage();
+  const { t, n, lang } = useLanguage();
 
   const categoryParam = searchParams.get('category') || '';
   const queryParam = searchParams.get('q') || '';
@@ -212,7 +212,7 @@ export default function Shop() {
 
             {/* Results Count */}
             <p className="text-xs text-muted mb-4 font-sans font-medium">
-              <strong className="text-primary">{filteredProducts.length}</strong> {t('shop.results')}
+              <strong className="text-primary">{n(filteredProducts.length)}</strong> {t('shop.results')}
             </p>
 
             {/* Products Empty State */}

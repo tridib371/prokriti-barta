@@ -16,7 +16,7 @@ export default function ProductDetails() {
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
-  const { t, lang } = useLanguage();
+  const { t, n, lang } = useLanguage();
 
   const product = productsData.find((p) => p.slug === slug) || productsData[0];
   const [selectedImg, setSelectedImg] = useState(0);
@@ -118,11 +118,11 @@ export default function ProductDetails() {
 
               {/* Price */}
               <div className="flex items-baseline gap-3 pt-2">
-                <span className="font-display font-bold text-3xl text-accent">৳{product.price}</span>
+                <span className="font-display font-bold text-3xl text-accent">৳{n(product.price)}</span>
                 {product.originalPrice && (
-                  <span className="text-lg text-muted line-through font-sans">৳{product.originalPrice}</span>
+                  <span className="text-lg text-muted line-through font-sans">৳{n(product.originalPrice)}</span>
                 )}
-                <span className="text-xs text-muted">/ {product.weight}</span>
+                <span className="text-xs text-muted">/ {n(product.weight)}</span>
               </div>
 
               {/* Short Description */}
@@ -140,7 +140,7 @@ export default function ProductDetails() {
                   >
                     -
                   </button>
-                  <span className="px-4 text-sm font-bold font-mono">{quantity}</span>
+                  <span className="px-4 text-sm font-bold font-mono">{n(quantity)}</span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
                     className="px-3 py-1.5 text-sm font-bold text-ink hover:text-accent"

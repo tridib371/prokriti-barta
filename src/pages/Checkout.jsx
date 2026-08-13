@@ -9,7 +9,7 @@ import AlponaLoader from '../components/ui/AlponaLoader';
 
 export default function Checkout() {
   const { cart, subtotal, deliveryCharge, total, clearCart } = useCart();
-  const { t, lang } = useLanguage();
+  const { t, n, lang } = useLanguage();
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
@@ -278,10 +278,10 @@ export default function Checkout() {
                         <p className="font-bold text-primary line-clamp-1">
                           {lang === 'bn' ? (product.bnName || product.name) : product.name}
                         </p>
-                        <p className="text-muted font-mono">x{quantity}</p>
+                        <p className="text-muted font-mono">x{n(quantity)}</p>
                       </div>
                     </div>
-                    <span className="font-mono font-bold text-ink">৳{product.price * quantity}</span>
+                    <span className="font-mono font-bold text-ink">৳{n(product.price * quantity)}</span>
                   </div>
                 ))}
               </div>
@@ -289,15 +289,15 @@ export default function Checkout() {
               <div className="pt-3 border-t border-line space-y-2 text-xs">
                 <div className="flex justify-between text-muted">
                   <span>{t('cart.summary.subtotal')}</span>
-                  <span className="font-mono font-bold text-ink">৳{subtotal}</span>
+                  <span className="font-mono font-bold text-ink">৳{n(subtotal)}</span>
                 </div>
                 <div className="flex justify-between text-muted">
                   <span>{t('cart.summary.delivery')}</span>
-                  <span className="font-mono font-bold text-ink">{deliveryCharge === 0 ? t('cart.summary.free') : `৳${deliveryCharge}`}</span>
+                  <span className="font-mono font-bold text-ink">{deliveryCharge === 0 ? t('cart.summary.free') : `৳${n(deliveryCharge)}`}</span>
                 </div>
                 <div className="flex justify-between text-sm font-bold text-primary pt-2 border-t border-line">
                   <span>{t('cart.summary.total')}</span>
-                  <span className="font-display text-xl text-accent">৳{total}</span>
+                  <span className="font-display text-xl text-accent">৳{n(total)}</span>
                 </div>
               </div>
 

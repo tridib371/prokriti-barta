@@ -7,7 +7,7 @@ import { useLanguage } from '../context/LanguageContext';
 
 export default function OrderHistory() {
   const [orders, setOrders] = useState([]);
-  const { t, lang } = useLanguage();
+  const { t, n, lang } = useLanguage();
 
   useEffect(() => {
     try {
@@ -48,11 +48,11 @@ export default function OrderHistory() {
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-line gap-2">
                   <div>
                     <span className="text-xs text-muted font-mono">{t('orders.id')}:</span>
-                    <h3 className="font-display font-bold text-lg text-primary">{ord.id}</h3>
+                    <h3 className="font-display font-bold text-lg text-primary">{n(ord.id)}</h3>
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="text-xs text-muted flex items-center gap-1">
-                      <Calendar size={14} /> {ord.date}
+                      <Calendar size={14} /> {n(ord.date)}
                     </span>
                     <span className={`px-3 py-1 rounded-full text-xs font-bold ${
                       ord.status === 'Delivered'
@@ -69,9 +69,9 @@ export default function OrderHistory() {
                   {ord.items.map((item, idx) => (
                     <div key={idx} className="flex justify-between items-center text-xs font-bn-sans">
                       <span className="font-semibold text-ink">
-                        {item.name} <span className="text-muted font-normal font-mono">x{item.quantity}</span>
+                        {item.name} <span className="text-muted font-normal font-mono">x{n(item.quantity)}</span>
                       </span>
-                      <span className="font-mono font-bold text-primary">৳{item.price * item.quantity}</span>
+                      <span className="font-mono font-bold text-primary">৳{n(item.price * item.quantity)}</span>
                     </div>
                   ))}
                 </div>
@@ -79,7 +79,7 @@ export default function OrderHistory() {
                 <div className="pt-3 border-t border-line flex justify-between items-center text-xs">
                   <span className="text-muted">{lang === 'bn' ? 'পেমেন্ট:' : 'Payment:'} <strong>{ord.paymentMethod}</strong></span>
                   <span className="font-bold text-sm text-primary">
-                    {t('orders.total')}: <strong className="font-display text-accent text-base">৳{ord.total}</strong>
+                    {t('orders.total')}: <strong className="font-display text-accent text-base">৳{n(ord.total)}</strong>
                   </span>
                 </div>
               </div>

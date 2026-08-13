@@ -8,7 +8,7 @@ import Button from '../ui/Button';
 import { useLanguage } from '../../context/LanguageContext';
 
 export default function FeaturedGrid() {
-  const { t, lang } = useLanguage();
+  const { t, n, lang } = useLanguage();
   const featuredProduct = products.find(p => p.id === 'honey-sundarban-500') || products[0];
   const bentoSmallProducts = products.filter(p => p.id !== featuredProduct.id).slice(0, 6);
 
@@ -54,10 +54,10 @@ export default function FeaturedGrid() {
               </p>
               <div className="flex items-center gap-3 pt-2">
                 <span className="font-display font-bold text-2xl text-accent">
-                  ৳{featuredProduct.price}
+                  ৳{n(featuredProduct.price)}
                 </span>
                 {featuredProduct.originalPrice && (
-                  <span className="text-sm text-muted line-through">৳{featuredProduct.originalPrice}</span>
+                  <span className="text-sm text-muted line-through">৳{n(featuredProduct.originalPrice)}</span>
                 )}
               </div>
               <Link to={`/product/${featuredProduct.slug}`} className="inline-block pt-2">

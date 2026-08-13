@@ -9,7 +9,7 @@ import { useLanguage } from '../context/LanguageContext';
 export default function OrderSuccess() {
   const { id } = useParams();
   const location = useLocation();
-  const { t, lang } = useLanguage();
+  const { t, n, lang } = useLanguage();
 
   const order = location.state?.order || {
     id: id || 'PB-2026-9900',
@@ -43,7 +43,7 @@ export default function OrderSuccess() {
             {t('success.heading')}
           </h1>
           <p className="text-xs text-muted font-bn-sans mt-2">
-            {t('success.orderId')} <strong className="text-primary font-mono">{order.id}</strong>
+            {t('success.orderId')} <strong className="text-primary font-mono">{n(order.id)}</strong>
           </p>
         </div>
 
@@ -53,7 +53,7 @@ export default function OrderSuccess() {
         <div className="bg-bg/60 border border-line rounded-2xl p-4 text-left text-xs space-y-3 font-bn-sans">
           <div className="flex justify-between items-center pb-2 border-b border-line">
             <span className="text-muted flex items-center gap-1"><Calendar size={14} /> {t('orders.date')}</span>
-            <span className="font-bold text-primary font-mono">{order.date}</span>
+            <span className="font-bold text-primary font-mono">{n(order.date)}</span>
           </div>
 
           <div className="flex justify-between items-center pb-2 border-b border-line">
@@ -68,7 +68,7 @@ export default function OrderSuccess() {
 
           <div className="flex justify-between items-center pt-1 font-bold text-sm text-primary">
             <span>{t('cart.summary.total')}</span>
-            <span className="font-display text-accent text-lg">৳{order.total}</span>
+            <span className="font-display text-accent text-lg">৳{n(order.total)}</span>
           </div>
         </div>
 

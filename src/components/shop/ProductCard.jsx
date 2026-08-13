@@ -11,7 +11,7 @@ import Badge from '../ui/Badge';
 export default function ProductCard({ product }) {
   const { addToCart } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
-  const { t, lang } = useLanguage();
+  const { t, n, lang } = useLanguage();
 
   const isLiked = isInWishlist(product.id);
   const discountPercent = product.originalPrice
@@ -35,7 +35,7 @@ export default function ProductCard({ product }) {
         {/* Badges Overlay */}
         <div className="absolute top-2.5 left-2.5 flex flex-col gap-1 z-10">
           {discountPercent > 0 && (
-            <Badge variant="discount">-{discountPercent}% {t('badge.off')}</Badge>
+            <Badge variant="discount">-{n(discountPercent)}% {t('badge.off')}</Badge>
           )}
           {product.isNew && <Badge variant="accent">{t('badge.new')}</Badge>}
           {product.tags?.includes('Bestseller') && (
@@ -97,12 +97,12 @@ export default function ProductCard({ product }) {
         <div className="mt-3 pt-2.5 border-t border-line/60 flex items-center justify-between">
           <div>
             <div className="flex items-baseline gap-1.5">
-              <span className="font-display font-bold text-base sm:text-lg text-primary">৳{product.price}</span>
+              <span className="font-display font-bold text-base sm:text-lg text-primary">৳{n(product.price)}</span>
               {product.originalPrice && (
-                <span className="text-xs text-muted line-through font-sans">৳{product.originalPrice}</span>
+                <span className="text-xs text-muted line-through font-sans">৳{n(product.originalPrice)}</span>
               )}
             </div>
-            <span className="text-[10px] text-muted">{product.weight}</span>
+            <span className="text-[10px] text-muted">{n(product.weight)}</span>
           </div>
 
           <button

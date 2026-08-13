@@ -16,7 +16,7 @@ export default function Navbar() {
   const { itemCount, openCart } = useCart();
   const { wishlistCount } = useWishlist();
   const { user, isAuthenticated, logout } = useAuth();
-  const { t, lang } = useLanguage();
+  const { t, n, lang } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -114,7 +114,7 @@ export default function Navbar() {
             <Heart size={21} />
             {wishlistCount > 0 && (
               <span className="absolute top-1 right-1 w-4 h-4 bg-accent-2 text-surface text-[10px] font-bold rounded-full flex items-center justify-center">
-                {wishlistCount}
+                {n(wishlistCount)}
               </span>
             )}
           </Link>
@@ -128,7 +128,7 @@ export default function Navbar() {
               <ShoppingBag size={21} className="text-primary" />
               {itemCount > 0 && (
                 <span className="absolute -top-1.5 -right-2 w-4 h-4 bg-accent text-ink text-[10px] font-bold rounded-full flex items-center justify-center">
-                  {itemCount}
+                  {n(itemCount)}
                 </span>
               )}
             </div>
@@ -200,7 +200,7 @@ export default function Navbar() {
                     className="flex items-center justify-between px-4 py-2.5 text-ink hover:bg-bg hover:text-accent transition-colors"
                   >
                     <span className="font-bn-sans">{lang === 'bn' ? cat.bnName : cat.name}</span>
-                    <span className="text-[11px] text-muted">{cat.itemCount} items</span>
+                    <span className="text-[11px] text-muted">{n(cat.itemCount)} items</span>
                   </Link>
                 ))}
               </div>

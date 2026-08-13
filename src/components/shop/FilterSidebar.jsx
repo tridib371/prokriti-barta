@@ -12,7 +12,7 @@ export default function FilterSidebar({
   setMinRating,
   onResetFilters
 }) {
-  const { t, lang } = useLanguage();
+  const { t, n, lang } = useLanguage();
 
   return (
     <div className="bg-surface border border-line rounded-2xl p-5 space-y-6">
@@ -59,7 +59,7 @@ export default function FilterSidebar({
       <div className="space-y-3 pt-3 border-t border-line">
         <div className="flex justify-between items-center text-xs">
           <h4 className="font-bold uppercase tracking-wider text-muted font-sans">{t('shop.filter.price')}</h4>
-          <span className="font-bold text-primary font-mono">৳{priceRange}</span>
+          <span className="font-bold text-primary font-mono">৳{n(priceRange)}</span>
         </div>
         <input
           type="range"
@@ -71,8 +71,8 @@ export default function FilterSidebar({
           className="w-full accent-accent cursor-pointer"
         />
         <div className="flex justify-between text-[10px] text-muted font-mono">
-          <span>৳150</span>
-          <span>৳1500</span>
+          <span>৳{n(150)}</span>
+          <span>৳{n(1500)}</span>
         </div>
       </div>
 

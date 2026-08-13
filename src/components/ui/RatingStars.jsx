@@ -1,7 +1,9 @@
 import React from 'react';
 import { Star, StarHalf } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
 
 export default function RatingStars({ rating = 5, reviewCount, size = 16, className = '' }) {
+  const { n } = useLanguage();
   const fullStars = Math.floor(rating);
   const hasHalfStar = rating % 1 >= 0.4;
   const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
@@ -18,7 +20,7 @@ export default function RatingStars({ rating = 5, reviewCount, size = 16, classN
         ))}
       </div>
       <span className="text-xs font-medium text-muted ml-0.5">
-        {rating.toFixed(1)} {reviewCount !== undefined && `(${reviewCount})`}
+        {n(rating.toFixed(1))} {reviewCount !== undefined && `(${n(reviewCount)})`}
       </span>
     </div>
   );

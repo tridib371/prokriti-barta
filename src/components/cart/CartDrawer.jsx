@@ -18,7 +18,7 @@ export default function CartDrawer() {
     freeShippingThreshold,
     isFreeShipping,
   } = useCart();
-  const { t, lang } = useLanguage();
+  const { t, n, lang } = useLanguage();
 
   const navigate = useNavigate();
 
@@ -57,7 +57,7 @@ export default function CartDrawer() {
                 <ShoppingBag className="text-accent" size={22} />
                 <h2 className="font-display font-bold text-lg text-primary">{t('cartdrawer.title')}</h2>
                 <span className="text-xs bg-accent/20 text-ink px-2 py-0.5 rounded-full font-medium">
-                  {cart.reduce((a, b) => a + b.quantity, 0)} {t('cart.items')}
+                  {n(cart.reduce((a, b) => a + b.quantity, 0))} {t('cart.items')}
                 </span>
               </div>
               <button
@@ -77,7 +77,7 @@ export default function CartDrawer() {
                   <span className="text-primary font-semibold">{t('cartdrawer.freeReached')}</span>
                 ) : (
                   <span>
-                    {t('cartdrawer.freeRemaining')} <strong className="text-accent-2">৳{amountToFreeShipping}</strong> {t('cartdrawer.freeMore')}
+                    {t('cartdrawer.freeRemaining')} <strong className="text-accent-2">৳{n(amountToFreeShipping)}</strong> {t('cartdrawer.freeMore')}
                   </span>
                 )}
               </div>
@@ -128,8 +128,8 @@ export default function CartDrawer() {
                           {lang === 'bn' ? product.name : product.bnName}
                         </p>
                         <div className="mt-1 font-semibold text-accent text-sm">
-                          ৳{product.price}{' '}
-                          <span className="text-[11px] font-normal text-muted">x {quantity} = ৳{product.price * quantity}</span>
+                          ৳{n(product.price)}{' '}
+                          <span className="text-[11px] font-normal text-muted">x {n(quantity)} = ৳{n(product.price * quantity)}</span>
                         </div>
                       </div>
 
@@ -142,7 +142,7 @@ export default function CartDrawer() {
                           >
                             -
                           </button>
-                          <span className="px-2 text-xs font-semibold">{quantity}</span>
+                          <span className="px-2 text-xs font-semibold">{n(quantity)}</span>
                           <button
                             onClick={() => updateQuantity(product.id, quantity + 1)}
                             className="px-2 py-0.5 text-xs text-muted hover:text-ink"
@@ -171,7 +171,7 @@ export default function CartDrawer() {
               <div className="p-4 sm:p-5 border-t border-line bg-surface space-y-3">
                 <div className="flex justify-between items-center text-sm">
                   <span className="text-muted">{t('cartdrawer.subtotal')}</span>
-                  <span className="font-display font-bold text-lg text-primary">৳{subtotal}</span>
+                  <span className="font-display font-bold text-lg text-primary">৳{n(subtotal)}</span>
                 </div>
                 <p className="text-[11px] text-muted">
                   {t('cartdrawer.notice')}

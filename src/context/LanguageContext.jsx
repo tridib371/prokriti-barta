@@ -28,8 +28,18 @@ export function LanguageProvider({ children }) {
     return entry[lang] ?? entry['bn'] ?? key;
   }, [lang]);
 
+  /** Format number / convert digits to Bangla if lang === 'bn' */
+  const n = useCallback((num) => {
+    if (num === null || num === undefined) return '';
+    if (lang === 'bn') {
+      const banglaDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+      return String(num).replace(/\d/g, (digit) => banglaDigits[digit]);
+    }
+    return String(num);
+  }, [lang]);
+
   return (
-    <LanguageContext.Provider value={{ lang, toggleLang, t }}>
+    <LanguageContext.Provider value={{ lang, toggleLang, t, n }}>
       {children}
     </LanguageContext.Provider>
   );

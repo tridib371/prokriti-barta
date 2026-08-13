@@ -21,7 +21,7 @@ export default function Cart() {
   } = useCart();
 
   const { isAuthenticated } = useAuth();
-  const { t } = useLanguage();
+  const { t, n } = useLanguage();
   const navigate = useNavigate();
   const [showAuthBanner, setShowAuthBanner] = useState(false);
 
@@ -70,7 +70,7 @@ export default function Cart() {
         </Link>
 
         <h1 className="font-display font-bold text-3xl text-primary mb-6">
-          {t('cart.title')} ({cart.reduce((a, b) => a + b.quantity, 0)} {t('cart.items')})
+          {t('cart.title')} ({n(cart.reduce((a, b) => a + b.quantity, 0))} {t('cart.items')})
         </h1>
 
         {/* Free Shipping Alert Banner */}
@@ -84,7 +84,7 @@ export default function Cart() {
                 <p className="text-primary font-bold">{t('cart.freeShipping.reached')}</p>
               ) : (
                 <p className="text-ink">
-                  {t('cart.freeShipping.remaining')} <strong className="text-accent-2">৳{amountToFreeShipping}</strong> {t('cart.freeShipping.remainingMore')}
+                  {t('cart.freeShipping.remaining')} <strong className="text-accent-2">৳{n(amountToFreeShipping)}</strong> {t('cart.freeShipping.remainingMore')}
                 </p>
               )}
             </div>
@@ -108,7 +108,7 @@ export default function Cart() {
                         {product.name}
                       </Link>
                       <p className="text-xs text-muted font-bn-sans">{product.bnName}</p>
-                      <p className="text-xs text-accent font-semibold mt-1">৳{product.price} / {product.weight}</p>
+                      <p className="text-xs text-accent font-semibold mt-1">৳{n(product.price)} / {n(product.weight)}</p>
                     </div>
                   </div>
 
@@ -121,7 +121,7 @@ export default function Cart() {
                       >
                         -
                       </button>
-                      <span className="px-3 text-sm font-bold font-mono">{quantity}</span>
+                      <span className="px-3 text-sm font-bold font-mono">{n(quantity)}</span>
                       <button
                         onClick={() => updateQuantity(product.id, quantity + 1)}
                         className="px-3 py-1 text-sm font-bold text-muted hover:text-ink"
@@ -132,7 +132,7 @@ export default function Cart() {
 
                     <div className="text-right">
                       <span className="font-display font-bold text-base text-primary block">
-                        ৳{product.price * quantity}
+                        ৳{n(product.price * quantity)}
                       </span>
                     </div>
 
@@ -168,17 +168,17 @@ export default function Cart() {
               <div className="space-y-2.5 text-xs text-ink">
                 <div className="flex justify-between">
                   <span className="text-muted">{t('cart.summary.subtotal')}</span>
-                  <span className="font-bold font-mono">৳{subtotal}</span>
+                  <span className="font-bold font-mono">৳{n(subtotal)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted">{t('cart.summary.delivery')}</span>
-                  <span className="font-bold font-mono">{deliveryCharge === 0 ? t('cart.summary.free') : `৳${deliveryCharge}`}</span>
+                  <span className="font-bold font-mono">{deliveryCharge === 0 ? t('cart.summary.free') : `৳${n(deliveryCharge)}`}</span>
                 </div>
               </div>
 
               <div className="pt-3 border-t border-line flex justify-between items-center">
                 <span className="font-bold text-sm text-primary">{t('cart.summary.total')}</span>
-                <span className="font-display font-bold text-2xl text-accent">৳{total}</span>
+                <span className="font-display font-bold text-2xl text-accent">৳{n(total)}</span>
               </div>
               {/* Auth required banner */}
               <AnimatePresence>

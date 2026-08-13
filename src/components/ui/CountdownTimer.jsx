@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useLanguage } from '../../context/LanguageContext';
 
 export default function CountdownTimer({ targetDate }) {
   const [timeLeft, setTimeLeft] = useState({ hours: 14, minutes: 32, seconds: 45 });
+  const { n, lang } = useLanguage();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -15,23 +17,23 @@ export default function CountdownTimer({ targetDate }) {
     return () => clearInterval(timer);
   }, []);
 
-  const formatNum = (num) => String(num).padStart(2, '0');
+  const formatPadded = (num) => n(String(num).padStart(2, '0'));
 
   return (
     <div className="flex items-center gap-2 font-mono text-sm">
       <div className="flex flex-col items-center bg-surface border border-line px-3 py-1.5 rounded-lg">
-        <span className="font-bold text-primary text-base">{formatNum(timeLeft.hours)}</span>
-        <span className="text-[10px] text-muted font-sans uppercase">Hours</span>
+        <span className="font-bold text-primary text-base">{formatPadded(timeLeft.hours)}</span>
+        <span className="text-[10px] text-muted font-sans uppercase">{lang === 'bn' ? 'ঘণ্টা' : 'Hours'}</span>
       </div>
       <span className="text-primary font-bold">:</span>
       <div className="flex flex-col items-center bg-surface border border-line px-3 py-1.5 rounded-lg">
-        <span className="font-bold text-primary text-base">{formatNum(timeLeft.minutes)}</span>
-        <span className="text-[10px] text-muted font-sans uppercase">Mins</span>
+        <span className="font-bold text-primary text-base">{formatPadded(timeLeft.minutes)}</span>
+        <span className="text-[10px] text-muted font-sans uppercase">{lang === 'bn' ? 'মিনিট' : 'Mins'}</span>
       </div>
       <span className="text-primary font-bold">:</span>
       <div className="flex flex-col items-center bg-surface border border-line px-3 py-1.5 rounded-lg">
-        <span className="font-bold text-accent-2 text-base">{formatNum(timeLeft.seconds)}</span>
-        <span className="text-[10px] text-muted font-sans uppercase">Secs</span>
+        <span className="font-bold text-accent-2 text-base">{formatPadded(timeLeft.seconds)}</span>
+        <span className="text-[10px] text-muted font-sans uppercase">{lang === 'bn' ? 'সেকেন্ড' : 'Secs'}</span>
       </div>
     </div>
   );

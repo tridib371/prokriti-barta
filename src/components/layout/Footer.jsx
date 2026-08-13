@@ -8,7 +8,7 @@ import { useLanguage } from '../../context/LanguageContext';
 export default function Footer() {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
-  const { t, lang } = useLanguage();
+  const { t, n, lang } = useLanguage();
 
   const handleNewsletter = (e) => {
     e.preventDefault();
@@ -61,7 +61,7 @@ export default function Footer() {
             </div>
             <div>
               <h4 className="font-bold text-sm text-primary">{t('footer.support.title')}</h4>
-              <p className="text-xs text-muted">+880 1712-345678</p>
+              <p className="text-xs text-muted">{n('+880 1712-345678')}</p>
             </div>
           </div>
         </div>
@@ -154,7 +154,7 @@ export default function Footer() {
       {/* Bottom Copyright & Payment Methods */}
       <div className="border-t border-line/60 bg-bg/50 py-5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted">
-          <p>© {new Date().getFullYear()} {lang === 'bn' ? 'প্রকৃতি বার্তা' : 'Prokriti Barta'}. {t('footer.rights')}</p>
+          <p>© {n(new Date().getFullYear())} {lang === 'bn' ? 'প্রকৃতি বার্তা' : 'Prokriti Barta'}. {t('footer.rights')}</p>
           <div className="flex items-center gap-2 text-[10px] uppercase font-bold tracking-wider">
             <span className="px-2 py-1 bg-surface border border-line rounded">bKash</span>
             <span className="px-2 py-1 bg-surface border border-line rounded">Nagad</span>

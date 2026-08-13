@@ -11,7 +11,7 @@ import ProductCard from '../components/shop/ProductCard';
 export default function Wishlist() {
   const { wishlist, clearWishlist } = useWishlist();
   const { addToCart } = useCart();
-  const { t, lang } = useLanguage();
+  const { t, n, lang } = useLanguage();
 
   const handleMoveAllToCart = () => {
     wishlist.forEach(item => addToCart(item, 1));
@@ -48,7 +48,7 @@ export default function Wishlist() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
           <div>
             <h1 className="font-display font-bold text-3xl text-primary">
-              {t('wishlist.title')} ({wishlist.length} {t('cart.items')})
+              {t('wishlist.title')} ({n(wishlist.length)} {t('cart.items')})
             </h1>
             <p className="text-xs text-muted font-bn-sans mt-1">
               {lang === 'bn' ? 'আপনার পছন্দের জৈব সামগ্রীসমূহ এখান থেকে সরাসরি কার্টে যুক্ত করতে পারেন।' : 'Easily move your saved organic favorites straight to cart.'}
