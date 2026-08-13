@@ -2,9 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { pathDraw } from '../../lib/motionVariants';
 
-export default function AlponaDivider({ className = '', height = 36 }) {
+export default function AlponaDivider({ className = '', height = 38 }) {
   return (
-    <div className={`w-full flex items-center justify-center my-6 overflow-hidden select-none text-primary/30 ${className}`}>
+    <div className={`w-full flex items-center justify-center my-6 overflow-hidden select-none text-primary ${className}`}>
       <motion.svg
         width="100%"
         height={height}
@@ -14,14 +14,14 @@ export default function AlponaDivider({ className = '', height = 36 }) {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
-        className="w-full max-w-6xl opacity-80"
+        className="w-full max-w-6xl"
       >
         {/* Horizontal hairline */}
-        <line x1="0" y1="20" x2="480" y2="20" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
-        <line x1="720" y1="20" x2="1200" y2="20" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
+        <line x1="0" y1="20" x2="480" y2="20" stroke="currentColor" strokeWidth="1.5" strokeDasharray="5 5" />
+        <line x1="720" y1="20" x2="1200" y2="20" stroke="currentColor" strokeWidth="1.5" strokeDasharray="5 5" />
 
         {/* Central Bengali Alpona Swirl & Petal Motif */}
-        <g stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none">
+        <g stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" fill="none">
           {/* Central Lotus Bud */}
           <motion.path
             variants={pathDraw}
@@ -46,10 +46,10 @@ export default function AlponaDivider({ className = '', height = 36 }) {
             d="M630 20 C650 5, 670 25, 690 20 C705 16, 715 24, 720 20"
           />
           {/* Rice Grain Dots */}
-          <circle cx="540" cy="14" r="2" fill="currentColor" stroke="none" />
-          <circle cx="660" cy="14" r="2" fill="currentColor" stroke="none" />
-          <circle cx="500" cy="24" r="1.5" fill="currentColor" stroke="none" />
-          <circle cx="700" cy="24" r="1.5" fill="currentColor" stroke="none" />
+          <circle cx="540" cy="14" r="2.5" fill="currentColor" stroke="none" />
+          <circle cx="660" cy="14" r="2.5" fill="currentColor" stroke="none" />
+          <circle cx="500" cy="24" r="2" fill="currentColor" stroke="none" />
+          <circle cx="700" cy="24" r="2" fill="currentColor" stroke="none" />
         </g>
       </motion.svg>
     </div>
