@@ -1,27 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  /* Day Mode (Light): Organic Forest Green + Earthy Terracotta */
   --bg: #F4F7F4;
   --surface: #FFFFFF;
-  --ink: #0F1F17;
-  --muted: #586B60;
-  --primary: #1B4D3E;
-  --accent: #C85A32;
-  --accent-2: #2D6A4F;
-  --line: #E2E8E2;
+  --ink: #0D1F17;
+  --muted: #52665A;
+  --primary: #0F4C3A;
+  --accent: #E89814;
+  --accent-2: #E05A36;
+  --line: #E2E8E4;
 }
 
 [data-theme="dark"] {
-  /* Night Mode (Dark): Consistent Emerald Jade + Warm Terracotta Accent */
-  --bg: #0A130E;
-  --surface: #13221A;
-  --ink: #F2F7F4;
-  --muted: #8E9F95;
-  --primary: #2D6A4F;
-  --accent: #E07A5F;
-  --accent-2: #48BB78;
-  --line: #1E3328;
+  --bg: #0A1410;
+  --surface: #12211B;
+  --ink: #F0F7F3;
+  --muted: #8A9E94;
+  --primary: #10B981;
+  --accent: #F59E0B;
+  --accent-2: #F97316;
+  --line: #1E332B;
 }
 
 @theme {
@@ -81,4 +79,23 @@ html.lenis, html.lenis body {
 *:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+/* Glow & Glass Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+[data-theme="dark"] .glass-panel {
+  background: rgba(18, 33, 27, 0.85);
+}
+
+.gradient-organic {
+  background: linear-gradient(135deg, #0F4C3A 0%, #16654F 100%);
+}
+
+.gradient-amber {
+  background: linear-gradient(135deg, #E89814 0%, #F59E0B 100%);
 }
