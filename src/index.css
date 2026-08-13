@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  /* Light Mode: Deep Imperial Moss Green & Warm Terracotta Saffron */
+  /* Day Mode */
   --bg: #F4F6F4;
   --surface: #FFFFFF;
   --ink: #111C16;
@@ -13,13 +13,13 @@
 }
 
 [data-theme="dark"] {
-  /* Dark Mode: Refined Midnight Sage & Warm Coral Saffron (Zero Neon!) */
+  /* Night Mode - Using EXACT SAME #1B3B2B primary green & #C86D3B accent as Day mode */
   --bg: #0F1713;
   --surface: #17241E;
   --ink: #F0F5F2;
   --muted: #8E9F94;
-  --primary: #2E5B46;
-  --accent: #E07A5F;
+  --primary: #1B3B2B;
+  --accent: #C86D3B;
   --accent-2: #4A9372;
   --line: #22332A;
 }
