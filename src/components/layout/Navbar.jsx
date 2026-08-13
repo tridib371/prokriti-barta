@@ -5,7 +5,6 @@ import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
 import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
-import ThemeToggle from './ThemeToggle';
 import LanguageToggle from './LanguageToggle';
 import categories from '../../data/categories.json';
 
@@ -56,8 +55,6 @@ export default function Navbar() {
 
           <div className="flex items-center gap-3">
             <LanguageToggle />
-            <span className="text-surface/30">|</span>
-            <ThemeToggle />
           </div>
         </div>
       </div>
