@@ -1,0 +1,42 @@
+[
+  {
+    "id": "rev-1",
+    "productId": "honey-sundarban-500",
+    "userName": "তানিয়া সুলতানা",
+    "userLocation": "Dhanmondi, Dhaka",
+    "rating": 5,
+    "date": "2026-02-10",
+    "comment": "সুন্দরবনের আসল মধুর যে সুন্দর একটা প্রাকৃতিক সুবাস থাকে, এই মধুতে সেটাই পেলাম। একদম খাঁটি!",
+    "verifiedPurchase": true
+  },
+  {
+    "id": "rev-2",
+    "productId": "ghee-cow-bilona-400",
+    "userName": "রফিকুল ইসলাম",
+    "userLocation": "Agrabad, Chittagong",
+    "rating": 5,
+    "date": "2026-02-04",
+    "comment": "গাওয়া ঘির ঘ্রাণেই মন ভরে যায়। ভাতে বা পরোটায় দারুণ স্বাদ আনে। বিলোনা পদ্ধতির ঘি সহজে পাওয়া যায় না।",
+    "verifiedPurchase": true
+  },
+  {
+    "id": "rev-3",
+    "productId": "mustard-oil-kather-ghani-1000",
+    "userName": "Sharmin Akter",
+    "userLocation": "Sylhet Sadar",
+    "rating": 5,
+    "date": "2026-01-28",
+    "comment": "কাঠের ঘানির আসল ঝাঁঝ পাওয়া যায়। ভর্তা আর সর্ষে ইলিশ বানানোর জন্য একদম পারফেক্ট।",
+    "verifiedPurchase": true
+  },
+  {
+    "id": "rev-4",
+    "productId": "chia-seeds-300",
+    "userName": "Dr. Mahmud Hasan",
+    "userLocation": "Uttara, Dhaka",
+    "rating": 5,
+    "date": "2026-01-15",
+    "comment": "Very high quality clean chia seeds without any dirt. Smooth delivery within 24 hours.",
+    "verifiedPurchase": true
+  }
+]

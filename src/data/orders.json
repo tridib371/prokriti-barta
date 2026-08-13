@@ -1,0 +1,54 @@
+[
+  {
+    "id": "PB-2026-9482",
+    "date": "2026-02-12",
+    "status": "Delivered",
+    "paymentMethod": "bKash / Mobile Banking",
+    "items": [
+      {
+        "productId": "honey-sundarban-500",
+        "name": "Raw Sundarban Wild Flower Honey",
+        "price": 850,
+        "quantity": 1
+      },
+      {
+        "productId": "turmeric-deshi-ground-250",
+        "name": "Stone-Ground Deshi Turmeric Powder",
+        "price": 190,
+        "quantity": 2
+      }
+    ],
+    "subtotal": 1230,
+    "deliveryCharge": 0,
+    "total": 1230,
+    "shippingAddress": {
+      "name": "সাব্বির রহমান",
+      "phone": "+8801712345678",
+      "address": "House 42, Road 11, Banani",
+      "city": "Dhaka"
+    }
+  },
+  {
+    "id": "PB-2026-8104",
+    "date": "2026-02-05",
+    "status": "In Transit",
+    "paymentMethod": "Cash on Delivery",
+    "items": [
+      {
+        "productId": "ghee-cow-bilona-400",
+        "name": "Hand-Churned Cow Ghee (Bilona)",
+        "price": 1250,
+        "quantity": 1
+      }
+    ],
+    "subtotal": 1250,
+    "deliveryCharge": 0,
+    "total": 1250,
+    "shippingAddress": {
+      "name": "সাব্বির রহমান",
+      "phone": "+8801712345678",
+      "address": "House 42, Road 11, Banani",
+      "city": "Dhaka"
+    }
+  }
+]

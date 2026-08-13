@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #F7F2E7;
+  --surface: #FFFDF8;
+  --ink: #1F2A22;
+  --muted: #6B7263;
+  --primary: #1F3A2E;
+  --accent: #E3A83B;
+  --accent-2: #C6633B;
+  --line: #E4DCC8;
+}
+
+[data-theme="dark"] {
+  --bg: #131C16;
+  --surface: #1B2620;
+  --ink: #F2EDDF;
+  --muted: #A5AC9B;
+  --primary: #E3A83B;
+  --accent: #E3A83B;
+  --accent-2: #E08A5C;
+  --line: #2B372F;
+}
+
+@theme {
+  --font-display: 'Fraunces', 'Noto Serif Bengali', serif;
+  --font-body: 'Inter', 'Noto Sans Bengali', sans-serif;
+  --font-bn-serif: 'Noto Serif Bengali', 'Fraunces', serif;
+  --font-bn-sans: 'Noto Sans Bengali', 'Inter', sans-serif;
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-line: var(--line);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* Lenis Smooth Scroll Rules */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Custom Organic Shapes */
+.clip-organic-wave {
+  clip-path: polygon(0 0, 100% 0, 100% 92%, 85% 97%, 60% 93%, 35% 99%, 10% 95%, 0 97%);
+}
+
+/* Focus Visible */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

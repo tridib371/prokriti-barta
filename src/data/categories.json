@@ -1,0 +1,62 @@
+[
+  {
+    "id": "honey",
+    "slug": "honey",
+    "name": "Sundarban Wild Honey",
+    "bnName": "সুন্দরবনের খাঁটি মধু",
+    "icon": "Droplet",
+    "itemCount": 5,
+    "description": "Harvested directly from wild mangrove beehives by trusted Moubals.",
+    "image": "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": "ghee-oils",
+    "slug": "ghee-oils",
+    "name": "Hand-churned Ghee & Cold-Pressed Oils",
+    "bnName": "গাওয়া ঘি ও কাঠের ঘানির তেল",
+    "icon": "Flame",
+    "itemCount": 6,
+    "description": "Traditional bilona ghee and cold-pressed mustard & coconut oil.",
+    "image": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": "rice-grains",
+    "slug": "rice-grains",
+    "name": "Heritage Rice & Grains",
+    "bnName": "ঐতিহ্যবাহী চাল ও শস্য",
+    "icon": "Wheat",
+    "itemCount": 4,
+    "description": "Aromatic Kalijira, Red Rice, and unpolished organic grains.",
+    "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": "spices",
+    "slug": "spices",
+    "name": "Purity Spices & Herbs",
+    "bnName": "খাঁটি গুঁড়া মশলা ও ভেষজ",
+    "icon": "Sparkles",
+    "itemCount": 5,
+    "description": "Stone-ground turmeric, chili, coriander & indigenous herbs.",
+    "image": "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": "tea-beverages",
+    "slug": "tea-beverages",
+    "name": "Artisanal Tea & Botanicals",
+    "bnName": "অর্গানিক চা ও ভেষজ পানীয়",
+    "icon": "Coffee",
+    "itemCount": 4,
+    "description": "Organic Sylhet CTC Tea, Tulsi blend, and Lemongrass infusions.",
+    "image": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": "nuts-seeds",
+    "slug": "nuts-seeds",
+    "name": "Nuts, Seeds & Dates",
+    "bnName": "বাদাম, বীজ ও খেজুর",
+    "icon": "Nut",
+    "itemCount": 4,
+    "description": "Sun-dried seeds, premium cashews, and organic premium dates.",
+    "image": "https://images.unsplash.com/photo-1509358211425-24d08435f45f?auto=format&fit=crop&w=600&q=80"
+  }
+]
