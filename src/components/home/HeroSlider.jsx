@@ -7,7 +7,7 @@ import { useLanguage } from '../../context/LanguageContext';
 
 export default function HeroSlider() {
   const [current, setCurrent] = useState(0);
-  const { t, lang } = useLanguage();
+  const { t, n, lang } = useLanguage();
 
   const slides = [
     {
