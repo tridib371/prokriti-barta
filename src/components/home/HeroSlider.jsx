@@ -123,7 +123,7 @@ export default function HeroSlider() {
                 ))}
               </div>
               <span className="text-xs text-muted font-mono">
-                0{current + 1} / 0{slides.length}
+                {n('0' + (current + 1))} / {n('0' + slides.length)}
               </span>
             </div>
           </div>

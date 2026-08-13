@@ -3,6 +3,17 @@ import translations from '../i18n/translations';
 
 const LanguageContext = createContext(null);
 
+const banglaDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+
+function convertDigits(val, lang) {
+  if (val === null || val === undefined) return '';
+  const str = String(val);
+  if (lang === 'bn') {
+    return str.replace(/\d/g, (digit) => banglaDigits[digit]);
+  }
+  return str;
+}
+
 export function LanguageProvider({ children }) {
   // Default: Bangla
   const [lang, setLang] = useState(() => {
@@ -21,21 +32,17 @@ export function LanguageProvider({ children }) {
     });
   }, []);
 
-  /** Translate a key. Falls back to the key itself if missing. */
+  /** Translate a key. Auto-converts embedded digits if lang === 'bn'. */
   const t = useCallback((key) => {
     const entry = translations[key];
-    if (!entry) return key;
-    return entry[lang] ?? entry['bn'] ?? key;
+    if (!entry) return convertDigits(key, lang);
+    const text = entry[lang] ?? entry['bn'] ?? key;
+    return convertDigits(text, lang);
   }, [lang]);
 
-  /** Format number / convert digits to Bangla if lang === 'bn' */
+  /** Format number or convert digits to Bangla if lang === 'bn'. */
   const n = useCallback((num) => {
-    if (num === null || num === undefined) return '';
-    if (lang === 'bn') {
-      const banglaDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
-      return String(num).replace(/\d/g, (digit) => banglaDigits[digit]);
-    }
-    return String(num);
+    return convertDigits(num, lang);
   }, [lang]);
 
   return (

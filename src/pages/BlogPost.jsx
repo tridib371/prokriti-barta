@@ -31,8 +31,8 @@ export default function BlogPost() {
 
           <div className="flex flex-wrap items-center gap-4 text-xs text-muted font-bn-sans pt-2 border-b border-line pb-4">
             <span className="flex items-center gap-1"><User size={14} /> {blog.author}</span>
-            <span className="flex items-center gap-1"><Calendar size={14} /> {blog.date}</span>
-            <span className="flex items-center gap-1"><Clock size={14} /> {blog.readTime}</span>
+            <span className="flex items-center gap-1"><Calendar size={14} /> {n(blog.date)}</span>
+            <span className="flex items-center gap-1"><Clock size={14} /> {n(blog.readTime)}</span>
           </div>
         </div>
 

@@ -36,7 +36,7 @@ export default function Blog() {
                 <div className="space-y-2">
                   <div className="flex items-center justify-between text-[11px] text-muted font-semibold">
                     <span className="text-accent uppercase">{blog.category}</span>
-                    <span className="flex items-center gap-1"><Clock size={12} /> {blog.readTime}</span>
+                    <span className="flex items-center gap-1"><Clock size={12} /> {n(blog.readTime)}</span>
                   </div>
                   <Link to={`/blog/${blog.slug}`} className="block font-display font-bold text-lg text-primary hover:text-accent line-clamp-2">
                     {lang === 'bn' ? blog.title : (blog.titleEn || blog.title)}
