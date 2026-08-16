@@ -29,7 +29,7 @@ export default function HeroSlider() {
       ctaText: t('hero.slide2.cta'),
       ctaLink: "/shop?category=ghee-oils",
       badge: t('hero.slide2.badge'),
-      image: "https://images.unsplash.com/photo-1631451095765-2c91616fc9e6?auto=format&fit=crop&w=1200&q=80",
+      image: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?auto=format&fit=crop&w=1200&q=80",
       accentColor: "#E05A36"
     },
     {
