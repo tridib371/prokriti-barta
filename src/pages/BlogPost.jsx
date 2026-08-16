@@ -46,7 +46,7 @@ export default function BlogPost() {
 
           <div className="flex flex-wrap items-center justify-between gap-4 text-xs text-muted font-bn-sans pt-2 border-b border-line pb-4">
             <div className="flex items-center gap-4">
-              <span className="flex items-center gap-1.5 text-primary font-bold"><User size={14} className="text-accent" /> {blog.author}</span>
+              <span className="flex items-center gap-1.5 text-primary font-bold"><User size={14} className="text-accent" /> {lang === 'bn' ? blog.author : (blog.authorEn || blog.author)}</span>
               <span className="flex items-center gap-1.5"><Calendar size={14} /> {n(blog.date)}</span>
               <span className="flex items-center gap-1.5"><Clock size={14} /> {n(blog.readTime)}</span>
             </div>
@@ -96,7 +96,7 @@ export default function BlogPost() {
               <User size={22} />
             </div>
             <div>
-              <div className="font-display font-bold text-sm text-primary">{blog.author}</div>
+              <div className="font-display font-bold text-sm text-primary">{lang === 'bn' ? blog.author : (blog.authorEn || blog.author)}</div>
               <div className="text-xs text-muted">
                 {lang === 'bn' ? 'প্রকৃতি বার্তা অর্গানিক নিউট্রিশন ও লোকজ খাদ্য প্যানেল' : 'Prokriti Barta Organic Nutrition & Research Panel'}
               </div>

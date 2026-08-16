@@ -108,7 +108,7 @@ export default function Blog() {
 
               <div className="pt-4 border-t border-line/60 flex items-center justify-between">
                 <span className="text-xs text-primary font-bold flex items-center gap-1.5 font-bn-sans">
-                  <User size={14} className="text-accent" /> {featuredPost.author}
+                  <User size={14} className="text-accent" /> {lang === 'bn' ? featuredPost.author : (featuredPost.authorEn || featuredPost.author)}
                 </span>
 
                 <Link to={`/blog/${featuredPost.slug}`}>
@@ -184,7 +184,7 @@ export default function Blog() {
 
                   <div className="pt-4 border-t border-line/60 flex items-center justify-between">
                     <span className="text-[11px] text-muted font-semibold font-bn-sans flex items-center gap-1 line-clamp-1 max-w-[170px]">
-                      <User size={13} className="text-accent shrink-0" /> {blog.author}
+                      <User size={13} className="text-accent shrink-0" /> {lang === 'bn' ? blog.author : (blog.authorEn || blog.author)}
                     </span>
                     <Link to={`/blog/${blog.slug}`} className="text-xs font-bold text-accent hover:underline flex items-center gap-1 shrink-0">
                       {t('btn.readMore')}
