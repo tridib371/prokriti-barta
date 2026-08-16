@@ -32,13 +32,11 @@ export default function ChatbotWidget() {
   const quickQuestions = lang === 'bn' ? [
     'মধু খাঁটি কিনা কীভাবে বুঝবো?',
     'ডেলিভারি চার্জ ও সময় কত?',
-    'বিলোনা ঘি কেন সেরা?',
     'অর্ডার ও পেমেন্ট পদ্ধতি',
     'কাস্টমার কেয়ার নম্বর'
   ] : [
     'How to verify pure honey?',
     'What are delivery rates & time?',
-    'Why is Bilona Ghee special?',
     'Payment & Ordering methods',
     'Customer Helpline'
   ];
@@ -88,18 +86,18 @@ export default function ChatbotWidget() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end">
       
       {/* 1. Chat Window Modal */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 30, scale: 0.95 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.25 }}
             data-lenis-prevent="true"
-            className="w-[92vw] sm:w-[380px] h-[520px] max-h-[85vh] bg-surface border border-line rounded-3xl shadow-2xl flex flex-col overflow-hidden mb-4"
+            className="w-[calc(100vw-2rem)] sm:w-[380px] max-w-[380px] h-[75vh] sm:h-[520px] max-h-[560px] bg-surface border border-line rounded-2xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden mb-3 sm:mb-4"
           >
             {/* Header */}
             <div className="bg-primary text-surface p-4 flex items-center justify-between shadow-xs shrink-0">
@@ -271,14 +269,14 @@ export default function ChatbotWidget() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen((prev) => !prev)}
-        className="w-14 h-14 bg-primary text-white rounded-full shadow-xl flex items-center justify-center hover:bg-primary/95 transition-all border-2 border-surface relative group cursor-pointer"
+        className="w-12 h-12 sm:w-14 sm:h-14 bg-primary text-white rounded-full shadow-xl flex items-center justify-center hover:bg-primary/95 transition-all border-2 border-surface relative group cursor-pointer"
         aria-label="Open Live Chat"
       >
-        <div className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-accent rounded-full border-2 border-surface"></div>
+        <div className="absolute -top-0.5 -right-0.5 w-3 h-3 sm:w-3.5 sm:h-3.5 bg-accent rounded-full border-2 border-surface"></div>
         {isOpen ? (
-          <X size={24} className="text-white" />
+          <X size={20} className="text-white sm:w-6 sm:h-6" />
         ) : (
-          <MessageCircle size={26} className="text-white group-hover:rotate-12 transition-transform" />
+          <MessageCircle size={22} className="text-white sm:w-6 sm:h-6 group-hover:rotate-12 transition-transform" />
         )}
       </motion.button>
 
