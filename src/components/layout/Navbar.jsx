@@ -34,6 +34,7 @@ export default function Navbar() {
     { key: 'nav.about', path: '/about' },
     { key: 'nav.blog', path: '/blog' },
     { key: 'nav.contact', path: '/contact' },
+    { key: 'nav.delivery', path: '/delivery' },
   ];
 
   return (

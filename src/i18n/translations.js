@@ -29,6 +29,7 @@ const translations = {
   'nav.about': { bn: 'আমাদের কথা', en: 'About Us' },
   'nav.blog': { bn: 'ব্লগ', en: 'Blog' },
   'nav.contact': { bn: 'যোগাযোগ', en: 'Contact' },
+  'nav.delivery': { bn: 'ডেলিভারি পলিসি', en: 'Delivery' },
 
   // ── Common Buttons & Actions ────────────────────────────────────────────────
   'btn.addToCart': { bn: 'কার্টে যোগ করুন', en: 'Add to Cart' },
