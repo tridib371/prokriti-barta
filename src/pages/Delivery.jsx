@@ -9,12 +9,14 @@ export default function Delivery() {
   const { t, n, lang } = useLanguage();
 
   const [calcZone, setCalcZone] = useState('dhaka');
-  const [calcAmount, setCalcAmount] = useState(1200);
+  const [calcAmount, setCalcAmount] = useState('1200');
   const [openFaq, setOpenFaq] = useState(null);
+
+  const currentAmount = Number(calcAmount) || 0;
 
   // Delivery Calculator Logic
   const calcDeliveryFee = () => {
-    if (calcAmount >= 1000) return 0;
+    if (currentAmount >= 1000) return 0;
     return calcZone === 'dhaka' ? 60 : 100;
   };
 
@@ -326,8 +328,12 @@ export default function Delivery() {
               <label className="block text-xs font-bold text-ink">{lang === 'bn' ? '২. অর্ডারের আনুমানিক মূল্য (৳)' : '2. Estimated Cart Total (৳)'}</label>
               <input
                 type="number"
+                placeholder="1200"
                 value={calcAmount}
-                onChange={(e) => setCalcAmount(Number(e.target.value) || 0)}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setCalcAmount(val === '' ? '' : val.replace(/^0+(?=\d)/, ''));
+                }}
                 className="w-full bg-surface text-ink px-4 py-2.5 rounded-xl border border-line focus:border-accent outline-none text-xs sm:text-sm font-bn-sans font-bold"
               />
             </div>
@@ -346,12 +352,12 @@ export default function Delivery() {
               </div>
             </div>
 
-            {calcAmount < 1000 && (
+            {currentAmount < 1000 && (
               <div className="text-right text-xs text-muted font-bn-sans">
                 {lang === 'bn' ? (
-                  <span>আর <strong className="text-accent font-bold">৳{n(1000 - calcAmount)}</strong> অর্ডারে ফ্রি ডেলিভারি!</span>
+                  <span>আর <strong className="text-accent font-bold">৳{n(1000 - currentAmount)}</strong> অর্ডারে ফ্রি ডেলিভারি!</span>
                 ) : (
-                  <span>Add <strong className="text-accent font-bold">৳{n(1000 - calcAmount)}</strong> more for FREE shipping!</span>
+                  <span>Add <strong className="text-accent font-bold">৳{n(1000 - currentAmount)}</strong> more for FREE shipping!</span>
                 )}
               </div>
             )}
