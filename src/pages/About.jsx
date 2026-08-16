@@ -1,10 +1,53 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { Leaf, Users, ShieldCheck, Heart, ArrowRight, Sun, Award, CheckCircle2, PhoneCall } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import AlponaDivider from '../components/ui/AlponaDivider';
 import Button from '../components/ui/Button';
 import { useLanguage } from '../context/LanguageContext';
+
+function AnimatedCounter({ end, duration = 2, suffix = '', lang = 'en' }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-30px" });
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    let startTime = null;
+    const startValue = 0;
+    const endValue = end;
+
+    const updateCounter = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+      const currentCount = Math.floor(startValue + easedProgress * (endValue - startValue));
+      setCount(currentCount);
+
+      if (progress < 1) {
+        requestAnimationFrame(updateCounter);
+      }
+    };
+
+    requestAnimationFrame(updateCounter);
+  }, [isInView, end, duration]);
+
+  const formattedCount = () => {
+    let str = count.toLocaleString();
+    if (lang === 'bn') {
+      const bnDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+      str = count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",").replace(/\d/g, d => bnDigits[d]);
+    }
+    return str;
+  };
+
+  return (
+    <span ref={ref}>
+      {formattedCount()}{suffix}
+    </span>
+  );
+}
 
 export default function About() {
   const { t, lang, n } = useLanguage();
@@ -141,22 +184,30 @@ export default function About() {
           className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
         >
           <motion.div variants={itemVariants} className="bg-surface border border-line p-5 rounded-2xl text-center space-y-1.5 shadow-xs">
-            <div className="font-display font-extrabold text-3xl sm:text-4xl text-accent">100%</div>
+            <div className="font-display font-extrabold text-3xl sm:text-4xl text-accent">
+              <AnimatedCounter end={100} suffix="%" lang={lang} />
+            </div>
             <div className="text-xs sm:text-sm font-bold text-primary font-bn-sans">{t('about.stats.purity')}</div>
           </motion.div>
           
           <motion.div variants={itemVariants} className="bg-surface border border-line p-5 rounded-2xl text-center space-y-1.5 shadow-xs">
-            <div className="font-display font-extrabold text-3xl sm:text-4xl text-accent">{n(250)}+</div>
+            <div className="font-display font-extrabold text-3xl sm:text-4xl text-accent">
+              <AnimatedCounter end={250} suffix="+" lang={lang} />
+            </div>
             <div className="text-xs sm:text-sm font-bold text-primary font-bn-sans">{t('about.stats.farmers')}</div>
           </motion.div>
 
           <motion.div variants={itemVariants} className="bg-surface border border-line p-5 rounded-2xl text-center space-y-1.5 shadow-xs">
-            <div className="font-display font-extrabold text-3xl sm:text-4xl text-accent">{n(6)}</div>
+            <div className="font-display font-extrabold text-3xl sm:text-4xl text-accent">
+              <AnimatedCounter end={6} lang={lang} />
+            </div>
             <div className="text-xs sm:text-sm font-bold text-primary font-bn-sans">{t('about.stats.categories')}</div>
           </motion.div>
 
           <motion.div variants={itemVariants} className="bg-surface border border-line p-5 rounded-2xl text-center space-y-1.5 shadow-xs">
-            <div className="font-display font-extrabold text-3xl sm:text-4xl text-accent">{n(10000)}+</div>
+            <div className="font-display font-extrabold text-3xl sm:text-4xl text-accent">
+              <AnimatedCounter end={10000} suffix="+" lang={lang} />
+            </div>
             <div className="text-xs sm:text-sm font-bold text-primary font-bn-sans">{t('about.stats.families')}</div>
           </motion.div>
         </motion.div>
