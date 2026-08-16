@@ -167,8 +167,8 @@ const translations = {
   // ── Cart Drawer ─────────────────────────────────────────────────────────────
   'cartdrawer.title': { bn: 'আপনার কার্ট', en: 'Your Shopping Cart' },
   'cartdrawer.freeReached': {
-    bn: '🎉 অভিনন্দন! আপনি ফ্রি ডেলিভারি পাচ্ছেন।',
-    en: '🎉 Congratulations! You unlocked free delivery.',
+    bn: 'অভিনন্দন! আপনি ফ্রি ডেলিভারি পাচ্ছেন।',
+    en: 'Congratulations! You unlocked free delivery.',
   },
   'cartdrawer.freeRemaining': { bn: 'ফ্রি ডেলিভারির জন্য আরো', en: 'Add' },
   'cartdrawer.freeMore': { bn: 'টাকার কেনাকাটা করুন', en: 'more to get free delivery' },
@@ -194,8 +194,8 @@ const translations = {
     en: 'Explore our organic products — wild honey, bilona ghee, wood-pressed oil and more.',
   },
   'cart.freeShipping.reached': {
-    bn: '🎉 আপনি ১০০০+ টাকার অর্ডারে ফ্রি ডেলিভারি পাচ্ছেন!',
-    en: '🎉 You have unlocked FREE delivery on this order!',
+    bn: 'আপনি ১০০০+ টাকার অর্ডারে ফ্রি ডেলিভারি পাচ্ছেন!',
+    en: 'You have unlocked FREE delivery on this order!',
   },
   'cart.freeShipping.remaining': { bn: 'ফ্রি ডেলিভারির জন্য আরও', en: 'Add' },
   'cart.freeShipping.remainingMore': { bn: 'টাকার পণ্য যোগ করুন।', en: 'more to unlock free delivery.' },

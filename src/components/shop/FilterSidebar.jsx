@@ -1,5 +1,5 @@
 import React from 'react';
-import { RotateCcw, Filter } from 'lucide-react';
+import { RotateCcw, Filter, Star } from 'lucide-react';
 import categories from '../../data/categories.json';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -92,7 +92,11 @@ export default function FilterSidebar({
                   : 'bg-bg text-ink border-line hover:border-muted'
               }`}
             >
-              {rate === 0 ? 'All' : `${rate}+ ★`}
+              {rate === 0 ? (lang === 'bn' ? 'সব' : 'All') : (
+                <span className="flex items-center gap-1">
+                  {n(rate)}+ <Star size={11} className="fill-accent text-accent inline" />
+                </span>
+              )}
             </button>
           ))}
         </div>

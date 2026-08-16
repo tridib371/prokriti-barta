@@ -105,7 +105,7 @@ export default function Navbar() {
                 onClick={() => setSearchQuery('')}
                 className="absolute right-3 text-muted hover:text-ink text-xs font-bold"
               >
-                ✕
+              <X size={14} />
               </button>
             )}
           </div>
@@ -217,7 +217,7 @@ export default function Navbar() {
               onClick={() => setSearchQuery('')}
               className="absolute right-3 text-muted hover:text-ink text-xs font-bold"
             >
-              ✕
+              <X size={14} />
             </button>
           )}
         </form>

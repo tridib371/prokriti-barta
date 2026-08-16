@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Search, SlidersHorizontal, ArrowUpDown, X } from 'lucide-react';
+import { Search, SlidersHorizontal, ArrowUpDown, X, Star } from 'lucide-react';
 import ProductCard from '../components/shop/ProductCard';
 import FilterSidebar from '../components/shop/FilterSidebar';
 import productsData from '../data/products.json';
@@ -200,7 +200,7 @@ export default function Shop() {
                 )}
                 {minRating > 0 && (
                   <span className="bg-bg border border-line text-ink font-semibold px-2.5 py-1 rounded-full flex items-center gap-1">
-                    {minRating}+ ★
+                    <span className="flex items-center gap-0.5">{minRating}+ <Star size={11} className="fill-accent text-accent inline" /></span>
                     <X size={12} className="cursor-pointer" onClick={() => setMinRating(0)} />
                   </span>
                 )}
