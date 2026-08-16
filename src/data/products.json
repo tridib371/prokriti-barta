@@ -542,34 +542,35 @@
     ]
   },
   {
-    "id": "date-sugar-natural-500",
-    "slug": "organic-date-sugar-powder",
-    "name": "Organic Date Sugar (খেজুরি চিনি)",
-    "bnName": "অর্গানিক খেজুরের গুঁড়া চিনি",
+    "id": "dates-madinah-medjool-500",
+    "slug": "organic-premium-madinah-dates",
+    "name": "Organic Premium Madinah Dates (মদিনার খেজুর)",
+    "bnName": "মদিনার খাঁটি প্রিমিয়াম খেজুর",
     "category": "nuts-seeds",
-    "price": 550,
-    "originalPrice": 620,
-    "rating": 4.9,
-    "reviewCount": 89,
+    "price": 650,
+    "originalPrice": 750,
+    "rating": 4.94,
+    "reviewCount": 142,
     "images": [
-      "https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?auto=format&fit=crop&w=800&q=80"
+      "https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?auto=format&fit=crop&w=800&q=80"
     ],
-    "shortDesc": "Unrefined healthy sweetener made entirely from dehydrated whole dates.",
-    "description": "A 1:1 healthy alternative to white refined sugar. Made by fine grinding sun-dried premium dates retaining all natural minerals and fiber.",
+    "shortDesc": "Naturally sweet, chewy organic dates sourced directly from Madinah orchards.",
+    "description": "Hand-picked, chemical-free organic dates packed with natural Fiber, Potassium, and Essential Minerals. Perfect natural energy booster.",
     "ingredients": [
-      "100% Dried Whole Organic Dates"
+      "100% Organic Whole Madinah Dates"
     ],
     "benefits": [
-      "Unrefined Low GI Sweetener",
-      "Rich in Potassium & Magnesium",
-      "Kid-Friendly Sweetener"
+      "Natural Instant Energy",
+      "Rich in Dietary Fiber & Iron",
+      "Zero Sugar Additives"
     ],
     "weight": "500g",
     "inStock": true,
-    "isFeatured": false,
+    "isFeatured": true,
     "isNew": true,
     "tags": [
-      "Sugar Alternative"
+      "Superfood",
+      "Natural Energy"
     ]
   },
   {
