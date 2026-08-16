@@ -1,5 +1,5 @@
 /**
- * Prokriti-Barta — Complete Bilingual Translation Dictionary (Bangla & English)
+ * Prokriti-Barta - Complete Bilingual Translation Dictionary (Bangla & English)
  */
 const translations = {
 
@@ -59,8 +59,8 @@ const translations = {
   'hero.slide1.title': { bn: 'প্রকৃতির খাঁটি ছোঁয়া,', en: 'Pure Touch of Nature,' },
   'hero.slide1.highlight': { bn: 'আপনার পরিবারের সুস্থতা', en: 'For Your Family Wellbeing' },
   'hero.slide1.subtitle': {
-    bn: 'সুন্দরবনের পদ্ম মধু, কাঠের ঘানির খাঁটি সরিষার তেল এবং হাতে মন্থন করা গাওয়া ঘি — কোনো প্রিজারভেটিভ ছাড়া সরাসরি খামার থেকে।',
-    en: 'Raw Sundarbans honey, wood-pressed mustard oil & hand-churned ghee — preservative-free straight from farms.',
+    bn: 'সুন্দরবনের পদ্ম মধু, কাঠের ঘানির খাঁটি সরিষার তেল এবং হাতে মন্থন করা গাওয়া ঘি - কোনো প্রিজারভেটিভ ছাড়া সরাসরি খামার থেকে।',
+    en: 'Raw Sundarbans honey, wood-pressed mustard oil & hand-churned ghee - preservative-free straight from farms.',
   },
   'hero.slide1.cta': { bn: 'শপ ভিজিট করুন', en: 'Visit Shop' },
   'hero.slide1.badge': { bn: '১০০% প্রিজারভেটিভ-মুক্ত harvest', en: '100% Preservative-Free Harvest' },
@@ -195,7 +195,7 @@ const translations = {
   'cart.empty.title': { bn: 'আপনার শপিং কার্ট খালি', en: 'Your shopping cart is empty' },
   'cart.empty.subtitle': {
     bn: 'সুন্দরবনের বুনো মধু, খাঁটি বিলোনা ঘি ও কাঠের ঘানির তেল দেখতে আমাদের শপে যান।',
-    en: 'Explore our organic products — wild honey, bilona ghee, wood-pressed oil and more.',
+    en: 'Explore our organic products - wild honey, bilona ghee, wood-pressed oil and more.',
   },
   'cart.freeShipping.reached': {
     bn: 'আপনি ১০০০+ টাকার অর্ডারে ফ্রি ডেলিভারি পাচ্ছেন!',
@@ -331,7 +331,7 @@ const translations = {
   },
   'about.storyTitle': { bn: 'আমাদের শুরুর কথা', en: 'Our Heritage Story' },
   'about.storyText': {
-    bn: "প্রকৃতি বার্তার যাত্রা শুরু হয়েছিল একটি সরল কিন্তু দৃঢ় বিশ্বাস থেকে — যে আমাদের খাদ্যে কৃত্রিম রাসায়নিক ও ভেজালের স্থান থাকতে পারে না। আমরা সরাসরি সুন্দরবনের মৌয়াল, নদীমাতৃক গ্রামগুলোর খামারি ও প্রান্তিক কৃষকদের থেকে বিশুদ্ধ মধু, বিলোনা ঘি ও ঘানির তেল সংগ্রহ করে পৌঁছে দিচ্ছি হাজারো পরিবারে।",
+    bn: "প্রকৃতি বার্তার যাত্রা শুরু হয়েছিল একটি সরল কিন্তু দৃঢ় বিশ্বাস থেকে - যে আমাদের খাদ্যে কৃত্রিম রাসায়নিক ও ভেজালের স্থান থাকতে পারে না। আমরা সরাসরি সুন্দরবনের মৌয়াল, নদীমাতৃক গ্রামগুলোর খামারি ও প্রান্তিক কৃষকদের থেকে বিশুদ্ধ মধু, বিলোনা ঘি ও ঘানির তেল সংগ্রহ করে পৌঁছে দিচ্ছি হাজারো পরিবারে।",
     en: "Prokriti Barta began with a single mission: bringing unadulterated, preservative-free traditional food straight from remote Sundarbans honey-gatherers, local dairy farmers, and indigenous crop growers to modern Bangladeshi homes.",
   },
 

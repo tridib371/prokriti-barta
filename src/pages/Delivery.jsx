@@ -40,7 +40,7 @@ export default function Delivery() {
               <RefreshCw className="text-accent" size={20} /> {t('footer.return.title')}
             </h2>
             <p className="text-muted">
-              {t('footer.return.sub')} — {lang === 'bn' ? 'পরিবহনের সময় প্রোডাক্ট ক্ষতিগ্রস্ত হলে দ্রুত ফ্রি রিপ্লেসমেন্ট প্রদান করা হবে।' : 'Quick free replacement provided if products get damaged during transit.'}
+              {t('footer.return.sub')} - {lang === 'bn' ? 'পরিবহনের সময় প্রোডাক্ট ক্ষতিগ্রস্ত হলে দ্রুত ফ্রি রিপ্লেসমেন্ট প্রদান করা হবে।' : 'Quick free replacement provided if products get damaged during transit.'}
             </p>
           </div>
 

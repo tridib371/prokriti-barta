@@ -58,7 +58,7 @@ export default function LandingPage() {
               </h1>
 
               <p className="text-muted text-sm sm:text-base font-bn-sans leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                সুন্দরবনের খাঁটি পদ্ম মধু, বৈদিক বিলোনা গাওয়া ঘি এবং কাঠের ঘানির কোল্ড-প্রেসড তেল — রসায়নবর্জিত প্রথাগত প্রক্রিয়ায় সরাসরি আপনার দোরগোড়ায়।
+                সুন্দরবনের খাঁটি পদ্ম মধু, বৈদিক বিলোনা গাওয়া ঘি এবং কাঠের ঘানির কোল্ড-প্রেসড তেল - রসায়নবর্জিত প্রথাগত প্রক্রিয়ায় সরাসরি আপনার দোরগোড়ায়।
               </p>
 
               {/* Primary Call to Actions */}
