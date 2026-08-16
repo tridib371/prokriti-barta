@@ -13,21 +13,20 @@ export default function ChatbotWidget() {
   const [messages, setMessages] = useState([]);
   const messagesEndRef = useRef(null);
 
-  // Initial welcome message based on language
+  // Initial welcome message with both Bangla & English
   useEffect(() => {
     if (messages.length === 0) {
       setMessages([
         {
           id: 'welcome',
           sender: 'bot',
-          text: lang === 'bn'
-            ? 'প্রকৃতি বার্তায় আপনাকে স্বাগতম! আমি প্রকৃতি মিত্র - প্রকৃতি বার্তার ভার্চুয়াল অ্যাসিস্ট্যান্ট। পণ্য, বিশুদ্ধতা যাচাই বা ডেলিভারি সম্পর্কিত যেকোনো প্রশ্ন আমাকে করতে পারেন।'
-            : 'Welcome to Prokriti Barta! I am your Prokriti Assistant. Ask me anything about our organic products, purity tests, or delivery policies!',
+          textBn: 'প্রকৃতি বার্তায় আপনাকে স্বাগতম! আমি প্রকৃতি মিত্র - প্রকৃতি বার্তার ভার্চুয়াল অ্যাসিস্ট্যান্ট। পণ্য, বিশুদ্ধতা যাচাই বা ডেলিভারি সম্পর্কিত যেকোনো প্রশ্ন আমাকে করতে পারেন।',
+          textEn: 'Welcome to Prokriti Barta! I am your Prokriti Assistant. Ask me anything about our organic products, purity tests, or delivery policies!',
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         }
       ]);
     }
-  }, [lang]);
+  }, []);
 
   const quickQuestions = lang === 'bn' ? [
     'মধু খাঁটি কিনা কীভাবে বুঝবো?',
@@ -71,8 +70,12 @@ export default function ChatbotWidget() {
       const botMessage = {
         id: Date.now() + 1,
         sender: 'bot',
+        textBn: response.textBn || response.text,
+        textEn: response.textEn || response.text,
         text: response.text,
         actionLink: response.actionLink,
+        actionLabelBn: response.actionLabelBn || response.actionLabel,
+        actionLabelEn: response.actionLabelEn || response.actionLabel,
         actionLabel: response.actionLabel,
         products: response.products,
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
@@ -162,7 +165,9 @@ export default function ChatbotWidget() {
                           : 'bg-surface text-ink border border-line rounded-tl-xs'
                       }`}
                     >
-                      {msg.text}
+                      {msg.sender === 'bot' 
+                        ? (lang === 'bn' ? (msg.textBn || msg.text) : (msg.textEn || msg.text))
+                        : msg.text}
                     </div>
 
                     {/* Embedded Product Recommendation Card */}
@@ -202,7 +207,7 @@ export default function ChatbotWidget() {
                         onClick={() => setIsOpen(false)}
                         className="inline-flex items-center gap-1 text-[11px] font-bold text-accent hover:underline pt-0.5"
                       >
-                        {msg.actionLabel || (lang === 'bn' ? 'বিস্তারিত দেখুন' : 'View More')} <ArrowRight size={12} />
+                        {lang === 'bn' ? (msg.actionLabelBn || msg.actionLabel || 'বিস্তারিত দেখুন') : (msg.actionLabelEn || msg.actionLabel || 'View More')} <ArrowRight size={12} />
                       </Link>
                     )}
 
