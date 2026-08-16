@@ -32,8 +32,8 @@ export default function CategoryStrip() {
           </Link>
         </div>
 
-        {/* Scroll Snap Container */}
-        <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-none">
+        {/* 6-Column Responsive Grid Layout (No Cropping) */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-4">
           {categories.map((cat, idx) => {
             const IconComponent = iconMap[cat.icon] || Leaf;
             return (
@@ -42,29 +42,35 @@ export default function CategoryStrip() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.08, duration: 0.4 }}
-                className="snap-start shrink-0 w-44 sm:w-52"
+                transition={{ delay: idx * 0.06, duration: 0.4 }}
               >
                 <Link
                   to={`/shop?category=${cat.slug}`}
-                  className="group block bg-surface border border-line rounded-2xl overflow-hidden p-3 hover:border-accent hover:shadow-md transition-all relative"
+                  className="group block bg-surface border border-line rounded-2xl overflow-hidden p-2.5 sm:p-3 hover:border-accent/60 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 relative h-full flex flex-col justify-between"
                 >
-                  <div className="relative aspect-4/3 rounded-xl overflow-hidden mb-3 bg-bg">
-                    <img
-                      src={cat.image}
-                      alt={cat.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
-                    <div className="absolute bottom-2 left-2 p-1.5 bg-surface/90 backdrop-blur-md rounded-lg text-accent shadow-xs">
-                      <IconComponent size={18} />
+                  <div>
+                    <div className="relative aspect-4/3 rounded-xl overflow-hidden mb-2.5 bg-bg">
+                      <img
+                        src={cat.image}
+                        alt={cat.name}
+                        className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500"
+                        onError={(e) => { e.target.src = '/PB.jpg'; }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-transparent to-transparent" />
+                      <div className="absolute bottom-2 left-2 p-1.5 bg-surface/90 backdrop-blur-md rounded-lg text-accent shadow-xs group-hover:bg-accent group-hover:text-white transition-colors">
+                        <IconComponent size={16} />
+                      </div>
                     </div>
+
+                    <h3 className="font-display font-bold text-xs sm:text-sm text-primary group-hover:text-accent transition-colors line-clamp-2 leading-tight">
+                      {lang === 'bn' ? cat.bnName : cat.name}
+                    </h3>
                   </div>
 
-                  <h3 className="font-display font-bold text-sm text-primary group-hover:text-accent transition-colors line-clamp-1">
-                    {lang === 'bn' ? cat.bnName : cat.name}
-                  </h3>
-                  <p className="text-[11px] text-muted font-sans mt-0.5">{cat.itemCount} {t('catstrip.items')}</p>
+                  <p className="text-[11px] text-muted font-bn-sans mt-2 pt-2 border-t border-line/40 flex items-center justify-between">
+                    <span>{cat.itemCount} {t('catstrip.items')}</span>
+                    <span className="text-accent font-bold text-xs group-hover:translate-x-0.5 transition-transform">→</span>
+                  </p>
                 </Link>
               </motion.div>
             );
