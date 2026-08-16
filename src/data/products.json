@@ -415,6 +415,38 @@
     ]
   },
   {
+    "id": "coriander-deshi-ground-250",
+    "slug": "stone-ground-coriander-powder",
+    "name": "Stone-Ground Deshi Coriander Powder (ধনিয়া গুঁড়া)",
+    "bnName": "পাথরে বাঁটা খাঁটি ধনিয়া গুঁড়া",
+    "category": "spices",
+    "price": 165,
+    "originalPrice": 190,
+    "rating": 4.86,
+    "reviewCount": 94,
+    "images": [
+      "https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&w=800&q=80"
+    ],
+    "shortDesc": "Lightly roasted native coriander seeds slow-ground on stone mills.",
+    "description": "Sun-dried native coriander seeds crushed gently to retain volatile essential oils. Imparts a rich citrusy, earthy aroma to traditional Bangladeshi gravies.",
+    "ingredients": [
+      "100% Organic Coriander Seeds (Coriandrum Sativum)"
+    ],
+    "benefits": [
+      "Rich Earthy Aroma",
+      "Aids Digestion naturally",
+      "Zero Starch or Color Adulteration"
+    ],
+    "weight": "250g",
+    "inStock": true,
+    "isFeatured": false,
+    "isNew": true,
+    "tags": [
+      "Aromatic Spice",
+      "Stone Ground"
+    ]
+  },
+  {
     "id": "tea-sylhet-ctc-500",
     "slug": "sylhet-organic-black-tea",
     "name": "Sylhet Artisanal Black Tea",
@@ -631,6 +663,38 @@
     "isNew": false,
     "tags": [
       "Zero Additives"
+    ]
+  },
+  {
+    "id": "cumin-deshi-ground-250",
+    "slug": "stone-ground-cumin-powder",
+    "name": "Stone-Ground Deshi Cumin Powder (জিরা গুঁড়া)",
+    "bnName": "পাথরে বাঁটা খাঁটি জিরার গুঁড়া",
+    "category": "spices",
+    "price": 340,
+    "originalPrice": 380,
+    "rating": 4.95,
+    "reviewCount": 128,
+    "images": [
+      "https://images.unsplash.com/photo-1509358211425-44fb6d433635?auto=format&fit=crop&w=800&q=80"
+    ],
+    "shortDesc": "Slow-roasted cumin seeds ground on traditional granite stone mills.",
+    "description": "Whole premium cumin seeds sun-dried, gently dry-roasted, and stone-ground. Delivers signature savory warmth and aromatic intensity.",
+    "ingredients": [
+      "100% Organic Cumin Seeds (Cuminum Cyminum)"
+    ],
+    "benefits": [
+      "Rich Natural Essential Oils",
+      "Enhances Digestion & Metabolism",
+      "100% Pure & Unadulterated"
+    ],
+    "weight": "250g",
+    "inStock": true,
+    "isFeatured": true,
+    "isNew": false,
+    "tags": [
+      "Roasted Spice",
+      "Stone Ground"
     ]
   },
   {
