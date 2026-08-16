@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Bot, User, ArrowRight, CornerDownLeft, RefreshCw, ShoppingBag } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../../context/LanguageContext';
-import { generateBotResponse } from '../../utils/chatbotEngine';
+import { getIntelligentResponse } from '../../utils/chatbotEngine';
 import { Link } from 'react-router-dom';
 
 export default function ChatbotWidget() {
@@ -53,7 +53,7 @@ export default function ChatbotWidget() {
     }
   }, [messages, isTyping, isOpen]);
 
-  const handleSend = (textToSend) => {
+  const handleSend = async (textToSend) => {
     const query = typeof textToSend === 'string' ? textToSend : input;
     if (!query || !query.trim()) return;
 
@@ -68,9 +68,8 @@ export default function ChatbotWidget() {
     setInput('');
     setIsTyping(true);
 
-    // Realistic typing delay
-    setTimeout(() => {
-      const response = generateBotResponse(query, lang);
+    try {
+      const response = await getIntelligentResponse(query, lang);
       const botMessage = {
         id: Date.now() + 1,
         sender: 'bot',
@@ -81,8 +80,11 @@ export default function ChatbotWidget() {
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       };
       setMessages((prev) => [...prev, botMessage]);
+    } catch (err) {
+      console.error('Bot response error:', err);
+    } finally {
       setIsTyping(false);
-    }, 600);
+    }
   };
 
   return (
