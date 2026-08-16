@@ -16,6 +16,11 @@ export default function Contact() {
     setSubmitted(true);
   };
 
+  const handleReset = () => {
+    setForm({ name: '', phone: '', subject: 'general', message: '' });
+    setSubmitted(false);
+  };
+
   const faqs = [
     {
       qBn: 'ঢাকা এবং ঢাকার বাইরে ডেলিভারি পেতে কতদিন সময় লাগে?',
@@ -130,7 +135,7 @@ export default function Contact() {
                 <p className="text-xs sm:text-sm text-muted font-bn-sans max-w-sm mx-auto">
                   {lang === 'bn' ? 'আমাদের প্রতিনিধি আপনার নম্বরে খুব শীঘ্রই যোগাযোগ করবেন।' : 'Our support specialist will review your message and reach out shortly.'}
                 </p>
-                <Button variant="outline" size="sm" onClick={() => setSubmitted(false)} className="mt-2">
+                <Button variant="outline" size="sm" onClick={handleReset} className="mt-2">
                   {lang === 'bn' ? 'নতুন বার্তা পাঠান' : 'Send Another Message'}
                 </Button>
               </motion.div>
