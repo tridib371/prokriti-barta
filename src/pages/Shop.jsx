@@ -193,7 +193,7 @@ export default function Shop() {
               className={`px-3.5 py-1.5 rounded-full font-bold transition-all cursor-pointer ${
                 activeTab === 'all'
                   ? 'bg-primary text-white shadow-xs'
-                  : 'bg-bg text-ink border border-line hover:border-accent'
+                  : 'bg-bg text-ink border border-line hover:border-primary'
               }`}
             >
               {lang === 'bn' ? 'সকল পণ্য' : 'All Products'}
@@ -202,8 +202,8 @@ export default function Shop() {
               onClick={() => handleTabChange('new')}
               className={`px-3.5 py-1.5 rounded-full font-bold transition-all cursor-pointer ${
                 activeTab === 'new'
-                  ? 'bg-accent text-white shadow-xs'
-                  : 'bg-bg text-ink border border-line hover:border-accent'
+                  ? 'bg-primary text-white shadow-xs'
+                  : 'bg-bg text-ink border border-line hover:border-primary'
               }`}
             >
               {lang === 'bn' ? 'নতুন পণ্য' : 'New Arrivals'}
@@ -212,8 +212,8 @@ export default function Shop() {
               onClick={() => handleTabChange('discount')}
               className={`px-3.5 py-1.5 rounded-full font-bold transition-all cursor-pointer ${
                 activeTab === 'discount'
-                  ? 'bg-emerald-600 text-white shadow-xs'
-                  : 'bg-bg text-emerald-700 dark:text-emerald-400 border border-emerald-500/30 hover:border-emerald-500'
+                  ? 'bg-primary text-white shadow-xs'
+                  : 'bg-bg text-ink border border-line hover:border-primary'
               }`}
             >
               {lang === 'bn' ? 'বিশেষ ছাড় ও অফার' : 'Discounted Deals'}
@@ -223,7 +223,7 @@ export default function Shop() {
               className={`px-3.5 py-1.5 rounded-full font-bold transition-all cursor-pointer ${
                 activeTab === 'bestseller'
                   ? 'bg-primary text-white shadow-xs'
-                  : 'bg-bg text-ink border border-line hover:border-accent'
+                  : 'bg-bg text-ink border border-line hover:border-primary'
               }`}
             >
               {lang === 'bn' ? 'জনপ্রিয় পণ্য' : 'Bestsellers'}

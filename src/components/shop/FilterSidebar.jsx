@@ -45,7 +45,7 @@ export default function FilterSidebar({
               onClick={() => setActiveTab(item.id)}
               className={`w-full text-left px-3 py-2 rounded-xl transition-colors flex items-center justify-between cursor-pointer ${
                 activeTab === item.id 
-                  ? (item.id === 'discount' ? 'bg-emerald-600/15 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/20' : 'bg-accent/15 text-accent font-bold') 
+                  ? 'bg-primary text-white font-bold shadow-2xs' 
                   : 'text-ink hover:bg-bg'
               }`}
             >
