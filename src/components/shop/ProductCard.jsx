@@ -33,7 +33,7 @@ export default function ProductCard({ product }) {
         />
 
         {/* Badges Overlay */}
-        <div className="absolute top-2.5 left-2.5 flex flex-col gap-1 z-10">
+        <div className="absolute top-2.5 left-2.5 flex flex-col items-start gap-1 z-10">
           {discountPercent > 0 && (
             <Badge variant="discount">-{n(discountPercent)}% {t('badge.off')}</Badge>
           )}
