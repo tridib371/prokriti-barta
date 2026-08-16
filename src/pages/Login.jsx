@@ -73,9 +73,12 @@ export default function Login() {
               </span>
             </Link>
 
-            <span className="px-3 py-1 bg-accent/20 text-accent font-bold text-xs rounded-full inline-block border border-accent/30">
-              {lang === 'bn' ? 'নিরাপদ সাইন ইন' : 'Secure Sign In'}
-            </span>
+            <div>
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-accent/20 text-accent font-bold text-xs rounded-full border border-accent/30 shadow-2xs leading-none">
+                <ShieldCheck size={14} className="text-accent" />
+                <span>{lang === 'bn' ? 'নিরাপদ সাইন ইন' : 'Secure Sign In'}</span>
+              </span>
+            </div>
             <h2 className="font-display font-bold text-2xl lg:text-3xl text-surface leading-snug">
               {t('login.banner.title')}
             </h2>

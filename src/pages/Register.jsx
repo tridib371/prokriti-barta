@@ -75,9 +75,12 @@ export default function Register() {
               </span>
             </Link>
 
-            <span className="px-3 py-1 bg-accent/20 text-accent font-bold text-xs rounded-full inline-block border border-accent/30">
-              {lang === 'bn' ? 'নতুন একাউন্ট' : 'Join Prokriti'}
-            </span>
+            <div>
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-accent/20 text-accent font-bold text-xs rounded-full border border-accent/30 shadow-2xs leading-none">
+                <CheckCircle2 size={14} className="text-accent" />
+                <span>{lang === 'bn' ? 'নতুন একাউন্ট' : 'Join Prokriti'}</span>
+              </span>
+            </div>
             <h2 className="font-display font-bold text-2xl lg:text-3xl text-surface leading-snug">
               {lang === 'bn' ? 'যুক্ত হন প্রকৃতির সাথে, শুরু হোক নতুন অভিজ্ঞতা' : 'Join Nature, Begin a Pure Journey'}
             </h2>
