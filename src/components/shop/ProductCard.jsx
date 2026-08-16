@@ -62,12 +62,12 @@ export default function ProductCard({ product }) {
         </div>
 
         {/* Quick Add to Cart Bar on Hover */}
-        <div className="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+        <div className="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
           <button
             onClick={() => addToCart(product, 1)}
-            className="w-full bg-accent text-ink hover:bg-accent/90 py-2 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-md active:scale-95 transition-all"
+            className="w-full bg-accent text-ink hover:bg-accent/90 py-1.5 px-3 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-all"
           >
-            <ShoppingBag size={15} /> {t('btn.addToCart')}
+            <ShoppingBag size={14} /> {t('btn.addToCart')}
           </button>
         </div>
       </div>

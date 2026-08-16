@@ -151,30 +151,30 @@ export default function ProductDetails() {
               <div className="flex flex-wrap gap-3 pt-4">
                 <Button
                   variant="accent"
-                  size="lg"
+                  size="md"
                   onClick={() => addToCart(product, quantity)}
-                  className="flex-1 shadow-md"
+                  className="flex-1 max-w-xs shadow-md"
                 >
-                  <ShoppingBag size={18} /> {t('btn.addToCart')}
+                  <ShoppingBag size={16} /> {t('btn.addToCart')}
                 </Button>
                 <Button
                   variant="primary"
-                  size="lg"
+                  size="md"
                   onClick={handleBuyNow}
-                  className="flex-1"
+                  className="flex-1 max-w-xs"
                 >
                   {t('btn.buyNow')}
                 </Button>
                 <button
                   onClick={() => toggleWishlist(product)}
-                  className={`p-3.5 rounded-xl border transition-colors ${
+                  className={`p-2.5 rounded-xl border transition-colors ${
                     isLiked
                       ? 'bg-accent-2/15 border-accent-2 text-accent-2'
                       : 'border-line text-muted hover:text-accent-2 hover:bg-bg'
                   }`}
                   title="Wishlist"
                 >
-                  <Heart size={20} className={isLiked ? 'fill-accent-2' : ''} />
+                  <Heart size={18} className={isLiked ? 'fill-accent-2' : ''} />
                 </button>
               </div>
 
