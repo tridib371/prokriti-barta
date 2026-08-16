@@ -7,8 +7,8 @@
     "category": "honey",
     "price": 850,
     "originalPrice": 950,
-    "rating": 4.9,
-    "reviewCount": 142,
+    "rating": 5,
+    "reviewCount": 184,
     "images": [
       "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?auto=format&fit=crop&w=800&q=80"
     ],
@@ -40,8 +40,8 @@
     "category": "honey",
     "price": 980,
     "originalPrice": 1100,
-    "rating": 4.94,
-    "reviewCount": 118,
+    "rating": 4.9,
+    "reviewCount": 142,
     "images": [
       "https://images.unsplash.com/photo-1471943311424-646960669fbc?auto=format&fit=crop&w=800&q=80"
     ],
@@ -73,8 +73,8 @@
     "category": "honey",
     "price": 650,
     "originalPrice": 750,
-    "rating": 4.86,
-    "reviewCount": 84,
+    "rating": 4.6,
+    "reviewCount": 79,
     "images": [
       "/mustard-honey.jpg"
     ],
@@ -106,8 +106,8 @@
     "category": "honey",
     "price": 720,
     "originalPrice": 820,
-    "rating": 4.88,
-    "reviewCount": 92,
+    "rating": 4.3,
+    "reviewCount": 53,
     "images": [
       "/raw-honey.jpg"
     ],
@@ -139,8 +139,8 @@
     "category": "honey",
     "price": 1200,
     "originalPrice": 1350,
-    "rating": 4.98,
-    "reviewCount": 156,
+    "rating": 5,
+    "reviewCount": 215,
     "images": [
       "https://images.unsplash.com/photo-1587049352851-8d4e89133924?auto=format&fit=crop&w=800&q=80"
     ],
@@ -172,8 +172,8 @@
     "category": "ghee-oils",
     "price": 1250,
     "originalPrice": 1400,
-    "rating": 4.95,
-    "reviewCount": 98,
+    "rating": 4.7,
+    "reviewCount": 118,
     "images": [
       "/ghee.jpg"
     ],
@@ -205,8 +205,8 @@
     "category": "ghee-oils",
     "price": 1350,
     "originalPrice": 1500,
-    "rating": 4.92,
-    "reviewCount": 76,
+    "rating": 4.2,
+    "reviewCount": 46,
     "images": [
       "/buffalo-ghee.jpg"
     ],
@@ -238,8 +238,8 @@
     "category": "ghee-oils",
     "price": 420,
     "originalPrice": 480,
-    "rating": 4.85,
-    "reviewCount": 210,
+    "rating": 4.8,
+    "reviewCount": 96,
     "images": [
       "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=800&q=80"
     ],
@@ -271,8 +271,8 @@
     "category": "ghee-oils",
     "price": 680,
     "originalPrice": 780,
-    "rating": 4.96,
-    "reviewCount": 142,
+    "rating": 4.9,
+    "reviewCount": 167,
     "images": [
       "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80"
     ],
@@ -304,8 +304,8 @@
     "category": "ghee-oils",
     "price": 490,
     "originalPrice": 560,
-    "rating": 4.87,
-    "reviewCount": 68,
+    "rating": 4.5,
+    "reviewCount": 88,
     "images": [
       "/sesame-oil.jpg"
     ],
@@ -337,8 +337,8 @@
     "category": "rice-grains",
     "price": 280,
     "originalPrice": 320,
-    "rating": 4.8,
-    "reviewCount": 76,
+    "rating": 4.1,
+    "reviewCount": 39,
     "images": [
       "https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=800&q=80"
     ],
@@ -369,8 +369,8 @@
     "category": "rice-grains",
     "price": 190,
     "originalPrice": 220,
-    "rating": 4.89,
-    "reviewCount": 112,
+    "rating": 4.7,
+    "reviewCount": 74,
     "images": [
       "https://images.unsplash.com/photo-1596560548464-f010549b84d7?auto=format&fit=crop&w=800&q=80"
     ],
@@ -402,8 +402,8 @@
     "category": "spices",
     "price": 190,
     "originalPrice": 220,
-    "rating": 4.9,
-    "reviewCount": 115,
+    "rating": 5,
+    "reviewCount": 152,
     "images": [
       "/turmeric-powder.jpg"
     ],
@@ -435,8 +435,8 @@
     "category": "spices",
     "price": 165,
     "originalPrice": 190,
-    "rating": 4.86,
-    "reviewCount": 94,
+    "rating": 4.4,
+    "reviewCount": 61,
     "images": [
       "/coriander-powder.jpg"
     ],
@@ -468,8 +468,8 @@
     "category": "tea-beverages",
     "price": 380,
     "originalPrice": 420,
-    "rating": 4.75,
-    "reviewCount": 64,
+    "rating": 4.8,
+    "reviewCount": 104,
     "images": [
       "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=800&q=80"
     ],
@@ -500,8 +500,8 @@
     "category": "tea-beverages",
     "price": 450,
     "originalPrice": 520,
-    "rating": 4.91,
-    "reviewCount": 104,
+    "rating": 4.6,
+    "reviewCount": 83,
     "images": [
       "https://images.unsplash.com/photo-1627435601361-ec25f5b1d0e5?auto=format&fit=crop&w=800&q=80"
     ],
@@ -533,8 +533,8 @@
     "category": "nuts-seeds",
     "price": 450,
     "originalPrice": 520,
-    "rating": 4.88,
-    "reviewCount": 180,
+    "rating": 4.9,
+    "reviewCount": 112,
     "images": [
       "/chia-seeds.jpg"
     ],
@@ -566,8 +566,8 @@
     "category": "nuts-seeds",
     "price": 650,
     "originalPrice": 750,
-    "rating": 4.94,
-    "reviewCount": 142,
+    "rating": 4.3,
+    "reviewCount": 48,
     "images": [
       "/madinah-dates.jpg"
     ],
@@ -599,8 +599,8 @@
     "category": "ghee-oils",
     "price": 580,
     "originalPrice": 650,
-    "rating": 4.92,
-    "reviewCount": 105,
+    "rating": 4.7,
+    "reviewCount": 91,
     "images": [
       "/coconut-oil.png"
     ],
@@ -631,8 +631,8 @@
     "category": "rice-grains",
     "price": 220,
     "originalPrice": 250,
-    "rating": 4.7,
-    "reviewCount": 54,
+    "rating": 5,
+    "reviewCount": 136,
     "images": [
       "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?auto=format&fit=crop&w=800&q=80"
     ],
@@ -663,8 +663,8 @@
     "category": "rice-grains",
     "price": 160,
     "originalPrice": 190,
-    "rating": 4.93,
-    "reviewCount": 88,
+    "rating": 4.8,
+    "reviewCount": 95,
     "images": [
       "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=800&q=80"
     ],
@@ -696,8 +696,8 @@
     "category": "spices",
     "price": 175,
     "originalPrice": 200,
-    "rating": 4.8,
-    "reviewCount": 72,
+    "rating": 4.2,
+    "reviewCount": 34,
     "images": [
       "/chili-powder.jpg"
     ],
@@ -728,8 +728,8 @@
     "category": "spices",
     "price": 340,
     "originalPrice": 380,
-    "rating": 4.95,
-    "reviewCount": 128,
+    "rating": 4.5,
+    "reviewCount": 67,
     "images": [
       "/cumin-powder.jpg"
     ],
@@ -761,8 +761,8 @@
     "category": "tea-beverages",
     "price": 320,
     "originalPrice": 360,
-    "rating": 4.95,
-    "reviewCount": 83,
+    "rating": 5,
+    "reviewCount": 178,
     "images": [
       "https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&w=800&q=80"
     ],
@@ -796,8 +796,8 @@
     "category": "tea-beverages",
     "price": 490,
     "originalPrice": 560,
-    "rating": 4.97,
-    "reviewCount": 116,
+    "rating": 4.9,
+    "reviewCount": 124,
     "images": [
       "https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?auto=format&fit=crop&w=800&q=80"
     ],
@@ -829,8 +829,8 @@
     "category": "nuts-seeds",
     "price": 390,
     "originalPrice": 450,
-    "rating": 4.82,
-    "reviewCount": 91,
+    "rating": 4.4,
+    "reviewCount": 52,
     "images": [
       "/pumpkin-seeds.jpg"
     ],
@@ -861,8 +861,8 @@
     "category": "spices",
     "price": 160,
     "originalPrice": 190,
-    "rating": 4.89,
-    "reviewCount": 164,
+    "rating": 4.7,
+    "reviewCount": 87,
     "images": [
       "/pink-salt.jpg"
     ],
@@ -893,8 +893,8 @@
     "category": "nuts-seeds",
     "price": 520,
     "originalPrice": 590,
-    "rating": 4.86,
-    "reviewCount": 110,
+    "rating": 4.1,
+    "reviewCount": 31,
     "images": [
       "/almonds.jpg"
     ],
