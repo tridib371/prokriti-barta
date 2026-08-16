@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Truck, RefreshCw, ShieldCheck, Clock, MapPin, PackageCheck, AlertCircle, PhoneCall, ChevronDown, CheckCircle2, Calculator, Sparkles, Box, Lock } from 'lucide-react';
+import { Truck, RefreshCw, ShieldCheck, Clock, MapPin, PackageCheck, AlertCircle, PhoneCall, ChevronDown, CheckCircle2, Calculator, Box, Lock, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Button from '../components/ui/Button';
 import AlponaDivider from '../components/ui/AlponaDivider';
@@ -165,7 +165,7 @@ export default function Delivery() {
           <p className="text-sm sm:text-base text-muted font-bn-sans leading-relaxed">
             {lang === 'bn'
               ? 'খামার থেকে খাঁটি খাদ্যদ্রব্য কোনো প্রকার ক্ষতি ছাড়াই আপনার দোরগোড়ায় নিরাপদে পৌঁছে দেওয়ার সম্পূর্ণ দায়িত্ব প্রকৃতি বার্তার।'
-              : 'From Sundarban moubals & organic farms directly to your dining table—insured with 100% damage protection.'}
+              : 'From Sundarban moubals & organic farms directly to your dining table - insured with 100% damage protection.'}
           </p>
         </div>
 
@@ -195,7 +195,7 @@ export default function Delivery() {
             <div className="shrink-0">
               <a href="/shop">
                 <Button variant="accent" size="md" className="gap-2 font-bold shadow-md">
-                  {t('btn.goToShop')} <Sparkles size={16} />
+                  {t('btn.goToShop')} <ArrowRight size={16} />
                 </Button>
               </a>
             </div>
