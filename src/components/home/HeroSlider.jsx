@@ -29,7 +29,7 @@ export default function HeroSlider() {
       ctaText: t('hero.slide2.cta'),
       ctaLink: "/shop?category=ghee-oils",
       badge: t('hero.slide2.badge'),
-      image: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?auto=format&fit=crop&w=1200&q=80",
+      image: "/ghee.jpg",
       accentColor: "#E05A36"
     },
     {
@@ -61,7 +61,7 @@ export default function HeroSlider() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          
+
           {/* Left Text Content */}
           <div className="lg:col-span-7 space-y-6 z-10">
             <AnimatePresence mode="wait">
@@ -115,9 +115,8 @@ export default function HeroSlider() {
                   <button
                     key={idx}
                     onClick={() => setCurrent(idx)}
-                    className={`h-2.5 rounded-full transition-all duration-300 ${
-                      current === idx ? 'w-8 bg-accent' : 'w-2.5 bg-line hover:bg-muted'
-                    }`}
+                    className={`h-2.5 rounded-full transition-all duration-300 ${current === idx ? 'w-8 bg-accent' : 'w-2.5 bg-line hover:bg-muted'
+                      }`}
                     aria-label={`Go to slide ${idx + 1}`}
                   />
                 ))}
