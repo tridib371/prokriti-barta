@@ -96,10 +96,11 @@ export default function ChatbotWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 30, scale: 0.95 }}
             transition={{ duration: 0.25 }}
-            className="w-[92vw] sm:w-[380px] h-[520px] bg-surface border border-line rounded-3xl shadow-2xl flex flex-col overflow-hidden mb-4"
+            data-lenis-prevent="true"
+            className="w-[92vw] sm:w-[380px] h-[520px] max-h-[85vh] bg-surface border border-line rounded-3xl shadow-2xl flex flex-col overflow-hidden mb-4"
           >
             {/* Header */}
-            <div className="bg-primary text-surface p-4 flex items-center justify-between shadow-xs">
+            <div className="bg-primary text-surface p-4 flex items-center justify-between shadow-xs shrink-0">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-full bg-accent text-white flex items-center justify-center font-bold text-sm shadow-xs shrink-0">
                   <Bot size={20} />
@@ -117,7 +118,7 @@ export default function ChatbotWidget() {
 
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-1.5 rounded-xl text-surface/80 hover:text-surface hover:bg-white/10 transition-colors"
+                className="p-1.5 rounded-xl text-surface/80 hover:text-surface hover:bg-white/10 transition-colors cursor-pointer"
                 aria-label="Close Chat"
               >
                 <X size={18} />
@@ -125,20 +126,23 @@ export default function ChatbotWidget() {
             </div>
 
             {/* Quick Questions Chips */}
-            <div className="bg-bg/60 border-b border-line/60 p-2.5 overflow-x-auto scrollbar-none flex items-center gap-2">
+            <div className="bg-bg/60 border-b border-line/60 p-2.5 overflow-x-auto scrollbar-none flex items-center gap-2 shrink-0">
               {quickQuestions.map((q, idx) => (
                 <button
                   key={idx}
                   onClick={() => handleSend(q)}
-                  className="px-3 py-1 bg-surface border border-line rounded-full text-[11px] font-semibold text-primary hover:border-accent hover:text-accent whitespace-nowrap transition-colors shrink-0 shadow-2xs"
+                  className="px-3 py-1 bg-surface border border-line rounded-full text-[11px] font-semibold text-primary hover:border-accent hover:text-accent whitespace-nowrap transition-colors shrink-0 shadow-2xs cursor-pointer"
                 >
                   {q}
                 </button>
               ))}
             </div>
 
-            {/* Message Stream */}
-            <div className="flex-1 p-4 overflow-y-auto space-y-4 font-bn-sans text-xs sm:text-sm bg-bg/20">
+            {/* Message Stream (Scrollable) */}
+            <div 
+              data-lenis-prevent="true"
+              className="flex-1 min-h-0 p-4 overflow-y-auto overscroll-contain space-y-4 font-bn-sans text-xs sm:text-sm bg-bg/20"
+            >
               {messages.map((msg) => (
                 <div
                   key={msg.id}
@@ -238,7 +242,7 @@ export default function ChatbotWidget() {
                 e.preventDefault();
                 handleSend();
               }}
-              className="p-3 bg-surface border-t border-line flex items-center gap-2"
+              className="p-3 bg-surface border-t border-line flex items-center gap-2 shrink-0"
             >
               <input
                 type="text"
