@@ -125,8 +125,7 @@
     "rating": 4.95,
     "reviewCount": 98,
     "images": [
-      "/ghee.jpg",
-      "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=800&q=80"
+      "/ghee.jpg"
     ],
     "shortDesc": "Aromatic golden ghee prepared from curd using ancient Vedic Bilona method.",
     "description": "Crafted from grass-fed Deshi cow milk curd. Cultured and hand-churned in earthen pots to preserve its golden granular texture and rich nutty aroma.",
@@ -137,6 +136,29 @@
     "isFeatured": true,
     "isNew": true,
     "tags": ["Artisanal", "Bilona"]
+  },
+  {
+    "id": "ghee-buffalo-deshi-400",
+    "slug": "traditional-deshi-buffalo-ghee",
+    "name": "Traditional Deshi Buffalo Ghee (মাহিষ ঘি)",
+    "bnName": "খাঁটি মহিষের দানাদার ঘি",
+    "category": "ghee-oils",
+    "price": 1350,
+    "originalPrice": 1500,
+    "rating": 4.92,
+    "reviewCount": 76,
+    "images": [
+      "https://images.unsplash.com/photo-1631451095765-2c91616fc9e6?auto=format&fit=crop&w=800&q=80"
+    ],
+    "shortDesc": "Rich, creamy granular ghee churned from pure buffalo milk curd.",
+    "description": "Slow-cooked artisanal buffalo milk ghee with rich aroma and thick granular body. Ideal for traditional Bangladeshi curries and sweets.",
+    "ingredients": ["100% Cultured Buffalo Milk Fat"],
+    "benefits": ["Rich Granular Texture", "High Energy Density", "Pure Cultured Butter Fat"],
+    "weight": "400g",
+    "inStock": true,
+    "isFeatured": false,
+    "isNew": true,
+    "tags": ["Deshi Ghee", "Artisanal"]
   },
   {
     "id": "mustard-oil-kather-ghani-1000",
@@ -160,6 +182,52 @@
     "isFeatured": true,
     "isNew": false,
     "tags": ["Cold Pressed", "Pungent"]
+  },
+  {
+    "id": "blackseed-oil-coldpressed-250",
+    "slug": "cold-pressed-blackseed-oil",
+    "name": "Cold-Pressed Blackseed Oil (কালোজিরা তেল)",
+    "bnName": "কোল্ড-প্রেসড খাঁটি কালোজিরার তেল",
+    "category": "ghee-oils",
+    "price": 680,
+    "originalPrice": 780,
+    "rating": 4.96,
+    "reviewCount": 142,
+    "images": [
+      "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80"
+    ],
+    "shortDesc": "Raw cold-extracted oil crushed from premium Nigella Sativa seeds.",
+    "description": "Extracted without heat or solvents to retain maximum Thymoquinone content. Known across centuries as a natural immune remedy.",
+    "ingredients": ["100% Cold-Pressed Black Seed Oil"],
+    "benefits": ["Immunity Elixir", "High Thymoquinone & Omega 6/9", "Pesticide Free"],
+    "weight": "250ml",
+    "inStock": true,
+    "isFeatured": true,
+    "isNew": false,
+    "tags": ["Immune Remedy", "Cold Pressed"]
+  },
+  {
+    "id": "sesame-oil-coldpressed-500",
+    "slug": "cold-pressed-sesame-oil",
+    "name": "Cold-Pressed Sesame Oil (তিলের তেল)",
+    "bnName": "কাঠের ঘানির অর্গানিক তিলের তেল",
+    "category": "ghee-oils",
+    "price": 490,
+    "originalPrice": 560,
+    "rating": 4.87,
+    "reviewCount": 68,
+    "images": [
+      "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80"
+    ],
+    "shortDesc": "Nourishing, unrefined sesame oil extracted in traditional wooden Ghani.",
+    "description": "Cold-pressed from raw white and black sesame seeds. High in natural antioxidants (Sesamol) and healthy fats, ideal for Asian cooking and Ayurvedic wellness.",
+    "ingredients": ["100% Unrefined Sesame Seed Oil"],
+    "benefits": ["Rich in Sesamol & Vitamin E", "High Smoke Point Cooking", "Ayurvedic Elixir"],
+    "weight": "500ml",
+    "inStock": true,
+    "isFeatured": false,
+    "isNew": true,
+    "tags": ["Cold Pressed", "Ghani Oil"]
   },
   {
     "id": "rice-kalijira-1000",
