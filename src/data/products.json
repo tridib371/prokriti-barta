@@ -14,13 +14,22 @@
     ],
     "shortDesc": "Unfiltered wild flower honey collected by traditional Moubals in Sundarban biosphere.",
     "description": "Our Raw Sundarban Honey is 100% natural, unheated, and unpasteurized. Collected directly from deep mangrove forests, retaining naturally occurring pollen, royal jelly, and enzyme content.",
-    "ingredients": ["100% Raw Wild Mangrove Honey"],
-    "benefits": ["Boosts Natural Immunity", "Soothes Cough & Sore Throat", "Rich in Natural Antioxidants"],
+    "ingredients": [
+      "100% Raw Wild Mangrove Honey"
+    ],
+    "benefits": [
+      "Boosts Natural Immunity",
+      "Soothes Cough & Sore Throat",
+      "Rich in Natural Antioxidants"
+    ],
     "weight": "500g",
     "inStock": true,
     "isFeatured": true,
     "isNew": false,
-    "tags": ["Bestseller", "Raw Organic"]
+    "tags": [
+      "Bestseller",
+      "Raw Organic"
+    ]
   },
   {
     "id": "honey-blackseed-500",
@@ -37,13 +46,22 @@
     ],
     "shortDesc": "Dark amber medicinal honey collected from blackseed blossom fields.",
     "description": "Collected directly from organic Nigella Sativa (Kaloijira) flower fields in Tangail. Known for its distinct dark mahogany tone, rich spicy notes, and potent healing qualities.",
-    "ingredients": ["100% Raw Blackseed Nectar Honey"],
-    "benefits": ["Immunity Elixir", "Rich in Nigellone & Thymoquinone", "Natural Cough Remedy"],
+    "ingredients": [
+      "100% Raw Blackseed Nectar Honey"
+    ],
+    "benefits": [
+      "Immunity Elixir",
+      "Rich in Nigellone & Thymoquinone",
+      "Natural Cough Remedy"
+    ],
     "weight": "500g",
     "inStock": true,
     "isFeatured": true,
     "isNew": true,
-    "tags": ["Medicinal", "Dark Amber"]
+    "tags": [
+      "Medicinal",
+      "Dark Amber"
+    ]
   },
   {
     "id": "honey-mustard-500",
@@ -60,13 +78,22 @@
     ],
     "shortDesc": "Naturally crystallizing creamy yellow honey harvested in winter.",
     "description": "Harvested during peak winter from yellow mustard blossoms. Naturally sets into a delicious, smooth butter-like texture full of natural pollen.",
-    "ingredients": ["100% Unpasteurized Mustard Flower Honey"],
-    "benefits": ["Natural Energy Booster", "Smooth Creamy Texture", "Rich in Natural Glucose"],
+    "ingredients": [
+      "100% Unpasteurized Mustard Flower Honey"
+    ],
+    "benefits": [
+      "Natural Energy Booster",
+      "Smooth Creamy Texture",
+      "Rich in Natural Glucose"
+    ],
     "weight": "500g",
     "inStock": true,
     "isFeatured": false,
     "isNew": false,
-    "tags": ["Creamy Texture", "Winter Harvest"]
+    "tags": [
+      "Creamy Texture",
+      "Winter Harvest"
+    ]
   },
   {
     "id": "honey-lychee-500",
@@ -83,13 +110,22 @@
     ],
     "shortDesc": "Light golden honey with delicate floral perfume from Dinajpur lychee orchards.",
     "description": "Pure unheated honey collected from lush lychee orchards during spring bloom. Light, sweet, and mild with a refreshing fruity aftertaste.",
-    "ingredients": ["100% Raw Lychee Orchard Honey"],
-    "benefits": ["Mild Sweetness", "Kid-Friendly Taste", "Rich in Vitamin C Traces"],
+    "ingredients": [
+      "100% Raw Lychee Orchard Honey"
+    ],
+    "benefits": [
+      "Mild Sweetness",
+      "Kid-Friendly Taste",
+      "Rich in Vitamin C Traces"
+    ],
     "weight": "500g",
     "inStock": true,
     "isFeatured": false,
     "isNew": true,
-    "tags": ["Fruity Aroma", "Light Golden"]
+    "tags": [
+      "Fruity Aroma",
+      "Light Golden"
+    ]
   },
   {
     "id": "honey-comb-wild-400",
@@ -106,13 +142,22 @@
     ],
     "shortDesc": "Raw virgin honeycomb chunk submerged in fresh wild mangrove honey.",
     "description": "Real hand-cut wild mangrove honeycomb preserved directly inside fresh wild honey. Chew on raw beeswax packed with royal jelly, propolis, and unrefined honey.",
-    "ingredients": ["100% Wild Comb & Mangrove Honey"],
-    "benefits": ["Unfiltered Bee Propolis", "Natural Chewable Wax", "Ultimate Raw Purity"],
+    "ingredients": [
+      "100% Wild Comb & Mangrove Honey"
+    ],
+    "benefits": [
+      "Unfiltered Bee Propolis",
+      "Natural Chewable Wax",
+      "Ultimate Raw Purity"
+    ],
     "weight": "400g",
     "inStock": true,
     "isFeatured": true,
     "isNew": false,
-    "tags": ["Raw Comb", "Premium Reserve"]
+    "tags": [
+      "Raw Comb",
+      "Premium Reserve"
+    ]
   },
   {
     "id": "ghee-cow-bilona-400",
@@ -129,18 +174,27 @@
     ],
     "shortDesc": "Aromatic golden ghee prepared from curd using ancient Vedic Bilona method.",
     "description": "Crafted from grass-fed Deshi cow milk curd. Cultured and hand-churned in earthen pots to preserve its golden granular texture and rich nutty aroma.",
-    "ingredients": ["100% Clarified Cultured Milk Fat"],
-    "benefits": ["Enhances Digestion", "Rich in Fat-Soluble Vitamins A & E", "High Smoke Point"],
+    "ingredients": [
+      "100% Clarified Cultured Milk Fat"
+    ],
+    "benefits": [
+      "Enhances Digestion",
+      "Rich in Fat-Soluble Vitamins A & E",
+      "High Smoke Point"
+    ],
     "weight": "400g",
     "inStock": true,
     "isFeatured": true,
     "isNew": true,
-    "tags": ["Artisanal", "Bilona"]
+    "tags": [
+      "Artisanal",
+      "Bilona"
+    ]
   },
   {
     "id": "ghee-buffalo-deshi-400",
     "slug": "traditional-deshi-buffalo-ghee",
-    "name": "Traditional Deshi Buffalo Ghee (মাহিষ ঘি)",
+    "name": "Traditional Deshi Buffalo Ghee (মহিষের ঘি)",
     "bnName": "খাঁটি মহিষের দানাদার ঘি",
     "category": "ghee-oils",
     "price": 1350,
@@ -148,17 +202,26 @@
     "rating": 4.92,
     "reviewCount": 76,
     "images": [
-      "https://images.unsplash.com/photo-1631451095765-2c91616fc9e6?auto=format&fit=crop&w=800&q=80"
+      "/buffalo-ghee.jpg"
     ],
     "shortDesc": "Rich, creamy granular ghee churned from pure buffalo milk curd.",
     "description": "Slow-cooked artisanal buffalo milk ghee with rich aroma and thick granular body. Ideal for traditional Bangladeshi curries and sweets.",
-    "ingredients": ["100% Cultured Buffalo Milk Fat"],
-    "benefits": ["Rich Granular Texture", "High Energy Density", "Pure Cultured Butter Fat"],
+    "ingredients": [
+      "100% Cultured Buffalo Milk Fat"
+    ],
+    "benefits": [
+      "Rich Granular Texture",
+      "High Energy Density",
+      "Pure Cultured Butter Fat"
+    ],
     "weight": "400g",
     "inStock": true,
     "isFeatured": false,
     "isNew": true,
-    "tags": ["Deshi Ghee", "Artisanal"]
+    "tags": [
+      "Deshi Ghee",
+      "Artisanal"
+    ]
   },
   {
     "id": "mustard-oil-kather-ghani-1000",
@@ -175,13 +238,22 @@
     ],
     "shortDesc": "Pungent, cold-pressed mustard oil crushed gently in wooden mills.",
     "description": "Extracted at low temperatures below 40°C in traditional wooden presses without chemical refining, preserving natural allyl isothiocyanate pungency.",
-    "ingredients": ["100% Yellow & Black Mustard Seeds"],
-    "benefits": ["Heart-healthy Monounsaturated Fats", "Traditional Pungent Flavor", "Zero Chemicals"],
+    "ingredients": [
+      "100% Yellow & Black Mustard Seeds"
+    ],
+    "benefits": [
+      "Heart-healthy Monounsaturated Fats",
+      "Traditional Pungent Flavor",
+      "Zero Chemicals"
+    ],
     "weight": "1L",
     "inStock": true,
     "isFeatured": true,
     "isNew": false,
-    "tags": ["Cold Pressed", "Pungent"]
+    "tags": [
+      "Cold Pressed",
+      "Pungent"
+    ]
   },
   {
     "id": "blackseed-oil-coldpressed-250",
@@ -198,13 +270,22 @@
     ],
     "shortDesc": "Raw cold-extracted oil crushed from premium Nigella Sativa seeds.",
     "description": "Extracted without heat or solvents to retain maximum Thymoquinone content. Known across centuries as a natural immune remedy.",
-    "ingredients": ["100% Cold-Pressed Black Seed Oil"],
-    "benefits": ["Immunity Elixir", "High Thymoquinone & Omega 6/9", "Pesticide Free"],
+    "ingredients": [
+      "100% Cold-Pressed Black Seed Oil"
+    ],
+    "benefits": [
+      "Immunity Elixir",
+      "High Thymoquinone & Omega 6/9",
+      "Pesticide Free"
+    ],
     "weight": "250ml",
     "inStock": true,
     "isFeatured": true,
     "isNew": false,
-    "tags": ["Immune Remedy", "Cold Pressed"]
+    "tags": [
+      "Immune Remedy",
+      "Cold Pressed"
+    ]
   },
   {
     "id": "sesame-oil-coldpressed-500",
@@ -217,17 +298,26 @@
     "rating": 4.87,
     "reviewCount": 68,
     "images": [
-      "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80"
+      "/sesame-oil.jpg"
     ],
     "shortDesc": "Nourishing, unrefined sesame oil extracted in traditional wooden Ghani.",
     "description": "Cold-pressed from raw white and black sesame seeds. High in natural antioxidants (Sesamol) and healthy fats, ideal for Asian cooking and Ayurvedic wellness.",
-    "ingredients": ["100% Unrefined Sesame Seed Oil"],
-    "benefits": ["Rich in Sesamol & Vitamin E", "High Smoke Point Cooking", "Ayurvedic Elixir"],
+    "ingredients": [
+      "100% Unrefined Sesame Seed Oil"
+    ],
+    "benefits": [
+      "Rich in Sesamol & Vitamin E",
+      "High Smoke Point Cooking",
+      "Ayurvedic Elixir"
+    ],
     "weight": "500ml",
     "inStock": true,
     "isFeatured": false,
     "isNew": true,
-    "tags": ["Cold Pressed", "Ghani Oil"]
+    "tags": [
+      "Cold Pressed",
+      "Ghani Oil"
+    ]
   },
   {
     "id": "rice-kalijira-1000",
@@ -244,13 +334,21 @@
     ],
     "shortDesc": "Tiny grain aromatic rice prized for traditional Polao and Payesh.",
     "description": "Cultivated organically in Northern Bangladesh without synthetic fertilizers. Known as 'Prince of Rice' for its miniature grain size and floral perfume.",
-    "ingredients": ["100% Organic Kalijira Paddy Rice"],
-    "benefits": ["Easily Digestible", "Naturally Aromatic", "Low Glycemic Index"],
+    "ingredients": [
+      "100% Organic Kalijira Paddy Rice"
+    ],
+    "benefits": [
+      "Easily Digestible",
+      "Naturally Aromatic",
+      "Low Glycemic Index"
+    ],
     "weight": "1kg",
     "inStock": true,
     "isFeatured": false,
     "isNew": false,
-    "tags": ["Heritage Grain"]
+    "tags": [
+      "Heritage Grain"
+    ]
   },
   {
     "id": "turmeric-deshi-ground-250",
@@ -267,13 +365,22 @@
     ],
     "shortDesc": "Vibrant turmeric root ground on stone mills with high Curcumin content.",
     "description": "Sourced directly from native farmers in Rangamati. Sun-dried and slow-ground to preserve volatile essential oils and rich golden color.",
-    "ingredients": ["100% Pure Turmeric Root (Curcuma Longa)"],
-    "benefits": ["High Natural Curcumin (>4%)", "Powerful Anti-inflammatory", "No Lead Oxide Free"],
+    "ingredients": [
+      "100% Pure Turmeric Root (Curcuma Longa)"
+    ],
+    "benefits": [
+      "High Natural Curcumin (>4%)",
+      "Powerful Anti-inflammatory",
+      "No Lead Oxide Free"
+    ],
     "weight": "250g",
     "inStock": true,
     "isFeatured": true,
     "isNew": false,
-    "tags": ["High Curcumin", "Pure Spice"]
+    "tags": [
+      "High Curcumin",
+      "Pure Spice"
+    ]
   },
   {
     "id": "tea-sylhet-ctc-500",
@@ -290,13 +397,21 @@
     ],
     "shortDesc": "Single-origin garden fresh tea leaves from Sreemangal slopes.",
     "description": "Handpicked top two leaves and a bud from pesticide-free tea gardens in Sreemangal. Strong liquor, malty body, and refreshing aroma.",
-    "ingredients": ["100% Organic Black Tea Leaves"],
-    "benefits": ["Rich in Polyphenols", "Invigorating Natural Caffeine", "Single Origin"],
+    "ingredients": [
+      "100% Organic Black Tea Leaves"
+    ],
+    "benefits": [
+      "Rich in Polyphenols",
+      "Invigorating Natural Caffeine",
+      "Single Origin"
+    ],
     "weight": "500g",
     "inStock": true,
     "isFeatured": false,
     "isNew": true,
-    "tags": ["Single Origin"]
+    "tags": [
+      "Single Origin"
+    ]
   },
   {
     "id": "chia-seeds-300",
@@ -313,13 +428,22 @@
     ],
     "shortDesc": "Nutrient-dense chia seeds packed with Omega-3 and soluble dietary fiber.",
     "description": "Cleaned, triple-sorted organic chia seeds. Absorbs up to 10x its weight in water to create nutrient-packed breakfast puddings and drinks.",
-    "ingredients": ["100% Raw Chia Seeds"],
-    "benefits": ["High Omega-3 Fatty Acids", "Supports Weight Management", "Abundant Plant Fiber"],
+    "ingredients": [
+      "100% Raw Chia Seeds"
+    ],
+    "benefits": [
+      "High Omega-3 Fatty Acids",
+      "Supports Weight Management",
+      "Abundant Plant Fiber"
+    ],
     "weight": "300g",
     "inStock": true,
     "isFeatured": true,
     "isNew": false,
-    "tags": ["Superfood", "High Fiber"]
+    "tags": [
+      "Superfood",
+      "High Fiber"
+    ]
   },
   {
     "id": "date-sugar-natural-500",
@@ -336,13 +460,21 @@
     ],
     "shortDesc": "Unrefined healthy sweetener made entirely from dehydrated whole dates.",
     "description": "A 1:1 healthy alternative to white refined sugar. Made by fine grinding sun-dried premium dates retaining all natural minerals and fiber.",
-    "ingredients": ["100% Dried Whole Organic Dates"],
-    "benefits": ["Unrefined Low GI Sweetener", "Rich in Potassium & Magnesium", "Kid-Friendly Sweetener"],
+    "ingredients": [
+      "100% Dried Whole Organic Dates"
+    ],
+    "benefits": [
+      "Unrefined Low GI Sweetener",
+      "Rich in Potassium & Magnesium",
+      "Kid-Friendly Sweetener"
+    ],
     "weight": "500g",
     "inStock": true,
     "isFeatured": false,
     "isNew": true,
-    "tags": ["Sugar Alternative"]
+    "tags": [
+      "Sugar Alternative"
+    ]
   },
   {
     "id": "coconut-oil-extra-virgin-500",
@@ -355,17 +487,25 @@
     "rating": 4.92,
     "reviewCount": 105,
     "images": [
-      "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=800&q=80"
+      "/coconut-oil.png"
     ],
     "shortDesc": "Raw cold-extracted oil from fresh coastal coconuts.",
     "description": "Cold-pressed within hours of harvest from fresh coastal coconuts of Barishal. Edible grade, perfect for cooking, keto diets, and hair nourishment.",
-    "ingredients": ["100% Cold-Pressed Coconut Kernel Oil"],
-    "benefits": ["Rich in Lauric Acid", "Edible & Skin Safe", "No Heat Processing"],
+    "ingredients": [
+      "100% Cold-Pressed Coconut Kernel Oil"
+    ],
+    "benefits": [
+      "Rich in Lauric Acid",
+      "Edible & Skin Safe",
+      "No Heat Processing"
+    ],
     "weight": "500ml",
     "inStock": true,
     "isFeatured": false,
     "isNew": false,
-    "tags": ["Keto Friendly"]
+    "tags": [
+      "Keto Friendly"
+    ]
   },
   {
     "id": "red-rice-unpolished-1000",
@@ -382,13 +522,21 @@
     ],
     "shortDesc": "Nutrient-rich bran retained red rice grown in coastal eco-farms.",
     "description": "Contains full natural bran layer packed with anthocyanin antioxidants and dietary fiber. Ideal for diabetic-friendly daily meals.",
-    "ingredients": ["100% Unpolished Red Paddy Rice"],
-    "benefits": ["High Fiber & Antioxidants", "Diabetic Friendly", "Sustained Energy Release"],
+    "ingredients": [
+      "100% Unpolished Red Paddy Rice"
+    ],
+    "benefits": [
+      "High Fiber & Antioxidants",
+      "Diabetic Friendly",
+      "Sustained Energy Release"
+    ],
     "weight": "1kg",
     "inStock": true,
     "isFeatured": false,
     "isNew": false,
-    "tags": ["Whole Grain"]
+    "tags": [
+      "Whole Grain"
+    ]
   },
   {
     "id": "chili-powder-mathania-250",
@@ -405,13 +553,21 @@
     ],
     "shortDesc": "Fiery red chili powder sun-dried naturally on native mats.",
     "description": "Stemmed dry chillies washed, sun-dried, and coarse ground. Gives authentic vivid red color and bold spice tone without added artificial dyes.",
-    "ingredients": ["100% Sun-Dried Red Chillies"],
-    "benefits": ["No Synthetic Dyes", "Authentic Heat Level", "Pure Crop Origin"],
+    "ingredients": [
+      "100% Sun-Dried Red Chillies"
+    ],
+    "benefits": [
+      "No Synthetic Dyes",
+      "Authentic Heat Level",
+      "Pure Crop Origin"
+    ],
     "weight": "250g",
     "inStock": true,
     "isFeatured": false,
     "isNew": false,
-    "tags": ["Zero Additives"]
+    "tags": [
+      "Zero Additives"
+    ]
   },
   {
     "id": "tulsi-ginger-tea-200",
@@ -428,13 +584,24 @@
     ],
     "shortDesc": "Refreshing caffeine-free blend of holy basil and sun-dried ginger.",
     "description": "Formulated with 3 varieties of organic Tulsi leaves and sun-dried organic ginger bits. Perfect evening detox elixir.",
-    "ingredients": ["Rama Tulsi", "Krishna Tulsi", "Vana Tulsi", "Dry Ginger Bits"],
-    "benefits": ["Caffeine-Free Detox", "Stress Relief Adaptogen", "Supports Respiratory Health"],
+    "ingredients": [
+      "Rama Tulsi",
+      "Krishna Tulsi",
+      "Vana Tulsi",
+      "Dry Ginger Bits"
+    ],
+    "benefits": [
+      "Caffeine-Free Detox",
+      "Stress Relief Adaptogen",
+      "Supports Respiratory Health"
+    ],
     "weight": "200g",
     "inStock": true,
     "isFeatured": true,
     "isNew": true,
-    "tags": ["Herbal Detox"]
+    "tags": [
+      "Herbal Detox"
+    ]
   },
   {
     "id": "pumpkin-seeds-250",
@@ -451,13 +618,21 @@
     ],
     "shortDesc": "Zinc-rich raw green pepitas harvested from organic fields.",
     "description": "Shell-free raw pumpkin seeds rich in Zinc, Magnesium, and plant protein. Great for snacking or sprinkling over smoothie bowls.",
-    "ingredients": ["100% Raw Pumpkin Seed Kernels"],
-    "benefits": ["High Plant Zinc & Magnesium", "Supports Heart & Prostate Health", "High Protein Snack"],
+    "ingredients": [
+      "100% Raw Pumpkin Seed Kernels"
+    ],
+    "benefits": [
+      "High Plant Zinc & Magnesium",
+      "Supports Heart & Prostate Health",
+      "High Protein Snack"
+    ],
     "weight": "250g",
     "inStock": true,
     "isFeatured": false,
     "isNew": false,
-    "tags": ["Zinc Rich"]
+    "tags": [
+      "Zinc Rich"
+    ]
   },
   {
     "id": "pink-salt-khewra-500",
@@ -474,13 +649,21 @@
     ],
     "shortDesc": "Raw unrefined rock salt packed with 84+ trace minerals.",
     "description": "Hand-mined ancient mineral salt free from microplastics and anti-caking chemicals. Balances electrolytes and elevates natural food flavors.",
-    "ingredients": ["100% Pure Himalayan Pink Rock Salt"],
-    "benefits": ["84 Essential Trace Minerals", "No Anti-caking Chemicals", "Electrolyte Balance"],
+    "ingredients": [
+      "100% Pure Himalayan Pink Rock Salt"
+    ],
+    "benefits": [
+      "84 Essential Trace Minerals",
+      "No Anti-caking Chemicals",
+      "Electrolyte Balance"
+    ],
     "weight": "500g",
     "inStock": true,
     "isFeatured": false,
     "isNew": false,
-    "tags": ["Mineral Salt"]
+    "tags": [
+      "Mineral Salt"
+    ]
   },
   {
     "id": "almond-california-250",
@@ -497,12 +680,20 @@
     ],
     "shortDesc": "Crisp whole almonds rich in Vitamin E and healthy monounsaturated fats.",
     "description": "Non-GMO jumbo whole almonds. Soak overnight for optimal nutrient absorption or enjoy raw for crisp morning energy.",
-    "ingredients": ["100% Raw Almond Kernels"],
-    "benefits": ["Brain Health & Memory", "High Vitamin E", "Heart Friendly"],
+    "ingredients": [
+      "100% Raw Almond Kernels"
+    ],
+    "benefits": [
+      "Brain Health & Memory",
+      "High Vitamin E",
+      "Heart Friendly"
+    ],
     "weight": "250g",
     "inStock": true,
     "isFeatured": false,
     "isNew": false,
-    "tags": ["Jumbo Size"]
+    "tags": [
+      "Jumbo Size"
+    ]
   }
 ]
