@@ -32,25 +32,26 @@ export default function ProductCard({ product }) {
           className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
         />
 
-        {/* Badges Overlay */}
-        <div className="absolute top-2.5 left-2.5 flex flex-col items-start gap-1 z-10">
-          {discountPercent > 0 && (
-            <Badge variant="discount">-{n(discountPercent)}% {t('badge.off')}</Badge>
-          )}
-          {product.isNew && <Badge variant="accent">{t('badge.new')}</Badge>}
-          {product.tags?.includes('Bestseller') && (
-            <Badge variant="primary">{t('badge.bestseller')}</Badge>
-          )}
-        </div>
+        {/* Image Badges */}
+        <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between pointer-events-none z-10">
+          <div className="flex flex-col gap-1 pointer-events-auto">
+            {discountPercent > 0 && (
+              <Badge variant="discount">-{discountPercent}% {t('badge.off')}</Badge>
+            )}
+            {product.isBestseller && (
+              <Badge variant="bestseller">{t('badge.bestseller')}</Badge>
+            )}
+            {product.isNew && !product.isBestseller && (
+              <Badge variant="new">{t('badge.new')}</Badge>
+            )}
+          </div>
 
-        {/* Action Buttons Overlay */}
-        <div className="absolute top-2.5 right-2.5 flex flex-col gap-1.5 z-10">
           <button
             onClick={(e) => {
               e.preventDefault();
               toggleWishlist(product);
             }}
-            className={`p-2 rounded-xl backdrop-blur-md transition-all shadow-xs ${
+            className={`p-2 rounded-xl backdrop-blur-md transition-all shadow-xs pointer-events-auto ${
               isLiked
                 ? 'bg-accent-2 text-surface'
                 : 'bg-surface/80 text-ink hover:bg-surface hover:text-accent-2'
@@ -58,16 +59,6 @@ export default function ProductCard({ product }) {
             title={isLiked ? 'Remove from Wishlist' : 'Add to Wishlist'}
           >
             <Heart size={16} className={isLiked ? 'fill-surface' : ''} />
-          </button>
-        </div>
-
-        {/* Quick Add to Cart Bar on Hover */}
-        <div className="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-          <button
-            onClick={() => addToCart(product, 1)}
-            className="w-full bg-accent text-ink hover:bg-accent/90 py-1.5 px-3 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-all"
-          >
-            <ShoppingBag size={14} /> {t('btn.addToCart')}
           </button>
         </div>
       </div>
@@ -93,24 +84,25 @@ export default function ProductCard({ product }) {
           </div>
         </div>
 
-        {/* Price & Weight Footer */}
-        <div className="mt-3 pt-2.5 border-t border-line/60 flex items-center justify-between">
+        {/* Price & Add to Cart Footer */}
+        <div className="mt-3 pt-2.5 border-t border-line/60 flex items-center justify-between gap-2">
           <div>
-            <div className="flex items-baseline gap-1.5">
-              <span className="font-display font-bold text-base sm:text-lg text-primary">৳{n(product.price)}</span>
+            <div className="flex items-baseline gap-1">
+              <span className="font-display font-bold text-sm sm:text-base text-primary">৳{n(product.price)}</span>
               {product.originalPrice && (
-                <span className="text-xs text-muted line-through font-sans">৳{n(product.originalPrice)}</span>
+                <span className="text-[11px] text-muted line-through font-sans">৳{n(product.originalPrice)}</span>
               )}
             </div>
-            <span className="text-[10px] text-muted">{n(product.weight)}</span>
+            <span className="text-[10px] text-muted block">{n(product.weight)}</span>
           </div>
 
           <button
             onClick={() => addToCart(product, 1)}
-            className="sm:hidden p-2 rounded-xl bg-primary text-surface hover:bg-primary/90 transition-colors"
-            title="Add to Cart"
+            className="px-2.5 py-1.2 sm:px-3 sm:py-1.5 rounded-lg bg-primary text-white hover:bg-accent hover:text-ink text-[11px] font-semibold flex items-center gap-1 transition-colors shadow-xs shrink-0 cursor-pointer"
+            title={t('btn.addToCart')}
           >
-            <ShoppingBag size={16} />
+            <ShoppingBag size={13} />
+            <span>{t('btn.addToCart')}</span>
           </button>
         </div>
       </div>
