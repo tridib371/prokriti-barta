@@ -108,7 +108,7 @@ export default function Register() {
                 <input
                   type="tel"
                   required
-                  placeholder="01700-000000"
+                  placeholder="01717-279166"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   className="w-full bg-bg text-ink px-4 py-2.5 pl-10 rounded-xl border border-line focus:border-accent outline-none"

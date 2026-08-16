@@ -18,7 +18,7 @@ export default function OrderSuccess() {
     paymentMethod: 'Cash on Delivery',
     total: 1250,
     items: [],
-    shippingAddress: { name: 'Customer', phone: '01700-000000', address: 'Dhaka' }
+    shippingAddress: { name: 'Customer', phone: '01717-279166', address: 'Dhaka' }
   };
 
   return (

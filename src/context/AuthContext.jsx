@@ -30,7 +30,7 @@ export function AuthProvider({ children }) {
       id: `usr_${Date.now()}`,
       name: email.split('@')[0] || 'সাব্বির রহমান',
       email: email,
-      phone: '+880 1712-345678',
+      phone: '+880 1717-279166',
       avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
       isLoggedIn: true,
       joinedDate: new Date().toISOString().split('T')[0]

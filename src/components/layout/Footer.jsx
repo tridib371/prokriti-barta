@@ -61,7 +61,7 @@ export default function Footer() {
             </div>
             <div>
               <h4 className="font-bold text-sm text-primary">{t('footer.support.title')}</h4>
-              <p className="text-xs text-muted">{n('+880 1712-345678')}</p>
+              <p className="text-xs text-muted">{n('+880 1717-279166')}</p>
             </div>
           </div>
         </div>

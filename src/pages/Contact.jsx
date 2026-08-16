@@ -47,7 +47,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-bold text-primary text-sm">{t('nav.helpline')}</h4>
-                  <p className="text-muted mt-0.5">+880 1712-345678 (9 AM - 10 PM)</p>
+                  <p className="text-muted mt-0.5">+880 1717-279166 (9 AM - 10 PM)</p>
                 </div>
               </div>
 
@@ -106,7 +106,7 @@ export default function Contact() {
                   <input
                     type="tel"
                     required
-                    placeholder="01700-000000"
+                    placeholder="01717-279166"
                     value={form.phone}
                     onChange={(e) => setForm({ ...form, phone: e.target.value })}
                     className="w-full bg-bg text-ink px-4 py-2.5 rounded-xl border border-line focus:border-accent outline-none"

@@ -44,7 +44,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1 text-accent">
               <Phone size={13} />
-              <span className="text-surface font-mono text-[11px] sm:text-xs">{n('+880 1712-345678')}</span>
+              <span className="text-surface font-mono text-[11px] sm:text-xs">{n('+880 1717-279166')}</span>
             </span>
             <span className="hidden md:inline text-surface/30">|</span>
             <span className="hidden md:flex items-center gap-1.5 text-surface/90">

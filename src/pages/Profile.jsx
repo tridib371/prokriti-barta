@@ -12,7 +12,7 @@ export default function Profile() {
   const profileData = {
     name: user?.name || (lang === 'bn' ? 'সাব্বির রহমান' : 'Sabbir Rahman'),
     email: user?.email || 'user@example.com',
-    phone: user?.phone || '+880 1712-345678',
+    phone: user?.phone || '+880 1717-279166',
     address: 'House 42, Road 11, Block D, Banani, Dhaka-1213',
     memberSince: 'January 2026'
   };
