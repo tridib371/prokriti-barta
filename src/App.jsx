@@ -11,6 +11,7 @@ import { useLenis } from './lib/lenis';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import CartDrawer from './components/cart/CartDrawer';
+import ChatbotWidget from './components/chat/ChatbotWidget';
 
 // Pages
 
@@ -75,6 +76,7 @@ function MainLayout() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
+      <ChatbotWidget />
       <Footer />
     </div>
   );
