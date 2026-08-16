@@ -326,14 +326,37 @@ const translations = {
   // ── Static Pages (About, Blog, Contact, Delivery, Offers, Wishlist) ────────
   'about.title': { bn: 'প্রকৃতি বার্তা সম্পর্কে', en: 'About Prokriti Barta' },
   'about.sub': {
-    bn: 'লোকজ ঐতিহ্য ও বিশুদ্ধ খাদ্যসংগ্রহের গল্প',
-    en: 'Preserving Heritage & Delivering Organic Pure Nutrition',
+    bn: 'লোকজ ঐতিহ্য ও খাঁটি খাদ্য সংগ্রহের এক অনন্য পথচলা',
+    en: 'Preserving Heritage Purity & Delivering Organic Nutrition',
   },
-  'about.storyTitle': { bn: 'আমাদের শুরুর কথা', en: 'Our Heritage Story' },
+  'about.heroBadge': { bn: 'আমাদের লোকজ চেতনা ও বিশ্বাস', en: 'Our Roots & Heritage Mission' },
+  'about.missionTitle': {
+    bn: 'প্রতিটি গৃহস্থালিতে হারিয়ে যাওয়া খাঁটি পুষ্টি ফিরিয়ে আনা',
+    en: 'Restoring Unadulterated Indigenous Nutrition To Every Dining Table',
+  },
+  'about.missionDesc': {
+    bn: 'আজকের নগর জীবনে ভেজাল খাদ্য ও কৃত্রিম প্রিজারভেটিভের ভিড়ে আমাদের স্বাস্থ্য ঝুঁকিতে। প্রকৃতি বার্তার লক্ষ্য গ্রাম বাংলার হারিয়ে যাওয়া বিশুদ্ধতম লোকজ খাবার সরাসরি খামার থেকে আপনাদের হাতের নাগালে নিয়ে আসা।',
+    en: 'In an era of industrial processing, chemical bleaching, and synthetic additives, Prokriti Barta bridges the gap between rural traditional artisans and health-conscious urban households.',
+  },
+  'about.storyTitle': { bn: 'আমাদের যাত্রার গল্প', en: 'Our Origin Story' },
   'about.storyText': {
     bn: "প্রকৃতি বার্তার যাত্রা শুরু হয়েছিল একটি সরল কিন্তু দৃঢ় বিশ্বাস থেকে - যে আমাদের খাদ্যে কৃত্রিম রাসায়নিক ও ভেজালের স্থান থাকতে পারে না। আমরা সরাসরি সুন্দরবনের মৌয়াল, নদীমাতৃক গ্রামগুলোর খামারি ও প্রান্তিক কৃষকদের থেকে বিশুদ্ধ মধু, বিলোনা ঘি ও ঘানির তেল সংগ্রহ করে পৌঁছে দিচ্ছি হাজারো পরিবারে।",
     en: "Prokriti Barta began with a single mission: bringing unadulterated, preservative-free traditional food straight from remote Sundarbans honey-gatherers, local dairy farmers, and indigenous crop growers to modern Bangladeshi homes.",
   },
+  'about.purityTitle': { bn: 'কেন প্রকৃতি বার্তার খাদ্য শতভাগ খাঁটি?', en: 'What Makes Our Food 100% Pure?' },
+  'about.purityText': {
+    bn: 'আমরা প্রতিটি উপাদান সংগ্রহের ক্ষেত্রে কোনো প্রকার তাপ প্রয়োগ, রিফাইনিং বা প্রিজারভেটিভ ব্যবহার করি না। আমাদের মধু অপাস্তুরিত, ঘি বৈদিক বিলোনা পদ্ধতির মন্থনজাত এবং তেলগুলো খাঁটি কাঁচা বীজের কোল্ড-প্রেসড কাঠের ঘানির তেল।',
+    en: 'We maintain zero chemical intervention. Our honey is raw and unheated, our Bilona ghee is hand-churned in clay handis, and our cold-pressed oils are crushed gently under 40°C in traditional wooden mills.',
+  },
+  'about.farmerImpactTitle': { bn: 'কৃষকের সমৃদ্ধি ও ন্যায্য মূল্য', en: 'Empowering Native Farmers & Moubals' },
+  'about.farmerImpactText': {
+    bn: 'মধ্যস্বত্বভোগীদের এড়িয়ে সরাসরি সুন্দরবনের মৌয়াল, পাহাড়ি চাষি ও পল্লী অঞ্চলের খামারিদের থেকে ক্রয়ের মাধ্যমে আমরা নিশ্চিত করি তাদের কঠোর শ্রমের সর্বোচ্চ মর্যাদা ও ন্যায্য মজুরি।',
+    en: 'By completely eliminating middleman exploitation, we deal directly with wild mangrove Moubals, hill tract farmers, and rural dairy keepers, ensuring 100% fair-trade wages and community dignity.',
+  },
+  'about.stats.purity': { bn: '১০০% প্রাকৃতিক', en: '100% Chemical Free' },
+  'about.stats.farmers': { bn: '২৫০+ খামারি ও মৌয়াল', en: '250+ Partner Farmers' },
+  'about.stats.categories': { bn: '৬টি প্রথাগত সমাহার', en: '6 Heritage Categories' },
+  'about.stats.families': { bn: '১০,০০০+ সন্তুষ্ট পরিবার', en: '10,000+ Happy Families' },
 
   'blog.title': { bn: 'স্বাস্থ্যকণিকা ও ব্লগ', en: 'Organic Living & Health Journal' },
   'blog.sub': {
