@@ -61,11 +61,11 @@ export default function Contact() {
 
         <AlponaDivider />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
           {/* Contact Details Cards */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="bg-surface border border-line rounded-3xl p-6 sm:p-8 space-y-6 shadow-xs">
+          <div className="lg:col-span-5 flex flex-col">
+            <div className="bg-surface border border-line rounded-3xl p-6 sm:p-8 space-y-6 shadow-xs flex-1 flex flex-col justify-between">
               <h2 className="font-display font-bold text-xl text-primary pb-3 border-b border-line">
                 {lang === 'bn' ? 'আমাদের সাথে যোগাযোগের ঠিকানা' : 'Direct Helpline & Support'}
               </h2>
@@ -116,7 +116,7 @@ export default function Contact() {
           </div>
 
           {/* Contact Form */}
-          <div className="lg:col-span-7 bg-surface border border-line rounded-3xl p-6 sm:p-8 shadow-xs">
+          <div className="lg:col-span-7 bg-surface border border-line rounded-3xl p-6 sm:p-8 shadow-xs flex flex-col justify-between">
             {submitted ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
