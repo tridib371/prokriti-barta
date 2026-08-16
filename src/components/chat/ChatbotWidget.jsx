@@ -179,7 +179,12 @@ export default function ChatbotWidget() {
                             className="bg-surface border border-line rounded-xl p-2.5 flex items-center justify-between gap-3 shadow-2xs hover:border-accent/40 transition-all"
                           >
                             <div className="flex items-center gap-2.5">
-                              <img src={prod.image} alt={prod.name} className="w-10 h-10 object-cover rounded-lg bg-bg shrink-0" />
+                              <img
+                                src={(prod.images && prod.images[0]) || prod.image || '/PB.jpg'}
+                                alt={prod.name}
+                                className="w-10 h-10 object-cover rounded-lg bg-bg shrink-0 border border-line"
+                                onError={(e) => { e.target.src = '/PB.jpg'; }}
+                              />
                               <div>
                                 <h4 className="font-bold text-xs text-primary line-clamp-1">
                                   {lang === 'bn' ? (prod.bnName || prod.name) : prod.name}
