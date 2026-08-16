@@ -29,7 +29,7 @@ export default function HeroSlider() {
       ctaText: t('hero.slide2.cta'),
       ctaLink: "/shop?category=ghee-oils",
       badge: t('hero.slide2.badge'),
-      image: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?auto=format&fit=crop&w=1200&q=80",
+      image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=1200&q=80",
       accentColor: "#E05A36"
     },
     {
@@ -40,7 +40,7 @@ export default function HeroSlider() {
       ctaText: t('hero.slide3.cta'),
       ctaLink: "/shop?category=ghee-oils",
       badge: t('hero.slide3.badge'),
-      image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=1200&q=80",
+      image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1200&q=80",
       accentColor: "#E89814"
     }
   ];
