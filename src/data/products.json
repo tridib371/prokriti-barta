@@ -10,7 +10,6 @@
     "rating": 4.9,
     "reviewCount": 142,
     "images": [
-      "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?auto=format&fit=crop&w=800&q=80"
     ],
     "shortDesc": "Unfiltered wild flower honey collected by traditional Moubals in Sundarban biosphere.",
@@ -22,6 +21,98 @@
     "isFeatured": true,
     "isNew": false,
     "tags": ["Bestseller", "Raw Organic"]
+  },
+  {
+    "id": "honey-blackseed-500",
+    "slug": "organic-blackseed-flower-honey",
+    "name": "Raw Organic Blackseed Blossom Honey",
+    "bnName": "খাঁটি কালোজিরা ফুলের মধু",
+    "category": "honey",
+    "price": 980,
+    "originalPrice": 1100,
+    "rating": 4.94,
+    "reviewCount": 118,
+    "images": [
+      "https://images.unsplash.com/photo-1471943311424-646960669fbc?auto=format&fit=crop&w=800&q=80"
+    ],
+    "shortDesc": "Dark amber medicinal honey collected from blackseed blossom fields.",
+    "description": "Collected directly from organic Nigella Sativa (Kaloijira) flower fields in Tangail. Known for its distinct dark mahogany tone, rich spicy notes, and potent healing qualities.",
+    "ingredients": ["100% Raw Blackseed Nectar Honey"],
+    "benefits": ["Immunity Elixir", "Rich in Nigellone & Thymoquinone", "Natural Cough Remedy"],
+    "weight": "500g",
+    "inStock": true,
+    "isFeatured": true,
+    "isNew": true,
+    "tags": ["Medicinal", "Dark Amber"]
+  },
+  {
+    "id": "honey-mustard-500",
+    "slug": "raw-mustard-flower-honey",
+    "name": "Creamy Raw Mustard Blossom Honey",
+    "bnName": "প্রাকৃতিক সরিষা ফুলের মধু",
+    "category": "honey",
+    "price": 650,
+    "originalPrice": 750,
+    "rating": 4.86,
+    "reviewCount": 84,
+    "images": [
+      "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=800&q=80"
+    ],
+    "shortDesc": "Naturally crystallizing creamy yellow honey harvested in winter.",
+    "description": "Harvested during peak winter from yellow mustard blossoms. Naturally sets into a delicious, smooth butter-like texture full of natural pollen.",
+    "ingredients": ["100% Unpasteurized Mustard Flower Honey"],
+    "benefits": ["Natural Energy Booster", "Smooth Creamy Texture", "Rich in Natural Glucose"],
+    "weight": "500g",
+    "inStock": true,
+    "isFeatured": false,
+    "isNew": false,
+    "tags": ["Creamy Texture", "Winter Harvest"]
+  },
+  {
+    "id": "honey-lychee-500",
+    "slug": "organic-lychee-blossom-honey",
+    "name": "Raw Dinajpur Lychee Blossom Honey",
+    "bnName": "প্রাকৃতিক লিচু ফুলের মধু",
+    "category": "honey",
+    "price": 720,
+    "originalPrice": 820,
+    "rating": 4.88,
+    "reviewCount": 92,
+    "images": [
+      "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=800&q=80"
+    ],
+    "shortDesc": "Light golden honey with delicate floral perfume from Dinajpur lychee orchards.",
+    "description": "Pure unheated honey collected from lush lychee orchards during spring bloom. Light, sweet, and mild with a refreshing fruity aftertaste.",
+    "ingredients": ["100% Raw Lychee Orchard Honey"],
+    "benefits": ["Mild Sweetness", "Kid-Friendly Taste", "Rich in Vitamin C Traces"],
+    "weight": "500g",
+    "inStock": true,
+    "isFeatured": false,
+    "isNew": true,
+    "tags": ["Fruity Aroma", "Light Golden"]
+  },
+  {
+    "id": "honey-comb-wild-400",
+    "slug": "raw-sundarban-honeycomb-jar",
+    "name": "Wild Sundarban Honeycomb in Honey",
+    "bnName": "সুন্দরবনের প্রাকৃতিক চাকসহ মধু",
+    "category": "honey",
+    "price": 1200,
+    "originalPrice": 1350,
+    "rating": 4.98,
+    "reviewCount": 156,
+    "images": [
+      "https://images.unsplash.com/photo-1587049352851-8d4e89133924?auto=format&fit=crop&w=800&q=80"
+    ],
+    "shortDesc": "Raw virgin honeycomb chunk submerged in fresh wild mangrove honey.",
+    "description": "Real hand-cut wild mangrove honeycomb preserved directly inside fresh wild honey. Chew on raw beeswax packed with royal jelly, propolis, and unrefined honey.",
+    "ingredients": ["100% Wild Comb & Mangrove Honey"],
+    "benefits": ["Unfiltered Bee Propolis", "Natural Chewable Wax", "Ultimate Raw Purity"],
+    "weight": "400g",
+    "inStock": true,
+    "isFeatured": true,
+    "isNew": false,
+    "tags": ["Raw Comb", "Premium Reserve"]
   },
   {
     "id": "ghee-cow-bilona-400",
@@ -167,7 +258,7 @@
     "slug": "organic-date-sugar-powder",
     "name": "Organic Date Sugar (খেজুরি চিনি)",
     "bnName": "অর্গানিক খেজুরের গুঁড়া চিনি",
-    "category": "honey",
+    "category": "nuts-seeds",
     "price": 550,
     "originalPrice": 620,
     "rating": 4.9,
