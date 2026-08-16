@@ -70,15 +70,15 @@ export default function Contact() {
           
           {/* Contact Details Cards */}
           <div className="lg:col-span-5 flex flex-col">
-            <div className="bg-surface border border-line rounded-3xl p-6 sm:p-8 space-y-6 shadow-xs flex-1 flex flex-col justify-between">
-              <h2 className="font-display font-bold text-xl text-primary pb-3 border-b border-line">
+            <div className="bg-surface border border-line rounded-3xl p-6 sm:p-8 shadow-xs flex-1 flex flex-col">
+              <h2 className="font-display font-bold text-xl text-primary pb-3 border-b border-line mb-5">
                 {lang === 'bn' ? 'আমাদের সাথে যোগাযোগের ঠিকানা' : 'Direct Helpline & Support'}
               </h2>
 
-              <div className="space-y-5 text-xs sm:text-sm font-bn-sans">
+              <div className="space-y-4 font-bn-sans flex-1 flex flex-col justify-between">
                 
                 {/* Phone Hotline */}
-                <div className="flex items-start gap-4 p-3.5 rounded-2xl bg-bg/60 border border-line hover:border-accent/40 transition-colors">
+                <div className="flex items-start gap-4 p-4 rounded-2xl bg-bg/60 border border-line hover:border-accent/40 transition-colors">
                   <div className="p-3 bg-accent/15 text-accent rounded-xl shrink-0">
                     <Phone size={22} />
                   </div>
@@ -92,7 +92,7 @@ export default function Contact() {
                 </div>
 
                 {/* Email Support */}
-                <div className="flex items-start gap-4 p-3.5 rounded-2xl bg-bg/60 border border-line hover:border-accent/40 transition-colors">
+                <div className="flex items-start gap-4 p-4 rounded-2xl bg-bg/60 border border-line hover:border-accent/40 transition-colors">
                   <div className="p-3 bg-accent/15 text-accent rounded-xl shrink-0">
                     <Mail size={22} />
                   </div>
@@ -106,7 +106,7 @@ export default function Contact() {
                 </div>
 
                 {/* Address */}
-                <div className="flex items-start gap-4 p-3.5 rounded-2xl bg-bg/60 border border-line hover:border-accent/40 transition-colors">
+                <div className="flex items-start gap-4 p-4 rounded-2xl bg-bg/60 border border-line hover:border-accent/40 transition-colors">
                   <div className="p-3 bg-accent/15 text-accent rounded-xl shrink-0">
                     <MapPin size={22} />
                   </div>
