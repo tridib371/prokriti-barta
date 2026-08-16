@@ -97,22 +97,22 @@ export default function Footer() {
         {/* Quick Links */}
         <div>
           <h4 className="font-display font-bold text-sm text-primary mb-4">{t('footer.quickLinks')}</h4>
-          <ul className="space-y-2 text-xs text-muted">
-            <li><Link to="/about" className="hover:text-accent transition-colors">{t('nav.about')}</Link></li>
-            <li><Link to="/shop" className="hover:text-accent transition-colors">{t('nav.shop')}</Link></li>
-            <li><Link to="/offers" className="hover:text-accent transition-colors font-semibold text-accent-2">{t('nav.offers')}</Link></li>
-            <li><Link to="/delivery" className="hover:text-accent transition-colors">{t('delivery.title')}</Link></li>
-            <li><Link to="/blog" className="hover:text-accent transition-colors">{t('nav.blog')}</Link></li>
+          <ul className="space-y-2 text-xs">
+            <li><Link to="/about" className="text-accent-2 font-semibold hover:text-accent transition-colors">{t('nav.about')}</Link></li>
+            <li><Link to="/shop" className="text-accent-2 font-semibold hover:text-accent transition-colors">{t('nav.shop')}</Link></li>
+            <li><Link to="/offers" className="text-accent-2 font-semibold hover:text-accent transition-colors">{t('nav.offers')}</Link></li>
+            <li><Link to="/delivery" className="text-accent-2 font-semibold hover:text-accent transition-colors">{t('delivery.title')}</Link></li>
+            <li><Link to="/blog" className="text-accent-2 font-semibold hover:text-accent transition-colors">{t('nav.blog')}</Link></li>
           </ul>
         </div>
 
         {/* Categories */}
         <div>
           <h4 className="font-display font-bold text-sm text-primary mb-4">{t('footer.categories')}</h4>
-          <ul className="space-y-2 text-xs text-muted">
+          <ul className="space-y-2 text-xs">
             {categories.map((cat) => (
               <li key={cat.id}>
-                <Link to={`/shop?category=${cat.slug}`} className="hover:text-accent transition-colors font-bn-sans">
+                <Link to={`/shop?category=${cat.slug}`} className="text-accent-2 font-semibold hover:text-accent transition-colors font-bn-sans">
                   {lang === 'bn' ? cat.bnName : cat.name}
                 </Link>
               </li>
