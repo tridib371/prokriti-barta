@@ -40,20 +40,36 @@ export default function FeaturedGrid() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="lg:col-span-6 bg-surface border border-line rounded-3xl p-6 flex flex-col justify-between relative overflow-hidden shadow-sm group"
+            className="lg:col-span-6 bg-surface border border-line rounded-3xl p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden shadow-sm group"
           >
-            <div className="relative z-10 space-y-3 max-w-md">
-              <span className="px-3 py-1 rounded-full bg-accent/20 text-accent font-bold text-xs">
-                {t('featured.todayBadge')}
-              </span>
+            <div className="relative z-10 space-y-3">
+              <div className="flex items-center justify-between gap-2">
+                <span className="px-3 py-1 rounded-full bg-accent/20 text-accent font-bold text-xs">
+                  {t('featured.todayBadge')}
+                </span>
+                <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-0.5 rounded-md">
+                  {n(featuredProduct.weight)}
+                </span>
+              </div>
               <h3 className="font-display font-bold text-2xl sm:text-3xl text-primary">
                 {lang === 'bn' ? featuredProduct.bnName : featuredProduct.name}
               </h3>
               <p className="text-muted text-sm font-bn-sans leading-relaxed">
                 {lang === 'bn' ? (featuredProduct.bnShortDesc || featuredProduct.shortDesc) : featuredProduct.shortDesc}
               </p>
+
+              {/* Feature Pills */}
+              <div className="flex flex-wrap gap-2 pt-1">
+                <span className="text-[11px] font-medium bg-bg text-primary px-2.5 py-1 rounded-lg border border-line">
+                  🌿 {lang === 'bn' ? '১০০% অপাস্তুরিত ও কাঁচা' : '100% Raw & Unheated'}
+                </span>
+                <span className="text-[11px] font-medium bg-bg text-primary px-2.5 py-1 rounded-lg border border-line">
+                  🐝 {lang === 'bn' ? 'সুন্দরবনের গভীর বন' : 'Deep Mangrove Forest'}
+                </span>
+              </div>
+
               <div className="flex items-center gap-3 pt-2">
-                <span className="font-display font-bold text-2xl text-accent">
+                <span className="font-display font-bold text-2xl sm:text-3xl text-accent">
                   ৳{n(featuredProduct.price)}
                 </span>
                 {featuredProduct.originalPrice && (
@@ -61,20 +77,27 @@ export default function FeaturedGrid() {
                 )}
               </div>
               <Link to={`/product/${featuredProduct.slug}`} className="inline-block pt-2">
-                <Button variant="accent" size="md">
+                <Button variant="accent" size="md" className="gap-1.5 shadow-sm">
                   {t('btn.details')} <ArrowRight size={16} />
                 </Button>
               </Link>
             </div>
 
-            {/* Product Image */}
-            <div className="mt-6 relative aspect-16/9 rounded-2xl overflow-hidden bg-bg">
+            {/* Product Image - Fills remaining vertical height smoothly with zero white gap */}
+            <div className="mt-6 flex-1 min-h-[220px] sm:min-h-[280px] relative rounded-2xl overflow-hidden bg-bg border border-line">
               <img
                 src={featuredProduct.images[0]}
                 alt={featuredProduct.name}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/50 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
+              
+              {/* Overlay Quality Badge */}
+              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-surface text-xs font-bold font-bn-sans">
+                <span className="px-3 py-1 rounded-lg bg-primary/80 backdrop-blur-md border border-white/20">
+                  ✨ {lang === 'bn' ? 'প্রাকৃতিক রাজকীয় রাজকী জেলি সমৃদ্ধ' : 'Rich in Royal Jelly & Pollen'}
+                </span>
+              </div>
             </div>
           </motion.div>
 
