@@ -351,6 +351,38 @@
     ]
   },
   {
+    "id": "rice-katari-bhog-1000",
+    "slug": "premium-dinajpur-katari-bhog-rice",
+    "name": "Dinajpur Katari Bhog Rice (কাটারীভোগ চাল)",
+    "bnName": "দিনাজপুরের ঐতিহ্যবাহী কাটারীভোগ চাল",
+    "category": "rice-grains",
+    "price": 190,
+    "originalPrice": 220,
+    "rating": 4.89,
+    "reviewCount": 112,
+    "images": [
+      "https://images.unsplash.com/photo-1596560548464-f010549b84d7?auto=format&fit=crop&w=800&q=80"
+    ],
+    "shortDesc": "Long slender aromatic rice harvested from Dinajpur alluvial soil.",
+    "description": "Famous native long-grain rice from Dinajpur. Known for its pointed blade-like tips, subtle fragrance, and non-sticky fluffy cooking texture.",
+    "ingredients": [
+      "100% Native Katari Bhog Rice"
+    ],
+    "benefits": [
+      "Non-Sticky Fluffy Texture",
+      "Subtle Floral Aroma",
+      "100% Chemical-Free Milling"
+    ],
+    "weight": "1kg",
+    "inStock": true,
+    "isFeatured": true,
+    "isNew": true,
+    "tags": [
+      "Dinajpur Origin",
+      "Long Grain"
+    ]
+  },
+  {
     "id": "turmeric-deshi-ground-250",
     "slug": "stone-ground-turmeric-powder",
     "name": "Stone-Ground Deshi Turmeric Powder",
@@ -536,6 +568,38 @@
     "isNew": false,
     "tags": [
       "Whole Grain"
+    ]
+  },
+  {
+    "id": "barley-hulled-grain-500",
+    "slug": "organic-hulled-barley-jab",
+    "name": "Organic Whole Grain Barley (যব/বার্লি)",
+    "bnName": "খাঁটি অর্গানিক যব বা বার্লি",
+    "category": "rice-grains",
+    "price": 160,
+    "originalPrice": 190,
+    "rating": 4.93,
+    "reviewCount": 88,
+    "images": [
+      "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "shortDesc": "Whole de-husked organic barley grains packed with beta-glucan soluble fiber.",
+    "description": "Premium de-husked organic barley grains. Excellent for preparing traditional Talbina, breakfast porridges, and detox barley water.",
+    "ingredients": [
+      "100% De-husked Organic Barley Grains"
+    ],
+    "benefits": [
+      "Rich in Beta-Glucan Fiber",
+      "Lowers Cholesterol naturally",
+      "Perfect for Talbina & Porridge"
+    ],
+    "weight": "500g",
+    "inStock": true,
+    "isFeatured": true,
+    "isNew": false,
+    "tags": [
+      "Ancient Grain",
+      "Beta-Glucan"
     ]
   },
   {
