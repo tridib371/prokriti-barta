@@ -92,14 +92,18 @@ const translations = {
   'featured.tag': { bn: 'আমাদের বিশেষ কালেকশন', en: 'Featured Collection' },
   'featured.title': { bn: 'জনপ্রিয় অর্গানিক সমাহার', en: 'Popular Organic Essentials' },
   'featured.todayBadge': { bn: 'আজকের ফিচার্ড প্রোডাক্ট', en: "Today's Featured Item" },
-  'featured.farmerTag': { bn: 'কৃষকের হাসি', en: "Farmers' Wellbeing" },
+  'featured.farmerTag': { bn: 'কৃষকের হাসি ও সামাজিক সুফল', en: "Farmers' Wellbeing & Impact" },
   'featured.farmerTitle': {
-    bn: 'ন্যায্য মূল্যে সরাসরি খামার থেকে সংগৃহীত',
-    en: 'Fair-Trade Sourced Direct From Farms',
+    bn: 'ন্যায্য মূল্যে সরাসরি প্রান্তিক খামার থেকে সংগৃহীত',
+    en: 'Fair-Trade Sourced Direct From Native Farms',
   },
   'featured.farmerSub': {
-    bn: 'প্রতিটি কেনাকাটায় লোকজ কৃষক ও খাঁটি খামারিরা পাচ্ছেন তাদের শ্রমের সঠিক মূল্য।',
+    bn: 'প্রতিটি কেনাকাটায় লোকজ কৃষক ও খাঁটি খামারিরা পাচ্ছেন তাদের কঠোর শ্রমের সঠিক মূল্য।',
     en: 'Every purchase ensures traditional farmers get fair compensation for their hard work.',
+  },
+  'featured.farmerDesc': {
+    bn: 'মধ্যস্বত্বভোগীদের এড়িয়ে সুন্দরবনের ঐতিহ্যবাহী মৌয়াল, পাহাড়ি চাষি ও গ্রামবাংলার প্রান্তিক খামারিদের থেকে সরাসরি সংগ্রহের মাধ্যমে আমরা নিশ্চিত করি ১০০% খাঁটি অর্গানিক খাদ্য। একই সাথে নিশ্চিত করি কৃষকদের স্বাবলম্বিতা, ন্যায্য মজুরি ও পরিবারের উন্নত ভবিষ্যৎ।',
+    en: 'By bypassing middlemen and sourcing directly from mangrove Moubals, hill tract growers, and rural dairy artisans, we guarantee 100% unadulterated organic food while empowering traditional farming families with fair wages and sustainable growth.',
   },
 
   // ── Benefits Section ────────────────────────────────────────────────────────

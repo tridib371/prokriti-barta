@@ -109,20 +109,34 @@ export default function FeaturedGrid() {
           ))}
 
           {/* Banner Bento Filler Box */}
-          <div className="sm:col-span-2 bg-primary text-surface rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden">
-            <div className="space-y-2 z-10">
-              <span className="text-xs text-accent font-bold uppercase tracking-wider">{t('featured.farmerTag')}</span>
-              <h3 className="font-display font-bold text-xl sm:text-2xl text-surface">
+          <div className="sm:col-span-2 bg-gradient-to-br from-primary via-primary to-primary/95 text-surface rounded-2xl p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden shadow-sm group">
+            {/* Background Decorative Pattern */}
+            <div className="absolute -right-8 -bottom-8 w-48 h-48 bg-accent/15 rounded-full blur-2xl pointer-events-none" />
+
+            <div className="space-y-3 z-10">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/20 text-accent font-bold text-xs">
+                <Leaf size={14} /> {t('featured.farmerTag')}
+              </div>
+              <h3 className="font-display font-bold text-xl sm:text-2xl lg:text-3xl text-surface leading-tight">
                 {t('featured.farmerTitle')}
               </h3>
-              <p className="text-xs text-surface/80 font-bn-sans">
+              <p className="text-sm text-surface/90 font-bn-sans font-medium leading-relaxed">
                 {t('featured.farmerSub')}
               </p>
+              <p className="text-xs text-surface/80 font-bn-sans leading-relaxed pt-2 border-t border-surface/15">
+                {t('featured.farmerDesc')}
+              </p>
             </div>
-            <div className="pt-4 z-10">
+
+            {/* Action Row */}
+            <div className="pt-6 z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-surface/15 mt-4">
+              <div className="flex items-center gap-2 text-xs font-bold text-accent">
+                <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                {lang === 'bn' ? '১০০% সরাসরি গ্রাম বাংলা থেকে সংগৃহীত' : '100% Direct From Rural Bangladesh'}
+              </div>
               <Link to="/about">
-                <Button variant="accent" size="sm">
-                  {t('btn.farmersStory')}
+                <Button variant="accent" size="md" className="gap-1.5 shadow-md">
+                  {t('btn.farmersStory')} <ArrowRight size={16} />
                 </Button>
               </Link>
             </div>
