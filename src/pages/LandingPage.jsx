@@ -92,7 +92,7 @@ export default function LandingPage() {
             <div className="lg:col-span-5 relative">
               <div className="relative aspect-4/3 sm:aspect-square rounded-3xl overflow-hidden clip-organic-wave border border-line shadow-2xl bg-surface">
                 <img
-                  src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=1000&q=80"
+                  src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?auto=format&fit=crop&w=1000&q=80"
                   alt="Pure Organic Harvest"
                   className="w-full h-full object-cover"
                 />

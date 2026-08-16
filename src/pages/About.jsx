@@ -39,7 +39,7 @@ export default function About() {
           </div>
           <div className="aspect-4/3 rounded-3xl overflow-hidden border border-line shadow-md">
             <img
-              src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=800&q=80"
+              src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?auto=format&fit=crop&w=800&q=80"
               alt="Organic Honey Harvest"
               className="w-full h-full object-cover"
             />

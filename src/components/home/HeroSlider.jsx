@@ -18,7 +18,7 @@ export default function HeroSlider() {
       ctaText: t('hero.slide1.cta'),
       ctaLink: "/shop",
       badge: t('hero.slide1.badge'),
-      image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=1200&q=80",
+      image: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?auto=format&fit=crop&w=1200&q=80",
       accentColor: "#E89814"
     },
     {
