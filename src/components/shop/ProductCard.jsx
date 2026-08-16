@@ -84,8 +84,8 @@ export default function ProductCard({ product }) {
           >
             {lang === 'bn' ? (product.bnName || product.name) : product.name}
           </Link>
-          <p className="text-xs text-muted font-bn-sans line-clamp-1 mt-0.5">
-            {lang === 'bn' ? product.name : product.bnName}
+          <p className="text-xs text-muted font-bn-sans line-clamp-2 mt-1 leading-relaxed">
+            {lang === 'bn' ? (product.bnShortDesc || product.shortDesc) : product.shortDesc}
           </p>
 
           <div className="mt-2">

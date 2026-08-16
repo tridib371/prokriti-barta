@@ -107,9 +107,6 @@ export default function ProductDetails() {
               <h1 className="font-display font-bold text-2xl sm:text-3xl text-primary">
                 {lang === 'bn' ? (product.bnName || product.name) : product.name}
               </h1>
-              <p className="text-sm font-bn-sans text-muted">
-                {lang === 'bn' ? product.name : product.bnName}
-              </p>
 
               {/* Rating */}
               <div className="flex items-center gap-2 pt-1">
@@ -127,7 +124,7 @@ export default function ProductDetails() {
 
               {/* Short Description */}
               <p className="text-sm text-ink leading-relaxed font-bn-sans bg-bg/60 p-4 rounded-2xl border border-line">
-                {product.shortDesc}
+                {lang === 'bn' ? (product.bnShortDesc || product.shortDesc) : product.shortDesc}
               </p>
 
               {/* Quantity Controls */}

@@ -13,6 +13,7 @@
       "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?auto=format&fit=crop&w=800&q=80"
     ],
     "shortDesc": "Unfiltered wild flower honey collected by traditional Moubals in Sundarban biosphere.",
+    "bnShortDesc": "সুন্দরবনের গভীর ম্যানগ্রোভ বন থেকে ঐতিহ্যবাহী মৌয়ালদের মাধ্যমে সরাসরি সংগৃহীত অপাস্তুরিত খাঁটি পদ্ম মধু।",
     "description": "Our Raw Sundarban Honey is 100% natural, unheated, and unpasteurized. Collected directly from deep mangrove forests, retaining naturally occurring pollen, royal jelly, and enzyme content.",
     "ingredients": [
       "100% Raw Wild Mangrove Honey"
@@ -45,6 +46,7 @@
       "https://images.unsplash.com/photo-1471943311424-646960669fbc?auto=format&fit=crop&w=800&q=80"
     ],
     "shortDesc": "Dark amber medicinal honey collected from blackseed blossom fields.",
+    "bnShortDesc": "টাঙ্গাইলের অর্গানিক কালোজিরা ফুলের মাঠ থেকে সংগৃহীত ঔষধি গুণসম্পন্ন গাঢ় আম্বার মধু।",
     "description": "Collected directly from organic Nigella Sativa (Kaloijira) flower fields in Tangail. Known for its distinct dark mahogany tone, rich spicy notes, and potent healing qualities.",
     "ingredients": [
       "100% Raw Blackseed Nectar Honey"
@@ -77,6 +79,7 @@
       "/mustard-honey.jpg"
     ],
     "shortDesc": "Naturally crystallizing creamy yellow honey harvested in winter.",
+    "bnShortDesc": "শীতকালে প্রাকৃতিক সরিষা ফুল থেকে সংগৃহীত স্বতঃস্ফূর্ত জমাট বাঁধা মাখনের মতো মসৃণ মধু।",
     "description": "Harvested during peak winter from yellow mustard blossoms. Naturally sets into a delicious, smooth butter-like texture full of natural pollen.",
     "ingredients": [
       "100% Unpasteurized Mustard Flower Honey"
@@ -109,6 +112,7 @@
       "/raw-honey.jpg"
     ],
     "shortDesc": "Light golden honey with delicate floral perfume from Dinajpur lychee orchards.",
+    "bnShortDesc": "দিনাজপুরের প্রাকৃতিক লিচু বাগান থেকে সংগৃহীত হালকা সোনালী ও সুবাসিত ফুলি মধু।",
     "description": "Pure unheated honey collected from lush lychee orchards during spring bloom. Light, sweet, and mild with a refreshing fruity aftertaste.",
     "ingredients": [
       "100% Raw Lychee Orchard Honey"
@@ -141,6 +145,7 @@
       "https://images.unsplash.com/photo-1587049352851-8d4e89133924?auto=format&fit=crop&w=800&q=80"
     ],
     "shortDesc": "Raw virgin honeycomb chunk submerged in fresh wild mangrove honey.",
+    "bnShortDesc": "সুন্দরবনের বুনো মৌচাকের তাজা চাকের টুকরো সহ প্রাকৃতিক খাঁটি মধু।",
     "description": "Real hand-cut wild mangrove honeycomb preserved directly inside fresh wild honey. Chew on raw beeswax packed with royal jelly, propolis, and unrefined honey.",
     "ingredients": [
       "100% Wild Comb & Mangrove Honey"
@@ -173,6 +178,7 @@
       "/ghee.jpg"
     ],
     "shortDesc": "Aromatic golden ghee prepared from curd using ancient Vedic Bilona method.",
+    "bnShortDesc": "দেশি গরুর দুধের দই থেকে প্রাচীন বৈদিক বিলোনা পদ্ধতিতে মন্থন করা সুবাসিত দানাদার গাওয়া ঘি।",
     "description": "Crafted from grass-fed Deshi cow milk curd. Cultured and hand-churned in earthen pots to preserve its golden granular texture and rich nutty aroma.",
     "ingredients": [
       "100% Clarified Cultured Milk Fat"
@@ -205,6 +211,7 @@
       "/buffalo-ghee.jpg"
     ],
     "shortDesc": "Rich, creamy granular ghee churned from pure buffalo milk curd.",
+    "bnShortDesc": "খাঁটি মহিষের দুধের দই থেকে ঐতিহ্যবাহী পদ্ধতিতে তৈরি গাঢ় ও দানাদার খাঁটি মাহিষ ঘি।",
     "description": "Slow-cooked artisanal buffalo milk ghee with rich aroma and thick granular body. Ideal for traditional Bangladeshi curries and sweets.",
     "ingredients": [
       "100% Cultured Buffalo Milk Fat"
@@ -237,6 +244,7 @@
       "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=800&q=80"
     ],
     "shortDesc": "Pungent, cold-pressed mustard oil crushed gently in wooden mills.",
+    "bnShortDesc": "কাঠের ঘানিতে ৪০ ডিগ্রি সেলসিয়াসের নিচে মৃদু চাপে ভাঙানো ঝাঝালো খাঁটি সরিষার তেল।",
     "description": "Extracted at low temperatures below 40°C in traditional wooden presses without chemical refining, preserving natural allyl isothiocyanate pungency.",
     "ingredients": [
       "100% Yellow & Black Mustard Seeds"
@@ -269,6 +277,7 @@
       "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80"
     ],
     "shortDesc": "Raw cold-extracted oil crushed from premium Nigella Sativa seeds.",
+    "bnShortDesc": "প্রিমিয়াম কালোজিরা বীজ থেকে কোনো প্রকার উত্তাপ ছাড়াই নিষ্কাশিত ১০০% কোল্ড-প্রেসড তেল।",
     "description": "Extracted without heat or solvents to retain maximum Thymoquinone content. Known across centuries as a natural immune remedy.",
     "ingredients": [
       "100% Cold-Pressed Black Seed Oil"
@@ -301,6 +310,7 @@
       "/sesame-oil.jpg"
     ],
     "shortDesc": "Nourishing, unrefined sesame oil extracted in traditional wooden Ghani.",
+    "bnShortDesc": "কাঠের ঘানিতে ভাঙানো পুষ্টিকর ও অপরিশোধিত খাঁটি তিলের তেল।",
     "description": "Cold-pressed from raw white and black sesame seeds. High in natural antioxidants (Sesamol) and healthy fats, ideal for Asian cooking and Ayurvedic wellness.",
     "ingredients": [
       "100% Unrefined Sesame Seed Oil"
@@ -333,6 +343,7 @@
       "https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=800&q=80"
     ],
     "shortDesc": "Tiny grain aromatic rice prized for traditional Polao and Payesh.",
+    "bnShortDesc": "পোলাও ও পায়েশের জন্য বিখ্যাত উত্তরবঙ্গের সুগন্ধি ও ক্ষুদ্র দানা কালোজিরা চাল।",
     "description": "Cultivated organically in Northern Bangladesh without synthetic fertilizers. Known as 'Prince of Rice' for its miniature grain size and floral perfume.",
     "ingredients": [
       "100% Organic Kalijira Paddy Rice"
@@ -364,6 +375,7 @@
       "https://images.unsplash.com/photo-1596560548464-f010549b84d7?auto=format&fit=crop&w=800&q=80"
     ],
     "shortDesc": "Long slender aromatic rice harvested from Dinajpur alluvial soil.",
+    "bnShortDesc": "দিনাজপুরের পলিমাটিতে উৎপাদিত ঐতিহ্যবাহী লম্বা ও ঝরঝরে কাটারীভোগ চাল।",
     "description": "Famous native long-grain rice from Dinajpur. Known for its pointed blade-like tips, subtle fragrance, and non-sticky fluffy cooking texture.",
     "ingredients": [
       "100% Native Katari Bhog Rice"
@@ -396,6 +408,7 @@
       "/turmeric-powder.jpg"
     ],
     "shortDesc": "Vibrant turmeric root ground on stone mills with high Curcumin content.",
+    "bnShortDesc": "রাঙ্গামাটির দেশি হলুদ শিকড় থেকে পাথরে বাঁটা উচ্চ কারকিউমিন সমৃদ্ধ হলুদ গুঁড়া।",
     "description": "Sourced directly from native farmers in Rangamati. Sun-dried and slow-ground to preserve volatile essential oils and rich golden color.",
     "ingredients": [
       "100% Pure Turmeric Root (Curcuma Longa)"
@@ -428,6 +441,7 @@
       "/coriander-powder.jpg"
     ],
     "shortDesc": "Lightly roasted native coriander seeds slow-ground on stone mills.",
+    "bnShortDesc": "হালকা ভাজা দেশি ধনিয়া বীজ থেকে ধীরগতিতে পাথরে বাঁটা সুবাসিত ধনিয়া গুঁড়া।",
     "description": "Sun-dried native coriander seeds crushed gently to retain volatile essential oils. Imparts a rich citrusy, earthy aroma to traditional Bangladeshi gravies.",
     "ingredients": [
       "100% Organic Coriander Seeds (Coriandrum Sativum)"
@@ -460,6 +474,7 @@
       "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=800&q=80"
     ],
     "shortDesc": "Single-origin garden fresh tea leaves from Sreemangal slopes.",
+    "bnShortDesc": "শ্রীমঙ্গলের পাহাড়ি টি-গার্ডেন থেকে সরাসরি সংগৃহীত তীব্র লিকার ও সুবাসের অর্গানিক ব্ল্যাক টি।",
     "description": "Handpicked top two leaves and a bud from pesticide-free tea gardens in Sreemangal. Strong liquor, malty body, and refreshing aroma.",
     "ingredients": [
       "100% Organic Black Tea Leaves"
@@ -491,6 +506,7 @@
       "https://images.unsplash.com/photo-1627435601361-ec25f5b1d0e5?auto=format&fit=crop&w=800&q=80"
     ],
     "shortDesc": "Unfermented high-altitude green tea leaves abundant in EGCG catechins.",
+    "bnShortDesc": "উচ্চ অ্যান্টিঅক্সিডেন্ট ও ইজিসিজি সমৃদ্ধ সিলেটে উৎপাদিত অর্গানিক হোল লিফ গ্রীন টি।",
     "description": "Steamed and gently rolled whole green tea leaves harvested from organic Sreemangal tea slopes. Light, clean taste packed with natural antioxidants.",
     "ingredients": [
       "100% Organic Green Tea Leaves"
@@ -523,6 +539,7 @@
       "/chia-seeds.jpg"
     ],
     "shortDesc": "Nutrient-dense chia seeds packed with Omega-3 and soluble dietary fiber.",
+    "bnShortDesc": "ওমেগা-৩ ও ডায়েটারি ফাইবারে ভরপুর টিপল-সোর্টেড খাঁটি অর্গানিক চিয়া সিড।",
     "description": "Cleaned, triple-sorted organic chia seeds. Absorbs up to 10x its weight in water to create nutrient-packed breakfast puddings and drinks.",
     "ingredients": [
       "100% Raw Chia Seeds"
@@ -555,6 +572,7 @@
       "/madinah-dates.jpg"
     ],
     "shortDesc": "Naturally sweet, chewy organic dates sourced directly from Madinah orchards.",
+    "bnShortDesc": "মদিনার খেজুর বাগান থেকে সরাসরি সংগৃহীত প্রাকৃতিক মিষ্টি ও পুষ্টিকর তাজা খেজুর।",
     "description": "Hand-picked, chemical-free organic dates packed with natural Fiber, Potassium, and Essential Minerals. Perfect natural energy booster.",
     "ingredients": [
       "100% Organic Whole Madinah Dates"
@@ -587,6 +605,7 @@
       "/coconut-oil.png"
     ],
     "shortDesc": "Raw cold-extracted oil from fresh coastal coconuts.",
+    "bnShortDesc": "বরিশালের উপকূলীয় তাজা নারিকেল থেকে কোল্ড-এক্সট্র্যাক্টেড ভার্জিন নারিকেল তেল।",
     "description": "Cold-pressed within hours of harvest from fresh coastal coconuts of Barishal. Edible grade, perfect for cooking, keto diets, and hair nourishment.",
     "ingredients": [
       "100% Cold-Pressed Coconut Kernel Oil"
@@ -618,6 +637,7 @@
       "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?auto=format&fit=crop&w=800&q=80"
     ],
     "shortDesc": "Nutrient-rich bran retained red rice grown in coastal eco-farms.",
+    "bnShortDesc": "প্রাকৃতিক লাল তুষ retained পুষ্টিকর ও অ্যান্টিঅক্সিডেন্ট সমৃদ্ধ আনপলিশড লাল চাল।",
     "description": "Contains full natural bran layer packed with anthocyanin antioxidants and dietary fiber. Ideal for diabetic-friendly daily meals.",
     "ingredients": [
       "100% Unpolished Red Paddy Rice"
@@ -649,6 +669,7 @@
       "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=800&q=80"
     ],
     "shortDesc": "Whole de-husked organic barley grains packed with beta-glucan soluble fiber.",
+    "bnShortDesc": "তালবিনা ও হেলদি নাশতার উপযোগী বিটা-গ্লুকান ফাইবার সমৃদ্ধ অর্গানিক যব/বার্লি।",
     "description": "Premium de-husked organic barley grains. Excellent for preparing traditional Talbina, breakfast porridges, and detox barley water.",
     "ingredients": [
       "100% De-husked Organic Barley Grains"
@@ -681,6 +702,7 @@
       "/chili-powder.jpg"
     ],
     "shortDesc": "Fiery red chili powder sun-dried naturally on native mats.",
+    "bnShortDesc": "বোঁটা ছাড়ানো শুকনা মরিচ রোদে শুকিয়ে পাথরে কুটে তৈরি খাঁটি ঝাল মরিচের গুঁড়া।",
     "description": "Stemmed dry chillies washed, sun-dried, and coarse ground. Gives authentic vivid red color and bold spice tone without added artificial dyes.",
     "ingredients": [
       "100% Sun-Dried Red Chillies"
@@ -712,6 +734,7 @@
       "/cumin-powder.jpg"
     ],
     "shortDesc": "Slow-roasted cumin seeds ground on traditional granite stone mills.",
+    "bnShortDesc": "মৃদু তাপে ভাজা প্রিমিয়াম জিরা বীজ থেকে পাথরে পিষে তৈরি তীব্র সুবাসিত জিরা গুঁড়া।",
     "description": "Whole premium cumin seeds sun-dried, gently dry-roasted, and stone-ground. Delivers signature savory warmth and aromatic intensity.",
     "ingredients": [
       "100% Organic Cumin Seeds (Cuminum Cyminum)"
@@ -744,6 +767,7 @@
       "https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&w=800&q=80"
     ],
     "shortDesc": "Refreshing caffeine-free blend of holy basil and sun-dried ginger.",
+    "bnShortDesc": "৩ প্রজাতির তুলসী ও শুকনা আদার টুকরো দিয়ে তৈরি ক্যাফেইন-মুক্ত ভেষজ রিফ্রেশিং চা।",
     "description": "Formulated with 3 varieties of organic Tulsi leaves and sun-dried organic ginger bits. Perfect evening detox elixir.",
     "ingredients": [
       "Rama Tulsi",
@@ -778,6 +802,7 @@
       "https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?auto=format&fit=crop&w=800&q=80"
     ],
     "shortDesc": "Whole sun-dried Clitoria Ternatea flowers rich in anthocyanin antioxidants.",
+    "bnShortDesc": "অ্যান্থোসায়ানিন সমৃদ্ধ হাতে তোরা অপরাজিতা ফুল থেকে তৈরি জাদুকরী ব্লু টি।",
     "description": "Handpicked organic Aparajita flowers. Naturally caffeine-free blue herbal infusion that magically changes to vivid purple when citrus juice is added.",
     "ingredients": [
       "100% Sun-Dried Butterfly Pea Flowers"
@@ -810,6 +835,7 @@
       "/pumpkin-seeds.jpg"
     ],
     "shortDesc": "Zinc-rich raw green pepitas harvested from organic fields.",
+    "bnShortDesc": "জিংক, ম্যাগনেসিয়াম ও প্ল্যান্ট প্রোটিনে ভরপুর খাঁটি মিষ্টি কুমড়ার বীজ।",
     "description": "Shell-free raw pumpkin seeds rich in Zinc, Magnesium, and plant protein. Great for snacking or sprinkling over smoothie bowls.",
     "ingredients": [
       "100% Raw Pumpkin Seed Kernels"
@@ -841,6 +867,7 @@
       "/pink-salt.jpg"
     ],
     "shortDesc": "Raw unrefined rock salt packed with 84+ trace minerals.",
+    "bnShortDesc": "৮৪+ খনিজ উপাদান সমৃদ্ধ অপরিশোধিত প্রাকৃতিক হিমালয়ান পিঙ্ক রক্ সল্ট।",
     "description": "Hand-mined ancient mineral salt free from microplastics and anti-caking chemicals. Balances electrolytes and elevates natural food flavors.",
     "ingredients": [
       "100% Pure Himalayan Pink Rock Salt"
@@ -872,6 +899,7 @@
       "/almonds.jpg"
     ],
     "shortDesc": "Crisp whole almonds rich in Vitamin E and healthy monounsaturated fats.",
+    "bnShortDesc": "ভিটামিন-ই ও হেলদি ফ্যাটে ভরপুর প্রিমিয়াম কোয়ালিটির ক্রিসপি গোটা কাঠবাদাম।",
     "description": "Non-GMO jumbo whole almonds. Soak overnight for optimal nutrient absorption or enjoy raw for crisp morning energy.",
     "ingredients": [
       "100% Raw Almond Kernels"

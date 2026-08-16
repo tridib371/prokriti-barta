@@ -50,7 +50,7 @@ export default function FeaturedGrid() {
                 {lang === 'bn' ? featuredProduct.bnName : featuredProduct.name}
               </h3>
               <p className="text-muted text-sm font-bn-sans leading-relaxed">
-                {featuredProduct.shortDesc}
+                {lang === 'bn' ? (featuredProduct.bnShortDesc || featuredProduct.shortDesc) : featuredProduct.shortDesc}
               </p>
               <div className="flex items-center gap-3 pt-2">
                 <span className="font-display font-bold text-2xl text-accent">
