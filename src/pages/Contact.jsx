@@ -113,18 +113,6 @@ export default function Contact() {
 
               </div>
             </div>
-
-            {/* Quick Promise Banner */}
-            <div className="bg-primary/95 text-surface rounded-3xl p-6 space-y-2 shadow-xs">
-              <h3 className="font-display font-bold text-base text-accent flex items-center gap-1.5">
-                <Sparkles size={16} /> {lang === 'bn' ? 'আমাদের অঙ্গীকার' : 'Our Quality Assurance'}
-              </h3>
-              <p className="text-xs text-surface/85 font-bn-sans leading-relaxed">
-                {lang === 'bn'
-                  ? 'আপনার প্রতিটি প্রশ্ন ও মতামত প্রকৃতি বার্তার জন্য অত্যন্ত মূল্যবান। আমরা সরাসরি খামার থেকে গ্রাহক সেবা পরিচালনা করি।'
-                  : 'Every query is handled directly by our organic food safety and customer happiness team.'}
-              </p>
-            </div>
           </div>
 
           {/* Contact Form */}
@@ -207,9 +195,9 @@ export default function Contact() {
                   />
                 </div>
 
-                {/* Sleek Compact Action Button (Not bulky full-width) */}
-                <div className="pt-2 flex justify-start sm:justify-end">
-                  <Button type="submit" variant="accent" size="md" className="px-6 py-2.5 rounded-xl gap-2 font-bold shadow-xs">
+                {/* Sleek Compact Action Button (Middle position) */}
+                <div className="pt-2 flex justify-center">
+                  <Button type="submit" variant="accent" size="md" className="px-8 py-2.5 rounded-xl gap-2 font-bold shadow-xs">
                     {t('contact.send')} <Send size={15} />
                   </Button>
                 </div>
