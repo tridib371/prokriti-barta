@@ -39,12 +39,12 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 w-full bg-surface border-b border-line shadow-xs transition-colors">
       {/* 1. Top Announcement Bar */}
-      <div className="bg-primary text-surface text-xs py-1.5 px-4">
+      <div className="bg-primary text-surface text-xs py-1.5 px-3 sm:px-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between font-medium">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <span className="flex items-center gap-1 text-accent">
               <Phone size={13} />
-              <span className="text-surface font-mono">{n('+880 1712-345678')}</span>
+              <span className="text-surface font-mono text-[11px] sm:text-xs">{n('+880 1712-345678')}</span>
             </span>
             <span className="hidden md:inline text-surface/30">|</span>
             <span className="hidden md:flex items-center gap-1.5 text-surface/90">
@@ -53,42 +53,42 @@ export default function Navbar() {
             </span>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <LanguageToggle />
           </div>
         </div>
       </div>
 
       {/* 2. Main Header Row */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2.5 sm:py-3.5 flex items-center justify-between gap-2 sm:gap-4">
         {/* Left: Mobile Menu + Brand Logo */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <button
             onClick={() => setMobileMenuOpen(true)}
-            className="md:hidden p-2 text-ink hover:bg-bg rounded-xl transition-colors"
+            className="md:hidden p-1.5 text-ink hover:bg-bg rounded-xl transition-colors"
             aria-label="Open mobile menu"
           >
-            <Menu size={24} />
+            <Menu size={22} />
           </button>
 
-          <Link to="/" className="flex items-center gap-3 group">
+          <Link to="/" className="flex items-center gap-2 sm:gap-3 group shrink-0">
             <img
               src="/PB.jpg"
               alt="Prokriti Barta Logo"
-              className="w-11 h-11 object-contain group-hover:scale-105 transition-transform drop-shadow-xs"
+              className="w-9 h-9 sm:w-11 sm:h-11 object-contain group-hover:scale-105 transition-transform drop-shadow-xs"
             />
             <div className="flex flex-col">
-              <span className="font-display font-bold text-2xl text-primary tracking-tight leading-none">
+              <span className="font-display font-bold text-lg sm:text-2xl text-primary tracking-tight leading-none">
                 {lang === 'bn' ? 'প্রকৃতি বার্তা' : 'Prokriti Barta'}
               </span>
-              <span className="text-[10px] tracking-widest text-muted uppercase font-sans font-semibold mt-0.5">
+              <span className="hidden sm:block text-[10px] tracking-widest text-muted uppercase font-sans font-semibold mt-0.5">
                 {lang === 'bn' ? '১০০% খাঁটি জৈব পণ্য' : 'PURE ORGANIC HARVEST'}
               </span>
             </div>
           </Link>
         </div>
 
-        {/* Center: Search Bar */}
+        {/* Center: Search Bar (Desktop) */}
         <form onSubmit={handleSearchSubmit} className="hidden md:flex flex-1 max-w-lg mx-6 relative">
           <div className="relative w-full flex items-center">
             <input
@@ -112,11 +112,11 @@ export default function Navbar() {
         </form>
 
         {/* Right: User Actions (Wishlist, Cart Pill, Auth) */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
           {/* Wishlist Icon Button */}
           <Link
             to="/wishlist"
-            className="p-2.5 rounded-2xl text-ink hover:bg-bg border border-transparent hover:border-line transition-all relative"
+            className="p-2 sm:p-2.5 rounded-2xl text-ink hover:bg-bg border border-transparent hover:border-line transition-all relative"
             title="Wishlist"
           >
             <Heart size={20} className="text-ink" />
@@ -130,11 +130,11 @@ export default function Navbar() {
           {/* Cart Pill Button */}
           <button
             onClick={openCart}
-            className="flex items-center gap-2.5 px-3.5 py-2 bg-primary/10 hover:bg-primary/20 border border-primary/20 rounded-2xl transition-all group"
+            className="flex items-center gap-2 px-2.5 py-1.5 sm:px-3.5 sm:py-2 bg-primary/10 hover:bg-primary/20 border border-primary/20 rounded-2xl transition-all group"
             title="Cart"
           >
             <div className="relative">
-              <ShoppingBag size={20} className="text-primary group-hover:scale-110 transition-transform" />
+              <ShoppingBag size={19} className="text-primary group-hover:scale-110 transition-transform" />
               {itemCount > 0 && (
                 <span className="absolute -top-2 -right-2 w-4 h-4 bg-accent text-white text-[10px] font-bold rounded-full flex items-center justify-center shadow-xs">
                   {n(itemCount)}
@@ -149,9 +149,22 @@ export default function Navbar() {
             </div>
           </button>
 
-          {/* User Auth Buttons / Profile Avatar */}
+          {/* Mobile User Profile Quick Button (Mobile Only) */}
           {isAuthenticated ? (
-            <div className="flex items-center gap-2 pl-2 border-l border-line">
+            <Link
+              to="/profile"
+              className="md:hidden p-1.5 hover:bg-bg rounded-xl border border-line transition-colors"
+              title="My Profile"
+            >
+              <div className="w-7 h-7 rounded-lg bg-accent text-white font-bold flex items-center justify-center text-xs shadow-xs">
+                {user?.name?.charAt(0) || 'U'}
+              </div>
+            </Link>
+          ) : null}
+
+          {/* Desktop User Auth Buttons */}
+          {isAuthenticated ? (
+            <div className="hidden md:flex items-center gap-2 pl-2 border-l border-line">
               <Link
                 to="/profile"
                 className="flex items-center gap-2 p-1.5 hover:bg-bg rounded-2xl border border-transparent hover:border-line transition-colors"
@@ -164,16 +177,16 @@ export default function Navbar() {
               </Link>
               <button
                 onClick={logout}
-                className="p-2 text-muted hover:text-accent-2 transition-colors hidden sm:block"
+                className="p-2 text-muted hover:text-accent-2 transition-colors"
                 title={t('nav.logout')}
               >
                 <LogOut size={18} />
               </button>
             </div>
           ) : (
-            <div className="flex items-center gap-1.5 pl-2 border-l border-line">
+            <div className="hidden md:flex items-center gap-1.5 pl-2 border-l border-line">
               <Link to="/login">
-                <button className="px-3.5 py-2 text-xs font-bold text-primary hover:bg-bg rounded-xl transition-colors hidden sm:flex items-center gap-1.5">
+                <button className="px-3.5 py-2 text-xs font-bold text-primary hover:bg-bg rounded-xl transition-colors flex items-center gap-1.5">
                   <LogIn size={15} /> {t('nav.signin')}
                 </button>
               </Link>
@@ -187,7 +200,30 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* 3. Navigation Sub-Bar (Category Button + Links naturally aligned) */}
+      {/* 2.1 Mobile Search Bar Row (Mobile Only) */}
+      <div className="px-3 pb-2.5 pt-0.5 md:hidden border-t border-line/30 bg-surface">
+        <form onSubmit={handleSearchSubmit} className="relative w-full">
+          <input
+            type="text"
+            placeholder={t('nav.search.placeholder')}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full bg-bg text-ink text-xs px-3.5 py-2 pl-9 pr-8 rounded-full border border-line focus:border-accent focus:bg-surface focus:ring-1 focus:ring-accent/20 transition-all outline-none"
+          />
+          <Search size={15} className="absolute left-3 text-muted pointer-events-none" />
+          {searchQuery && (
+            <button
+              type="button"
+              onClick={() => setSearchQuery('')}
+              className="absolute right-3 text-muted hover:text-ink text-xs font-bold"
+            >
+              ✕
+            </button>
+          )}
+        </form>
+      </div>
+
+      {/* 3. Navigation Sub-Bar (Desktop Category Button + Links) */}
       <nav className="hidden md:block border-t border-line bg-surface/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           <div className="flex items-center gap-8">
@@ -233,8 +269,9 @@ export default function Navbar() {
                   <Link
                     key={link.path}
                     to={link.path}
-                    className={`py-3 transition-colors relative flex items-center gap-1.5 ${isActive ? 'text-accent font-bold' : 'text-ink/80 hover:text-primary'
-                      }`}
+                    className={`py-3 transition-colors relative flex items-center gap-1.5 ${
+                      isActive ? 'text-accent font-bold' : 'text-ink/80 hover:text-primary'
+                    }`}
                   >
                     <span>{t(link.key)}</span>
                     {link.badge && (
@@ -278,45 +315,39 @@ export default function Navbar() {
             {!isAuthenticated ? (
               <div className="my-4 flex gap-2">
                 <Link to="/login" onClick={() => setMobileMenuOpen(false)} className="flex-1">
-                  <button className="w-full py-2 bg-bg border border-line rounded-xl text-xs font-bold text-primary flex items-center justify-center gap-1">
-                    <LogIn size={14} /> {t('nav.signin')}
+                  <button className="w-full py-2.5 bg-bg border border-line rounded-xl text-xs font-bold text-primary flex items-center justify-center gap-1.5 hover:bg-line/20">
+                    <LogIn size={15} /> {t('nav.signin')}
                   </button>
                 </Link>
                 <Link to="/register" onClick={() => setMobileMenuOpen(false)} className="flex-1">
-                  <button className="w-full py-2 bg-accent text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1 shadow-xs">
-                    <UserPlus size={14} /> {t('nav.signup')}
+                  <button className="w-full py-2.5 bg-accent text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs hover:bg-accent/90">
+                    <UserPlus size={15} /> {t('nav.signup')}
                   </button>
                 </Link>
               </div>
             ) : (
-              <div className="my-4 p-3 bg-bg rounded-xl flex items-center justify-between">
-                <div>
-                  <p className="font-bold text-xs text-primary">{user?.name}</p>
-                  <p className="text-[10px] text-muted">{user?.email}</p>
+              <div className="my-4 p-3 bg-bg rounded-xl flex items-center justify-between border border-line">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-lg bg-accent text-white font-bold flex items-center justify-center text-xs">
+                    {user?.name?.charAt(0) || 'U'}
+                  </div>
+                  <div>
+                    <p className="font-bold text-xs text-primary">{user?.name}</p>
+                    <p className="text-[10px] text-muted">{user?.email}</p>
+                  </div>
                 </div>
-                <button onClick={logout} className="text-xs text-accent-2 font-bold">{t('nav.logout')}</button>
+                <button onClick={logout} className="text-xs text-accent-2 font-bold px-2 py-1 bg-surface border border-line rounded-lg">{t('nav.logout')}</button>
               </div>
             )}
 
-            {/* Mobile Search */}
-            <form onSubmit={handleSearchSubmit} className="mb-4">
-              <input
-                type="text"
-                placeholder={t('nav.search.mobile')}
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-bg text-ink text-sm px-4 py-2 rounded-xl border border-line"
-              />
-            </form>
-
             {/* Mobile Nav Links */}
-            <div className="flex flex-col space-y-3 font-medium">
+            <div className="flex flex-col space-y-3 font-medium my-2">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="py-2 text-ink hover:text-accent border-b border-line/40 flex items-center justify-between"
+                  className="py-2 text-ink hover:text-accent border-b border-line/40 flex items-center justify-between font-bn-sans text-sm"
                 >
                   <span>{t(link.key)}</span>
                   {link.badge && (
@@ -329,7 +360,7 @@ export default function Navbar() {
             </div>
 
             {/* Mobile Categories */}
-            <div className="mt-6 pt-4 border-t border-line">
+            <div className="mt-4 pt-4 border-t border-line">
               <h4 className="text-xs uppercase tracking-wider text-muted font-bold mb-3">{t('nav.categories.mobile')}</h4>
               <div className="space-y-2">
                 {categories.map((cat) => (
@@ -337,7 +368,7 @@ export default function Navbar() {
                     key={cat.id}
                     to={`/shop?category=${cat.slug}`}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block text-sm text-ink hover:text-primary py-1"
+                    className="block text-sm text-ink hover:text-accent py-1.5 border-b border-line/20 font-bn-sans"
                   >
                     {lang === 'bn' ? cat.bnName : cat.name}
                   </Link>
