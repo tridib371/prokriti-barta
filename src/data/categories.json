@@ -7,7 +7,7 @@
     "icon": "Droplet",
     "itemCount": 5,
     "description": "Harvested directly from wild mangrove beehives by trusted Moubals.",
-    "image": "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?auto=format&fit=crop&w=600&q=80"
+    "image": "/mustard-honey.jpg"
   },
   {
     "id": "ghee-oils",
@@ -17,7 +17,7 @@
     "icon": "Flame",
     "itemCount": 6,
     "description": "Traditional bilona ghee and cold-pressed mustard & coconut oil.",
-    "image": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=600&q=80"
+    "image": "/ghee.jpg"
   },
   {
     "id": "rice-grains",
@@ -37,7 +37,7 @@
     "icon": "Leaf",
     "itemCount": 5,
     "description": "Stone-ground turmeric, chili, coriander & indigenous herbs.",
-    "image": "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80"
+    "image": "/turmeric-powder.jpg"
   },
   {
     "id": "tea-beverages",
@@ -57,6 +57,6 @@
     "icon": "Nut",
     "itemCount": 4,
     "description": "Sun-dried seeds, premium cashews, and organic premium dates.",
-    "image": "https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&w=600&q=80"
+    "image": "/madinah-dates.jpg"
   }
 ]
