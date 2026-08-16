@@ -21,8 +21,8 @@ export default function ChatbotWidget() {
           id: 'welcome',
           sender: 'bot',
           text: lang === 'bn'
-            ? 'নমস্কার / আসসালামু আলাইকুম! আমি প্রকৃতি মিত্র - প্রকৃতি বার্তার ভার্চুয়াল অ্যাসিস্ট্যান্ট। পণ্য, বিশুদ্ধতা যাচাই বা ডেলিভারি সম্পর্কিত যেকোনো প্রশ্ন আমাকে করতে পারেন।'
-            : 'Hello! I am your Prokriti Assistant. Ask me anything about our organic products, purity tests, or delivery policies!',
+            ? 'প্রকৃতি বার্তায় আপনাকে স্বাগতম! আমি প্রকৃতি মিত্র - প্রকৃতি বার্তার ভার্চুয়াল অ্যাসিস্ট্যান্ট। পণ্য, বিশুদ্ধতা যাচাই বা ডেলিভারি সম্পর্কিত যেকোনো প্রশ্ন আমাকে করতে পারেন।'
+            : 'Welcome to Prokriti Barta! I am your Prokriti Assistant. Ask me anything about our organic products, purity tests, or delivery policies!',
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         }
       ]);
