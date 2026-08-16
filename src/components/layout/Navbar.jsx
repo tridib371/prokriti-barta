@@ -245,20 +245,6 @@ export default function Navbar() {
                   onMouseLeave={() => setCategoryDropdownOpen(false)}
                   className="absolute top-full left-0 w-64 bg-surface border border-line rounded-b-2xl shadow-xl z-50 py-2 animate-fadeIn"
                 >
-                  <Link
-                    to="/shop"
-                    onClick={() => setCategoryDropdownOpen(false)}
-                    className="flex items-center justify-between px-4 py-2.5 text-xs text-primary bg-accent/10 hover:bg-accent/20 font-bold transition-colors border-b border-line mb-1"
-                  >
-                    <span className="font-bn-sans flex items-center gap-1.5">
-                      <LayoutGrid size={14} className="text-accent" />
-                      {lang === 'bn' ? 'সব পণ্য একসাথে' : 'All Organic Products'}
-                    </span>
-                    <span className="text-[10px] text-white bg-accent px-2 py-0.5 rounded-full font-mono font-bold">
-                      {n(28)}
-                    </span>
-                  </Link>
-
                   {categories.map((cat) => (
                     <Link
                       key={cat.id}
@@ -378,13 +364,6 @@ export default function Navbar() {
             <div className="mt-4 pt-4 border-t border-line">
               <h4 className="text-xs uppercase tracking-wider text-muted font-bold mb-3">{t('nav.categories.mobile')}</h4>
               <div className="space-y-2">
-                <Link
-                  to="/shop"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block text-sm text-accent font-bold py-1.5 border-b border-line/40 font-bn-sans"
-                >
-                  {lang === 'bn' ? 'সব পণ্য একসাথে (২৮টি)' : 'All Organic Products (28)'}
-                </Link>
                 {categories.map((cat) => (
                   <Link
                     key={cat.id}

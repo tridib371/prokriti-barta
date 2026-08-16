@@ -110,9 +110,9 @@ export default function Footer() {
         <div>
           <h4 className="font-display font-bold text-sm text-primary mb-4">{t('footer.categories')}</h4>
           <ul className="space-y-2 text-xs text-muted">
-            {categories.slice(0, 5).map((cat) => (
+            {categories.map((cat) => (
               <li key={cat.id}>
-                <Link to={`/shop?category=${cat.slug}`} className="hover:text-accent transition-colors">
+                <Link to={`/shop?category=${cat.slug}`} className="hover:text-accent transition-colors font-bn-sans">
                   {lang === 'bn' ? cat.bnName : cat.name}
                 </Link>
               </li>
