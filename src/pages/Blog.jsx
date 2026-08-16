@@ -102,7 +102,7 @@ export default function Blog() {
                 </Link>
 
                 <p className="text-sm text-muted font-bn-sans leading-relaxed line-clamp-3">
-                  {featuredPost.excerpt}
+                  {lang === 'bn' ? featuredPost.excerpt : (featuredPost.excerptEn || featuredPost.excerpt)}
                 </p>
               </div>
 
@@ -178,7 +178,7 @@ export default function Blog() {
                     </Link>
 
                     <p className="text-xs text-muted font-bn-sans line-clamp-3 leading-relaxed">
-                      {blog.excerpt}
+                      {lang === 'bn' ? blog.excerpt : (blog.excerptEn || blog.excerpt)}
                     </p>
                   </div>
 

@@ -14,7 +14,9 @@ export default function BlogPost() {
 
   const relatedBlogs = blogsData.filter(b => b.id !== blog.id).slice(0, 3);
 
-  const paragraphs = blog.content ? blog.content.split('\n\n') : [];
+  const rawContent = lang === 'bn' ? blog.content : (blog.contentEn || blog.content);
+  const paragraphs = rawContent ? rawContent.split('\n\n') : [];
+  const currentExcerpt = lang === 'bn' ? blog.excerpt : (blog.excerptEn || blog.excerpt);
 
   return (
     <motion.div
@@ -74,7 +76,7 @@ export default function BlogPost() {
         <div className="bg-surface border border-line rounded-3xl p-6 sm:p-10 space-y-6 text-sm sm:text-base leading-relaxed text-ink font-bn-sans shadow-xs">
           {/* Highlight Excerpt Box */}
           <div className="bg-bg/80 border-l-4 border-accent p-4 sm:p-5 rounded-r-2xl text-primary font-medium italic text-base sm:text-lg leading-relaxed">
-            "{blog.excerpt}"
+            "{currentExcerpt}"
           </div>
 
           <AlponaDivider className="my-6" />
