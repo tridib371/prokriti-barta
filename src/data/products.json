@@ -478,6 +478,38 @@
     ]
   },
   {
+    "id": "green-tea-organic-200",
+    "slug": "sreemangal-organic-green-tea",
+    "name": "Sreemangal Organic Whole Leaf Green Tea (গ্রীন টি)",
+    "bnName": "সিলেটের অর্গানিক হোল লিফ গ্রীন টি",
+    "category": "tea-beverages",
+    "price": 450,
+    "originalPrice": 520,
+    "rating": 4.91,
+    "reviewCount": 104,
+    "images": [
+      "https://images.unsplash.com/photo-1627435601361-ec25f5b1d0e5?auto=format&fit=crop&w=800&q=80"
+    ],
+    "shortDesc": "Unfermented high-altitude green tea leaves abundant in EGCG catechins.",
+    "description": "Steamed and gently rolled whole green tea leaves harvested from organic Sreemangal tea slopes. Light, clean taste packed with natural antioxidants.",
+    "ingredients": [
+      "100% Organic Green Tea Leaves"
+    ],
+    "benefits": [
+      "High EGCG Antioxidants",
+      "Supports Metabolism & Fat Burning",
+      "Clean Calming Flavor"
+    ],
+    "weight": "200g",
+    "inStock": true,
+    "isFeatured": true,
+    "isNew": false,
+    "tags": [
+      "Metabolism Boost",
+      "High Antioxidants"
+    ]
+  },
+  {
     "id": "chia-seeds-300",
     "slug": "raw-organic-chia-seeds",
     "name": "Raw Organic Chia Seeds",
@@ -729,6 +761,38 @@
     "isNew": true,
     "tags": [
       "Herbal Detox"
+    ]
+  },
+  {
+    "id": "blue-tea-butterfly-pea-100",
+    "slug": "organic-butterfly-pea-blue-tea",
+    "name": "Organic Butterfly Pea Flower Blue Tea (অপরাজিতা চা)",
+    "bnName": "অর্গানিক অপরাজিতা ফুল ব্লু টি",
+    "category": "tea-beverages",
+    "price": 490,
+    "originalPrice": 560,
+    "rating": 4.97,
+    "reviewCount": 116,
+    "images": [
+      "https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?auto=format&fit=crop&w=800&q=80"
+    ],
+    "shortDesc": "Whole sun-dried Clitoria Ternatea flowers rich in anthocyanin antioxidants.",
+    "description": "Handpicked organic Aparajita flowers. Naturally caffeine-free blue herbal infusion that magically changes to vivid purple when citrus juice is added.",
+    "ingredients": [
+      "100% Sun-Dried Butterfly Pea Flowers"
+    ],
+    "benefits": [
+      "Color-Changing Magic Tea",
+      "High Anthocyanin Antioxidants",
+      "Calming & Caffeine-Free"
+    ],
+    "weight": "100g",
+    "inStock": true,
+    "isFeatured": true,
+    "isNew": true,
+    "tags": [
+      "Blue Tea",
+      "Color Changing"
     ]
   },
   {
