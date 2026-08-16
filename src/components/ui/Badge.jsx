@@ -5,9 +5,9 @@ export default function Badge({ children, variant = 'accent', className = '' }) 
   const { n } = useLanguage();
   const variants = {
     accent: "bg-primary text-white border border-white/20 shadow-md font-bold",
-    discount: "bg-accent text-white border border-white/20 shadow-md font-extrabold",
-    primary: "bg-amber-600 text-white border border-white/20 shadow-md font-bold",
-    neutral: "bg-surface/95 text-ink border border-line shadow-xs font-bold"
+    discount: "bg-primary text-white border border-white/20 shadow-md font-extrabold",
+    primary: "bg-primary text-white border border-white/20 shadow-md font-bold",
+    neutral: "bg-primary/90 text-white border border-white/20 shadow-xs font-bold"
   };
 
   return (
