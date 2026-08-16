@@ -202,7 +202,7 @@ export default function Navbar() {
 
       {/* 2.1 Mobile Search Bar Row (Mobile Only) */}
       <div className="px-3 pb-2.5 pt-0.5 md:hidden border-t border-line/30 bg-surface">
-        <form onSubmit={handleSearchSubmit} className="relative w-full">
+        <form onSubmit={handleSearchSubmit} className="relative w-full flex items-center">
           <input
             type="text"
             placeholder={t('nav.search.placeholder')}
