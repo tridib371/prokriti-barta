@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { motion } from 'framer-motion';
+import { Globe } from 'lucide-react';
 
 export default function LanguageToggle() {
   const { lang, toggleLang } = useLanguage();
@@ -8,33 +9,45 @@ export default function LanguageToggle() {
   return (
     <button
       onClick={toggleLang}
-      title={lang === 'bn' ? 'Switch to English' : 'বাংলায় যান'}
-      className="relative h-7 w-[64px] rounded-full border border-white/30 bg-black/20 backdrop-blur-xs flex items-center px-0.5 transition-all hover:border-accent focus:outline-none cursor-pointer"
+      title={lang === 'bn' ? 'Switch to English' : 'বাংলায় দেখুন'}
+      className="group relative inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-white/10 hover:bg-white/20 border border-white/25 backdrop-blur-md transition-all duration-300 focus:outline-none cursor-pointer shadow-xs"
       aria-label="Toggle language"
     >
-      {/* sliding pill */}
-      <motion.span
-        layout
-        transition={{ type: 'spring', stiffness: 500, damping: 35 }}
-        className="absolute h-5 w-7 rounded-full bg-accent shadow-xs"
-        style={{ left: lang === 'bn' ? 2 : 34 }}
-      />
+      <Globe size={13} className="text-accent group-hover:rotate-45 transition-transform duration-300 shrink-0" />
+      
+      <div className="relative flex items-center text-[11px] font-bold tracking-wide select-none">
+        {/* Bangla Option */}
+        <span
+          className={`relative z-10 px-2 py-0.5 rounded-full transition-colors duration-200 ${
+            lang === 'bn' ? 'text-white font-bn-sans' : 'text-surface/70 hover:text-surface'
+          }`}
+        >
+          {lang === 'bn' && (
+            <motion.span
+              layoutId="langBadge"
+              className="absolute inset-0 bg-accent rounded-full shadow-2xs -z-10"
+              transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+            />
+          )}
+          বাংলা
+        </span>
 
-      {/* labels */}
-      <span
-        className={`relative z-10 w-7 text-center text-[10px] font-bold transition-colors duration-200 select-none ${
-          lang === 'bn' ? 'text-white' : 'text-white/70'
-        }`}
-      >
-        বাং
-      </span>
-      <span
-        className={`relative z-10 w-7 text-center text-[10px] font-bold transition-colors duration-200 select-none ${
-          lang === 'en' ? 'text-white' : 'text-white/70'
-        }`}
-      >
-        EN
-      </span>
+        {/* English Option */}
+        <span
+          className={`relative z-10 px-2 py-0.5 rounded-full transition-colors duration-200 ${
+            lang === 'en' ? 'text-white' : 'text-surface/70 hover:text-surface'
+          }`}
+        >
+          {lang === 'en' && (
+            <motion.span
+              layoutId="langBadge"
+              className="absolute inset-0 bg-accent rounded-full shadow-2xs -z-10"
+              transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+            />
+          )}
+          ENG
+        </span>
+      </div>
     </button>
   );
 }
