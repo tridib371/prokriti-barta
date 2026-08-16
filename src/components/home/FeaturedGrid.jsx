@@ -61,10 +61,10 @@ export default function FeaturedGrid() {
               {/* Feature Pills */}
               <div className="flex flex-wrap gap-2 pt-1">
                 <span className="text-[11px] font-medium bg-bg text-primary px-2.5 py-1 rounded-lg border border-line">
-                  🌿 {lang === 'bn' ? '১০০% অপাস্তুরিত ও কাঁচা' : '100% Raw & Unheated'}
+                  {lang === 'bn' ? '১০০% অপাস্তুরিত ও কাঁচা' : '100% Raw & Unheated'}
                 </span>
                 <span className="text-[11px] font-medium bg-bg text-primary px-2.5 py-1 rounded-lg border border-line">
-                  🐝 {lang === 'bn' ? 'সুন্দরবনের গভীর বন' : 'Deep Mangrove Forest'}
+                  {lang === 'bn' ? 'সুন্দরবনের গভীর বন' : 'Deep Mangrove Forest'}
                 </span>
               </div>
 
@@ -95,7 +95,7 @@ export default function FeaturedGrid() {
               {/* Overlay Quality Badge */}
               <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-surface text-xs font-bold font-bn-sans">
                 <span className="px-3 py-1 rounded-lg bg-primary/80 backdrop-blur-md border border-white/20">
-                  ✨ {lang === 'bn' ? 'প্রাকৃতিক রাজকীয় রাজকী জেলি সমৃদ্ধ' : 'Rich in Royal Jelly & Pollen'}
+                  {lang === 'bn' ? 'প্রাকৃতিক রয়্যাল জেলি ও পরাগ সমৃদ্ধ' : 'Rich in Royal Jelly & Pollen'}
                 </span>
               </div>
             </div>
