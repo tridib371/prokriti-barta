@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ShieldCheck, ArrowRight, UserPlus, LogIn, Sparkles, CheckCircle2, ChevronDown, Award, HeartHandshake, Leaf, Truck } from 'lucide-react';
+import { ShieldCheck, ArrowRight, UserPlus, LogIn, CheckCircle2, ChevronDown, Award, HeartHandshake, Leaf, Truck } from 'lucide-react';
 import AlponaDivider from '../components/ui/AlponaDivider';
 import Button from '../components/ui/Button';
 
@@ -46,7 +46,7 @@ export default function LandingPage() {
             {/* Hero Left Content */}
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent/15 border border-accent/30 text-xs font-bold text-accent">
-                <Sparkles size={15} />
+                <Leaf size={15} />
                 <span>বাংলাদেশের ১ নম্বর খাঁটি অর্গানিক প্ল্যাটফর্ম</span>
               </div>
 

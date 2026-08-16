@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Search, ShoppingBag, Heart, Menu, X, ChevronDown, Sparkles, LogIn, UserPlus, LogOut, LayoutGrid, Phone, ShieldCheck, User } from 'lucide-react';
+import { Search, ShoppingBag, Heart, Menu, X, ChevronDown, LogIn, UserPlus, LogOut, LayoutGrid, Phone, ShieldCheck, User } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
 import { useAuth } from '../../context/AuthContext';
@@ -48,7 +48,7 @@ export default function Navbar() {
             </span>
             <span className="hidden md:inline text-surface/30">|</span>
             <span className="hidden md:flex items-center gap-1.5 text-surface/90">
-              <Sparkles size={13} className="text-accent" />
+              <ShieldCheck size={13} className="text-accent" />
               {t('nav.announcement')}
             </span>
           </div>

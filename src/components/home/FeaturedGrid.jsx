@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import ProductCard from '../shop/ProductCard';
 import products from '../../data/products.json';
-import { Sparkles, ArrowRight } from 'lucide-react';
+import { Leaf, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Button from '../ui/Button';
 import { useLanguage } from '../../context/LanguageContext';
@@ -19,7 +19,7 @@ export default function FeaturedGrid() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
           <div>
             <div className="inline-flex items-center gap-1 text-xs font-bold text-accent uppercase tracking-wider mb-1">
-              <Sparkles size={14} /> {t('featured.tag')}
+              <Leaf size={14} /> {t('featured.tag')}
             </div>
             <h2 className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl text-primary">
               {t('featured.title')}

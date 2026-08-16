@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Droplet, Flame, Wheat, Sparkles, Coffee, Nut } from 'lucide-react';
+import { Droplet, Flame, Wheat, Leaf, Coffee, Nut } from 'lucide-react';
 import categories from '../../data/categories.json';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -9,7 +9,7 @@ const iconMap = {
   Droplet,
   Flame,
   Wheat,
-  Sparkles,
+  Leaf,
   Coffee,
   Nut
 };
@@ -35,7 +35,7 @@ export default function CategoryStrip() {
         {/* Scroll Snap Container */}
         <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-none">
           {categories.map((cat, idx) => {
-            const IconComponent = iconMap[cat.icon] || Sparkles;
+            const IconComponent = iconMap[cat.icon] || Leaf;
             return (
               <motion.div
                 key={cat.id}

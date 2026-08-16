@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Sparkles, ChevronLeft, ChevronRight, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Leaf, ChevronLeft, ChevronRight, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Button from '../ui/Button';
 import { useLanguage } from '../../context/LanguageContext';
@@ -75,7 +75,7 @@ export default function HeroSlider() {
               >
                 {/* Badge */}
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent/15 border border-accent/30 text-accent font-bold text-xs">
-                  <Sparkles size={14} />
+                  <Leaf size={14} />
                   <span>{slide.badge}</span>
                 </div>
 

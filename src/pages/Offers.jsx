@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tag, Sparkles } from 'lucide-react';
+import { Tag, Clock } from 'lucide-react';
 import CountdownTimer from '../components/ui/CountdownTimer';
 import ProductCard from '../components/shop/ProductCard';
 import productsData from '../data/products.json';
@@ -35,7 +35,7 @@ export default function Offers() {
 
           <div className="z-10 bg-surface/10 backdrop-blur-md p-4 rounded-2xl border border-surface/20 flex flex-col items-center gap-2">
             <span className="text-xs text-accent font-bold uppercase tracking-wider flex items-center gap-1">
-              <Sparkles size={14} /> {lang === 'bn' ? 'অফার শেষ হতে বাকি:' : 'Offer Ends In:'}
+              <Clock size={14} /> {lang === 'bn' ? 'অফার শেষ হতে বাকি:' : 'Offer Ends In:'}
             </span>
             <CountdownTimer />
           </div>
