@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { User, Mail, Phone, Lock, ArrowRight, CheckCircle2, Eye, EyeOff } from 'lucide-react';
+import { User, Mail, Phone, Lock, ArrowRight, CheckCircle2, Eye, EyeOff, ShieldCheck, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
@@ -17,6 +17,18 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
+
+  // Password strength calculation
+  const getPasswordStrength = () => {
+    if (!password) return 0;
+    let score = 0;
+    if (password.length >= 6) score += 1;
+    if (/[A-Z]/.test(password) || /[0-9]/.test(password)) score += 1;
+    if (/[^A-Za-z0-9]/.test(password) || password.length >= 8) score += 1;
+    return score;
+  };
+
+  const strength = getPasswordStrength();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -35,22 +47,22 @@ export default function Register() {
       {/* Ambient Animated Glow Blobs */}
       <motion.div
         animate={{
-          scale: [1, 1.15, 1],
-          opacity: [0.2, 0.35, 0.2],
-          x: [0, 20, 0],
-          y: [0, -20, 0],
+          scale: [1, 1.18, 1],
+          opacity: [0.18, 0.32, 0.18],
+          x: [0, 25, 0],
+          y: [0, -25, 0],
         }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
         className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-accent/15 blur-3xl pointer-events-none"
       />
       <motion.div
         animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.15, 0.3, 0.15],
-          x: [0, -25, 0],
-          y: [0, 25, 0],
+          scale: [1, 1.22, 1],
+          opacity: [0.15, 0.28, 0.15],
+          x: [0, -30, 0],
+          y: [0, 30, 0],
         }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+        transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
         className="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-primary/20 blur-3xl pointer-events-none"
       />
 
@@ -77,33 +89,47 @@ export default function Register() {
 
             <div>
               <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-accent/20 text-accent font-bold text-xs rounded-full border border-accent/30 shadow-2xs leading-none">
-                <CheckCircle2 size={14} className="text-accent" />
+                <ShieldCheck size={14} className="text-accent" />
                 <span>{lang === 'bn' ? 'নতুন একাউন্ট' : 'Join Prokriti'}</span>
               </span>
             </div>
+
             <h2 className="font-display font-bold text-2xl lg:text-3xl text-surface leading-snug">
               {lang === 'bn' ? 'যুক্ত হন প্রকৃতির সাথে, শুরু হোক নতুন অভিজ্ঞতা' : 'Join Nature, Begin a Pure Journey'}
             </h2>
             <p className="text-xs text-surface/80 font-bn-sans leading-relaxed">
               {lang === 'bn' 
-                ? 'নতুন একাউন্ট খুলে পান দ্রুততম অর্ডার ও অর্গানিক লাইফস্টাইল সহায়তার সুবিধা।' 
-                : 'Create an account for faster ordering, order tracking, and exclusive organic health offers.'}
+                ? 'নতুন একাউন্ট খুলে পান দ্রুততম অর্ডার, অর্ডার ট্র্যাকিং ও সরাসরি অর্গানিক লাইফস্টাইল সহায়তার সুবিধা।' 
+                : 'Create an account for faster checkout, live tracking, and exclusive pure food privileges.'}
             </p>
           </div>
 
-          <div className="space-y-2.5 text-xs font-bn-sans text-surface/85 z-10 pt-6 border-t border-white/10">
-            <p className="flex items-center gap-2">
-              <CheckCircle2 size={15} className="text-accent shrink-0" />
-              <span>{lang === 'bn' ? '৳১০০০+ অর্ডারে সারা দেশে ফ্রি শিপিং' : 'Free Shipping Nationwide on ৳1000+'}</span>
-            </p>
-            <p className="flex items-center gap-2">
-              <CheckCircle2 size={15} className="text-accent shrink-0" />
-              <span>{lang === 'bn' ? '১০০% ক্যাশ অন ডেলিভারি সুবিধা' : '100% Cash on Delivery (COD)'}</span>
-            </p>
-            <p className="flex items-center gap-2">
-              <CheckCircle2 size={15} className="text-accent shrink-0" />
-              <span>{lang === 'bn' ? '১০০% খাঁটি ও নিরাপদ অর্গানিক পণ্য' : '100% Tested Pure Organic Food'}</span>
-            </p>
+          <div className="space-y-3 z-10 pt-6 border-t border-white/10">
+            <div className="space-y-2 text-xs font-bn-sans text-surface/85">
+              <p className="flex items-center gap-2">
+                <CheckCircle2 size={15} className="text-accent shrink-0" />
+                <span>{lang === 'bn' ? '৳১০০০+ অর্ডারে সারা দেশে ফ্রি শিপিং' : 'Free Shipping Nationwide on ৳1000+'}</span>
+              </p>
+              <p className="flex items-center gap-2">
+                <CheckCircle2 size={15} className="text-accent shrink-0" />
+                <span>{lang === 'bn' ? '১০০% ক্যাশ অন ডেলিভারি সুবিধা' : '100% Cash on Delivery (COD)'}</span>
+              </p>
+              <p className="flex items-center gap-2">
+                <CheckCircle2 size={15} className="text-accent shrink-0" />
+                <span>{lang === 'bn' ? '১০০% খাঁটি ও নিরাপদ অর্গানিক পণ্য' : '100% Tested Pure Organic Food'}</span>
+              </p>
+            </div>
+
+            <div className="pt-3 flex items-center gap-2 text-[11px] text-surface/75 bg-white/5 p-2.5 rounded-xl border border-white/10">
+              <div className="flex text-amber-400">
+                <Star size={13} fill="currentColor" />
+                <Star size={13} fill="currentColor" />
+                <Star size={13} fill="currentColor" />
+                <Star size={13} fill="currentColor" />
+                <Star size={13} fill="currentColor" />
+              </div>
+              <span>{lang === 'bn' ? '৪.৯/৫ কাস্টমার ট্রাস্ট রেটিং' : '4.9/5 Customer Trust Rating'}</span>
+            </div>
           </div>
         </div>
 
@@ -118,13 +144,13 @@ export default function Register() {
             <motion.div
               initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-accent-2/15 border border-accent-2 text-accent-2 text-xs p-3 rounded-2xl font-medium"
+              className="bg-accent-2/15 border border-accent-2 text-accent-2 text-xs p-3.5 rounded-2xl font-medium"
             >
               {error}
             </motion.div>
           )}
 
-          <form onSubmit={handleRegister} className="space-y-3.5 text-xs font-bn-sans">
+          <form onSubmit={handleRegister} className="space-y-3 text-xs font-bn-sans">
             <div className="space-y-1">
               <label className="block font-bold text-ink text-xs">{t('register.name')} *</label>
               <div className="relative group">
@@ -190,6 +216,22 @@ export default function Register() {
                   {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
+
+              {/* Password Strength Indicator */}
+              {password && (
+                <div className="pt-1 flex items-center gap-1.5">
+                  <div className="flex-1 h-1 bg-line rounded-full overflow-hidden flex gap-1">
+                    <div className={`h-full flex-1 transition-all ${strength >= 1 ? (strength === 1 ? 'bg-amber-500' : 'bg-emerald-500') : 'bg-transparent'}`} />
+                    <div className={`h-full flex-1 transition-all ${strength >= 2 ? (strength === 2 ? 'bg-emerald-500' : 'bg-emerald-600') : 'bg-transparent'}`} />
+                    <div className={`h-full flex-1 transition-all ${strength >= 3 ? 'bg-emerald-600' : 'bg-transparent'}`} />
+                  </div>
+                  <span className="text-[10px] text-muted">
+                    {strength === 1 && (lang === 'bn' ? 'সাধারণ' : 'Weak')}
+                    {strength === 2 && (lang === 'bn' ? 'মাঝারি' : 'Good')}
+                    {strength === 3 && (lang === 'bn' ? 'শক্তিশালী' : 'Strong')}
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* Short Centered Register Button */}
