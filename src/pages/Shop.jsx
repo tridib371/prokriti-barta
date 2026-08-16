@@ -15,9 +15,11 @@ export default function Shop() {
   const categoryParam = searchParams.get('category') || '';
   const queryParam = searchParams.get('q') || '';
   const sortParam = searchParams.get('sort') || 'featured';
+  const tabParam = searchParams.get('tab') || 'all';
 
   const [searchQuery, setSearchQuery] = useState(queryParam);
   const [selectedCategory, setSelectedCategory] = useState(categoryParam);
+  const [activeTab, setActiveTab] = useState(tabParam);
   const [sortBy, setSortBy] = useState(sortParam);
   const [priceRange, setPriceRange] = useState(1500);
   const [minRating, setMinRating] = useState(0);
@@ -28,12 +30,13 @@ export default function Shop() {
     setSelectedCategory(categoryParam);
     setSearchQuery(queryParam);
     setSortBy(sortParam);
-  }, [categoryParam, queryParam, sortParam]);
+    setActiveTab(tabParam);
+  }, [categoryParam, queryParam, sortParam, tabParam]);
 
   // Update URL params
   const updateUrlParams = (key, value) => {
     const newParams = new URLSearchParams(searchParams);
-    if (value) {
+    if (value && value !== 'all') {
       newParams.set(key, value);
     } else {
       newParams.delete(key);
@@ -44,6 +47,11 @@ export default function Shop() {
   const handleCategoryChange = (catSlug) => {
     setSelectedCategory(catSlug);
     updateUrlParams('category', catSlug);
+  };
+
+  const handleTabChange = (tabKey) => {
+    setActiveTab(tabKey);
+    updateUrlParams('tab', tabKey);
   };
 
   const handleSortChange = (e) => {
@@ -60,6 +68,7 @@ export default function Shop() {
   const handleResetFilters = () => {
     setSelectedCategory('');
     setSearchQuery('');
+    setActiveTab('all');
     setSortBy('featured');
     setPriceRange(1500);
     setMinRating(0);
@@ -70,6 +79,11 @@ export default function Shop() {
   const filteredProducts = useMemo(() => {
     return productsData
       .filter((p) => {
+        // Tab filter (New, Discount, Bestseller)
+        if (activeTab === 'new' && !p.isNew && !p.tags?.includes('New')) return false;
+        if (activeTab === 'discount' && (!p.originalPrice || p.originalPrice <= p.price)) return false;
+        if (activeTab === 'bestseller' && !p.isFeatured && !p.tags?.includes('Bestseller')) return false;
+
         // Category filter
         if (selectedCategory && p.category !== selectedCategory) {
           const matchedCat = categoriesData.find(c => c.slug === selectedCategory);
@@ -78,8 +92,8 @@ export default function Shop() {
         // Search filter
         if (searchQuery.trim()) {
           const q = searchQuery.toLowerCase().trim();
-          const matchName = p.name.toLowerCase().includes(q) || p.bnName.includes(q);
-          const matchDesc = p.shortDesc.toLowerCase().includes(q);
+          const matchName = p.name.toLowerCase().includes(q) || (p.bnName && p.bnName.toLowerCase().includes(q));
+          const matchDesc = p.shortDesc && p.shortDesc.toLowerCase().includes(q);
           if (!matchName && !matchDesc) return false;
         }
         // Price range
@@ -93,10 +107,15 @@ export default function Shop() {
         if (sortBy === 'price-low') return a.price - b.price;
         if (sortBy === 'price-high') return b.price - a.price;
         if (sortBy === 'rating') return b.rating - a.rating;
-        if (sortBy === 'newest') return b.isNew ? 1 : -1;
+        if (sortBy === 'newest') return (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0);
+        if (sortBy === 'discount') {
+          const discA = a.originalPrice ? ((a.originalPrice - a.price) / a.originalPrice) : 0;
+          const discB = b.originalPrice ? ((b.originalPrice - b.price) / b.originalPrice) : 0;
+          return discB - discA;
+        }
         return 0; // featured default
       });
-  }, [selectedCategory, searchQuery, priceRange, minRating, sortBy]);
+  }, [selectedCategory, activeTab, searchQuery, priceRange, minRating, sortBy]);
 
   return (
     <motion.div
@@ -118,49 +137,97 @@ export default function Shop() {
         </div>
 
         {/* Top Control Bar */}
-        <div className="bg-surface border border-line rounded-2xl p-4 mb-6 flex flex-wrap items-center justify-between gap-4">
-          {/* Search Box */}
-          <div className="relative flex-1 min-w-[240px]">
-            <input
-              type="text"
-              placeholder={t('nav.search.mobile')}
-              value={searchQuery}
-              onChange={(e) => handleSearchChange(e.target.value)}
-              className="w-full bg-bg text-ink text-sm px-4 py-2 pl-9 rounded-xl border border-line focus:border-accent outline-none"
-            />
-            <Search size={16} className="absolute left-3 top-2.5 text-muted" />
-            {searchQuery && (
-              <button onClick={() => handleSearchChange('')} className="absolute right-3 top-2.5 text-xs text-muted">
-                <X size={14} />
+        <div className="bg-surface border border-line rounded-2xl p-4 mb-6 space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            {/* Search Box */}
+            <div className="relative flex-1 min-w-[240px]">
+              <input
+                type="text"
+                placeholder={t('nav.search.mobile')}
+                value={searchQuery}
+                onChange={(e) => handleSearchChange(e.target.value)}
+                className="w-full bg-bg text-ink text-sm px-4 py-2 pl-9 rounded-xl border border-line focus:border-accent outline-none"
+              />
+              <Search size={16} className="absolute left-3 top-2.5 text-muted" />
+              {searchQuery && (
+                <button onClick={() => handleSearchChange('')} className="absolute right-3 top-2.5 text-xs text-muted hover:text-ink cursor-pointer">
+                  <X size={14} />
+                </button>
+              )}
+            </div>
+
+            {/* Right Controls */}
+            <div className="flex items-center gap-3">
+              {/* Mobile Filter Button */}
+              <button
+                onClick={() => setMobileFilterOpen(true)}
+                className="lg:hidden px-3.5 py-2 bg-bg border border-line rounded-xl text-xs font-semibold text-ink flex items-center gap-1.5 cursor-pointer"
+              >
+                <SlidersHorizontal size={15} /> {t('shop.filter.title')}
               </button>
-            )}
+
+              {/* Sort Dropdown */}
+              <div className="flex items-center gap-2">
+                <ArrowUpDown size={15} className="text-muted hidden sm:inline" />
+                <select
+                  value={sortBy}
+                  onChange={handleSortChange}
+                  className="bg-bg text-ink text-xs font-semibold px-3 py-2 rounded-xl border border-line focus:border-accent outline-none cursor-pointer"
+                >
+                  <option value="featured">{t('shop.sort.default')}</option>
+                  <option value="newest">{lang === 'bn' ? 'নতুন পণ্য আগে' : 'Newest Arrivals'}</option>
+                  <option value="discount">{lang === 'bn' ? 'সর্বোচ্চ ছাড়' : 'Highest Discount'}</option>
+                  <option value="price-low">{t('shop.sort.priceLow')}</option>
+                  <option value="price-high">{t('shop.sort.priceHigh')}</option>
+                  <option value="rating">{t('shop.sort.rating')}</option>
+                </select>
+              </div>
+            </div>
           </div>
 
-          {/* Right Controls */}
-          <div className="flex items-center gap-3">
-            {/* Mobile Filter Button */}
+          {/* Quick Collection Filter Tabs */}
+          <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-line/60 text-xs font-bn-sans">
+            <span className="text-muted font-bold text-[11px] uppercase tracking-wider">{lang === 'bn' ? 'কালেকশন:' : 'Collections:'}</span>
             <button
-              onClick={() => setMobileFilterOpen(true)}
-              className="lg:hidden px-3.5 py-2 bg-bg border border-line rounded-xl text-xs font-semibold text-ink flex items-center gap-1.5"
+              onClick={() => handleTabChange('all')}
+              className={`px-3.5 py-1.5 rounded-full font-bold transition-all cursor-pointer ${
+                activeTab === 'all'
+                  ? 'bg-primary text-white shadow-xs'
+                  : 'bg-bg text-ink border border-line hover:border-accent'
+              }`}
             >
-              <SlidersHorizontal size={15} /> {t('shop.filter.title')}
+              {lang === 'bn' ? 'সকল পণ্য' : 'All Products'}
             </button>
-
-            {/* Sort Dropdown */}
-            <div className="flex items-center gap-2">
-              <ArrowUpDown size={15} className="text-muted hidden sm:inline" />
-              <select
-                value={sortBy}
-                onChange={handleSortChange}
-                className="bg-bg text-ink text-xs font-semibold px-3 py-2 rounded-xl border border-line focus:border-accent outline-none cursor-pointer"
-              >
-                <option value="featured">{t('shop.sort.default')}</option>
-                <option value="price-low">{t('shop.sort.priceLow')}</option>
-                <option value="price-high">{t('shop.sort.priceHigh')}</option>
-                <option value="rating">{t('shop.sort.rating')}</option>
-                <option value="newest">{t('badge.new')}</option>
-              </select>
-            </div>
+            <button
+              onClick={() => handleTabChange('new')}
+              className={`px-3.5 py-1.5 rounded-full font-bold transition-all cursor-pointer ${
+                activeTab === 'new'
+                  ? 'bg-accent text-white shadow-xs'
+                  : 'bg-bg text-ink border border-line hover:border-accent'
+              }`}
+            >
+              {lang === 'bn' ? 'নতুন পণ্য' : 'New Arrivals'}
+            </button>
+            <button
+              onClick={() => handleTabChange('discount')}
+              className={`px-3.5 py-1.5 rounded-full font-bold transition-all cursor-pointer ${
+                activeTab === 'discount'
+                  ? 'bg-emerald-600 text-white shadow-xs'
+                  : 'bg-bg text-emerald-700 dark:text-emerald-400 border border-emerald-500/30 hover:border-emerald-500'
+              }`}
+            >
+              {lang === 'bn' ? 'বিশেষ ছাড় ও অফার' : 'Discounted Deals'}
+            </button>
+            <button
+              onClick={() => handleTabChange('bestseller')}
+              className={`px-3.5 py-1.5 rounded-full font-bold transition-all cursor-pointer ${
+                activeTab === 'bestseller'
+                  ? 'bg-primary text-white shadow-xs'
+                  : 'bg-bg text-ink border border-line hover:border-accent'
+              }`}
+            >
+              {lang === 'bn' ? 'জনপ্রিয় পণ্য' : 'Bestsellers'}
+            </button>
           </div>
         </div>
 
@@ -172,6 +239,8 @@ export default function Shop() {
             <FilterSidebar
               selectedCategory={selectedCategory}
               setSelectedCategory={handleCategoryChange}
+              activeTab={activeTab}
+              setActiveTab={handleTabChange}
               priceRange={priceRange}
               setPriceRange={setPriceRange}
               minRating={minRating}
@@ -183,9 +252,17 @@ export default function Shop() {
           {/* Product Grid */}
           <div className="lg:col-span-3">
             {/* Active Filters Bar */}
-            {(selectedCategory || searchQuery || minRating > 0 || priceRange < 1500) && (
+            {(selectedCategory || searchQuery || activeTab !== 'all' || minRating > 0 || priceRange < 1500) && (
               <div className="flex flex-wrap items-center gap-2 mb-4 bg-surface p-3 rounded-xl border border-line text-xs">
                 <span className="text-muted font-bold">{lang === 'bn' ? 'এক্টিভ ফিল্টার:' : 'Active Filters:'}</span>
+                {activeTab !== 'all' && (
+                  <span className="bg-accent/20 text-accent font-semibold px-2.5 py-1 rounded-full flex items-center gap-1">
+                    {activeTab === 'new' && (lang === 'bn' ? 'নতুন পণ্য' : 'New Arrivals')}
+                    {activeTab === 'discount' && (lang === 'bn' ? 'বিশেষ ছাড়' : 'Discount Deals')}
+                    {activeTab === 'bestseller' && (lang === 'bn' ? 'জনপ্রিয়' : 'Bestsellers')}
+                    <X size={12} className="cursor-pointer" onClick={() => handleTabChange('all')} />
+                  </span>
+                )}
                 {selectedCategory && (
                   <span className="bg-accent/20 text-accent font-semibold px-2.5 py-1 rounded-full flex items-center gap-1">
                     {selectedCategory}
@@ -199,13 +276,22 @@ export default function Shop() {
                   </span>
                 )}
                 {minRating > 0 && (
-                  <span className="bg-bg border border-line text-ink font-semibold px-2.5 py-1 rounded-full flex items-center gap-1">
-                    <span className="flex items-center gap-0.5">{minRating}+ <Star size={11} className="fill-accent text-accent inline" /></span>
+                  <span className="bg-amber-500/15 text-amber-800 dark:text-amber-300 font-semibold px-2.5 py-1 rounded-full flex items-center gap-1">
+                    {n(minRating)}+ <Star size={10} className="fill-current inline" />
                     <X size={12} className="cursor-pointer" onClick={() => setMinRating(0)} />
                   </span>
                 )}
-                <button onClick={handleResetFilters} className="text-accent-2 underline font-semibold ml-auto">
-                  {lang === 'bn' ? 'সব মুছুন' : 'Clear All'}
+                {priceRange < 1500 && (
+                  <span className="bg-line text-ink font-semibold px-2.5 py-1 rounded-full flex items-center gap-1">
+                    ≤ ৳{n(priceRange)}
+                    <X size={12} className="cursor-pointer" onClick={() => setPriceRange(1500)} />
+                  </span>
+                )}
+                <button
+                  onClick={handleResetFilters}
+                  className="text-xs text-accent-2 font-bold hover:underline ml-auto"
+                >
+                  {t('shop.resetFilter')}
                 </button>
               </div>
             )}
@@ -256,6 +342,8 @@ export default function Shop() {
               <FilterSidebar
                 selectedCategory={selectedCategory}
                 setSelectedCategory={(cat) => { handleCategoryChange(cat); setMobileFilterOpen(false); }}
+                activeTab={activeTab}
+                setActiveTab={(tab) => { handleTabChange(tab); setMobileFilterOpen(false); }}
                 priceRange={priceRange}
                 setPriceRange={setPriceRange}
                 minRating={minRating}

@@ -6,6 +6,8 @@ import { useLanguage } from '../../context/LanguageContext';
 export default function FilterSidebar({
   selectedCategory,
   setSelectedCategory,
+  activeTab = 'all',
+  setActiveTab = () => {},
   priceRange,
   setPriceRange,
   minRating,
@@ -22,14 +24,39 @@ export default function FilterSidebar({
         </h3>
         <button
           onClick={onResetFilters}
-          className="text-xs text-accent-2 hover:underline flex items-center gap-1 font-medium"
+          className="text-xs text-accent-2 hover:underline flex items-center gap-1 font-medium cursor-pointer"
         >
           <RotateCcw size={12} /> {t('shop.resetFilter')}
         </button>
       </div>
 
-      {/* Category List */}
+      {/* Special Collections */}
       <div className="space-y-2">
+        <h4 className="font-bold text-xs uppercase tracking-wider text-muted font-sans">{lang === 'bn' ? 'বিশেষ কালেকশন' : 'Collections'}</h4>
+        <div className="space-y-1 text-xs">
+          {[
+            { id: 'all', labelBn: 'সকল পণ্য', labelEn: 'All Products' },
+            { id: 'new', labelBn: 'নতুন পণ্য (New)', labelEn: 'New Arrivals' },
+            { id: 'discount', labelBn: 'বিশেষ ছাড় ও অফার (Discount)', labelEn: 'On Sale & Discount' },
+            { id: 'bestseller', labelBn: 'জনপ্রিয় পণ্য (Bestsellers)', labelEn: 'Top Bestsellers' }
+          ].map((item) => (
+            <button
+              key={item.id}
+              onClick={() => setActiveTab(item.id)}
+              className={`w-full text-left px-3 py-2 rounded-xl transition-colors flex items-center justify-between cursor-pointer ${
+                activeTab === item.id 
+                  ? (item.id === 'discount' ? 'bg-emerald-600/15 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/20' : 'bg-accent/15 text-accent font-bold') 
+                  : 'text-ink hover:bg-bg'
+              }`}
+            >
+              <span>{lang === 'bn' ? item.labelBn : item.labelEn}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Category List */}
+      <div className="space-y-2 pt-3 border-t border-line">
         <h4 className="font-bold text-xs uppercase tracking-wider text-muted font-sans">{t('shop.filter.category')}</h4>
         <div className="space-y-1 text-xs">
           <button

@@ -17,6 +17,8 @@ export default function ProductCard({ product }) {
   const discountPercent = product.originalPrice
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
     : 0;
+  const isNewProduct = product.isNew || product.tags?.includes('New');
+  const isBestsellerProduct = product.isBestseller || product.tags?.includes('Bestseller');
 
   return (
     <motion.div
@@ -34,15 +36,15 @@ export default function ProductCard({ product }) {
 
         {/* Image Badges */}
         <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between pointer-events-none z-10">
-          <div className="flex flex-col gap-1 pointer-events-auto">
+          <div className="flex flex-col gap-1 pointer-events-auto items-start">
             {discountPercent > 0 && (
               <Badge variant="discount">-{discountPercent}% {t('badge.off')}</Badge>
             )}
-            {product.isBestseller && (
-              <Badge variant="bestseller">{t('badge.bestseller')}</Badge>
-            )}
-            {product.isNew && !product.isBestseller && (
+            {isNewProduct && (
               <Badge variant="new">{t('badge.new')}</Badge>
+            )}
+            {isBestsellerProduct && !isNewProduct && (
+              <Badge variant="bestseller">{t('badge.bestseller')}</Badge>
             )}
           </div>
 
