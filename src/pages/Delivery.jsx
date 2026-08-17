@@ -479,13 +479,13 @@ export default function Delivery() {
                 {calcDeliveryFee() === 0 ? <Truck size={24} /> : <Calculator size={24} />}
               </div>
               <div>
-                <span className="text-xs text-white/80 font-bn-sans">
+                <span className="text-xs text-white/80 font-bn-sans block">
                   {lang === 'bn' ? 'আপনার আনুমানিক ডেলিভারি চার্জ:' : 'Your Estimated Shipping Fee:'}
                 </span>
-                <div className="font-bn-sans font-bold text-xl sm:text-2xl text-white">
+                <div className="font-bn-sans font-bold text-2xl sm:text-3xl text-white mt-0.5">
                   {calcDeliveryFee() === null ? (
-                    <span className="text-white/70 text-base sm:text-lg">
-                      {lang === 'bn' ? '-- এলাকা ও পরিমাণ দিন --' : '-- Select Area & Value --'}
+                    <span className="text-accent tracking-wider font-bold">
+                      ৳--
                     </span>
                   ) : calcDeliveryFee() === 0 ? (
                     <span className="text-emerald-400 font-bold">
