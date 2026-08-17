@@ -28,42 +28,46 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             
-            <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-surface border border-line shadow-2xs hover:border-primary/40 hover:shadow-xs transition-all">
-              <div className="w-11 h-11 rounded-xl bg-accent/15 text-accent flex items-center justify-center shrink-0">
+            <div className="group relative flex items-center gap-3.5 p-4 rounded-2xl bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent shadow-[0_4px_14px_-3px_rgba(27,59,43,0.08)] hover:shadow-[0_12px_24px_-6px_rgba(232,152,20,0.2)] hover:-translate-y-1.5 transition-all duration-300 overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-accent-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="w-12 h-12 rounded-xl bg-primary text-accent flex items-center justify-center shrink-0 shadow-md shadow-primary/20 group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
                 <ShieldCheck size={24} />
               </div>
               <div>
-                <h4 className="font-bold text-sm text-primary">{t('footer.pure.title')}</h4>
-                <p className="text-xs text-muted font-bn-sans">{t('footer.pure.sub')}</p>
+                <h4 className="font-bold text-sm text-primary group-hover:text-accent transition-colors">{t('footer.pure.title')}</h4>
+                <p className="text-xs text-ink/75 font-bn-sans">{t('footer.pure.sub')}</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-surface border border-line shadow-2xs hover:border-primary/40 hover:shadow-xs transition-all">
-              <div className="w-11 h-11 rounded-xl bg-accent/15 text-accent flex items-center justify-center shrink-0">
+            <div className="group relative flex items-center gap-3.5 p-4 rounded-2xl bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent shadow-[0_4px_14px_-3px_rgba(27,59,43,0.08)] hover:shadow-[0_12px_24px_-6px_rgba(232,152,20,0.2)] hover:-translate-y-1.5 transition-all duration-300 overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-accent-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="w-12 h-12 rounded-xl bg-primary text-accent flex items-center justify-center shrink-0 shadow-md shadow-primary/20 group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
                 <Truck size={24} />
               </div>
               <div>
-                <h4 className="font-bold text-sm text-primary">{t('footer.cod.title')}</h4>
-                <p className="text-xs text-muted font-bn-sans">{t('footer.cod.sub')}</p>
+                <h4 className="font-bold text-sm text-primary group-hover:text-accent transition-colors">{t('footer.cod.title')}</h4>
+                <p className="text-xs text-ink/75 font-bn-sans">{t('footer.cod.sub')}</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-surface border border-line shadow-2xs hover:border-primary/40 hover:shadow-xs transition-all">
-              <div className="w-11 h-11 rounded-xl bg-accent/15 text-accent flex items-center justify-center shrink-0">
+            <div className="group relative flex items-center gap-3.5 p-4 rounded-2xl bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent shadow-[0_4px_14px_-3px_rgba(27,59,43,0.08)] hover:shadow-[0_12px_24px_-6px_rgba(232,152,20,0.2)] hover:-translate-y-1.5 transition-all duration-300 overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-accent-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="w-12 h-12 rounded-xl bg-primary text-accent flex items-center justify-center shrink-0 shadow-md shadow-primary/20 group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
                 <RefreshCw size={24} />
               </div>
               <div>
-                <h4 className="font-bold text-sm text-primary">{t('footer.return.title')}</h4>
-                <p className="text-xs text-muted font-bn-sans">{t('footer.return.sub')}</p>
+                <h4 className="font-bold text-sm text-primary group-hover:text-accent transition-colors">{t('footer.return.title')}</h4>
+                <p className="text-xs text-ink/75 font-bn-sans">{t('footer.return.sub')}</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-surface border border-line shadow-2xs hover:border-primary/40 hover:shadow-xs transition-all">
-              <div className="w-11 h-11 rounded-xl bg-accent/15 text-accent flex items-center justify-center shrink-0">
+            <div className="group relative flex items-center gap-3.5 p-4 rounded-2xl bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent shadow-[0_4px_14px_-3px_rgba(27,59,43,0.08)] hover:shadow-[0_12px_24px_-6px_rgba(232,152,20,0.2)] hover:-translate-y-1.5 transition-all duration-300 overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-accent-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="w-12 h-12 rounded-xl bg-primary text-accent flex items-center justify-center shrink-0 shadow-md shadow-primary/20 group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
                 <Phone size={24} />
               </div>
               <div>
-                <h4 className="font-bold text-sm text-primary">{t('footer.support.title')}</h4>
+                <h4 className="font-bold text-sm text-primary group-hover:text-accent transition-colors">{t('footer.support.title')}</h4>
                 <Link to="/contact" className="text-xs text-accent font-bold hover:underline">
                   {n('+880 1717-279166')}
                 </Link>

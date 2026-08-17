@@ -224,37 +224,47 @@ export default function Delivery() {
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.1 }}
-                className="bg-surface border border-line rounded-3xl p-6 flex flex-col justify-between space-y-4 shadow-2xs hover:shadow-md hover:border-accent/40 transition-all group"
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 350, damping: 22, delay: idx * 0.08 }}
+                className="group relative bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent rounded-3xl p-6 flex flex-col justify-between space-y-4 shadow-[0_4px_18px_-4px_rgba(27,59,43,0.08)] hover:shadow-[0_16px_32px_-6px_rgba(232,152,20,0.22)] transition-all duration-300 overflow-hidden cursor-default"
               >
-                <div className="space-y-3">
+                {/* Top Accent Gradient Border Strip on Hover */}
+                <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary via-accent to-accent-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute -top-20 -right-20 w-40 h-40 bg-accent/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500 pointer-events-none" />
+
+                <div className="space-y-3 relative z-10">
                   <div className="flex items-center justify-between">
-                    <span className="px-2.5 py-1 rounded-lg bg-accent/15 text-accent text-[11px] font-bold">
+                    <span className="px-3 py-1 rounded-full bg-primary text-white text-[11px] font-bold shadow-xs">
                       {zone.badge}
                     </span>
-                    <Clock size={16} className="text-muted group-hover:text-accent transition-colors" />
+                    <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-all">
+                      <Clock size={16} />
+                    </div>
                   </div>
 
-                  <h3 className="font-display font-bold text-lg text-primary leading-snug">
+                  <h3 className="font-display font-bold text-lg text-primary leading-snug group-hover:text-accent transition-colors duration-200">
                     {lang === 'bn' ? zone.titleBn : zone.titleEn}
                   </h3>
 
-                  <div className="space-y-1 pt-1">
-                    <div className="text-xs text-accent font-bold font-bn-sans">
-                      ⏱ {lang === 'bn' ? 'সময়:' : 'Time:'} {lang === 'bn' ? zone.timeBn : zone.timeEn}
+                  <div className="space-y-1.5 pt-1">
+                    <div className="flex items-center gap-1.5 text-xs text-accent font-bold font-bn-sans">
+                      <Clock size={13} className="shrink-0" />
+                      <span>{lang === 'bn' ? 'সময়:' : 'Time:'} {lang === 'bn' ? zone.timeBn : zone.timeEn}</span>
                     </div>
-                    <div className="text-xs text-primary font-bold font-bn-sans">
-                      🚚 {lang === 'bn' ? 'চার্জ:' : 'Rate:'} {lang === 'bn' ? zone.chargeBn : zone.chargeEn}
+                    <div className="flex items-center gap-1.5 text-xs text-primary font-bold font-bn-sans">
+                      <Truck size={13} className="shrink-0 text-accent" />
+                      <span>{lang === 'bn' ? 'চার্জ:' : 'Rate:'} {lang === 'bn' ? zone.chargeBn : zone.chargeEn}</span>
                     </div>
                   </div>
 
-                  <p className="text-xs text-muted font-bn-sans leading-relaxed pt-2 border-t border-line/60">
+                  <p className="text-xs text-ink/75 font-bn-sans leading-relaxed pt-2 border-t border-primary/10">
                     {lang === 'bn' ? zone.descBn : zone.descEn}
                   </p>
                 </div>
 
-                <div className="pt-2 text-[11px] text-accent font-bold flex items-center gap-1 font-bn-sans">
-                  <CheckCircle2 size={13} /> {lang === 'bn' ? 'ক্যাশ অন ডেলিভারি প্রযোজ্য' : 'COD Available'}
+                <div className="pt-2 text-[11px] text-accent font-bold flex items-center gap-1.5 font-bn-sans relative z-10">
+                  <CheckCircle2 size={14} className="text-accent" />
+                  <span>{lang === 'bn' ? 'ক্যাশ অন ডেলিভারি প্রযোজ্য' : 'COD Available'}</span>
                 </div>
               </motion.div>
             ))}
@@ -264,8 +274,10 @@ export default function Delivery() {
         {/* Step-by-step Fulfillment Process */}
         <div className="bg-surface border border-line rounded-3xl p-6 sm:p-10 space-y-8 shadow-xs">
           <div className="text-center max-w-xl mx-auto space-y-2">
-            <span className="text-xs font-bold text-accent uppercase tracking-wider">{lang === 'bn' ? 'অর্ডার প্রক্রিয়া' : 'Order Journey'}</span>
-            <h2 className="font-display font-bold text-2xl sm:text-3xl text-primary">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/15 border border-accent/30 text-accent font-bold text-xs uppercase tracking-wider">
+              {lang === 'bn' ? 'অর্ডার প্রক্রিয়া' : 'Order Journey'}
+            </span>
+            <h2 className="font-display font-bold text-2xl sm:text-3xl text-primary mt-1">
               {lang === 'bn' ? 'প্যাকেজিং থেকে হোম ডেলিভারি ধাপসমূহ' : '4-Step Safe Delivery Process'}
             </h2>
           </div>
@@ -274,22 +286,29 @@ export default function Delivery() {
             {processSteps.map((step, idx) => {
               const IconComponent = step.icon;
               return (
-                <div key={idx} className="relative p-5 rounded-2xl bg-bg/50 border border-line space-y-3">
-                  <div className="flex items-center justify-between">
-                    <div className="w-10 h-10 rounded-xl bg-accent/15 text-accent flex items-center justify-center font-bold">
-                      <IconComponent size={20} />
+                <motion.div
+                  key={idx}
+                  whileHover={{ y: -6, scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 350, damping: 22 }}
+                  className="group relative p-6 rounded-3xl bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent space-y-3.5 shadow-[0_4px_18px_-4px_rgba(27,59,43,0.08)] hover:shadow-[0_16px_32px_-6px_rgba(232,152,20,0.22)] transition-all duration-300 overflow-hidden cursor-default"
+                >
+                  <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary via-accent to-accent-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  <div className="flex items-center justify-between relative z-10">
+                    <div className="w-13 h-13 rounded-2xl bg-primary text-accent flex items-center justify-center font-bold shadow-md shadow-primary/20 group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                      <IconComponent size={24} />
                     </div>
-                    <span className="font-display font-extrabold text-2xl text-muted/30">
+                    <span className="font-display font-extrabold text-2xl text-primary/15 group-hover:text-accent/30 transition-colors">
                       {step.step}
                     </span>
                   </div>
-                  <h3 className="font-display font-bold text-base text-primary">
+                  <h3 className="font-display font-bold text-base text-primary group-hover:text-accent transition-colors relative z-10">
                     {lang === 'bn' ? step.titleBn : step.titleEn}
                   </h3>
-                  <p className="text-xs text-muted font-bn-sans leading-relaxed">
+                  <p className="text-xs sm:text-[13px] text-ink/75 font-bn-sans leading-relaxed relative z-10">
                     {lang === 'bn' ? step.descBn : step.descEn}
                   </p>
-                </div>
+                </motion.div>
               );
             })}
           </div>
@@ -369,17 +388,24 @@ export default function Delivery() {
           {safetyFeatures.map((feat, idx) => {
             const IconComponent = feat.icon;
             return (
-              <div key={idx} className="bg-surface border border-line rounded-3xl p-6 space-y-3 shadow-2xs">
-                <div className="w-12 h-12 rounded-2xl bg-accent/15 text-accent flex items-center justify-center font-bold">
+              <motion.div
+                key={idx}
+                whileHover={{ y: -6, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 350, damping: 22 }}
+                className="group relative bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent rounded-3xl p-6 space-y-3.5 shadow-[0_4px_18px_-4px_rgba(27,59,43,0.08)] hover:shadow-[0_16px_32px_-6px_rgba(232,152,20,0.22)] transition-all duration-300 overflow-hidden cursor-default"
+              >
+                <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary via-accent to-accent-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                <div className="w-13 h-13 rounded-2xl bg-primary text-accent flex items-center justify-center font-bold shadow-md shadow-primary/20 group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 relative z-10">
                   <IconComponent size={24} />
                 </div>
-                <h3 className="font-display font-bold text-lg text-primary">
+                <h3 className="font-display font-bold text-lg text-primary group-hover:text-accent transition-colors relative z-10">
                   {lang === 'bn' ? feat.titleBn : feat.titleEn}
                 </h3>
-                <p className="text-xs text-muted font-bn-sans leading-relaxed">
+                <p className="text-xs sm:text-[13px] text-ink/75 font-bn-sans leading-relaxed relative z-10">
                   {lang === 'bn' ? feat.descBn : feat.descEn}
                 </p>
-              </div>
+              </motion.div>
             );
           })}
         </div>
