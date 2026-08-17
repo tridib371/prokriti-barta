@@ -15,7 +15,7 @@ export default function BenefitsSection() {
       description: t('benefits.b1.desc'),
       tagBn: 'প্রাকৃতিক বিশুদ্ধতা',
       tagEn: '100% Organic',
-      path: '/shop',
+      path: '/promise/organic-purity',
       accent: 'from-emerald-500/10 to-primary/10'
     },
     {
@@ -24,7 +24,7 @@ export default function BenefitsSection() {
       description: t('benefits.b2.desc'),
       tagBn: 'ন্যায্য মূল্য ও কৃষক সম্মান',
       tagEn: 'Direct Fair Trade',
-      path: '/about',
+      path: '/promise/fair-trade',
       accent: 'from-amber-500/10 to-accent/10'
     },
     {
@@ -33,7 +33,7 @@ export default function BenefitsSection() {
       description: t('benefits.b3.desc'),
       tagBn: 'সনাতন বিলোনা ও ঘানি',
       tagEn: 'Vedic Heritage',
-      path: '/about',
+      path: '/promise/heritage-processing',
       accent: 'from-orange-500/10 to-accent-2/10'
     },
     {
@@ -42,7 +42,7 @@ export default function BenefitsSection() {
       description: t('benefits.b4.desc'),
       tagBn: 'ইকো-ফ্রেন্ডলি কাঁচের জার',
       tagEn: 'Eco Packaging',
-      path: '/delivery',
+      path: '/promise/eco-packaging',
       accent: 'from-teal-500/10 to-primary/10'
     }
   ];

@@ -117,6 +117,7 @@ export default function About() {
 
   const pillars = [
     {
+      slug: 'organic-purity',
       icon: ShieldCheck,
       titleBn: '১০০% ভেজালমুক্ত অঙ্গীকার',
       titleEn: 'Zero Chemical Guarantee',
@@ -124,6 +125,7 @@ export default function About() {
       descEn: 'Unadulterated food untouched by synthetic additives, lead oxides, or artificial colors.',
     },
     {
+      slug: 'fair-trade',
       icon: Users,
       titleBn: 'প্রান্তিক কৃষকের সরাসরি মর্যাদা',
       titleEn: 'Direct Fair-Trade Ecosystem',
@@ -131,6 +133,7 @@ export default function About() {
       descEn: 'Bypassing brokers to directly empower native honey-gatherers, dairy keepers, and growers.',
     },
     {
+      slug: 'heritage-processing',
       icon: Sun,
       titleBn: 'ঐতিহ্যবাহী লোকজ পদ্ধতি',
       titleEn: 'Ancient Processing Heritage',
@@ -138,6 +141,7 @@ export default function About() {
       descEn: 'Preserving century-old Bangladeshi food craft techniques for genuine authentic nutrition.',
     },
     {
+      slug: 'eco-packaging',
       icon: Heart,
       titleBn: 'পরিবারের দীর্ঘস্থায়ী সুস্থতা',
       titleEn: 'Family Wellness & Health',
@@ -285,29 +289,38 @@ export default function About() {
                   variants={itemVariants}
                   whileHover={{ y: -8, scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 350, damping: 22 }}
-                  className="group relative bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent rounded-3xl p-6 flex flex-col justify-between space-y-4 shadow-[0_4px_18px_-4px_rgba(27,59,43,0.08)] hover:shadow-[0_20px_40px_-8px_rgba(27,59,43,0.45)] transition-all duration-500 overflow-hidden cursor-default"
                 >
-                  {/* Full Card Gradient Background on Hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary via-[#224b37] to-[#11281c] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl z-0" />
-                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(232,152,20,0.25),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
+                  <Link
+                    to={`/promise/${p.slug}`}
+                    className="group relative bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent rounded-3xl p-6 flex flex-col justify-between h-full space-y-4 shadow-[0_4px_18px_-4px_rgba(27,59,43,0.08)] hover:shadow-[0_20px_40px_-8px_rgba(27,59,43,0.45)] transition-all duration-500 overflow-hidden cursor-pointer block"
+                  >
+                    {/* Full Card Gradient Background on Hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary via-[#224b37] to-[#11281c] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl z-0" />
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(232,152,20,0.25),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
 
-                  <div className="space-y-3 relative z-10">
-                    <div className="flex items-center justify-between">
-                      <div className="w-14 h-14 rounded-2xl bg-primary text-accent flex items-center justify-center font-bold shadow-md shadow-primary/20 group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                        <Icon size={26} />
+                    <div className="space-y-3 relative z-10">
+                      <div className="flex items-center justify-between">
+                        <div className="w-14 h-14 rounded-2xl bg-primary text-accent flex items-center justify-center font-bold shadow-md shadow-primary/20 group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                          <Icon size={26} />
+                        </div>
+                        <span className="font-display font-extrabold text-2xl text-primary/20 group-hover:text-accent/50 transition-colors duration-300">
+                          0{idx + 1}
+                        </span>
                       </div>
-                      <span className="font-display font-extrabold text-2xl text-primary/20 group-hover:text-accent/50 transition-colors duration-300">
-                        0{idx + 1}
-                      </span>
+
+                      <h3 className="font-display font-bold text-lg text-primary group-hover:text-white transition-colors duration-300">
+                        {lang === 'bn' ? p.titleBn : p.titleEn}
+                      </h3>
+                      <p className="text-xs sm:text-[13px] text-ink/75 group-hover:text-white/90 font-bn-sans leading-relaxed transition-colors duration-300">
+                        {lang === 'bn' ? p.descBn : p.descEn}
+                      </p>
                     </div>
 
-                    <h3 className="font-display font-bold text-lg text-primary group-hover:text-white transition-colors duration-300">
-                      {lang === 'bn' ? p.titleBn : p.titleEn}
-                    </h3>
-                    <p className="text-xs sm:text-[13px] text-ink/75 group-hover:text-white/90 font-bn-sans leading-relaxed transition-colors duration-300">
-                      {lang === 'bn' ? p.descBn : p.descEn}
-                    </p>
-                  </div>
+                    <div className="pt-3 border-t border-primary/10 group-hover:border-white/20 flex items-center justify-between relative z-10 text-xs font-bold text-primary group-hover:text-accent font-bn-sans transition-colors duration-300">
+                      <span>{lang === 'bn' ? 'বিস্তারিত জানুন' : 'Learn More'}</span>
+                      <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </Link>
                 </motion.div>
               );
             })}
