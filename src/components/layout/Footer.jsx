@@ -169,7 +169,7 @@ export default function Footer() {
               <CheckCircle size={16} /> {t('footer.newsletter.success')}
             </div>
           ) : (
-            <form onSubmit={handleNewsletter} className="space-y-2 w-full">
+            <form onSubmit={handleNewsletter} className="flex flex-col items-center gap-2.5 w-full">
               <input
                 type="email"
                 required
@@ -178,15 +178,13 @@ export default function Footer() {
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full bg-white/10 text-white placeholder-white/50 text-xs px-3.5 py-2.5 rounded-xl border border-white/20 focus:border-accent focus:bg-white/15 outline-none transition-all"
               />
-              <div className="flex justify-start">
-                <button
-                  type="submit"
-                  className="px-6 py-2 bg-accent text-white hover:bg-accent/90 text-xs font-bold rounded-full transition-all flex items-center gap-1.5 shadow-md hover:scale-105 active:scale-95 cursor-pointer"
-                >
-                  <span>{t('footer.newsletter.btn')}</span>
-                  <Send size={12} />
-                </button>
-              </div>
+              <button
+                type="submit"
+                className="px-5 py-2 bg-accent text-white hover:bg-accent/90 text-xs font-semibold rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-xs hover:shadow cursor-pointer"
+              >
+                <span>{t('footer.newsletter.btn')}</span>
+                <Send size={13} />
+              </button>
             </form>
           )}
         </div>
