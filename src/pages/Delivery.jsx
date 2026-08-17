@@ -317,73 +317,201 @@ export default function Delivery() {
         </div>
 
         {/* Interactive Delivery Fee Calculator Widget */}
-        <div className="bg-gradient-to-br from-surface to-bg border border-line rounded-3xl p-6 sm:p-10 shadow-xs max-w-3xl mx-auto space-y-6">
-          <div className="flex items-center gap-3 pb-4 border-b border-line">
-            <div className="p-3 bg-accent/15 text-accent rounded-xl">
-              <Calculator size={24} />
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="relative bg-gradient-to-br from-[#1B3B2B] via-[#224b37] to-[#11281c] text-white border-2 border-accent/40 rounded-3xl p-6 sm:p-10 shadow-[0_20px_50px_-10px_rgba(27,59,43,0.5)] max-w-3xl mx-auto space-y-6 overflow-hidden select-none"
+        >
+          {/* Ambient Glowing Background Lights */}
+          <div className="absolute -top-24 -right-24 w-72 h-72 bg-accent/25 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none" />
+
+          {/* Header Bar */}
+          <div className="flex items-center gap-3.5 pb-5 border-b border-white/15 relative z-10">
+            <div className="w-13 h-13 rounded-2xl bg-accent text-white flex items-center justify-center font-bold shadow-lg shadow-accent/30 ring-4 ring-white/10 shrink-0">
+              <Calculator size={26} />
             </div>
             <div>
-              <h3 className="font-display font-bold text-xl text-primary">
+              <h3 className="font-display font-bold text-xl sm:text-2xl text-white">
                 {lang === 'bn' ? 'ডেলিভারি চার্জ ক্যালকুলেটর' : 'Interactive Delivery Fee Estimator'}
               </h3>
-              <p className="text-xs text-muted font-bn-sans">
+              <p className="text-xs sm:text-sm text-white/80 font-bn-sans mt-0.5">
                 {lang === 'bn' ? 'অর্ডারের পরিমাণ অনুযায়ী আপনার আনুমানিক কুরিয়ার খরচ জানুন:' : 'Calculate your exact shipping cost based on order value:'}
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {/* Input Controls Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 relative z-10">
+            
+            {/* 1. Location Selector */}
             <div className="space-y-2">
-              <label className="block text-xs font-bold text-ink">{lang === 'bn' ? '১. এলাকা নির্বাচন করুন' : '1. Select Location'}</label>
-              <select
-                value={calcZone}
-                onChange={(e) => setCalcZone(e.target.value)}
-                className="w-full bg-surface text-ink px-4 py-2.5 rounded-xl border border-line focus:border-accent outline-none text-xs sm:text-sm font-bn-sans"
-              >
-                <option value="dhaka">{lang === 'bn' ? 'ঢাকা সিটি কর্পোরেশন এলাকা' : 'Dhaka City Corporation'}</option>
-                <option value="outside">{lang === 'bn' ? 'ঢাকার বাইরে (যে কোনো জেলা)' : 'Outside Dhaka (Any District)'}</option>
-              </select>
+              <label className="block text-xs font-bold text-white/90 flex items-center gap-1.5 font-bn-sans">
+                <MapPin size={14} className="text-accent" />
+                <span>{lang === 'bn' ? '১. এলাকা নির্বাচন করুন' : '1. Select Location'}</span>
+              </label>
+              <div className="relative">
+                <select
+                  value={calcZone}
+                  onChange={(e) => setCalcZone(e.target.value)}
+                  className="w-full bg-white/10 backdrop-blur-md text-white px-4 py-3 rounded-2xl border border-white/20 focus:border-accent focus:bg-white/15 focus:ring-2 focus:ring-accent/30 outline-none text-xs sm:text-sm font-bn-sans appearance-none cursor-pointer transition-all"
+                >
+                  <option value="dhaka" className="bg-primary text-white">
+                    {lang === 'bn' ? 'ঢাকা সিটি কর্পোরেশন এলাকা (৳৬০)' : 'Dhaka City Corporation (৳60)'}
+                  </option>
+                  <option value="outside" className="bg-primary text-white">
+                    {lang === 'bn' ? 'ঢাকার বাইরে সারা বাংলাদেশ (৳১০০)' : 'Outside Dhaka Nationwide (৳100)'}
+                  </option>
+                </select>
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-accent">
+                  <ChevronDown size={18} />
+                </div>
+              </div>
             </div>
 
+            {/* 2. Order Amount Input with Quick Preset Chips */}
             <div className="space-y-2">
-              <label className="block text-xs font-bold text-ink">{lang === 'bn' ? '২. অর্ডারের আনুমানিক মূল্য (৳)' : '2. Estimated Cart Total (৳)'}</label>
-              <input
-                type="number"
-                placeholder="1200"
-                value={calcAmount}
-                onChange={(e) => {
-                  const val = e.target.value;
-                  setCalcAmount(val === '' ? '' : val.replace(/^0+(?=\d)/, ''));
-                }}
-                className="w-full bg-surface text-ink px-4 py-2.5 rounded-xl border border-line focus:border-accent outline-none text-xs sm:text-sm font-bn-sans font-bold"
+              <label className="block text-xs font-bold text-white/90 flex items-center justify-between font-bn-sans">
+                <span className="flex items-center gap-1.5">
+                  <Box size={14} className="text-accent" />
+                  {lang === 'bn' ? '২. অর্ডারের আনুমানিক মূল্য (৳)' : '2. Estimated Cart Total (৳)'}
+                </span>
+                <span className="text-[11px] text-accent font-bold">
+                  {lang === 'bn' ? '৳১০০০+ এ ফ্রি' : 'FREE over ৳1000'}
+                </span>
+              </label>
+              
+              <div className="relative">
+                <input
+                  type="number"
+                  placeholder="1200"
+                  value={calcAmount}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    setCalcAmount(val === '' ? '' : val.replace(/^0+(?=\d)/, ''));
+                  }}
+                  className="w-full bg-white/10 backdrop-blur-md text-white px-4 py-2.5 rounded-2xl border border-white/20 focus:border-accent focus:bg-white/15 focus:ring-2 focus:ring-accent/30 outline-none text-base font-bold font-bn-sans transition-all"
+                />
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 font-bold text-sm">
+                  BDT
+                </span>
+              </div>
+
+              {/* Quick-Preset Tap Chips */}
+              <div className="flex items-center gap-1.5 pt-1 overflow-x-auto pb-1">
+                {['500', '800', '1000', '1500', '2500'].map((preset) => (
+                  <button
+                    key={preset}
+                    type="button"
+                    onClick={() => setCalcAmount(preset)}
+                    className={`px-2.5 py-1 rounded-lg text-[11px] font-bold font-bn-sans transition-all shrink-0 cursor-pointer ${
+                      calcAmount === preset
+                        ? 'bg-accent text-white shadow-xs scale-105'
+                        : 'bg-white/10 text-white/80 hover:bg-white/20 hover:text-white'
+                    }`}
+                  >
+                    ৳{n(preset)}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+          </div>
+
+          {/* Animated Free Delivery Progress Meter */}
+          <div className="space-y-2 p-4 rounded-2xl bg-black/20 backdrop-blur-xs border border-white/10 relative z-10">
+            <div className="flex items-center justify-between text-xs font-bn-sans">
+              <span className="text-white/80 flex items-center gap-1.5">
+                <Truck size={14} className="text-accent" />
+                {lang === 'bn' ? 'ফ্রি ডেলিভারি টার্গেট প্রগ্রেস:' : 'FREE Shipping Target Meter:'}
+              </span>
+              <span className="font-bold text-accent">
+                {currentAmount >= 1000 ? (
+                  <span className="text-emerald-400 font-bold flex items-center gap-1">
+                    <CheckCircle2 size={13} /> {lang === 'bn' ? '১০০% অর্জিত (ফ্রি ডেলিভারি)' : '100% Achieved (FREE)'}
+                  </span>
+                ) : (
+                  `${Math.round((currentAmount / 1000) * 100)}%`
+                )}
+              </span>
+            </div>
+
+            <div className="h-2.5 w-full bg-white/15 rounded-full overflow-hidden p-0.5">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: `${Math.min(100, Math.max(0, (currentAmount / 1000) * 100))}%` }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
+                className={`h-full rounded-full transition-all duration-300 ${
+                  currentAmount >= 1000
+                    ? 'bg-gradient-to-r from-emerald-400 to-teal-300 shadow-[0_0_12px_rgba(52,211,153,0.8)]'
+                    : 'bg-gradient-to-r from-accent to-accent-2 shadow-[0_0_8px_rgba(232,152,20,0.6)]'
+                }`}
               />
             </div>
           </div>
 
-          {/* Calculator Output Display */}
-          <div className="p-5 rounded-2xl bg-surface border border-accent/30 flex items-center justify-between gap-4">
-            <div>
-              <span className="text-xs text-muted font-bn-sans">{lang === 'bn' ? 'আনুমানিক ডেলিভারি চার্জ:' : 'Estimated Shipping Fee:'}</span>
-              <div className="font-display font-extrabold text-2xl text-accent">
-                {calcDeliveryFee() === 0 ? (
-                  <span className="text-emerald-600 font-bold">{lang === 'bn' ? '৳০ (ফ্রি ডেলিভারি!)' : '৳0 (FREE Shipping!)'}</span>
-                ) : (
-                  `৳${n(calcDeliveryFee())}`
-                )}
+          {/* Calculator Dynamic Output Display Box */}
+          <motion.div
+            key={`${calcDeliveryFee()}-${calcZone}-${calcAmount}`}
+            initial={{ scale: 0.98, opacity: 0.8 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            className={`p-5 sm:p-6 rounded-2xl border-2 flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10 transition-all ${
+              calcDeliveryFee() === 0
+                ? 'bg-gradient-to-r from-emerald-500/20 via-emerald-600/30 to-teal-500/20 border-emerald-400/60 shadow-[0_8px_24px_rgba(16,185,129,0.25)]'
+                : 'bg-white/10 backdrop-blur-md border-accent/40 shadow-lg'
+            }`}
+          >
+            <div className="flex items-center gap-3.5 text-center sm:text-left">
+              <div
+                className={`w-12 h-12 rounded-2xl flex items-center justify-center font-bold shrink-0 shadow-md ${
+                  calcDeliveryFee() === 0
+                    ? 'bg-emerald-500 text-white shadow-emerald-500/30'
+                    : 'bg-accent text-white shadow-accent/30'
+                }`}
+              >
+                {calcDeliveryFee() === 0 ? <Truck size={24} /> : <Calculator size={24} />}
+              </div>
+              <div>
+                <span className="text-xs text-white/80 font-bn-sans">
+                  {lang === 'bn' ? 'আপনার আনুমানিক ডেলিভারি চার্জ:' : 'Your Estimated Shipping Fee:'}
+                </span>
+                <div className="font-display font-extrabold text-2xl sm:text-3xl text-white">
+                  {calcDeliveryFee() === 0 ? (
+                    <span className="text-emerald-400 font-bold">
+                      {lang === 'bn' ? '৳০ (ফ্রি ডেলিভারি!)' : '৳0 (FREE Shipping!)'}
+                    </span>
+                  ) : (
+                    <span className="text-accent">
+                      ৳{n(calcDeliveryFee())}
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
 
-            {currentAmount < 1000 && (
-              <div className="text-right text-xs text-muted font-bn-sans">
+            {currentAmount < 1000 ? (
+              <div className="text-center sm:text-right text-xs text-white/85 font-bn-sans bg-black/20 p-3 rounded-xl border border-white/10">
                 {lang === 'bn' ? (
-                  <span>আর <strong className="text-accent font-bold">৳{n(1000 - currentAmount)}</strong> অর্ডারে ফ্রি ডেলিভারি!</span>
+                  <span>
+                    আর মাত্র <strong className="text-accent font-bold text-sm">৳{n(1000 - currentAmount)}</strong> টাকার পণ্য অর্ডারে পাবেন <strong className="text-emerald-400 font-bold">১০০% ফ্রি ডেলিভারি!</strong>
+                  </span>
                 ) : (
-                  <span>Add <strong className="text-accent font-bold">৳{n(1000 - currentAmount)}</strong> more for FREE shipping!</span>
+                  <span>
+                    Add only <strong className="text-accent font-bold text-sm">৳{n(1000 - currentAmount)}</strong> more to unlock <strong className="text-emerald-400 font-bold">FREE Delivery!</strong>
+                  </span>
                 )}
               </div>
+            ) : (
+              <div className="text-center sm:text-right text-xs font-bold text-emerald-300 font-bn-sans flex items-center gap-1.5 bg-emerald-950/40 px-3.5 py-2 rounded-xl border border-emerald-400/30">
+                <CheckCircle2 size={16} className="text-emerald-400" />
+                <span>{lang === 'bn' ? 'অভিনন্দন! আপনার অর্ডারে ফ্রি ডেলিভারি সক্রিয়।' : 'Congratulations! FREE Delivery is active.'}</span>
+              </div>
             )}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Safety & Damage Protection Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
