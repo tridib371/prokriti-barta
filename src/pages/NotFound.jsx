@@ -89,7 +89,7 @@ export default function NotFound() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-8 items-center text-center md:text-left">
             
             {/* Left Column (X-Axis Side 1): 404 Visual, Badge & Quick Actions */}
-            <div className="md:col-span-5 flex flex-col items-center justify-center space-y-3.5 border-b-2 md:border-b-0 md:border-r-2 border-[#D8CEAB] pb-5 md:pb-0 md:pr-7">
+            <div className="md:col-span-5 flex flex-col items-center justify-center space-y-3.5 border-b-2 md:border-b-0 md:border-r-2 border-accent/60 pb-5 md:pb-0 md:pr-7">
               
               {/* Smooth Floating 404 Number */}
               <div className="relative inline-block">
@@ -167,7 +167,7 @@ export default function NotFound() {
               </div>
 
               {/* Quick Helpful Category Chips with Bold Deep Divider */}
-              <div className="pt-3 border-t-2 border-[#D8CEAB] space-y-2">
+              <div className="pt-3 border-t-2 border-accent/60 space-y-2">
                 <span className="text-[11px] font-bold text-muted font-bn-sans uppercase tracking-wider block">
                   {lang === 'bn' ? 'সরাসরি ঘুরে দেখতে পারেন:' : 'Or explore popular collections:'}
                 </span>
