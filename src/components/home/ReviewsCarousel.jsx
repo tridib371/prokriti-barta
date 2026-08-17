@@ -1,9 +1,11 @@
 import React from 'react';
-import Marquee from 'react-fast-marquee';
+import MarqueeComponent from 'react-fast-marquee';
 import { Quote, CheckCircle } from 'lucide-react';
 import RatingStars from '../ui/RatingStars';
 import reviews from '../../data/reviews.json';
 import { useLanguage } from '../../context/LanguageContext';
+
+const Marquee = (typeof MarqueeComponent === 'function' ? MarqueeComponent : MarqueeComponent?.default) || MarqueeComponent;
 
 export default function ReviewsCarousel() {
   const { t, lang } = useLanguage();
