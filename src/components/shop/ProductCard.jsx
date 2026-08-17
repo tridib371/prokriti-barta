@@ -27,7 +27,7 @@ export default function ProductCard({ product }) {
       className="group bg-surface border border-line rounded-2xl overflow-hidden flex flex-col justify-between shadow-2xs hover:shadow-md transition-shadow relative"
     >
       {/* Top Image Container */}
-      <div className="relative aspect-4/3 sm:aspect-square overflow-hidden bg-bg/50">
+      <div className="relative aspect-[4/3] overflow-hidden bg-bg/50">
         <img
           src={product.images[0]}
           alt={product.name}
@@ -35,7 +35,7 @@ export default function ProductCard({ product }) {
         />
 
         {/* Image Badges */}
-        <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between pointer-events-none z-10">
+        <div className="absolute top-2 left-2 right-2 flex items-center justify-between pointer-events-none z-10">
           <div className="flex flex-col gap-1 pointer-events-auto items-start">
             {discountPercent > 0 && (
               <Badge variant="discount">-{discountPercent}% {t('badge.off')}</Badge>
@@ -53,36 +53,36 @@ export default function ProductCard({ product }) {
               e.preventDefault();
               toggleWishlist(product);
             }}
-            className={`p-2 rounded-xl backdrop-blur-md transition-all shadow-xs pointer-events-auto ${
+            className={`p-1.5 rounded-xl backdrop-blur-md transition-all shadow-xs pointer-events-auto cursor-pointer ${
               isLiked
                 ? 'bg-accent-2 text-surface'
                 : 'bg-surface/80 text-ink hover:bg-surface hover:text-accent-2'
             }`}
             title={isLiked ? 'Remove from Wishlist' : 'Add to Wishlist'}
           >
-            <Heart size={16} className={isLiked ? 'fill-surface' : ''} />
+            <Heart size={15} className={isLiked ? 'fill-surface' : ''} />
           </button>
         </div>
       </div>
 
       {/* Content */}
-      <div className="p-3.5 sm:p-4 flex-1 flex flex-col justify-between">
+      <div className="p-3 sm:p-3.5 flex-1 flex flex-col justify-between">
         <div>
-          <span className="text-[11px] font-semibold text-muted uppercase tracking-wider font-sans">
+          <span className="text-[10px] font-semibold text-muted uppercase tracking-wider font-sans">
             {product.category}
           </span>
           <Link
             to={`/product/${product.slug}`}
-            className="block font-display font-semibold text-sm sm:text-base text-primary hover:text-accent transition-colors line-clamp-1 mt-0.5"
+            className="block font-display font-semibold text-xs sm:text-sm text-primary hover:text-accent transition-colors line-clamp-1 mt-0.5"
           >
             {lang === 'bn' ? (product.bnName || product.name) : product.name}
           </Link>
-          <p className="text-xs text-muted font-bn-sans line-clamp-2 mt-1 leading-relaxed">
+          <p className="text-[11px] text-muted font-bn-sans line-clamp-1 mt-0.5 leading-relaxed">
             {lang === 'bn' ? (product.bnShortDesc || product.shortDesc) : product.shortDesc}
           </p>
 
-          <div className="mt-2">
-            <RatingStars rating={product.rating} reviewCount={product.reviewCount} size={13} />
+          <div className="mt-1.5">
+            <RatingStars rating={product.rating} reviewCount={product.reviewCount} size={12} />
           </div>
         </div>
 
