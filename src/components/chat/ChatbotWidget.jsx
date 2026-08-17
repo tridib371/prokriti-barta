@@ -2,11 +2,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Bot, User, ArrowRight, CornerDownLeft, RefreshCw, ShoppingBag } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../../context/LanguageContext';
+import { useCart } from '../../context/CartContext';
 import { getIntelligentResponse } from '../../utils/chatbotEngine';
 import { Link } from 'react-router-dom';
 
 export default function ChatbotWidget() {
   const { t, lang, n } = useLanguage();
+  const { isCartOpen } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -88,8 +90,10 @@ export default function ChatbotWidget() {
     }
   };
 
+  if (isCartOpen) return null;
+
   return (
-    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end">
       
       {/* 1. Chat Window Modal */}
       <AnimatePresence>

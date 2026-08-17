@@ -40,7 +40,7 @@ export default function CartDrawer() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closeCart}
-            className="fixed inset-0 bg-ink/60 backdrop-blur-xs z-50 cursor-pointer"
+            className="fixed inset-0 bg-ink/60 backdrop-blur-xs z-[990] cursor-pointer"
           />
 
           {/* Drawer */}
@@ -49,7 +49,7 @@ export default function CartDrawer() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed right-0 top-0 bottom-0 w-full max-w-md bg-surface text-ink shadow-2xl z-50 flex flex-col border-l border-line overflow-hidden"
+            className="fixed right-0 top-0 bottom-0 w-full max-w-md bg-surface text-ink shadow-2xl z-[999] flex flex-col border-l border-line overflow-hidden"
           >
             {/* Ambient Background Glow Effect */}
             <motion.div
