@@ -73,7 +73,7 @@ export default function FeaturedGrid() {
         {/* Perfectly Proportioned 4-Column Responsive Grid */}
         <motion.div 
           layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 items-stretch"
         >
           <AnimatePresence>
             {displayedProducts.map((product, idx) => (
@@ -84,6 +84,7 @@ export default function FeaturedGrid() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3, delay: idx * 0.05 }}
+                className="h-full flex"
               >
                 <ProductCard product={product} />
               </motion.div>

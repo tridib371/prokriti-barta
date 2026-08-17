@@ -24,10 +24,10 @@ export default function ProductCard({ product }) {
     <motion.div
       whileHover={{ y: -4 }}
       transition={{ duration: 0.2 }}
-      className="group bg-surface border border-line rounded-2xl overflow-hidden flex flex-col justify-between shadow-2xs hover:shadow-md transition-shadow relative"
+      className="group bg-surface border border-line rounded-2xl overflow-hidden flex flex-col justify-between shadow-2xs hover:shadow-md transition-shadow relative h-full w-full"
     >
       {/* Top Image Container */}
-      <div className="relative aspect-[4/3] overflow-hidden bg-bg/50">
+      <div className="relative aspect-[4/3] overflow-hidden bg-bg/50 shrink-0">
         <img
           src={product.images[0]}
           alt={product.name}
@@ -67,27 +67,28 @@ export default function ProductCard({ product }) {
 
       {/* Content */}
       <div className="p-3 sm:p-3.5 flex-1 flex flex-col justify-between">
-        <div>
-          <span className="text-[10px] font-semibold text-muted uppercase tracking-wider font-sans">
+        <div className="flex flex-col">
+          <span className="text-[10px] font-semibold text-muted uppercase tracking-wider font-sans block truncate">
             {product.category}
           </span>
           <Link
             to={`/product/${product.slug}`}
-            className="block font-display font-semibold text-xs sm:text-sm text-primary hover:text-accent transition-colors line-clamp-1 mt-0.5"
+            className="block font-display font-semibold text-xs sm:text-sm text-primary hover:text-accent transition-colors line-clamp-2 h-[2.4rem] sm:h-[2.5rem] mt-0.5 leading-snug"
+            title={lang === 'bn' ? (product.bnName || product.name) : product.name}
           >
             {lang === 'bn' ? (product.bnName || product.name) : product.name}
           </Link>
-          <p className="text-[11px] text-muted font-bn-sans line-clamp-1 mt-0.5 leading-relaxed">
+          <p className="text-[11px] text-muted font-bn-sans line-clamp-1 h-[1.1rem] mt-0.5 leading-tight">
             {lang === 'bn' ? (product.bnShortDesc || product.shortDesc) : product.shortDesc}
           </p>
 
-          <div className="mt-1.5">
+          <div className="mt-1.5 flex items-center h-[1.2rem]">
             <RatingStars rating={product.rating} reviewCount={product.reviewCount} size={12} />
           </div>
         </div>
 
-        {/* Price & Add to Cart Footer */}
-        <div className="mt-3 pt-2.5 border-t border-line/60 flex items-center justify-between gap-2">
+        {/* Price & Add to Cart Footer - Pinned to bottom */}
+        <div className="mt-3 pt-2.5 border-t border-line/60 flex items-center justify-between gap-2 shrink-0">
           <div>
             <div className="flex items-baseline gap-1">
               <span className="font-display font-bold text-sm sm:text-base text-primary">৳{n(product.price)}</span>
@@ -100,7 +101,7 @@ export default function ProductCard({ product }) {
 
           <button
             onClick={() => addToCart(product, 1)}
-            className="px-2.5 py-1.2 sm:px-3 sm:py-1.5 rounded-lg bg-primary text-white hover:bg-accent hover:text-ink text-[11px] font-semibold flex items-center gap-1 transition-colors shadow-xs shrink-0 cursor-pointer"
+            className="px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-lg bg-primary text-white hover:bg-accent hover:text-ink text-[11px] font-semibold flex items-center gap-1 transition-colors shadow-xs shrink-0 cursor-pointer"
             title={t('btn.addToCart')}
           >
             <ShoppingBag size={13} />
