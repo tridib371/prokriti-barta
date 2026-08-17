@@ -8,14 +8,15 @@ import { useLanguage } from '../context/LanguageContext';
 export default function Delivery() {
   const { t, n, lang } = useLanguage();
 
-  const [calcZone, setCalcZone] = useState('dhaka');
-  const [calcAmount, setCalcAmount] = useState('1200');
+  const [calcZone, setCalcZone] = useState('');
+  const [calcAmount, setCalcAmount] = useState('');
   const [openFaq, setOpenFaq] = useState(null);
 
   const currentAmount = Number(calcAmount) || 0;
 
   // Delivery Calculator Logic
   const calcDeliveryFee = () => {
+    if (!calcZone || calcAmount === '') return null;
     if (currentAmount >= 1000) return 0;
     return calcZone === 'dhaka' ? 60 : 100;
   };
@@ -358,6 +359,9 @@ export default function Delivery() {
                   onChange={(e) => setCalcZone(e.target.value)}
                   className="w-full bg-white/10 backdrop-blur-md text-white px-4 py-3 rounded-2xl border border-white/20 focus:border-accent focus:bg-white/15 focus:ring-2 focus:ring-accent/30 outline-none text-xs sm:text-sm font-bn-sans appearance-none cursor-pointer transition-all"
                 >
+                  <option value="" className="bg-primary text-white/70">
+                    {lang === 'bn' ? '-- এলাকা নির্বাচন করুন --' : '-- Select Area --'}
+                  </option>
                   <option value="dhaka" className="bg-primary text-white">
                     {lang === 'bn' ? 'ঢাকা সিটি কর্পোরেশন এলাকা (৳৬০)' : 'Dhaka City Corporation (৳60)'}
                   </option>
@@ -386,13 +390,13 @@ export default function Delivery() {
               <div className="relative">
                 <input
                   type="number"
-                  placeholder="1200"
+                  placeholder={lang === 'bn' ? 'যেমন: ১০০০' : 'e.g. 1000'}
                   value={calcAmount}
                   onChange={(e) => {
                     const val = e.target.value;
                     setCalcAmount(val === '' ? '' : val.replace(/^0+(?=\d)/, ''));
                   }}
-                  className="w-full bg-white/10 backdrop-blur-md text-white px-4 py-3 rounded-2xl border border-white/20 focus:border-accent focus:bg-white/15 focus:ring-2 focus:ring-accent/30 outline-none text-base font-bold font-bn-sans transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  className="w-full bg-white/10 backdrop-blur-md text-white px-4 py-3 rounded-2xl border border-white/20 focus:border-accent focus:bg-white/15 focus:ring-2 focus:ring-accent/30 outline-none text-base font-bold font-bn-sans transition-all placeholder-white/40 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 font-bold text-xs pointer-events-none">
                   BDT
@@ -410,7 +414,11 @@ export default function Delivery() {
                 {lang === 'bn' ? 'ফ্রি ডেলিভারি টার্গেট প্রগ্রেস:' : 'FREE Shipping Target Meter:'}
               </span>
               <span className="font-bold">
-                {currentAmount >= 1000 ? (
+                {calcAmount === '' ? (
+                  <span className="text-white/60 font-normal">
+                    {lang === 'bn' ? '০% (পরিমাণ লিখুন)' : '0% (Enter amount)'}
+                  </span>
+                ) : currentAmount >= 1000 ? (
                   <span className="text-emerald-300 bg-emerald-950/60 px-2.5 py-0.5 rounded-full border border-emerald-400/40 font-bold flex items-center gap-1 shadow-[0_0_10px_rgba(52,211,153,0.3)]">
                     <CheckCircle2 size={13} className="text-emerald-400" /> {lang === 'bn' ? '১০০% অর্জিত (ফ্রি ডেলিভারি)' : '100% Achieved (FREE)'}
                   </span>
@@ -426,7 +434,7 @@ export default function Delivery() {
             <div className="h-3 w-full bg-white/10 rounded-full overflow-hidden p-0.5 border border-white/15">
               <motion.div
                 initial={{ width: 0 }}
-                animate={{ width: `${Math.min(100, Math.max(0, (currentAmount / 1000) * 100))}%` }}
+                animate={{ width: `${calcAmount === '' ? 0 : Math.min(100, Math.max(0, (currentAmount / 1000) * 100))}%` }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
                 className={`h-full rounded-full transition-all duration-500 ${
                   currentAmount >= 1000
@@ -474,8 +482,12 @@ export default function Delivery() {
                 <span className="text-xs text-white/80 font-bn-sans">
                   {lang === 'bn' ? 'আপনার আনুমানিক ডেলিভারি চার্জ:' : 'Your Estimated Shipping Fee:'}
                 </span>
-                <div className="font-display font-extrabold text-2xl sm:text-3xl text-white">
-                  {calcDeliveryFee() === 0 ? (
+                <div className="font-bn-sans font-bold text-xl sm:text-2xl text-white">
+                  {calcDeliveryFee() === null ? (
+                    <span className="text-white/70 text-base sm:text-lg">
+                      {lang === 'bn' ? '-- এলাকা ও পরিমাণ দিন --' : '-- Select Area & Value --'}
+                    </span>
+                  ) : calcDeliveryFee() === 0 ? (
                     <span className="text-emerald-400 font-bold">
                       {lang === 'bn' ? '৳০ (ফ্রি ডেলিভারি!)' : '৳0 (FREE Shipping!)'}
                     </span>
@@ -488,7 +500,13 @@ export default function Delivery() {
               </div>
             </div>
 
-            {currentAmount < 1000 ? (
+            {calcDeliveryFee() === null ? (
+              <div className="text-center sm:text-right text-xs text-white/80 font-bn-sans bg-black/20 p-3 rounded-xl border border-white/10">
+                {lang === 'bn' 
+                  ? 'উপরে এলাকা নির্বাচন ও অর্ডারের পরিমাণ লিখলে সঠিক খরচ দেখতে পাবেন।' 
+                  : 'Select your area & enter cart total above to view shipping fee.'}
+              </div>
+            ) : currentAmount < 1000 ? (
               <div className="text-center sm:text-right text-xs text-white/85 font-bn-sans bg-black/20 p-3 rounded-xl border border-white/10">
                 {lang === 'bn' ? (
                   <span>
