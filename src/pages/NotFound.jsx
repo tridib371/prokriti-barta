@@ -122,27 +122,27 @@ export default function NotFound() {
                 <span>{lang === 'bn' ? 'পৃষ্ঠাটি খুঁজে পাওয়া যায়নি' : 'Page Not Found'}</span>
               </span>
 
-              {/* Primary Action Buttons (Always visible in initial view) */}
-              <div className="pt-1 flex flex-row items-center justify-center gap-2.5 w-full">
-                <Link to="/" className="flex-1 sm:flex-initial">
+              {/* Primary Action Buttons (Sleek & perfectly proportioned) */}
+              <div className="pt-2 flex flex-row items-center justify-center gap-2.5 w-full">
+                <Link to="/" className="inline-block">
                   <Button
                     variant="accent"
-                    size="md"
-                    className="w-full rounded-xl shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all gap-1.5 font-bold px-4 sm:px-5 py-2.5 text-xs cursor-pointer"
+                    size="sm"
+                    className="rounded-full shadow-sm hover:shadow-md hover:scale-105 active:scale-95 transition-all gap-1.5 font-bold px-4 py-2 text-xs cursor-pointer whitespace-nowrap"
                   >
-                    <Home size={15} />
+                    <Home size={14} />
                     <span>{t('btn.backToHome')}</span>
                   </Button>
                 </Link>
-                <Link to="/shop" className="flex-1 sm:flex-initial">
+                <Link to="/shop" className="inline-block">
                   <Button
                     variant="secondary"
-                    size="md"
-                    className="w-full rounded-xl bg-white/90 text-primary border-primary/20 hover:border-accent hover:bg-accent/10 transition-all gap-1.5 font-bold px-4 sm:px-5 py-2.5 text-xs cursor-pointer"
+                    size="sm"
+                    className="rounded-full bg-white/90 text-primary border-primary/20 hover:border-accent hover:bg-accent/10 transition-all gap-1.5 font-bold px-4 py-2 text-xs cursor-pointer whitespace-nowrap"
                   >
-                    <ShoppingBag size={15} />
+                    <ShoppingBag size={14} />
                     <span>{lang === 'bn' ? 'শপ দেখুন' : 'Explore Shop'}</span>
-                    <ArrowRight size={13} />
+                    <ArrowRight size={12} />
                   </Button>
                 </Link>
               </div>
