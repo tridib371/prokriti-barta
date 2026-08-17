@@ -6,6 +6,67 @@ import { useCart } from '../../context/CartContext';
 import { getIntelligentResponse } from '../../utils/chatbotEngine';
 import { Link } from 'react-router-dom';
 
+/**
+ * Formats bot messages with structured bullet lists, numbered steps, and clean typography
+ */
+function BotMessageFormatter({ content }) {
+  if (!content) return null;
+  const lines = content.split('\n');
+
+  return (
+    <div className="space-y-1.5 text-xs sm:text-[13px] leading-relaxed text-ink font-bn-sans text-left">
+      {lines.map((line, idx) => {
+        const trimmed = line.trim();
+        if (!trimmed) {
+          return <div key={idx} className="h-1" />;
+        }
+
+        // Bullet point item (•, -, *)
+        if (trimmed.startsWith('•') || trimmed.startsWith('-') || trimmed.startsWith('*')) {
+          const text = trimmed.replace(/^[•\-*]\s*/, '');
+          return (
+            <div key={idx} className="flex items-start gap-2 pl-0.5 py-0.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
+              <span className="flex-1 text-ink/90 font-medium">{text}</span>
+            </div>
+          );
+        }
+
+        // Numbered list item (1., 2., ১., ২.)
+        const matchNumbered = trimmed.match(/^([0-9১-৯]+)\.\s*(.*)$/);
+        if (matchNumbered) {
+          const num = matchNumbered[1];
+          const text = matchNumbered[2];
+          return (
+            <div key={idx} className="flex items-start gap-2 pl-0.5 py-0.5">
+              <span className="w-4 h-4 rounded-full bg-accent/20 text-accent font-bold text-[10px] flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
+                {num}
+              </span>
+              <span className="flex-1 text-ink/90 font-medium">{text}</span>
+            </div>
+          );
+        }
+
+        // Section Heading ending with a colon
+        if (trimmed.endsWith(':')) {
+          return (
+            <p key={idx} className="font-bold text-primary text-[13px] pt-1 pb-0.5 inline-block border-b border-line/60">
+              {trimmed}
+            </p>
+          );
+        }
+
+        // Regular sentence paragraph
+        return (
+          <p key={idx} className="text-ink/90 leading-relaxed">
+            {trimmed}
+          </p>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function ChatbotWidget() {
   const { t, lang, n } = useLanguage();
   const { isCartOpen } = useCart();
@@ -22,8 +83,8 @@ export default function ChatbotWidget() {
         {
           id: 'welcome',
           sender: 'bot',
-          textBn: 'প্রকৃতি বার্তায় আপনাকে স্বাগতম! আমি প্রকৃতি মিত্র - প্রকৃতি বার্তার ভার্চুয়াল অ্যাসিস্ট্যান্ট। পণ্য, বিশুদ্ধতা যাচাই বা ডেলিভারি সম্পর্কিত যেকোনো প্রশ্ন আমাকে করতে পারেন।',
-          textEn: 'Welcome to Prokriti Barta! I am your Prokriti Assistant. Ask me anything about our organic products, purity tests, or delivery policies!',
+          textBn: 'প্রকৃতি বার্তায় আপনাকে স্বাগতম!\n\nআমি প্রকৃতি মিত্র - প্রকৃতি বার্তার ভার্চুয়াল অ্যাসিস্ট্যান্ট। পণ্য, বিশুদ্ধতা যাচাই বা ডেলিভারি সম্পর্কিত যেকোনো প্রশ্ন আমাকে করতে পারেন।',
+          textEn: 'Welcome to Prokriti Barta!\n\nI am your Prokriti Assistant. Ask me anything about our organic products, purity tests, or delivery policies!',
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         }
       ]);
@@ -104,7 +165,7 @@ export default function ChatbotWidget() {
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.25 }}
             data-lenis-prevent="true"
-            className="w-[calc(100vw-2rem)] sm:w-[380px] max-w-[380px] h-[75vh] sm:h-[520px] max-h-[560px] bg-surface border border-line rounded-2xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden mb-3 sm:mb-4"
+            className="w-[calc(100vw-2rem)] sm:w-[390px] max-w-[390px] h-[75vh] sm:h-[530px] max-h-[570px] bg-surface border border-line rounded-2xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden mb-3 sm:mb-4"
           >
             {/* Header */}
             <div className="bg-primary text-surface p-4 flex items-center justify-between shadow-xs shrink-0">
@@ -161,17 +222,21 @@ export default function ChatbotWidget() {
                     </div>
                   )}
 
-                  <div className={`max-w-[82%] space-y-2`}>
+                  <div className={`max-w-[85%] space-y-2`}>
                     <div
-                      className={`p-3.5 rounded-2xl leading-relaxed whitespace-pre-line shadow-2xs ${
+                      className={`p-3.5 rounded-2xl shadow-2xs ${
                         msg.sender === 'user'
-                          ? 'bg-primary text-white rounded-tr-xs'
+                          ? 'bg-primary text-white rounded-tr-xs leading-relaxed text-right'
                           : 'bg-surface text-ink border border-line rounded-tl-xs'
                       }`}
                     >
-                      {msg.sender === 'bot' 
-                        ? (lang === 'bn' ? (msg.textBn || msg.text) : (msg.textEn || msg.text))
-                        : msg.text}
+                      {msg.sender === 'bot' ? (
+                        <BotMessageFormatter
+                          content={lang === 'bn' ? (msg.textBn || msg.text) : (msg.textEn || msg.text)}
+                        />
+                      ) : (
+                        <p className="text-white leading-relaxed text-xs sm:text-[13px]">{msg.text}</p>
+                      )}
                     </div>
 
                     {/* Embedded Product Recommendation Card */}
@@ -211,13 +276,18 @@ export default function ChatbotWidget() {
 
                     {/* Direct Action Link Button */}
                     {msg.actionLink && (
-                      <Link
-                        to={msg.actionLink}
-                        onClick={() => setIsOpen(false)}
-                        className="inline-flex items-center gap-1 text-[11px] font-bold text-accent hover:underline pt-0.5"
-                      >
-                        {lang === 'bn' ? (msg.actionLabelBn || msg.actionLabel || 'বিস্তারিত দেখুন') : (msg.actionLabelEn || msg.actionLabel || 'View More')} <ArrowRight size={12} />
-                      </Link>
+                      <div className="pt-0.5">
+                        <Link
+                          to={msg.actionLink}
+                          onClick={() => setIsOpen(false)}
+                          className="inline-flex items-center gap-1.5 px-3 py-1 bg-accent/15 border border-accent/30 text-accent hover:bg-accent hover:text-white rounded-full text-[11px] font-bold transition-all shadow-2xs"
+                        >
+                          <span>
+                            {lang === 'bn' ? (msg.actionLabelBn || msg.actionLabel || 'বিস্তারিত দেখুন') : (msg.actionLabelEn || msg.actionLabel || 'View More')}
+                          </span>
+                          <ArrowRight size={12} />
+                        </Link>
+                      </div>
                     )}
 
                     <div className={`text-[10px] text-muted ${msg.sender === 'user' ? 'text-right' : 'text-left'}`}>
@@ -250,49 +320,60 @@ export default function ChatbotWidget() {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Input Form */}
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleSend();
-              }}
-              className="p-3 bg-surface border-t border-line flex items-center gap-2 shrink-0"
-            >
-              <input
-                type="text"
-                placeholder={lang === 'bn' ? 'যেকোনো প্রশ্ন লিখুন...' : 'Ask any question...'}
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                className="flex-1 bg-bg text-ink text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-line focus:border-accent focus:bg-surface outline-none font-bn-sans"
-              />
-              <button
-                type="submit"
-                disabled={!input.trim()}
-                className="p-2.5 bg-accent text-white rounded-xl hover:bg-accent/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all shrink-0 shadow-xs cursor-pointer"
-                title="Send"
+            {/* Input Bar */}
+            <div className="p-3 bg-surface border-t border-line shrink-0">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleSend();
+                }}
+                className="flex items-center gap-2"
               >
-                <Send size={16} />
-              </button>
-            </form>
+                <input
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  placeholder={lang === 'bn' ? 'আপনার প্রশ্নটি লিখুন...' : 'Type your question...'}
+                  className="flex-1 bg-bg text-ink text-xs px-3.5 py-2.5 rounded-full border border-line focus:border-accent outline-none font-bn-sans"
+                />
+                <button
+                  type="submit"
+                  disabled={!input.trim()}
+                  className="p-2.5 bg-accent text-white rounded-full hover:bg-accent/90 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-xs shrink-0 cursor-pointer"
+                  aria-label="Send Message"
+                >
+                  <Send size={15} />
+                </button>
+              </form>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* 2. Floating Launcher Trigger Button */}
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={() => setIsOpen((prev) => !prev)}
-        className="w-12 h-12 sm:w-14 sm:h-14 bg-primary text-white rounded-full shadow-xl flex items-center justify-center hover:bg-primary/95 transition-all border-2 border-surface relative group cursor-pointer"
-        aria-label="Open Live Chat"
-      >
-        <div className="absolute -top-0.5 -right-0.5 w-3 h-3 sm:w-3.5 sm:h-3.5 bg-accent rounded-full border-2 border-surface"></div>
-        {isOpen ? (
-          <X size={20} className="text-white sm:w-6 sm:h-6" />
-        ) : (
-          <MessageCircle size={22} className="text-white sm:w-6 sm:h-6 group-hover:rotate-12 transition-transform" />
-        )}
-      </motion.button>
+      {/* 2. Floating Launch Button */}
+      {!isOpen && (
+        <motion.button
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          whileHover={{ scale: 1.06 }}
+          whileTap={{ scale: 0.94 }}
+          onClick={() => setIsOpen(true)}
+          className="px-4 py-3 bg-primary text-surface rounded-full shadow-xl flex items-center gap-2.5 hover:bg-primary/90 transition-all border border-line/40 group cursor-pointer"
+          aria-label="Open Live Chatbot"
+        >
+          <div className="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center font-bold shadow-xs">
+            <Bot size={18} />
+          </div>
+          <div className="text-left hidden sm:block">
+            <p className="text-xs font-bold text-surface leading-tight">
+              {lang === 'bn' ? 'প্রকৃতি মিত্র' : 'Prokriti AI'}
+            </p>
+            <p className="text-[10px] text-accent leading-tight font-bn-sans">
+              {lang === 'bn' ? 'সহায়তার জন্য ক্লিক করুন' : 'Click for support'}
+            </p>
+          </div>
+        </motion.button>
+      )}
 
     </div>
   );

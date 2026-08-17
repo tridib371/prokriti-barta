@@ -136,11 +136,11 @@ User query: ${userInput}`;
   // 3. If query is clearly unrelated, return courteous out-of-scope response
   if (!isRelevant) {
     return {
-      textBn: 'দুঃখিত, আমি প্রকৃতি বার্তার ভার্চুয়াল অ্যাসিস্ট্যান্ট। আমি শুধুমাত্র প্রকৃতি বার্তার খাঁটি অর্গানিক পণ্য, পুষ্টিগুণ এবং অর্ডার সম্পর্কিত তথ্য প্রদানে বিশেষভাবে নিয়োজিত। আপনার প্রশ্নটি আমাদের আওতাভুক্ত নয়। যেকোনো তথ্যের জন্য সরাসরি আমাদের কাস্টমার হেল্পলাইন +880 1717-279166 অথবা ইমেইল support@prokritibarta.com-এ যোগাযোগ করতে পারেন।',
-      textEn: 'I am the virtual assistant for Prokriti Barta, dedicated exclusively to our pure organic foods, nutrition guidance, and store inquiries. I do not have information regarding outside topics. For further support, please contact our helpline at +880 1717-279166 or email support@prokritibarta.com.',
+      textBn: 'দুঃখিত, আমি প্রকৃতি বার্তার ভার্চুয়াল অ্যাসিস্ট্যান্ট।\n\nআমি শুধুমাত্র প্রকৃতি বার্তার খাঁটি অর্গানিক পণ্য, খাদ্যাভ্যাস ও অর্ডার সম্পর্কিত তথ্যে বিশেষভাবে নিয়োজিত। আপনার প্রশ্নটি আমাদের আওতাভুক্ত নয়।\n\nযেকোনো তথ্যের জন্য সরাসরি আমাদের কাস্টমার কেয়ারে যোগাযোগ করতে পারেন:\n• হেল্পলাইন: +880 1717-279166\n• ইমেইল: support@prokritibarta.com',
+      textEn: 'I am the virtual assistant for Prokriti Barta.\n\nI specialize exclusively in our pure organic foods, nutrition guidance, and store inquiries. I do not have information regarding outside topics.\n\nFor direct customer assistance, please reach out to:\n• Helpline: +880 1717-279166\n• Email: support@prokritibarta.com',
       text: lang === 'bn'
-        ? 'দুঃখিত, আমি প্রকৃতি বার্তার ভার্চুয়াল অ্যাসিস্ট্যান্ট। আমি শুধুমাত্র প্রকৃতি বার্তার খাঁটি অর্গানিক পণ্য, পুষ্টিগুণ এবং অর্ডার সম্পর্কিত তথ্য প্রদানে বিশেষভাবে নিয়োজিত। আপনার প্রশ্নটি আমাদের আওতাভুক্ত নয়। যেকোনো তথ্যের জন্য সরাসরি আমাদের কাস্টমার হেল্পলাইন +880 1717-279166 অথবা ইমেইল support@prokritibarta.com-এ যোগাযোগ করতে পারেন।'
-        : 'I am the virtual assistant for Prokriti Barta, dedicated exclusively to our pure organic foods, nutrition guidance, and store inquiries. I do not have information regarding outside topics. For further support, please contact our helpline at +880 1717-279166 or email support@prokritibarta.com.',
+        ? 'দুঃখিত, আমি প্রকৃতি বার্তার ভার্চুয়াল অ্যাসিস্ট্যান্ট।\n\nআমি শুধুমাত্র প্রকৃতি বার্তার খাঁটি অর্গানিক পণ্য, খাদ্যাভ্যাস ও অর্ডার সম্পর্কিত তথ্যে বিশেষভাবে নিয়োজিত। আপনার প্রশ্নটি আমাদের আওতাভুক্ত নয়।\n\nযেকোনো তথ্যের জন্য সরাসরি আমাদের কাস্টমার কেয়ারে যোগাযোগ করতে পারেন:\n• হেল্পলাইন: +880 1717-279166\n• ইমেইল: support@prokritibarta.com'
+        : 'I am the virtual assistant for Prokriti Barta.\n\nI specialize exclusively in our pure organic foods, nutrition guidance, and store inquiries. I do not have information regarding outside topics.\n\nFor direct customer assistance, please reach out to:\n• Helpline: +880 1717-279166\n• Email: support@prokritibarta.com',
       actionLink: '/contact',
       actionLabelBn: 'কাস্টমার কেয়ারে যোগাযোগ',
       actionLabelEn: 'Contact Support'
@@ -183,15 +183,15 @@ User query: ${userInput}`;
 
   if (matchedProducts.length > 0) {
     const topMatches = matchedProducts.slice(0, 3);
-    const productNamesBn = topMatches.map(p => `${p.bnName || p.name} (৳${p.price})`).join(', ');
-    const productNamesEn = topMatches.map(p => `${p.name} (৳${p.price})`).join(', ');
+    const productNamesBn = topMatches.map(p => `• ${p.bnName || p.name} - ৳${p.price}`).join('\n');
+    const productNamesEn = topMatches.map(p => `• ${p.name} - ৳${p.price}`).join('\n');
 
     return {
-      textBn: `আপনার কাঙ্ক্ষিত সম্পর্কিত পণ্যের তথ্য: ${productNamesBn}। বিস্তারিত দেখতে বা অর্ডার করতে নিচের পণ্য তালিকায় ক্লিক করুন।`,
-      textEn: `Here are relevant organic products for your search: ${productNamesEn}. Click below to view details and order.`,
+      textBn: `আপনার কাঙ্ক্ষিত সম্পর্কিত পণ্যসমূহ:\n\n${productNamesBn}\n\nবিস্তারিত জানতে বা অর্ডার করতে নিচের পণ্য কার্ডে ক্লিক করুন।`,
+      textEn: `Here are relevant organic products for you:\n\n${productNamesEn}\n\nClick any item below to view details and order.`,
       text: lang === 'bn'
-        ? `আপনার কাঙ্ক্ষিত সম্পর্কিত পণ্যের তথ্য: ${productNamesBn}। বিস্তারিত দেখতে বা অর্ডার করতে নিচের পণ্য তালিকায় ক্লিক করুন।`
-        : `Here are relevant organic products for your search: ${productNamesEn}. Click below to view details and order.`,
+        ? `আপনার কাঙ্ক্ষিত সম্পর্কিত পণ্যসমূহ:\n\n${productNamesBn}\n\nবিস্তারিত জানতে বা অর্ডার করতে নিচের পণ্য কার্ডে ক্লিক করুন।`
+        : `Here are relevant organic products for you:\n\n${productNamesEn}\n\nClick any item below to view details and order.`,
       products: topMatches.map(p => ({
         id: p.id,
         name: p.name,
@@ -209,11 +209,11 @@ User query: ${userInput}`;
   // 6. Greetings & Standard Help Response
   if (query.includes('hi') || query.includes('hello') || query.includes('hey') || query.includes('হাই') || query.includes('হ্যালো') || query.includes('নমস্কার') || query.includes('সালাম')) {
     return {
-      textBn: 'হ্যালো! প্রকৃতি বার্তায় আপনাকে স্বাগতম। সুন্দরবনের খাঁটি মধু, কাঠের ঘানির তেল, বিলোনা ঘি, সিডস ও খাঁটি মসলা সম্পর্কিত যেকোনো তথ্যে আমি কীভাবে আপনাকে সাহায্য করতে পারি?',
-      textEn: 'Hello and welcome to Prokriti Barta! How can I help you today regarding our pure raw honey, wood-pressed oils, bilona ghee, organic seeds, or spices?',
+      textBn: 'হ্যালো! প্রকৃতি বার্তায় আপনাকে স্বাগতম।\n\nসুন্দরবনের খাঁটি মধু, কাঠের ঘানির তেল, বিলোনা ঘি, সিডস ও খাঁটি মসলা সম্পর্কিত যেকোনো তথ্যে আমি কীভাবে আপনাকে সাহায্য করতে পারি?',
+      textEn: 'Hello and welcome to Prokriti Barta!\n\nHow can I help you today regarding our pure raw honey, wood-pressed oils, bilona ghee, organic seeds, or spices?',
       text: lang === 'bn'
-        ? 'হ্যালো! প্রকৃতি বার্তায় আপনাকে স্বাগতম। সুন্দরবনের খাঁটি মধু, কাঠের ঘানির তেল, বিলোনা ঘি, সিডস ও খাঁটি মসলা সম্পর্কিত যেকোনো তথ্যে আমি কীভাবে আপনাকে সাহায্য করতে পারি?'
-        : 'Hello and welcome to Prokriti Barta! How can I help you today regarding our pure raw honey, wood-pressed oils, bilona ghee, organic seeds, or spices?',
+        ? 'হ্যালো! প্রকৃতি বার্তায় আপনাকে স্বাগতম।\n\nসুন্দরবনের খাঁটি মধু, কাঠের ঘানির তেল, বিলোনা ঘি, সিডস ও খাঁটি মসলা সম্পর্কিত যেকোনো তথ্যে আমি কীভাবে আপনাকে সাহায্য করতে পারি?'
+        : 'Hello and welcome to Prokriti Barta!\n\nHow can I help you today regarding our pure raw honey, wood-pressed oils, bilona ghee, organic seeds, or spices?',
       actionLink: '/shop',
       actionLabelBn: 'শপ ব্রাউজ করুন',
       actionLabelEn: 'Browse Shop'
@@ -222,11 +222,11 @@ User query: ${userInput}`;
 
   // 7. General Domain Helpful Response
   return {
-    textBn: 'প্রকৃতি বার্তার সকল পণ্য ১০০% প্রাকৃতিক ও ভেজালমুক্ত। পণ্য অর্ডার, মূল্য, মধু ও তেলের বিশুদ্ধতা যাচাই কিংবা ডেলিভারি চার্জ জানতে প্রশ্ন করতে পারেন। সরাসরি সহায়তার জন্য হেল্পলাইন: +880 1717-279166।',
-    textEn: 'All Prokriti Barta products are 100% natural and unadulterated. You can ask about product prices, purity checks, or delivery details. For direct assistance, call our helpline at +880 1717-279166.',
+    textBn: 'প্রকৃতি বার্তার সকল পণ্য ১০০% প্রাকৃতিক ও ভেজালমুক্ত।\n\nআপনি জানতে চাইতে পারেন:\n• সুন্দরবনের খাঁটি মধু ও বিলোনা ঘি\n• কাঠের ঘানির তেল ও অর্গানিক সিডস\n• ডেলিভারি চার্জ ও পেমেন্ট পদ্ধতি\n\nসরাসরি সহায়তার জন্য হেল্পলাইন: +880 1717-279166',
+    textEn: 'All Prokriti Barta products are 100% natural and pure.\n\nYou can ask about:\n• Raw Wild Honey & Vedic Bilona Ghee\n• Wood-Pressed Oils & Superfood Seeds\n• Delivery rates, timeline & payment methods\n\nFor direct assistance, call our helpline: +880 1717-279166',
     text: lang === 'bn'
-      ? 'প্রকৃতি বার্তার সকল পণ্য ১০০% প্রাকৃতিক ও ভেজালমুক্ত। পণ্য অর্ডার, মূল্য, মধু ও তেলের বিশুদ্ধতা যাচাই কিংবা ডেলিভারি চার্জ জানতে প্রশ্ন করতে পারেন। সরাসরি সহায়তার জন্য হেল্পলাইন: +880 1717-279166।'
-      : 'All Prokriti Barta products are 100% natural and unadulterated. You can ask about product prices, purity checks, or delivery details. For direct assistance, call our helpline at +880 1717-279166.',
+      ? 'প্রকৃতি বার্তার সকল পণ্য ১০০% প্রাকৃতিক ও ভেজালমুক্ত।\n\nআপনি জানতে চাইতে পারেন:\n• সুন্দরবনের খাঁটি মধু ও বিলোনা ঘি\n• কাঠের ঘানির তেল ও অর্গানিক সিডস\n• ডেলিভারি চার্জ ও পেমেন্ট পদ্ধতি\n\nসরাসরি সহায়তার জন্য হেল্পলাইন: +880 1717-279166'
+      : 'All Prokriti Barta products are 100% natural and pure.\n\nYou can ask about:\n• Raw Wild Honey & Vedic Bilona Ghee\n• Wood-Pressed Oils & Superfood Seeds\n• Delivery rates, timeline & payment methods\n\nFor direct assistance, call our helpline: +880 1717-279166',
     actionLink: '/contact',
     actionLabelBn: 'কাস্টমার কেয়ারে কল করুন',
     actionLabelEn: 'Call Customer Support'

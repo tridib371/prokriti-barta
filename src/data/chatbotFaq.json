@@ -25,8 +25,8 @@
         "about", "prokriti barta", "brand", "company", "who are you", "tader somporke",
         "প্রকৃতি বার্তা", "কোম্পানি", "ব্র্যান্ড", "সম্পর্কে", "তোমাদের পরিচয়", "কারা তোমরা", "ওয়েবসাইট", "website"
       ],
-      "answerBn": "প্রকৃতি বার্তা বাংলাদেশের একটি বিশ্বস্ত ও ১০০% প্রাকৃতিক প্রিমিয়াম অর্গানিক ফুড ব্র্যান্ড। আমাদের লক্ষ্য সুন্দরবনের প্রাকৃতিক চাকের খাঁটি মধু, কাঠের ঘানিতে ভাঙা তেল, খাঁটি বিলোনা ঘি, অরগানিক সিডস ও বিশুদ্ধ মসলা দেশের প্রতিটি পরিবারে পৌঁছে দেওয়া।",
-      "answerEn": "Prokriti Barta is Bangladesh's trusted 100% pure organic food brand. We deliver harvest-fresh Sundarban raw honey, wood-pressed oils, traditional bilona ghee, organic seeds, and stone-ground spices straight to your doorstep.",
+      "answerBn": "প্রকৃতি বার্তা বাংলাদেশের একটি নির্ভরযোগ্য ও ১০০% প্রাকৃতিক প্রিমিয়াম অর্গানিক ফুড ব্র্যান্ড।\n\nআমাদের মূল লক্ষ্য:\n• সুন্দরবনের গভীর চাকের অপরিশোধিত খাঁটি মধু সংগ্রহ\n• কাঠের ঘানিতে ঠান্ডা প্রক্রিয়ায় ভাঙা খাঁটি তেল\n• ঐতিহ্যবাহী বিলোনা পদ্ধতিতে প্রস্তুত সুগন্ধি ঘি\n• রাসায়নিক ও প্রিজারভেটিভমুক্ত অর্গানিক সিডস ও খাঁটি মসলা",
+      "answerEn": "Prokriti Barta is Bangladesh's trusted 100% pure organic food brand.\n\nOur Mission:\n• Raw, unheated wild mangrove honey from Sundarbans\n• Wood-pressed cold-extracted natural cooking oils\n• Traditional Vedic Bilona A2 Desi Cow Ghee\n• Chemical-free organic superfoods, seeds, and spices",
       "actionLink": "/about",
       "actionLabelBn": "আমাদের সম্পর্কে জানুন",
       "actionLabelEn": "About Our Brand"
@@ -37,8 +37,8 @@
         "helpline", "phone", "number", "call", "contact", "support", "hotline", "customer care", "help line",
         "যোগাযোগ", "ফোন", "নম্বর", "কল", "হটলাইন", "হেল্পলাইন", "কাস্টমার কেয়ার", "ঠিকানা", "অফিস"
       ],
-      "answerBn": "আমাদের অফিসিয়াল হেল্পলাইন নম্বর: +880 1717-279166 (সকাল ৯:০০ - রাত ১০:০০)। ইমেইল: support@prokritibarta.com। ঠিকানা: বাড়ি ১২, রোড ৫, ধানমন্ডি, ঢাকা - ১২০৫।",
-      "answerEn": "Our official Customer Support Helpline is +880 1717-279166 (9:00 AM - 10:00 PM daily). Email: support@prokritibarta.com. Address: House 12, Road 5, Dhanmondi, Dhaka - 1205.",
+      "answerBn": "কাস্টমার কেয়ার ও সরাসরি যোগাযোগ:\n\n• হেল্পলাইন নম্বর: +880 1717-279166\n• কল দেওয়ার সময়: প্রতিদিন সকাল ৯:০০ - রাত ১০:০০\n• অফিসিয়াল ইমেইল: support@prokritibarta.com\n• প্রধান কার্যালয়: বাড়ি ১২, রোড ৫, ধানমন্ডি, ঢাকা - ১২০৫",
+      "answerEn": "Customer Care & Direct Contact:\n\n• Support Helpline: +880 1717-279166\n• Available Hours: 9:00 AM - 10:00 PM (Daily)\n• Official Email: support@prokritibarta.com\n• Head Office: House 12, Road 5, Dhanmondi, Dhaka - 1205",
       "actionLink": "/contact",
       "actionLabelBn": "যোগাযোগ পেজ",
       "actionLabelEn": "Contact Us"
@@ -49,8 +49,8 @@
         "delivery", "shipping", "charge", "cost", "time", "kobe pabo", "dhaka", "outside dhaka", "free shipping",
         "ডেলিভারি", "শিপিং", "চার্জ", "খরচ", "কতদিন", "কবে পাবো", "ডেলিভারি কত", "ফ্রি ডেলিভারি"
       ],
-      "answerBn": "ডেলিভারি বিবরণ: ঢাকার ভিতরে ডেলিভারি চার্জ ৬০ টাকা (২৪-৩৬ ঘণ্টা), ঢাকার বাইরে ১০০ টাকা (২-৩ কার্যদিবস)। ১,০০০ টাকার বেশি অর্ডারে সারা দেশে ডেলিভারি সম্পূর্ণ ফ্রি!",
-      "answerEn": "Delivery Details: Inside Dhaka fee is ৳60 (24-36h), outside Dhaka nationwide is ৳100 (2-3 business days). Enjoy FREE nationwide delivery on orders over ৳1,000!",
+      "answerBn": "ডেলিভারি সংক্রান্ত তথ্যাবলী:\n\n• ঢাকার ভিতরে চার্জ: ৬০ টাকা (২৪-৩৬ ঘণ্টার মধ্যে হোম ডেলিভারি)\n• ঢাকার বাইরে চার্জ: ১০০ টাকা (২-৩ কার্যদিবসের মধ্যে সারা দেশে হোম ডেলিভারি)\n• বিশেষ সুবিধা: ১,০০০ টাকার বেশি অর্ডারে সারা দেশে ডেলিভারি সম্পূর্ণ ফ্রি!",
+      "answerEn": "Delivery Details & Timeline:\n\n• Inside Dhaka: ৳60 (Delivered within 24-36 hours)\n• Outside Dhaka: ৳100 (Delivered nationwide within 2-3 business days)\n• Special Offer: FREE nationwide shipping on orders over ৳1,000!",
       "actionLink": "/delivery",
       "actionLabelBn": "ডেলিভারি নীতি দেখুন",
       "actionLabelEn": "View Delivery Policy"
@@ -61,8 +61,8 @@
         "payment", "pay", "cod", "cash on delivery", "bkash", "nagad", "rocket", "card",
         "পেমেন্ট", "টাকা", "ক্যাশ অন ডেলিভারি", "বিকাশ", "নগদ", "রকেট", "পেমেন্ট পদ্ধতি"
       ],
-      "answerBn": "আমরা ক্যাশ অন ডেলিভারি (পণ্য দেখে মূল্য পরিশোধ) সমর্থন করি। এছাড়া বিকাশ, নগদ, রকেট ও ভিসা/মাস্টারকার্ডের মাধ্যমে নিরাপদ অনলাইন পেমেন্ট করতে পারবেন।",
-      "answerEn": "We support 100% Cash on Delivery (COD) nationwide so you can inspect your package upon delivery. We also accept bKash, Nagad, Rocket, and Debit/Credit cards.",
+      "answerBn": "আমাদের পেমেন্ট সুবিধাসমূহ:\n\n• ক্যাশ অন ডেলিভারি (পণ্য হাতে পেয়ে চেক করে মূল্য পরিশোধ)\n• মোবাইল ব্যাংকিং (বিকাশ, নগদ, রকেট)\n• ডেবিট ও ক্রেডিট কার্ড (ভিসা, মাস্টারকার্ড)",
+      "answerEn": "Our Payment Methods:\n\n• Cash on Delivery (COD - Pay after inspecting your package)\n• Mobile Financial Services (bKash, Nagad, Rocket)\n• Debit & Credit Cards (Visa, Mastercard)",
       "actionLink": "/shop",
       "actionLabelBn": "কেনাকাটা করুন",
       "actionLabelEn": "Shop Now"
@@ -73,8 +73,8 @@
         "return", "refund", "damaged", "exchange", "guarantee", "policy", "replace",
         "রিটার্ন", "রিফান্ড", "ফেরত", "ভাঙা", "নষ্ট", "বদল", "গ্যারান্টি"
       ],
-      "answerBn": "আমাদের রয়েছে ৭ দিনের মানিব্যাক ও রিপ্লেসমেন্ট গ্যারান্টি। পণ্য ক্ষতিগ্রস্ত অবস্থায় পেলে সাথে সাথে ডেলিভারিম্যানকে ফেরত দিতে পারেন অথবা আমাদের হেল্পলাইনে (+880 1717-279166) কল দিলে তাৎক্ষণিক নতুন পণ্য পাঠানো হবে।",
-      "answerEn": "We offer a 7-day hassle-free return and replacement policy. If any jar or package is damaged upon arrival, hand it back to the delivery courier or call our helpline (+880 1717-279166) for immediate replacement.",
+      "answerBn": "রিটার্ন ও রিপ্লেসমেন্ট সুবিধা:\n\n• ৭ দিনের সহজ রিপ্লেসমেন্ট ও মানিব্যাক গ্যারান্টি\n• পণ্য ক্ষতিগ্রস্ত অবস্থায় পেলে ডেলিভারিম্যানকে তাৎক্ষণিক ফেরত দিন\n• আমাদের হেল্পলাইনে (+880 1717-279166) কল দিলে তাৎক্ষণিক নতুন পণ্য পাঠানো হবে",
+      "answerEn": "Return & Replacement Policy:\n\n• 7-Day hassle-free return and replacement guarantee\n• If any item arrives damaged, return it immediately to the courier\n• Call our helpline (+880 1717-279166) for instant replacement dispatch",
       "actionLink": "/delivery",
       "actionLabelBn": "পলিসি বিস্তারিত",
       "actionLabelEn": "Policy Details"
@@ -85,8 +85,8 @@
         "honey", "pure honey", "modhu", "khati modhu", "test", "sundarban", "raw honey", "crystallization", "jome jai",
         "মধু", "খাঁটি মধু", "সুন্দরবনের মধু", "চাকের মধু", "মধু পরীক্ষা", "মধু জমে যায়", "খাঁটি কিনা"
       ],
-      "answerBn": "প্রকৃতি বার্তার মধু সুন্দরবনের গভীর অরণ্য থেকে সংগ্রহ করা ১০০% র' বা অপ্রক্রিয়াজাত মধু। এতে কোনো চিনি বা প্রিজারভেটিভ নেই। খাঁটি মধু শীতকালে বা তাপমাত্রার তারতম্যে স্বাভাবিকভাবে স্ফটিক বা জমে যেতে পারে (ন্যাচারাল ক্রিস্টালাইজেশন), যা খাঁটি মধুর অন্যতম বৈশিষ্ট্য।",
-      "answerEn": "Prokriti Barta honey is 100% raw and unfiltered, harvested directly from wild mangrove combs in the Sundarbans. It contains zero added sugars or heat processing. Natural crystallization at cold temperatures is normal and proves authenticity.",
+      "answerBn": "প্রকৃতি বার্তার খাঁটি মধু:\n\n• সুন্দরবনের গভীর অরণ্য থেকে সরাসরি সংগৃহীত ১০০% র' (Raw) মধু\n• এতে কোনো কৃত্রিম চিনি, সিরাপ বা প্রিজারভেটিভ নেই\n• খাঁটি মধু শীতকালে বা তাপমাত্রার তারতম্যে স্বাভাবিকভাবে ক্রিস্টাল বা জমে যেতে পারে, যা খাঁটি মধুর প্রাকৃতিক বৈশিষ্ট্য",
+      "answerEn": "Prokriti Barta Pure Honey:\n\n• 100% raw, unfiltered wild mangrove comb honey from Sundarbans\n• Zero added sugar, artificial sweeteners, or preservatives\n• Natural crystallization at cold temperatures is completely normal and confirms authentic purity",
       "actionLink": "/shop?category=honey",
       "actionLabelBn": "মধুর সংগ্রহ দেখুন",
       "actionLabelEn": "View Honey Products"
@@ -97,8 +97,8 @@
         "ghee", "bilona", "a2", "cow ghee", "desi ghee", "khati ghee", "curd ghee",
         "ঘি", "বিলোনা ঘি", "দেশি ঘি", "খাঁটি ঘি", "ঘি বানানোর নিয়ম"
       ],
-      "answerBn": "আমাদের ঘি সনাতন বৈদিক বিলোনা পদ্ধতিতে প্রস্তুত। দেশি ঘাস-খাওয়া গরুর দুধ থেকে প্রথমে দই তৈরি করে তা কাঠের মন্থনদণ্ডে মন্থন করে মাখন আলাদা করা হয় এবং মৃদু আঁচে জ্বাল দিয়ে সুগন্ধি দানাদার বিলোনা ঘি তৈরি করা হয়।",
-      "answerEn": "Our ghee is made using the traditional Vedic Bilona method. Fresh milk from grass-fed desi cows is first cultured into whole curd, hand-churned with a wooden bi-directional bilona, and slow-cooked to yield aromatic, granular golden ghee.",
+      "answerBn": "আমাদের খাঁটি বিলোনা ঘি:\n\n• সনাতন বৈদিক বিলোনা পদ্ধতিতে তৈরি\n• ঘাস-খাওয়া দেশি গরুর দুধ থেকে প্রথমে দই তৈরি করা হয়\n• কাঠের মন্থনদণ্ডে মন্থন করে মাখন তুলে তা মৃদু আঁচে জ্বাল দিয়ে তৈরি হয় দানাদার সুগন্ধি ঘি",
+      "answerEn": "Our Pure Vedic Bilona Ghee:\n\n• Prepared using the authentic Vedic Bilona method\n• Whole milk from grass-fed Desi cows is cultured into curd\n• Churned with traditional wooden bilona and slow-cooked for rich golden aroma and granular texture",
       "actionLink": "/shop?category=ghee",
       "actionLabelBn": "ঘি সংগ্রহ দেখুন",
       "actionLabelEn": "View Ghee Collection"
@@ -109,8 +109,8 @@
         "oil", "mustard oil", "coconut oil", "kalijira", "wood pressed", "ghani", "cold pressed",
         "তেল", "সরিষার তেল", "নারকেল তেল", "কালোজিরা তেল", "কাঠের ঘানি", "কোল্ড প্রেসড"
       ],
-      "answerBn": "আমাদের সব ধরনের তেল (সরিষা, নারকেল, কালোজিরা) ঐতিহ্যবাহী কাঠের ঘানিতে কোল্ড-প্রেসড পদ্ধতিতে ভাঙা হয়। এতে তেলের প্রাকৃতিক পুষ্টিগুণ, ফ্যাটি এসিড, অ্যান্টিঅক্সিডেন্ট ও স্বাভাবিক ঝাঁঝ শতভাগ অক্ষুণ্ণ থাকে।",
-      "answerEn": "All our cooking and wellness oils (Mustard, Virgin Coconut, and Black Seed/Kalijira) are extracted using traditional wooden cold presses. This low-temperature extraction preserves natural aroma, essential fatty acids, and therapeutic benefits.",
+      "answerBn": "কাঠের ঘানিতে কোল্ড-প্রেসড তেল:\n\n• সরিষা, এক্সট্রা ভার্জিন নারকেল এবং কালোজিরা তেল কাঠের ঘানিতে ভাঙা\n• কম তাপমাত্রায় ভাঙার কারণে তেলের প্রাকৃতিক ফ্যাটি এসিড, অ্যান্টিঅক্সিডেন্ট ও স্বাভাবিক ঝাঁঝ শতভাগ অক্ষুণ্ণ থাকে",
+      "answerEn": "Wood-Pressed Cold-Extracted Oils:\n\n• Pure Mustard, Extra Virgin Coconut, and Black Seed (Kalijira) oils\n• Extracted at low temperatures to retain 100% natural vitamins, fatty acids, and authentic therapeutic benefits",
       "actionLink": "/shop?category=oil",
       "actionLabelBn": "তেল সংগ্রহ দেখুন",
       "actionLabelEn": "View Pure Oils"
@@ -121,8 +121,8 @@
         "chia seed", "pumpkin seed", "seeds", "superfood", "weight loss", "omega 3",
         "চিয়া সিড", "মিষ্টি কুমড়ার বীজ", "বীজ", "সুপারফুড", "ওজন কমানো", "চিয়া বীজ"
       ],
-      "answerBn": "আমাদের অর্গানিক চিয়া সিড ও মিষ্টি কুমড়ার বীজ ওমেগা-৩ ফ্যাটি এসিড, ফাইবার, আয়রন ও জিংকে ভরপুর। এটি ওজন নিয়ন্ত্রণ, হজম শক্তি বৃদ্ধি এবং হার্ট সুস্থ রাখতে সাহায্য করে।",
-      "answerEn": "Our organic Chia Seeds and Pumpkin Seeds are rich in plant-based Omega-3, dietary fiber, magnesium, and zinc. They promote satiety, regulate digestion, and support cardiovascular health.",
+      "answerBn": "অর্গানিক সিডস ও সুপারফুড:\n\n• প্রিমিয়াম অর্গানিক চিয়া সিড এবং মিষ্টি কুমড়ার বীজ\n• ওমেগা-৩ ফ্যাটি এসিড, ফাইবার, আয়রন, জিংক ও ম্যাগনেসিয়ামে ভরপুর\n• নিয়মিত গ্রহণে ওজন নিয়ন্ত্রণ ও পরিপাকতন্ত্র ভালো থাকে",
+      "answerEn": "Organic Seeds & Superfoods:\n\n• Premium raw Chia Seeds and Roasted Pumpkin Seeds\n• High in plant-based Omega-3, dietary fiber, magnesium, and zinc\n• Supports weight management, digestive health, and cardiovascular wellness",
       "actionLink": "/shop?category=seeds",
       "actionLabelBn": "সিডস ও সুপারফুড",
       "actionLabelEn": "View Seeds & Superfoods"
@@ -133,8 +133,8 @@
         "spices", "turmeric", "haldi", "chili", "coriander", "morich", "dhonia", "curcumin",
         "মসলা", "হলুদ", "মরিচ", "ধনিয়া", "খাঁটি মসলা", "পাথরে গুঁড়া"
       ],
-      "answerBn": "প্রকৃতি বার্তার হলুদ, মরিচ ও ধনিয়া কোনো কৃত্রিম রঙ বা ভেজাল ছাড়া বাছাইকৃত খাঁটি বীজ থেকে পাথরের চাকিতে গুঁড়ো করা হয়। এতে হলুদের প্রাকৃতিক কারকিউমিন (Curcumin) এবং প্রাকৃতিক স্বাদ বিদ্যমান থাকে।",
-      "answerEn": "Our Turmeric, Red Chili, and Coriander are stone-ground from selected clean whole crops with zero added colors or starch, retaining maximum curcumin levels and authentic aroma.",
+      "answerBn": "পাথরে গুঁড়ো করা খাঁটি মসলা:\n\n• বাছাইকৃত সেরা হলুদ, মরিচ ও ধনিয়া থেকে প্রস্তুত\n• কোনো প্রকার কৃত্রিম রঙ, স্টার্চ বা ভেজাল নেই\n• হলুদের স্বাভাবিক উচ্চ কারকিউমিন (Curcumin) এবং অক্ষুণ্ণ প্রাকৃতিক স্বাদ",
+      "answerEn": "Stone-Ground Authentic Spices:\n\n• Ground from handpicked clean whole turmeric, chili, and coriander\n• Zero synthetic food colors, starch, or artificial aroma\n• Preserves high natural curcumin and authentic traditional taste",
       "actionLink": "/shop?category=spices",
       "actionLabelBn": "খাঁটি মসলা সংগ্রহ",
       "actionLabelEn": "View Organic Spices"
@@ -145,8 +145,8 @@
         "how to order", "order kivabe korbo", "buy", "purchase", "add to cart", "checkout",
         "অর্ডার কীভাবে করব", "অর্ডার করার নিয়ম", "কিনব কীভাবে", "ক্রয়"
       ],
-      "answerBn": "অর্ডার করার সহজ ধাপ: ১. শপ থেকে পছন্দের পণ্য 'Add to Cart' করুন। ২. কার্ট ওপেন করে 'Checkout' এ যান। ৩. নাম, মোবাইল নম্বর ও ঠিকানা দিয়ে 'Confirm Order' এ ক্লিক করুন। আমরা ফোনে কনফার্ম করে পণ্য পাঠাব।",
-      "answerEn": "Simple ordering steps: 1. Click 'Add to Cart' on your desired items. 2. Proceed to Checkout from your cart drawer. 3. Fill in your name, phone, and delivery address, then click 'Confirm Order'. We will deliver to your doorstep!",
+      "answerBn": "অর্ডার করার সহজ ৩টি ধাপ:\n\n১. শপ থেকে পছন্দের পণ্য 'Add to Cart' করুন।\n২. কার্ট ওপেন করে 'Checkout' বাটনে ক্লিক করুন।\n৩. আপনার নাম, মোবাইল নম্বর ও ঠিকানা দিয়ে 'Confirm Order' করুন।",
+      "answerEn": "Easy 3-Step Ordering:\n\n1. Select your favorite items and click 'Add to Cart'.\n2. Open your Cart drawer and proceed to 'Checkout'.\n3. Enter your Name, Phone, and Address, then click 'Confirm Order'.",
       "actionLink": "/shop",
       "actionLabelBn": "শপ ভিজিট করুন",
       "actionLabelEn": "Visit Shop"
