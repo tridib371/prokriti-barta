@@ -84,9 +84,9 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="font-bold text-primary text-sm sm:text-base">{t('nav.helpline')}</h4>
-                    <a href="tel:+8801717279166" className="text-accent font-bold hover:underline block text-xs sm:text-sm mt-0.5">
+                    <span className="text-accent font-bold block text-xs sm:text-sm mt-0.5 select-all">
                       +880 1717-279166
-                    </a>
+                    </span>
                     <p className="text-muted text-[11px] mt-0.5">{lang === 'bn' ? 'সকাল ৯:০০ - রাত ১০:০০ (প্রতিদিন)' : '9:00 AM - 10:00 PM (Daily)'}</p>
                   </div>
                 </div>

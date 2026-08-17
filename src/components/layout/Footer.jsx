@@ -60,9 +60,9 @@ export default function Footer() {
               </div>
               <div>
                 <h4 className="font-bold text-sm text-primary">{t('footer.support.title')}</h4>
-                <a href="tel:+8801717279166" className="text-xs text-accent font-bold hover:underline">
+                <Link to="/contact" className="text-xs text-accent font-bold hover:underline">
                   {n('+880 1717-279166')}
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -114,13 +114,13 @@ export default function Footer() {
           </div>
 
           <div className="pt-1">
-            <a
-              href="tel:+8801717279166"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 border border-accent/40 text-white text-xs font-bold hover:bg-accent hover:text-white transition-all shadow-xs"
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 border border-accent/40 text-white text-xs font-bold hover:bg-accent hover:text-white transition-all shadow-xs cursor-pointer"
             >
               <Phone size={13} className="text-accent" />
               <span>{lang === 'bn' ? 'হেল্পলাইন:' : 'Helpline:'} {n('+880 1717-279166')}</span>
-            </a>
+            </Link>
           </div>
         </div>
 
