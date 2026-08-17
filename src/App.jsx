@@ -30,7 +30,6 @@ import BlogPost from './pages/BlogPost';
 import Contact from './pages/Contact';
 import Offers from './pages/Offers';
 import Delivery from './pages/Delivery';
-import PromiseDetail from './pages/PromiseDetail';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import NotFound from './pages/NotFound';
@@ -67,7 +66,6 @@ function MainLayout() {
           <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           <Route path="/profile/orders" element={<ProtectedRoute><OrderHistory /></ProtectedRoute>} />
           <Route path="/about" element={<About />} />
-          <Route path="/promise/:slug" element={<PromiseDetail />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/contact" element={<Contact />} />
