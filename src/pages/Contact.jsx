@@ -263,33 +263,75 @@ export default function Contact() {
             </h2>
           </div>
 
-          <div className="space-y-3 font-bn-sans">
-            {faqs.map((faq, idx) => (
-              <div key={idx} className="bg-surface border border-line rounded-2xl overflow-hidden shadow-2xs">
-                <button
-                  onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                  className="w-full p-4 sm:p-5 text-left font-bold text-sm sm:text-base text-primary flex items-center justify-between gap-4 cursor-pointer hover:bg-bg/40 transition-colors"
+          <div className="space-y-4 font-bn-sans">
+            {faqs.map((faq, idx) => {
+              const isOpen = openFaq === idx;
+              return (
+                <motion.div
+                  key={idx}
+                  layout
+                  transition={{ duration: 0.3 }}
+                  className={`group relative rounded-2xl overflow-hidden border-2 transition-all duration-500 ${
+                    isOpen
+                      ? 'bg-gradient-to-br from-primary via-[#224b37] to-[#11281c] border-accent shadow-[0_16px_36px_-8px_rgba(27,59,43,0.5)] text-white'
+                      : 'bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-[#E5DCB8] hover:border-accent shadow-[0_4px_16px_-4px_rgba(27,59,43,0.08)] hover:shadow-[0_12px_24px_-6px_rgba(232,152,20,0.2)] hover:-translate-y-0.5'
+                  }`}
                 >
-                  <span>{lang === 'bn' ? faq.qBn : faq.qEn}</span>
-                  <ChevronDown size={18} className={`text-accent shrink-0 transition-transform duration-300 ${openFaq === idx ? 'rotate-180' : ''}`} />
-                </button>
-
-                <AnimatePresence>
-                  {openFaq === idx && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <div className="px-4 sm:px-5 pb-4 pt-1 text-xs sm:text-sm text-muted leading-relaxed border-t border-line/50">
-                        {lang === 'bn' ? faq.aBn : faq.aEn}
-                      </div>
-                    </motion.div>
+                  {isOpen && (
+                    <div className="absolute top-0 right-0 w-48 h-48 bg-accent/20 rounded-full blur-3xl pointer-events-none" />
                   )}
-                </AnimatePresence>
-              </div>
-            ))}
+
+                  <button
+                    onClick={() => setOpenFaq(isOpen ? null : idx)}
+                    className="w-full p-4 sm:p-5 text-left font-bold text-sm sm:text-base flex items-center justify-between gap-4 cursor-pointer relative z-10"
+                  >
+                    <div className="flex items-center gap-3.5">
+                      <div
+                        className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center font-bold text-xs sm:text-sm shrink-0 transition-all duration-300 ${
+                          isOpen
+                            ? 'bg-accent text-white shadow-md'
+                            : 'bg-primary text-accent shadow-xs group-hover:bg-accent group-hover:text-white'
+                        }`}
+                      >
+                        {idx + 1}
+                      </div>
+                      <span
+                        className={`font-display transition-colors duration-300 ${
+                          isOpen ? 'text-white' : 'text-primary group-hover:text-accent'
+                        }`}
+                      >
+                        {lang === 'bn' ? faq.qBn : faq.qEn}
+                      </span>
+                    </div>
+
+                    <div
+                      className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${
+                        isOpen
+                          ? 'bg-accent text-white rotate-180 shadow-md'
+                          : 'bg-primary/10 text-primary group-hover:bg-accent group-hover:text-white'
+                      }`}
+                    >
+                      <ChevronDown size={18} />
+                    </div>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease: [0.215, 0.61, 0.355, 1] }}
+                      >
+                        <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-white/90 leading-relaxed border-t border-white/15 bg-black/10 backdrop-blur-xs relative z-10">
+                          {lang === 'bn' ? faq.aBn : faq.aEn}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
 
