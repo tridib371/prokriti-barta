@@ -73,16 +73,16 @@ export default function ProductCard({ product }) {
           </span>
           <Link
             to={`/product/${product.slug}`}
-            className="block font-display font-semibold text-xs sm:text-sm text-primary hover:text-accent transition-colors line-clamp-2 h-[2.4rem] sm:h-[2.5rem] mt-0.5 leading-snug"
+            className="block font-display font-semibold text-xs sm:text-sm text-primary hover:text-accent transition-colors line-clamp-2 min-h-[2.4rem] sm:min-h-[2.5rem] mt-0.5 leading-snug"
             title={lang === 'bn' ? (product.bnName || product.name) : product.name}
           >
             {lang === 'bn' ? (product.bnName || product.name) : product.name}
           </Link>
-          <p className="text-[11px] text-muted font-bn-sans line-clamp-1 h-[1.1rem] mt-0.5 leading-tight">
+          <p className="text-[11px] text-muted font-bn-sans truncate mt-1 leading-normal">
             {lang === 'bn' ? (product.bnShortDesc || product.shortDesc) : product.shortDesc}
           </p>
 
-          <div className="mt-1.5 flex items-center h-[1.2rem]">
+          <div className="mt-1.5 flex items-center">
             <RatingStars rating={product.rating} reviewCount={product.reviewCount} size={12} />
           </div>
         </div>
