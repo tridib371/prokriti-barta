@@ -47,8 +47,8 @@ function isRelevantDomainQuery(q) {
     'health', 'benefit', 'nutrition', 'purity', 'test', 'pure', 'fresh', 'raw', 'natural', 'chemical', 'weight',
     'স্বাস্থ্য', 'উপকার', 'উপকারিতা', 'পুষ্টি', 'পরীক্ষা', 'টেস্ট', 'ভেজাল', 'প্রাকৃতিক', 'ওজন', 'ডায়াবেটিস',
     // Greetings & Common conversational
-    'hi', 'hello', 'hey', 'salam', 'assalam', 'nomoshkar', 'kemon', 'valo', 'help', 'shohayota',
-    'হাই', 'হ্যালো', 'সালাম', 'কেমন', 'ভালো', 'সাহায্য', 'ধন্যবাদ', 'থ্যাংকস', 'thanks', 'thank you'
+    'hi', 'hello', 'hey', 'greetings', 'kemon', 'valo', 'help', 'shohayota',
+    'হাই', 'হ্যালো', 'কেমন', 'ভালো', 'সাহায্য', 'সহায়তা', 'ধন্যবাদ', 'থ্যাংকস', 'thanks', 'thank you'
   ];
 
   return domainKeywords.some(keyword => q.includes(keyword));
@@ -90,9 +90,10 @@ Store Knowledge:
 
 CRITICAL RULES:
 1. If the user query is unrelated to Prokriti Barta, organic food, nutrition, health benefits of pure foods, store orders, delivery, or policies, POLITELY DECLINE. State that you specialize exclusively in Prokriti Barta and organic food, and provide our helpline (+880 1717-279166) and email (support@prokritibarta.com).
-2. Never use emojis.
-3. Never use em-dashes (—); always use standard hyphens (-).
-4. Provide output in valid JSON with "textBn" and "textEn" keys.
+2. Never use any religious words, phrases, or religious greetings. Use universal, neutral, polite, and professional language (e.g. 'হ্যালো! প্রকৃতি বার্তায় আপনাকে স্বাগতম।').
+3. Never use emojis.
+4. Never use em-dashes (—); always use standard hyphens (-).
+5. Provide output in valid JSON with "textBn" and "textEn" keys.
 
 User query: ${userInput}`;
 
@@ -206,13 +207,13 @@ User query: ${userInput}`;
   }
 
   // 6. Greetings & Standard Help Response
-  if (query.includes('hi') || query.includes('hello') || query.includes('salam') || query.includes('সালাম') || query.includes('হাই')) {
+  if (query.includes('hi') || query.includes('hello') || query.includes('hey') || query.includes('হাই') || query.includes('হ্যালো') || query.includes('নমস্কার') || query.includes('সালাম')) {
     return {
-      textBn: 'ওয়ালাইকুম আসসালাম! প্রকৃতি বার্তায় আপনাকে স্বাগতম। সুন্দরবনের খাঁটি মধু, কাঠের ঘানির তেল, বিলোনা ঘি, সিডস ও মসলা সম্পর্কিত যেকোনো তথ্য জানতে আমাকে প্রশ্ন করুন।',
-      textEn: 'Hello and welcome to Prokriti Barta! Ask me anything about our raw wild honey, wood-pressed oils, bilona ghee, organic seeds, or delivery policies.',
+      textBn: 'হ্যালো! প্রকৃতি বার্তায় আপনাকে স্বাগতম। সুন্দরবনের খাঁটি মধু, কাঠের ঘানির তেল, বিলোনা ঘি, সিডস ও খাঁটি মসলা সম্পর্কিত যেকোনো তথ্যে আমি কীভাবে আপনাকে সাহায্য করতে পারি?',
+      textEn: 'Hello and welcome to Prokriti Barta! How can I help you today regarding our pure raw honey, wood-pressed oils, bilona ghee, organic seeds, or spices?',
       text: lang === 'bn'
-        ? 'ওয়ালাইকুম আসসালাম! প্রকৃতি বার্তায় আপনাকে স্বাগতম। সুন্দরবনের খাঁটি মধু, কাঠের ঘানির তেল, বিলোনা ঘি, সিডস ও মসলা সম্পর্কিত যেকোনো তথ্য জানতে আমাকে প্রশ্ন করুন।'
-        : 'Hello and welcome to Prokriti Barta! Ask me anything about our raw wild honey, wood-pressed oils, bilona ghee, organic seeds, or delivery policies.',
+        ? 'হ্যালো! প্রকৃতি বার্তায় আপনাকে স্বাগতম। সুন্দরবনের খাঁটি মধু, কাঠের ঘানির তেল, বিলোনা ঘি, সিডস ও খাঁটি মসলা সম্পর্কিত যেকোনো তথ্যে আমি কীভাবে আপনাকে সাহায্য করতে পারি?'
+        : 'Hello and welcome to Prokriti Barta! How can I help you today regarding our pure raw honey, wood-pressed oils, bilona ghee, organic seeds, or spices?',
       actionLink: '/shop',
       actionLabelBn: 'শপ ব্রাউজ করুন',
       actionLabelEn: 'Browse Shop'
