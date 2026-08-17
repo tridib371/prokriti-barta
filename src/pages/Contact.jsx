@@ -202,8 +202,8 @@ export default function Contact() {
 
                 {/* Sleek Compact Action Button (Middle position) */}
                 <div className="pt-2 flex justify-center">
-                  <Button type="submit" variant="accent" size="md" className="px-8 py-2.5 rounded-xl gap-2 font-bold shadow-xs">
-                    {t('contact.send')} <Send size={15} />
+                  <Button type="submit" variant="accent" size="md" className="px-8 py-2.5 rounded-full gap-2 font-bold shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all cursor-pointer">
+                    <span>{t('contact.send')}</span> <Send size={15} />
                   </Button>
                 </div>
               </form>

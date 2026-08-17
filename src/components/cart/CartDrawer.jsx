@@ -286,18 +286,18 @@ export default function CartDrawer() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-2 pt-1">
+                <div className="grid grid-cols-2 gap-2.5 pt-1">
                   <Button
                     variant="secondary"
                     onClick={() => { closeCart(); navigate('/cart'); }}
-                    className="rounded-xl py-2.5 text-xs font-bold border-line hover:border-primary"
+                    className="rounded-full py-2.5 text-xs font-bold border-line hover:border-primary/40 shadow-2xs hover:scale-105 active:scale-95 transition-all cursor-pointer"
                   >
                     {t('cartdrawer.cartpage')}
                   </Button>
                   <Button
                     variant="accent"
                     onClick={handleCheckout}
-                    className="rounded-xl py-2.5 text-xs font-bold gap-1.5 shadow-md hover:scale-102 active:scale-98"
+                    className="rounded-full py-2.5 text-xs font-bold gap-1.5 shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all cursor-pointer"
                   >
                     <span>{t('btn.checkout')}</span>
                     <ArrowRight size={14} />

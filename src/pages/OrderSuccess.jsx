@@ -73,15 +73,15 @@ export default function OrderSuccess() {
         </div>
 
         {/* Action CTAs */}
-        <div className="flex flex-col sm:flex-row gap-3 pt-2">
-          <Link to="/profile/orders" className="flex-1">
-            <Button variant="secondary" size="md" className="w-full">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-3">
+          <Link to="/profile/orders">
+            <Button variant="secondary" size="md" className="rounded-full px-6 py-2.5 font-bold shadow-xs hover:scale-105 active:scale-95 transition-all">
               {t('profile.orders')}
             </Button>
           </Link>
-          <Link to="/shop" className="flex-1">
-            <Button variant="accent" size="md" className="w-full">
-              <ShoppingBag size={16} /> {t('btn.continueShopping')}
+          <Link to="/shop">
+            <Button variant="accent" size="md" className="rounded-full px-8 py-2.5 font-bold shadow-md hover:scale-105 active:scale-95 transition-all gap-2">
+              <ShoppingBag size={16} /> <span>{t('btn.continueShopping')}</span>
             </Button>
           </Link>
         </div>

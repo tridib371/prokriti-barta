@@ -494,15 +494,17 @@ export default function Cart() {
               </AnimatePresence>
 
               {/* Checkout Button */}
-              <Button
-                variant="accent"
-                size="lg"
-                onClick={handleCheckout}
-                className="w-full rounded-2xl py-3.5 font-bold shadow-md hover:shadow-lg hover:scale-102 active:scale-98 transition-all gap-2 cursor-pointer"
-              >
-                <span>{t('btn.checkout')}</span>
-                <ArrowRight size={18} />
-              </Button>
+              <div className="pt-3 flex justify-center">
+                <Button
+                  variant="accent"
+                  size="md"
+                  onClick={handleCheckout}
+                  className="px-8 py-2.5 rounded-full font-bold shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all gap-2 min-w-[200px] mx-auto cursor-pointer"
+                >
+                  <span>{t('btn.checkout')}</span>
+                  <ArrowRight size={16} />
+                </Button>
+              </div>
 
               {/* Security & COD Assurance */}
               <div className="pt-3 border-t border-line/60 space-y-2 text-[11px] text-muted font-bn-sans">
