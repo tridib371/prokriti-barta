@@ -200,7 +200,7 @@ export default function Footer() {
             <span className="px-2.5 py-1 bg-white/10 border border-white/15 rounded-md text-white/90">Rocket</span>
             <span className="px-2.5 py-1 bg-white/10 border border-white/15 rounded-md text-white/90">Visa</span>
             <span className="px-2.5 py-1 bg-white/10 border border-white/15 rounded-md text-white/90">Mastercard</span>
-            <span className="px-2.5 py-1 bg-accent/20 border border-accent/40 rounded-md text-accent">Cash on Delivery</span>
+            <span className="px-2.5 py-1 bg-white/10 border border-white/15 rounded-md text-white/90">Cash on Delivery</span>
           </div>
         </div>
       </div>
