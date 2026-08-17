@@ -406,13 +406,13 @@ export default function Delivery() {
           <div className="space-y-2.5 p-4 sm:p-5 rounded-2xl bg-black/25 backdrop-blur-xs border border-white/15 relative z-10">
             <div className="flex items-center justify-between text-xs font-bn-sans">
               <span className="text-white/85 flex items-center gap-1.5 font-bold">
-                <Truck size={15} className="text-accent" />
+                <Truck size={15} className={currentAmount >= 1000 ? "text-emerald-400" : "text-accent"} />
                 {lang === 'bn' ? 'ফ্রি ডেলিভারি টার্গেট প্রগ্রেস:' : 'FREE Shipping Target Meter:'}
               </span>
               <span className="font-bold">
                 {currentAmount >= 1000 ? (
-                  <span className="text-[#3E7A5E] bg-[#3E7A5E]/20 px-2.5 py-0.5 rounded-full border border-[#3E7A5E]/40 font-bold flex items-center gap-1 text-emerald-300">
-                    <CheckCircle2 size={13} /> {lang === 'bn' ? '১০০% অর্জিত (ফ্রি ডেলিভারি)' : '100% Achieved (FREE)'}
+                  <span className="text-emerald-300 bg-emerald-950/60 px-2.5 py-0.5 rounded-full border border-emerald-400/40 font-bold flex items-center gap-1 shadow-[0_0_10px_rgba(52,211,153,0.3)]">
+                    <CheckCircle2 size={13} className="text-emerald-400" /> {lang === 'bn' ? '১০০% অর্জিত (ফ্রি ডেলিভারি)' : '100% Achieved (FREE)'}
                   </span>
                 ) : (
                   <span className="text-accent font-bold">
@@ -422,13 +422,19 @@ export default function Delivery() {
               </span>
             </div>
 
-            {/* Orange to Green Website Brand Gradient Meter */}
+            {/* Dynamic Color Progress Bar: Orange at Start -> Transitions to Bright Green at 1000+ */}
             <div className="h-3 w-full bg-white/10 rounded-full overflow-hidden p-0.5 border border-white/15">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${Math.min(100, Math.max(0, (currentAmount / 1000) * 100))}%` }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
-                className="h-full rounded-full bg-gradient-to-r from-accent via-[#E89814] to-accent-2 shadow-[0_0_12px_rgba(200,109,59,0.5)] transition-all duration-300"
+                className={`h-full rounded-full transition-all duration-500 ${
+                  currentAmount >= 1000
+                    ? 'bg-gradient-to-r from-emerald-400 to-teal-300 shadow-[0_0_16px_rgba(52,211,153,0.9)]'
+                    : currentAmount >= 500
+                    ? 'bg-gradient-to-r from-accent via-[#E89814] to-emerald-400 shadow-[0_0_12px_rgba(232,152,20,0.6)]'
+                    : 'bg-gradient-to-r from-accent to-[#E89814] shadow-[0_0_10px_rgba(200,109,59,0.5)]'
+                }`}
               />
             </div>
 
@@ -436,7 +442,9 @@ export default function Delivery() {
             <div className="flex items-center justify-between text-[11px] font-bn-sans font-bold pt-0.5">
               <span className="text-accent">৳০ ({lang === 'bn' ? 'শুরু' : 'Start'})</span>
               <span className="text-white/40 font-normal">৳৫০০ (৫০%)</span>
-              <span className="text-[#3E7A5E] text-emerald-400">৳১০০০ ({lang === 'bn' ? 'ফ্রি ডেলিভারি' : 'FREE'})</span>
+              <span className={currentAmount >= 1000 ? "text-emerald-400 font-bold" : "text-white/60"}>
+                ৳১০০০ ({lang === 'bn' ? 'ফ্রি ডেলিভারি' : 'FREE'})
+              </span>
             </div>
           </div>
 
