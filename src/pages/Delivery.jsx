@@ -501,10 +501,10 @@ export default function Delivery() {
             </div>
 
             {calcDeliveryFee() === null ? (
-              <div className="text-center sm:text-right text-xs text-white/80 font-bn-sans bg-black/20 p-3 rounded-xl border border-white/10">
+              <div className="text-center sm:text-right text-xs text-white/85 font-bn-sans bg-black/20 px-3.5 py-2.5 rounded-xl border border-white/10 whitespace-nowrap">
                 {lang === 'bn' 
-                  ? 'উপরে এলাকা নির্বাচন ও অর্ডারের পরিমাণ লিখলে সঠিক খরচ দেখতে পাবেন।' 
-                  : 'Select your area & enter cart total above to view shipping fee.'}
+                  ? 'উপরে এলাকা ও অর্ডারের পরিমাণ নির্বাচন করুন' 
+                  : 'Select area & enter order amount above'}
               </div>
             ) : currentAmount < 1000 ? (
               <div className="text-center sm:text-right text-xs text-white/85 font-bn-sans bg-black/20 p-3 rounded-xl border border-white/10">
