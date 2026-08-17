@@ -6,7 +6,7 @@ import reviews from '../../data/reviews.json';
 import { useLanguage } from '../../context/LanguageContext';
 
 export default function ReviewsCarousel() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <section className="py-12 bg-bg border-t border-line">
@@ -33,14 +33,18 @@ export default function ReviewsCarousel() {
               <div className="space-y-3 relative z-10">
                 <RatingStars rating={rev.rating} size={15} />
                 <p className="text-xs text-ink leading-relaxed font-bn-sans italic">
-                  "{rev.comment}"
+                  "{lang === 'bn' ? (rev.commentBn || rev.comment) : (rev.commentEn || rev.comment)}"
                 </p>
               </div>
 
               <div className="mt-4 pt-3 border-t border-line/60 flex items-center justify-between">
                 <div>
-                  <h4 className="font-bold text-xs text-primary">{rev.userName}</h4>
-                  <p className="text-[10px] text-muted">{rev.userLocation}</p>
+                  <h4 className="font-bold text-xs text-primary">
+                    {lang === 'bn' ? (rev.userNameBn || rev.userName) : (rev.userNameEn || rev.userName)}
+                  </h4>
+                  <p className="text-[10px] text-muted">
+                    {lang === 'bn' ? (rev.userLocationBn || rev.userLocation) : (rev.userLocationEn || rev.userLocation)}
+                  </p>
                 </div>
                 {rev.verifiedPurchase && (
                   <span className="flex items-center gap-1 text-[10px] text-accent font-medium">
