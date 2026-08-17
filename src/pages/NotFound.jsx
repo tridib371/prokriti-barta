@@ -11,8 +11,8 @@ export default function NotFound() {
 
   const suggestedLinks = [
     { labelBn: 'খাঁটি মধু', labelEn: 'Raw Honey', path: '/shop?category=honey' },
-    { labelBn: 'বৈদিক বিলোনা ঘি', labelEn: 'Vedic Ghee', path: '/shop?category=ghee' },
-    { labelBn: 'কাঠের ঘানির তেল', labelEn: 'Wood-Pressed Oil', path: '/shop?category=oil' },
+    { labelBn: 'গাওয়া ঘি ও তেল', labelEn: 'Vedic Ghee & Oils', path: '/shop?category=ghee-oils' },
+    { labelBn: 'খাঁটি মশলা', labelEn: 'Pure Spices', path: '/shop?category=spices' },
     { labelBn: 'চলতি অফারসমূহ', labelEn: 'Special Offers', path: '/offers' },
   ];
 

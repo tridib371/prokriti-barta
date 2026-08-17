@@ -85,9 +85,18 @@ export default function Shop() {
         if (activeTab === 'bestseller' && !p.isFeatured && !p.tags?.includes('Bestseller')) return false;
 
         // Category filter
-        if (selectedCategory && p.category !== selectedCategory) {
-          const matchedCat = categoriesData.find(c => c.slug === selectedCategory);
-          if (!matchedCat || p.category !== matchedCat.id) return false;
+        if (selectedCategory && selectedCategory !== 'all') {
+          const cat = selectedCategory.toLowerCase();
+          const matchedCat = categoriesData.find(c => c.slug.toLowerCase() === cat || c.id.toLowerCase() === cat);
+          const isCategoryMatch = p.category === cat || 
+            (matchedCat && p.category === matchedCat.id) ||
+            (cat === 'ghee' && p.category === 'ghee-oils') ||
+            (cat === 'oil' && p.category === 'ghee-oils') ||
+            (cat === 'seeds' && p.category === 'superfoods-seeds') ||
+            (cat === 'rice' && p.category === 'rice-grains') ||
+            (cat === 'tea' && p.category === 'tea-beverages');
+
+          if (!isCategoryMatch) return false;
         }
         // Search filter
         if (searchQuery.trim()) {
