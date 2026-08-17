@@ -62,5 +62,37 @@
     "commentBn": "সম্পূর্ণ ধুলোবালি ও ভেজালমুক্ত প্রিমিয়াম কোয়ালিটি চিয়া সিড। ২৪ ঘণ্টার মধ্যে দ্রুত ডেলিভারি পেয়েছি।",
     "commentEn": "Very high quality, clean chia seeds without any impurities. Fast delivery within 24 hours.",
     "verifiedPurchase": true
+  },
+  {
+    "id": "rev-5",
+    "productId": "honey-kalojeera-500",
+    "userName": "Anowar Hossain",
+    "userNameBn": "আনোয়ার হোসেন",
+    "userNameEn": "Anowar Hossain",
+    "userLocation": "Rajshahi Sadar",
+    "userLocationBn": "রাজশাহী সদর",
+    "userLocationEn": "Rajshahi Sadar",
+    "rating": 5,
+    "date": "2026-01-10",
+    "comment": "Blackseed blossom honey has a distinct deep flavor and thick density. Truly pure quality.",
+    "commentBn": "কালোজিরা ফুলের মধুর ঘনত্ব ও স্বাদ অতুলনীয়। পরিবারের সবাই খুব পছন্দ করেছে।",
+    "commentEn": "Blackseed blossom honey has a distinct deep flavor and thick density. Truly pure quality.",
+    "verifiedPurchase": true
+  },
+  {
+    "id": "rev-6",
+    "productId": "turmeric-powder-250",
+    "userName": "Nusrat Jahan",
+    "userNameBn": "নুসরাত জাহান",
+    "userNameEn": "Nusrat Jahan",
+    "userLocation": "Mirpur, Dhaka",
+    "userLocationBn": "মিরপুর, ঢাকা",
+    "userLocationEn": "Mirpur, Dhaka",
+    "rating": 5,
+    "date": "2026-01-05",
+    "comment": "Natural golden color and earthy organic turmeric aroma without any chemical polishing.",
+    "commentBn": "ভেজালমুক্ত খাঁটি হলুদ গুঁড়ার দারুণ প্রাকৃতিক রঙ ও ঘ্রাণ। তরকারিতে চমৎকার স্বাদ দেয়।",
+    "commentEn": "Natural golden color and earthy organic turmeric aroma without any chemical polishing.",
+    "verifiedPurchase": true
   }
 ]
