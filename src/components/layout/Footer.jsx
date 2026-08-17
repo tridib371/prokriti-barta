@@ -93,11 +93,11 @@ export default function Footer() {
         <div className="absolute -top-32 left-1/4 w-96 h-96 bg-accent/15 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -bottom-32 right-1/4 w-96 h-96 bg-accent-2/20 rounded-full blur-3xl pointer-events-none" />
 
-        {/* Main Footer Content Columns */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 relative z-10">
+        {/* Main Footer Content Columns (Mobile: Brand [full], Quick Links [left] + Categories [right], Newsletter [full]) */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-2 lg:grid-cols-5 gap-8 relative z-10">
         
         {/* Brand Column */}
-        <div className="lg:col-span-2 space-y-4">
+        <div className="col-span-2 lg:col-span-2 space-y-4">
           <Link to="/" className="inline-flex items-center gap-3 group">
             <img
               src="/PB.jpg"
@@ -138,8 +138,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Quick Navigation */}
-        <div>
+        {/* Quick Navigation (Left side on mobile) */}
+        <div className="col-span-1 lg:col-span-1">
           <h4 className="font-display font-bold text-sm text-white mb-4 pb-1.5 border-b-2 border-accent inline-block">
             {t('footer.quickLinks')}
           </h4>
@@ -153,8 +153,8 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Organic Categories */}
-        <div>
+        {/* Organic Categories (Right side of Quick Links on mobile) */}
+        <div className="col-span-1 lg:col-span-1">
           <h4 className="font-display font-bold text-sm text-white mb-4 pb-1.5 border-b-2 border-accent inline-block">
             {t('footer.categories')}
           </h4>
@@ -169,8 +169,8 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Newsletter Signup */}
-        <div>
+        {/* Newsletter Signup (Below on mobile, spanning 2 cols) */}
+        <div className="col-span-2 lg:col-span-1">
           <h4 className="font-display font-bold text-sm text-white mb-4 pb-1.5 border-b-2 border-accent inline-block">
             {t('footer.newsletter')}
           </h4>
