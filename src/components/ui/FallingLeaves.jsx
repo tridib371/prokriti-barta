@@ -130,12 +130,23 @@ export default function FallingLeaves({ count = 26, className = '' }) {
         this.size = 28 + Math.random() * 20; // 28px to 48px
         this.variant = leafVariants[Math.floor(Math.random() * leafVariants.length)];
         this.x = Math.random() * width;
-        // Stagger spawn heights from above top of screen
-        this.y = isInitial ? -Math.random() * (height * 0.9) - 40 : -60 - Math.random() * 80;
 
         // Ground settling limit at bottom (scattered across bottom 80px)
         this.groundY = height - (18 + Math.random() * Math.min(85, height * 0.16));
-        this.isGrounded = false;
+
+        // On initial page load: distribute instantly across the entire screen
+        if (isInitial) {
+          // Half in mid-air, half on ground or near bottom
+          this.y = Math.random() * (height - 20);
+          this.isGrounded = this.y >= this.groundY - 10;
+          if (this.isGrounded) {
+            this.y = this.groundY;
+          }
+        } else {
+          // Continuous spawns start from above top of screen
+          this.y = -40 - Math.random() * 70;
+          this.isGrounded = false;
+        }
 
         // Slow, serene falling velocity (gentle floating)
         this.vx = (Math.random() - 0.5) * 0.5;

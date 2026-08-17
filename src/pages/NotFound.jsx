@@ -21,7 +21,7 @@ export default function NotFound() {
     <div className="min-h-[85vh] bg-bg flex flex-col items-center justify-center text-center p-4 sm:p-6 relative overflow-hidden select-none">
       
       {/* Interactive Falling & Floating Leaves Physics Layer */}
-      <FallingLeaves count={30} />
+      <FallingLeaves count={36} />
       
       {/* Deep Ambient Background Glow Blobs (Smooth 10s GPU Glide) */}
       <motion.div
