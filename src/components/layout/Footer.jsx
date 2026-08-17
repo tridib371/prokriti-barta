@@ -18,63 +18,67 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-primary text-white relative overflow-hidden border-t border-primary/40 mt-16 select-none">
-      
-      {/* Ambient Decorative Lighting Blurs */}
-      <div className="absolute -top-32 left-1/4 w-96 h-96 bg-accent/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-32 right-1/4 w-96 h-96 bg-accent-2/20 rounded-full blur-3xl pointer-events-none" />
+    <>
+      {/* 1. Value Badges Banner (Body Color) */}
+      <section className="bg-bg border-t border-line py-8 transition-colors select-none">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            
+            <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-surface border border-line shadow-2xs hover:border-primary/40 hover:shadow-xs transition-all">
+              <div className="w-11 h-11 rounded-xl bg-accent/15 text-accent flex items-center justify-center shrink-0">
+                <ShieldCheck size={24} />
+              </div>
+              <div>
+                <h4 className="font-bold text-sm text-primary">{t('footer.pure.title')}</h4>
+                <p className="text-xs text-muted font-bn-sans">{t('footer.pure.sub')}</p>
+              </div>
+            </div>
 
-      {/* 1. Value Badges Banner */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-b border-white/10 relative z-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          
-          <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs hover:bg-white/10 hover:border-accent/40 transition-all">
-            <div className="w-11 h-11 rounded-xl bg-accent/20 text-accent flex items-center justify-center shrink-0 shadow-inner">
-              <ShieldCheck size={24} />
+            <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-surface border border-line shadow-2xs hover:border-primary/40 hover:shadow-xs transition-all">
+              <div className="w-11 h-11 rounded-xl bg-accent/15 text-accent flex items-center justify-center shrink-0">
+                <Truck size={24} />
+              </div>
+              <div>
+                <h4 className="font-bold text-sm text-primary">{t('footer.cod.title')}</h4>
+                <p className="text-xs text-muted font-bn-sans">{t('footer.cod.sub')}</p>
+              </div>
             </div>
-            <div>
-              <h4 className="font-bold text-sm text-white">{t('footer.pure.title')}</h4>
-              <p className="text-xs text-white/70 font-bn-sans">{t('footer.pure.sub')}</p>
+
+            <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-surface border border-line shadow-2xs hover:border-primary/40 hover:shadow-xs transition-all">
+              <div className="w-11 h-11 rounded-xl bg-accent/15 text-accent flex items-center justify-center shrink-0">
+                <RefreshCw size={24} />
+              </div>
+              <div>
+                <h4 className="font-bold text-sm text-primary">{t('footer.return.title')}</h4>
+                <p className="text-xs text-muted font-bn-sans">{t('footer.return.sub')}</p>
+              </div>
             </div>
+
+            <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-surface border border-line shadow-2xs hover:border-primary/40 hover:shadow-xs transition-all">
+              <div className="w-11 h-11 rounded-xl bg-accent/15 text-accent flex items-center justify-center shrink-0">
+                <Phone size={24} />
+              </div>
+              <div>
+                <h4 className="font-bold text-sm text-primary">{t('footer.support.title')}</h4>
+                <a href="tel:+8801717279166" className="text-xs text-accent font-bold hover:underline">
+                  {n('+880 1717-279166')}
+                </a>
+              </div>
+            </div>
+
           </div>
-
-          <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs hover:bg-white/10 hover:border-accent/40 transition-all">
-            <div className="w-11 h-11 rounded-xl bg-accent/20 text-accent flex items-center justify-center shrink-0 shadow-inner">
-              <Truck size={24} />
-            </div>
-            <div>
-              <h4 className="font-bold text-sm text-white">{t('footer.cod.title')}</h4>
-              <p className="text-xs text-white/70 font-bn-sans">{t('footer.cod.sub')}</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs hover:bg-white/10 hover:border-accent/40 transition-all">
-            <div className="w-11 h-11 rounded-xl bg-accent/20 text-accent flex items-center justify-center shrink-0 shadow-inner">
-              <RefreshCw size={24} />
-            </div>
-            <div>
-              <h4 className="font-bold text-sm text-white">{t('footer.return.title')}</h4>
-              <p className="text-xs text-white/70 font-bn-sans">{t('footer.return.sub')}</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs hover:bg-white/10 hover:border-accent/40 transition-all">
-            <div className="w-11 h-11 rounded-xl bg-accent/20 text-accent flex items-center justify-center shrink-0 shadow-inner">
-              <Phone size={24} />
-            </div>
-            <div>
-              <h4 className="font-bold text-sm text-white">{t('footer.support.title')}</h4>
-              <a href="tel:+8801717279166" className="text-xs text-accent font-bold hover:underline">
-                {n('+880 1717-279166')}
-              </a>
-            </div>
-          </div>
-
         </div>
-      </div>
+      </section>
 
-      {/* 2. Main Footer Content Columns */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 relative z-10">
+      {/* 2. Main Deep Forest Green Footer */}
+      <footer className="bg-primary text-white relative overflow-hidden select-none">
+        
+        {/* Ambient Decorative Lighting Blurs */}
+        <div className="absolute -top-32 left-1/4 w-96 h-96 bg-accent/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-32 right-1/4 w-96 h-96 bg-accent-2/20 rounded-full blur-3xl pointer-events-none" />
+
+        {/* Main Footer Content Columns */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 relative z-10">
         
         {/* Brand Column */}
         <div className="lg:col-span-2 space-y-4">
@@ -203,5 +207,6 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+    </>
   );
 }
