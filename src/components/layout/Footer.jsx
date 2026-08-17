@@ -204,7 +204,7 @@ export default function Footer() {
       </div>
 
       {/* 3. Bottom Copyright & Payment Methods */}
-      <div className="border-t border-white/10 bg-black/30 pt-5 pb-20 sm:pb-6 relative z-10">
+      <div className="border-t border-white/10 bg-black/30 pt-5 pb-32 sm:pb-8 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/70">
           <p>© {n(new Date().getFullYear())} {lang === 'bn' ? 'প্রকৃতি বার্তা' : 'Prokriti Barta'}. {t('footer.rights')}</p>
           <div className="flex flex-wrap items-center justify-center gap-2 text-[10px] uppercase font-bold tracking-wider">
