@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle2, Clock, MessageSquare, HelpCircle, ChevronDown, Sparkles } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle2, Clock, MessageSquare, HelpCircle, ChevronDown, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Button from '../components/ui/Button';
 import AlponaDivider from '../components/ui/AlponaDivider';
@@ -8,16 +8,41 @@ import { useLanguage } from '../context/LanguageContext';
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: '', phone: '', subject: 'general', message: '' });
+  const [errors, setErrors] = useState({});
   const [openFaq, setOpenFaq] = useState(null);
   const { t, lang } = useLanguage();
 
+  const handleFieldChange = (field, value) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      setErrors((prev) => ({ ...prev, [field]: null }));
+    }
+  };
+
+  const validate = () => {
+    const newErrors = {};
+    if (!form.name.trim()) {
+      newErrors.name = lang === 'bn' ? 'দয়া করে আপনার নাম লিখুন' : 'Please enter your full name';
+    }
+    if (!form.phone.trim()) {
+      newErrors.phone = lang === 'bn' ? 'দয়া করে আপনার ফোন নম্বর লিখুন' : 'Please enter your phone number';
+    }
+    if (!form.message.trim()) {
+      newErrors.message = lang === 'bn' ? 'দয়া করে আপনার বার্তা বা প্রশ্ন বিস্তারিত লিখুন' : 'Please enter your inquiry details';
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!validate()) return;
     setSubmitted(true);
   };
 
   const handleReset = () => {
     setForm({ name: '', phone: '', subject: 'general', message: '' });
+    setErrors({});
     setSubmitted(false);
   };
 
@@ -140,7 +165,7 @@ export default function Contact() {
                 </Button>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} noValidate className="space-y-5">
                 <div className="pb-3 border-b border-line flex items-center justify-between">
                   <h2 className="font-display font-bold text-xl text-primary">
                     {lang === 'bn' ? 'আমাদের বার্তা পাঠান' : 'Send Us A Message'}
@@ -153,24 +178,34 @@ export default function Contact() {
                     <label className="block text-xs font-bold text-ink mb-1.5">{t('contact.name')} *</label>
                     <input
                       type="text"
-                      required
                       placeholder={lang === 'bn' ? 'আপনার পূর্ণ নাম লিখুন' : 'Enter your full name'}
                       value={form.name}
-                      onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      className="w-full bg-bg text-ink px-4 py-2.5 rounded-xl border border-line focus:border-accent focus:ring-1 focus:ring-accent outline-none text-xs sm:text-sm font-bn-sans transition-all"
+                      onChange={(e) => handleFieldChange('name', e.target.value)}
+                      className={`w-full bg-bg text-ink px-4 py-2.5 rounded-xl border ${errors.name ? 'border-accent-2/80 bg-accent-2/5' : 'border-line focus:border-accent'} focus:ring-1 focus:ring-accent outline-none text-xs sm:text-sm font-bn-sans transition-all`}
                     />
+                    {errors.name && (
+                      <p className="text-[11px] text-accent-2 font-bold mt-1.5 flex items-center gap-1 font-bn-sans">
+                        <AlertCircle size={13} className="shrink-0 text-accent-2" />
+                        <span>{errors.name}</span>
+                      </p>
+                    )}
                   </div>
 
                   <div>
                     <label className="block text-xs font-bold text-ink mb-1.5">{t('register.phone')} *</label>
                     <input
                       type="tel"
-                      required
                       placeholder="01717-279166"
                       value={form.phone}
-                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                      className="w-full bg-bg text-ink px-4 py-2.5 rounded-xl border border-line focus:border-accent focus:ring-1 focus:ring-accent outline-none text-xs sm:text-sm font-bn-sans transition-all"
+                      onChange={(e) => handleFieldChange('phone', e.target.value)}
+                      className={`w-full bg-bg text-ink px-4 py-2.5 rounded-xl border ${errors.phone ? 'border-accent-2/80 bg-accent-2/5' : 'border-line focus:border-accent'} focus:ring-1 focus:ring-accent outline-none text-xs sm:text-sm font-bn-sans transition-all`}
                     />
+                    {errors.phone && (
+                      <p className="text-[11px] text-accent-2 font-bold mt-1.5 flex items-center gap-1 font-bn-sans">
+                        <AlertCircle size={13} className="shrink-0 text-accent-2" />
+                        <span>{errors.phone}</span>
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -178,7 +213,7 @@ export default function Contact() {
                   <label className="block text-xs font-bold text-ink mb-1.5">{lang === 'bn' ? 'বিষয় সিলেক্ট করুন' : 'Subject'}</label>
                   <select
                     value={form.subject}
-                    onChange={(e) => setForm({ ...form, subject: e.target.value })}
+                    onChange={(e) => handleFieldChange('subject', e.target.value)}
                     className="w-full bg-bg text-ink px-4 py-2.5 rounded-xl border border-line focus:border-accent focus:ring-1 focus:ring-accent outline-none text-xs sm:text-sm font-bn-sans transition-all"
                   >
                     <option value="general">{lang === 'bn' ? 'সাধারণ বিষয় / প্রাক-ক্রয় তথ্য' : 'General Inquiry'}</option>
@@ -191,13 +226,18 @@ export default function Contact() {
                 <div>
                   <label className="block text-xs font-bold text-ink mb-1.5">{t('contact.message')} *</label>
                   <textarea
-                    required
                     rows="4"
                     placeholder={lang === 'bn' ? 'আপনার কাঙ্ক্ষিত পণ্য বা প্রশ্ন বিস্তারিত লিখুন...' : 'Write your details or inquiry here...'}
                     value={form.message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    className="w-full bg-bg text-ink px-4 py-2.5 rounded-xl border border-line focus:border-accent focus:ring-1 focus:ring-accent outline-none text-xs sm:text-sm font-bn-sans transition-all resize-none"
+                    onChange={(e) => handleFieldChange('message', e.target.value)}
+                    className={`w-full bg-bg text-ink px-4 py-2.5 rounded-xl border ${errors.message ? 'border-accent-2/80 bg-accent-2/5' : 'border-line focus:border-accent'} focus:ring-1 focus:ring-accent outline-none text-xs sm:text-sm font-bn-sans transition-all resize-none`}
                   />
+                  {errors.message && (
+                    <p className="text-[11px] text-accent-2 font-bold mt-1.5 flex items-center gap-1 font-bn-sans">
+                      <AlertCircle size={13} className="shrink-0 text-accent-2" />
+                      <span>{errors.message}</span>
+                    </p>
+                  )}
                 </div>
 
                 {/* Sleek Compact Action Button (Middle position) */}

@@ -15,13 +15,22 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
+  const [fieldErrors, setFieldErrors] = useState({});
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (!email || !password) {
-      setError(t('login.error'));
+    const errs = {};
+    if (!email.trim()) {
+      errs.email = lang === 'bn' ? 'দয়া করে আপনার ইমেইল এড্রেস লিখুন' : 'Please enter your email';
+    }
+    if (!password) {
+      errs.password = lang === 'bn' ? 'দয়া করে আপনার পাসওয়ার্ড লিখুন' : 'Please enter your password';
+    }
+    if (Object.keys(errs).length > 0) {
+      setFieldErrors(errs);
       return;
     }
+    setFieldErrors({});
     login(email, password);
     const destination = location.state?.from || '/shop';
     navigate(destination, { replace: true });
@@ -120,20 +129,27 @@ export default function Login() {
             </motion.div>
           )}
 
-          <form onSubmit={handleLogin} className="space-y-4 text-xs font-bn-sans">
+          <form onSubmit={handleLogin} noValidate className="space-y-4 text-xs font-bn-sans">
             <div className="space-y-1.5">
               <label className="block font-bold text-ink text-xs">{t('login.email')}</label>
               <div className="relative group">
                 <input
                   type="email"
-                  required
                   placeholder="name@example.com"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-bg text-ink px-4 py-3 pl-10 rounded-2xl border border-line focus:border-accent focus:bg-surface outline-none transition-all"
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    if (fieldErrors.email) setFieldErrors(prev => ({ ...prev, email: null }));
+                  }}
+                  className={`w-full bg-bg text-ink px-4 py-3 pl-10 rounded-2xl border ${fieldErrors.email ? 'border-accent-2/80 bg-accent-2/5' : 'border-line focus:border-accent'} focus:bg-surface outline-none transition-all`}
                 />
                 <Mail size={16} className="absolute left-3.5 top-3.5 text-muted group-focus-within:text-accent transition-colors" />
               </div>
+              {fieldErrors.email && (
+                <p className="text-[11px] text-accent-2 font-bold mt-1 flex items-center gap-1 font-bn-sans">
+                  <span>{fieldErrors.email}</span>
+                </p>
+              )}
             </div>
 
             <div className="space-y-1.5">
@@ -143,11 +159,13 @@ export default function Login() {
               <div className="relative group">
                 <input
                   type={showPassword ? 'text' : 'password'}
-                  required
                   placeholder="••••••••"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-bg text-ink px-4 py-3 pl-10 pr-10 rounded-2xl border border-line focus:border-accent focus:bg-surface outline-none transition-all"
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    if (fieldErrors.password) setFieldErrors(prev => ({ ...prev, password: null }));
+                  }}
+                  className={`w-full bg-bg text-ink px-4 py-3 pl-10 pr-10 rounded-2xl border ${fieldErrors.password ? 'border-accent-2/80 bg-accent-2/5' : 'border-line focus:border-accent'} focus:bg-surface outline-none transition-all`}
                 />
                 <Lock size={16} className="absolute left-3.5 top-3.5 text-muted group-focus-within:text-accent transition-colors" />
                 <button
@@ -158,6 +176,11 @@ export default function Login() {
                   {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
+              {fieldErrors.password && (
+                <p className="text-[11px] text-accent-2 font-bold mt-1 flex items-center gap-1 font-bn-sans">
+                  <span>{fieldErrors.password}</span>
+                </p>
+              )}
             </div>
 
             {/* Short Centered Login Button */}

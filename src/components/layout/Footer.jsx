@@ -7,14 +7,18 @@ import { useLanguage } from '../../context/LanguageContext';
 export default function Footer() {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [emailError, setEmailError] = useState('');
   const { t, n, lang } = useLanguage();
 
   const handleNewsletter = (e) => {
     e.preventDefault();
-    if (email) {
-      setSubscribed(true);
-      setEmail('');
+    if (!email.trim() || !email.includes('@')) {
+      setEmailError(lang === 'bn' ? 'দয়া করে একটি সঠিক ইমেইল এড্রেস লিখুন' : 'Please enter a valid email address');
+      return;
     }
+    setEmailError('');
+    setSubscribed(true);
+    setEmail('');
   };
 
   return (
@@ -169,15 +173,24 @@ export default function Footer() {
               <CheckCircle size={16} /> {t('footer.newsletter.success')}
             </div>
           ) : (
-            <form onSubmit={handleNewsletter} className="flex flex-col items-center gap-2.5 w-full">
-              <input
-                type="email"
-                required
-                placeholder={t('footer.newsletter.placeholder')}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-white/10 text-white placeholder-white/50 text-xs px-3.5 py-2.5 rounded-xl border border-white/20 focus:border-accent focus:bg-white/15 outline-none transition-all"
-              />
+            <form onSubmit={handleNewsletter} noValidate className="flex flex-col items-center gap-2 w-full">
+              <div className="w-full">
+                <input
+                  type="email"
+                  placeholder={t('footer.newsletter.placeholder')}
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    if (emailError) setEmailError('');
+                  }}
+                  className={`w-full bg-white/10 text-white placeholder-white/50 text-xs px-3.5 py-2.5 rounded-xl border ${emailError ? 'border-accent-2/80 bg-accent-2/10' : 'border-white/20 focus:border-accent focus:bg-white/15'} outline-none transition-all`}
+                />
+                {emailError && (
+                  <p className="text-[11px] text-accent font-bold mt-1 text-center font-bn-sans">
+                    {emailError}
+                  </p>
+                )}
+              </div>
               <button
                 type="submit"
                 className="px-5 py-2 bg-accent text-white hover:bg-accent/90 text-xs font-semibold rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-xs hover:shadow cursor-pointer"

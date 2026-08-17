@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Clock, User, ArrowRight, BookOpen, Sparkles, Tag, CheckCircle2 } from 'lucide-react';
+import { Clock, User, ArrowRight, BookOpen, Tag, CheckCircle2, AlertCircle } from 'lucide-react';
 import blogsData from '../data/blogs.json';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
@@ -10,6 +10,20 @@ import Button from '../components/ui/Button';
 export default function Blog() {
   const { t, n, lang } = useLanguage();
   const [activeCategory, setActiveCategory] = useState('all');
+  const [blogEmail, setBlogEmail] = useState('');
+  const [blogSubscribed, setBlogSubscribed] = useState(false);
+  const [blogError, setBlogError] = useState('');
+
+  const handleBlogSubscribe = (e) => {
+    e.preventDefault();
+    if (!blogEmail.trim() || !blogEmail.includes('@')) {
+      setBlogError(lang === 'bn' ? 'দয়া করে একটি সঠিক ইমেইল এড্রেস লিখুন' : 'Please enter a valid email address');
+      return;
+    }
+    setBlogError('');
+    setBlogSubscribed(true);
+    setBlogEmail('');
+  };
 
   const categories = [
     { id: 'all', nameBn: 'সব আর্টিকেল', nameEn: 'All Articles' },
@@ -221,17 +235,35 @@ export default function Blog() {
                 : 'Join over 10,000+ health-conscious households receiving verified nutritional articles directly from organic experts.'}
             </p>
 
-            <form onSubmit={(e) => { e.preventDefault(); alert(lang === 'bn' ? 'ধন্যবাদ! আপনার সাবস্ক্রিপশন সফল হয়েছে।' : 'Thank you for subscribing!'); }} className="pt-2 flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder={lang === 'bn' ? 'আপনার ইমেইল এড্রেস লিখুন...' : 'Enter your email address...'}
-                required
-                className="px-4 py-2.5 rounded-xl bg-surface text-ink text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-accent flex-1"
-              />
-              <Button type="submit" variant="accent" size="md" className="gap-1 shadow-md shrink-0">
-                {lang === 'bn' ? 'সাবস্ক্রাইব করুন' : 'Subscribe'} <ArrowRight size={15} />
-              </Button>
-            </form>
+            {blogSubscribed ? (
+              <div className="bg-white/10 border border-white/20 p-4 rounded-2xl flex items-center justify-center gap-2 text-sm text-white font-bold max-w-md mx-auto">
+                <CheckCircle2 size={18} className="text-accent" />
+                <span>{lang === 'bn' ? 'ধন্যবাদ! আপনার সাবস্ক্রিপশন সফল হয়েছে।' : 'Thank you for subscribing!'}</span>
+              </div>
+            ) : (
+              <form onSubmit={handleBlogSubscribe} noValidate className="pt-2 flex flex-col gap-2 max-w-md mx-auto">
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <input
+                    type="email"
+                    placeholder={lang === 'bn' ? 'আপনার ইমেইল এড্রেস লিখুন...' : 'Enter your email address...'}
+                    value={blogEmail}
+                    onChange={(e) => {
+                      setBlogEmail(e.target.value);
+                      if (blogError) setBlogError('');
+                    }}
+                    className={`px-4 py-2.5 rounded-xl bg-surface text-ink text-xs sm:text-sm focus:outline-none border ${blogError ? 'border-accent-2/80 ring-1 ring-accent-2' : 'border-transparent focus:ring-2 focus:ring-accent'} flex-1`}
+                  />
+                  <Button type="submit" variant="accent" size="md" className="gap-1 shadow-md shrink-0 cursor-pointer">
+                    <span>{lang === 'bn' ? 'সাবস্ক্রাইব করুন' : 'Subscribe'}</span> <ArrowRight size={15} />
+                  </Button>
+                </div>
+                {blogError && (
+                  <p className="text-[11px] text-accent font-bold text-center font-bn-sans">
+                    {blogError}
+                  </p>
+                )}
+              </form>
+            )}
           </div>
         </motion.div>
 

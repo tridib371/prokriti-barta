@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { ShieldCheck, Truck, CreditCard, Banknote, Smartphone, ArrowLeft, CheckCircle2, ArrowRight } from 'lucide-react';
+import { ShieldCheck, Truck, CreditCard, Banknote, Smartphone, ArrowLeft, CheckCircle2, ArrowRight, AlertCircle } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useLanguage } from '../context/LanguageContext';
 import { motion } from 'framer-motion';
@@ -21,16 +21,38 @@ export default function Checkout() {
     address: '',
     notes: '',
   });
+  const [errors, setErrors] = useState({});
 
   const [paymentMethod, setPaymentMethod] = useState('cod');
 
   const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: null }));
+    }
+  };
+
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.name.trim()) {
+      newErrors.name = lang === 'bn' ? 'দয়া করে আপনার পূর্ণ নাম লিখুন' : 'Please enter your full name';
+    }
+    if (!formData.phone.trim()) {
+      newErrors.phone = lang === 'bn' ? 'দয়া করে আপনার ফোন নম্বর লিখুন' : 'Please enter your phone number';
+    } else if (formData.phone.trim().length < 10) {
+      newErrors.phone = lang === 'bn' ? 'সঠিক ফোন নম্বর প্রদান করুন (কমপক্ষে ১১ ডিজিট)' : 'Please enter a valid phone number';
+    }
+    if (!formData.address.trim()) {
+      newErrors.address = lang === 'bn' ? 'দয়া করে পূর্ণ ডেলিভারি ঠিকানা লিখুন' : 'Please enter your full delivery address';
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmitOrder = (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.phone || !formData.address) return;
+    if (!validate()) return;
 
     setLoading(true);
 
@@ -110,7 +132,7 @@ export default function Checkout() {
           {t('checkout.title')}
         </h1>
 
-        <form onSubmit={handleSubmitOrder} className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <form onSubmit={handleSubmitOrder} noValidate className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
           {/* Left Column: Form Details & Payment (7 cols) */}
           <div className="lg:col-span-7 space-y-6">
@@ -123,29 +145,39 @@ export default function Checkout() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                 <div>
-                  <label className="block font-bold text-ink mb-1">{t('checkout.name')}</label>
+                  <label className="block font-bold text-ink mb-1">{t('checkout.name')} *</label>
                   <input
                     type="text"
-                    required
                     name="name"
                     placeholder={t('checkout.nameHolder')}
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full bg-bg text-ink px-3.5 py-2.5 rounded-xl border border-line focus:border-accent outline-none"
+                    className={`w-full bg-bg text-ink px-3.5 py-2.5 rounded-xl border ${errors.name ? 'border-accent-2/80 bg-accent-2/5' : 'border-line focus:border-accent'} outline-none transition-colors`}
                   />
+                  {errors.name && (
+                    <p className="text-[11px] text-accent-2 font-bold mt-1.5 flex items-center gap-1 font-bn-sans">
+                      <AlertCircle size={13} className="shrink-0 text-accent-2" />
+                      <span>{errors.name}</span>
+                    </p>
+                  )}
                 </div>
 
                 <div>
-                  <label className="block font-bold text-ink mb-1">{t('checkout.phone')}</label>
+                  <label className="block font-bold text-ink mb-1">{t('checkout.phone')} *</label>
                   <input
                     type="tel"
-                    required
                     name="phone"
                     placeholder={t('checkout.phoneHolder')}
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full bg-bg text-ink px-3.5 py-2.5 rounded-xl border border-line focus:border-accent outline-none"
+                    className={`w-full bg-bg text-ink px-3.5 py-2.5 rounded-xl border ${errors.phone ? 'border-accent-2/80 bg-accent-2/5' : 'border-line focus:border-accent'} outline-none transition-colors`}
                   />
+                  {errors.phone && (
+                    <p className="text-[11px] text-accent-2 font-bold mt-1.5 flex items-center gap-1 font-bn-sans">
+                      <AlertCircle size={13} className="shrink-0 text-accent-2" />
+                      <span>{errors.phone}</span>
+                    </p>
+                  )}
                 </div>
 
                 <div className="sm:col-span-2">
@@ -180,16 +212,21 @@ export default function Checkout() {
                 </div>
 
                 <div className="sm:col-span-2">
-                  <label className="block font-bold text-ink mb-1">{t('checkout.address')}</label>
+                  <label className="block font-bold text-ink mb-1">{t('checkout.address')} *</label>
                   <textarea
-                    required
                     rows="3"
                     name="address"
                     placeholder={t('checkout.addressHolder')}
                     value={formData.address}
                     onChange={handleChange}
-                    className="w-full bg-bg text-ink px-3.5 py-2.5 rounded-xl border border-line focus:border-accent outline-none"
+                    className={`w-full bg-bg text-ink px-3.5 py-2.5 rounded-xl border ${errors.address ? 'border-accent-2/80 bg-accent-2/5' : 'border-line focus:border-accent'} outline-none transition-colors resize-none`}
                   />
+                  {errors.address && (
+                    <p className="text-[11px] text-accent-2 font-bold mt-1.5 flex items-center gap-1 font-bn-sans">
+                      <AlertCircle size={13} className="shrink-0 text-accent-2" />
+                      <span>{errors.address}</span>
+                    </p>
+                  )}
                 </div>
               </div>
             </div>

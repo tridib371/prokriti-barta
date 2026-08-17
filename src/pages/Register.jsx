@@ -17,6 +17,7 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
+  const [fieldErrors, setFieldErrors] = useState({});
 
   // Password strength calculation
   const getPasswordStrength = () => {
@@ -32,10 +33,28 @@ export default function Register() {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    if (!name || !email || !phone || !password) {
-      setError(t('register.error'));
+    const errs = {};
+    if (!name.trim()) {
+      errs.name = lang === 'bn' ? 'দয়া করে আপনার পূর্ণ নাম লিখুন' : 'Please enter your full name';
+    }
+    if (!email.trim()) {
+      errs.email = lang === 'bn' ? 'দয়া করে আপনার ইমেইল এড্রেস লিখুন' : 'Please enter your email address';
+    }
+    if (!phone.trim()) {
+      errs.phone = lang === 'bn' ? 'দয়া করে আপনার ফোন নম্বর লিখুন' : 'Please enter your phone number';
+    }
+    if (!password) {
+      errs.password = lang === 'bn' ? 'দয়া করে একটি শক্তিশালী পাসওয়ার্ড লিখুন' : 'Please enter a password';
+    } else if (password.length < 6) {
+      errs.password = lang === 'bn' ? 'পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে' : 'Password must be at least 6 characters';
+    }
+
+    if (Object.keys(errs).length > 0) {
+      setFieldErrors(errs);
       return;
     }
+
+    setFieldErrors({});
     register(name, email, phone, password);
     const destination = location.state?.from || '/shop';
     navigate(destination, { replace: true });
@@ -150,20 +169,27 @@ export default function Register() {
             </motion.div>
           )}
 
-          <form onSubmit={handleRegister} className="space-y-3 text-xs font-bn-sans">
+          <form onSubmit={handleRegister} noValidate className="space-y-3 text-xs font-bn-sans">
             <div className="space-y-1">
               <label className="block font-bold text-ink text-xs">{t('register.name')} *</label>
               <div className="relative group">
                 <input
                   type="text"
-                  required
                   placeholder={lang === 'bn' ? 'যেমন: সাব্বির রহমান' : 'Full Name'}
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full bg-bg text-ink px-4 py-2.5 pl-10 rounded-2xl border border-line focus:border-accent focus:bg-surface outline-none transition-all"
+                  onChange={(e) => {
+                    setName(e.target.value);
+                    if (fieldErrors.name) setFieldErrors(prev => ({ ...prev, name: null }));
+                  }}
+                  className={`w-full bg-bg text-ink px-4 py-2.5 pl-10 rounded-2xl border ${fieldErrors.name ? 'border-accent-2/80 bg-accent-2/5' : 'border-line focus:border-accent'} focus:bg-surface outline-none transition-all`}
                 />
                 <User size={16} className="absolute left-3.5 top-3 text-muted group-focus-within:text-accent transition-colors" />
               </div>
+              {fieldErrors.name && (
+                <p className="text-[11px] text-accent-2 font-bold mt-1 flex items-center gap-1 font-bn-sans">
+                  <span>{fieldErrors.name}</span>
+                </p>
+              )}
             </div>
 
             <div className="space-y-1">
@@ -171,14 +197,21 @@ export default function Register() {
               <div className="relative group">
                 <input
                   type="email"
-                  required
                   placeholder="name@example.com"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-bg text-ink px-4 py-2.5 pl-10 rounded-2xl border border-line focus:border-accent focus:bg-surface outline-none transition-all"
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    if (fieldErrors.email) setFieldErrors(prev => ({ ...prev, email: null }));
+                  }}
+                  className={`w-full bg-bg text-ink px-4 py-2.5 pl-10 rounded-2xl border ${fieldErrors.email ? 'border-accent-2/80 bg-accent-2/5' : 'border-line focus:border-accent'} focus:bg-surface outline-none transition-all`}
                 />
                 <Mail size={16} className="absolute left-3.5 top-3 text-muted group-focus-within:text-accent transition-colors" />
               </div>
+              {fieldErrors.email && (
+                <p className="text-[11px] text-accent-2 font-bold mt-1 flex items-center gap-1 font-bn-sans">
+                  <span>{fieldErrors.email}</span>
+                </p>
+              )}
             </div>
 
             <div className="space-y-1">
@@ -186,14 +219,21 @@ export default function Register() {
               <div className="relative group">
                 <input
                   type="tel"
-                  required
                   placeholder="01717-279166"
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="w-full bg-bg text-ink px-4 py-2.5 pl-10 rounded-2xl border border-line focus:border-accent focus:bg-surface outline-none transition-all"
+                  onChange={(e) => {
+                    setPhone(e.target.value);
+                    if (fieldErrors.phone) setFieldErrors(prev => ({ ...prev, phone: null }));
+                  }}
+                  className={`w-full bg-bg text-ink px-4 py-2.5 pl-10 rounded-2xl border ${fieldErrors.phone ? 'border-accent-2/80 bg-accent-2/5' : 'border-line focus:border-accent'} focus:bg-surface outline-none transition-all`}
                 />
                 <Phone size={16} className="absolute left-3.5 top-3 text-muted group-focus-within:text-accent transition-colors" />
               </div>
+              {fieldErrors.phone && (
+                <p className="text-[11px] text-accent-2 font-bold mt-1 flex items-center gap-1 font-bn-sans">
+                  <span>{fieldErrors.phone}</span>
+                </p>
+              )}
             </div>
 
             <div className="space-y-1">
@@ -201,11 +241,13 @@ export default function Register() {
               <div className="relative group">
                 <input
                   type={showPassword ? 'text' : 'password'}
-                  required
                   placeholder="••••••••"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-bg text-ink px-4 py-2.5 pl-10 pr-10 rounded-2xl border border-line focus:border-accent focus:bg-surface outline-none transition-all"
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    if (fieldErrors.password) setFieldErrors(prev => ({ ...prev, password: null }));
+                  }}
+                  className={`w-full bg-bg text-ink px-4 py-2.5 pl-10 pr-10 rounded-2xl border ${fieldErrors.password ? 'border-accent-2/80 bg-accent-2/5' : 'border-line focus:border-accent'} focus:bg-surface outline-none transition-all`}
                 />
                 <Lock size={16} className="absolute left-3.5 top-3 text-muted group-focus-within:text-accent transition-colors" />
                 <button
@@ -216,6 +258,11 @@ export default function Register() {
                   {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
+              {fieldErrors.password && (
+                <p className="text-[11px] text-accent-2 font-bold mt-1 flex items-center gap-1 font-bn-sans">
+                  <span>{fieldErrors.password}</span>
+                </p>
+              )}
 
               {/* Password Strength Indicator */}
               {password && (
