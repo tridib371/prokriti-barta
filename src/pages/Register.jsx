@@ -93,7 +93,7 @@ export default function Register() {
           initial={{ opacity: 0, y: 25, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="w-full bg-surface border-2 border-line rounded-3xl overflow-hidden shadow-[0_30px_80px_-15px_rgba(27,59,43,0.55),0_15px_40px_-10px_rgba(0,0,0,0.45)] dark:shadow-[0_35px_100px_-15px_rgba(0,0,0,0.95)] grid grid-cols-1 md:grid-cols-12 relative"
+          className="w-full bg-surface border-2 border-accent rounded-3xl overflow-hidden shadow-[0_30px_80px_-15px_rgba(27,59,43,0.55),0_15px_40px_-10px_rgba(0,0,0,0.45)] dark:shadow-[0_35px_100px_-15px_rgba(0,0,0,0.95)] ring-1 ring-accent/30 grid grid-cols-1 md:grid-cols-12 relative"
         >
         
         {/* Left Side Visual Banner */}
