@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { ShieldCheck, Truck, CreditCard, Banknote, Smartphone, ArrowLeft } from 'lucide-react';
+import { ShieldCheck, Truck, CreditCard, Banknote, Smartphone, ArrowLeft, CheckCircle2, ArrowRight } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useLanguage } from '../context/LanguageContext';
 import { motion } from 'framer-motion';
@@ -301,16 +301,19 @@ export default function Checkout() {
                 </div>
               </div>
 
-              <Button
-                type="submit"
-                variant="accent"
-                size="lg"
-                className="w-full shadow-md mt-4"
-              >
-                {t('checkout.placeOrder')}
-              </Button>
+              <div className="pt-3 flex justify-center">
+                <Button
+                  type="submit"
+                  variant="accent"
+                  size="md"
+                  className="px-8 py-2.5 rounded-full font-bold shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 gap-2 min-w-[180px] mx-auto cursor-pointer"
+                >
+                  <span>{t('checkout.placeOrder')}</span>
+                  <CheckCircle2 size={16} />
+                </Button>
+              </div>
 
-              <p className="text-[11px] text-muted text-center flex items-center justify-center gap-1">
+              <p className="text-[11px] text-muted text-center flex items-center justify-center gap-1 pt-1">
                 <ShieldCheck size={14} className="text-accent" /> {t('checkout.guarantee')}
               </p>
             </div>
