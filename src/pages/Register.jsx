@@ -63,34 +63,38 @@ export default function Register() {
   return (
     <div className="min-h-[85vh] bg-bg py-12 flex items-center justify-center px-4 relative overflow-hidden">
       
-      {/* Ambient Animated Glow Blobs */}
+      {/* Ambient Deep Animated Glow Blobs */}
       <motion.div
         animate={{
-          scale: [1, 1.18, 1],
-          opacity: [0.18, 0.32, 0.18],
-          x: [0, 25, 0],
-          y: [0, -25, 0],
+          scale: [1, 1.25, 1],
+          opacity: [0.35, 0.6, 0.35],
+          x: [0, 30, 0],
+          y: [0, -30, 0],
         }}
         transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-accent/15 blur-3xl pointer-events-none"
+        className="absolute -top-32 -left-32 w-[480px] h-[480px] rounded-full bg-accent/30 blur-[90px] pointer-events-none"
       />
       <motion.div
         animate={{
-          scale: [1, 1.22, 1],
-          opacity: [0.15, 0.28, 0.15],
-          x: [0, -30, 0],
-          y: [0, 30, 0],
+          scale: [1, 1.3, 1],
+          opacity: [0.3, 0.55, 0.3],
+          x: [0, -35, 0],
+          y: [0, 35, 0],
         }}
         transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-primary/20 blur-3xl pointer-events-none"
+        className="absolute -bottom-32 -right-32 w-[520px] h-[520px] rounded-full bg-primary/45 dark:bg-primary/70 blur-[100px] pointer-events-none"
       />
 
-      <motion.div
-        initial={{ opacity: 0, y: 25, scale: 0.98 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
-        className="max-w-4xl w-full bg-surface border border-line rounded-3xl overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-12 relative z-10"
-      >
+      <div className="relative max-w-4xl w-full z-10">
+        {/* Deep Radiant Background Shadow Halo */}
+        <div className="absolute -inset-3 bg-gradient-to-r from-primary/50 via-accent/40 to-primary/60 rounded-[34px] blur-2xl opacity-80 -z-10 pointer-events-none" />
+
+        <motion.div
+          initial={{ opacity: 0, y: 25, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          className="w-full bg-surface border-2 border-line rounded-3xl overflow-hidden shadow-[0_30px_80px_-15px_rgba(27,59,43,0.55),0_15px_40px_-10px_rgba(0,0,0,0.45)] dark:shadow-[0_35px_100px_-15px_rgba(0,0,0,0.95)] grid grid-cols-1 md:grid-cols-12 relative"
+        >
         
         {/* Left Side Visual Banner */}
         <div className="md:col-span-5 bg-primary text-surface p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden hidden md:flex">
@@ -305,5 +309,6 @@ export default function Register() {
 
       </motion.div>
     </div>
+  </div>
   );
 }
