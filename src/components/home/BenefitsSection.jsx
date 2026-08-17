@@ -6,7 +6,7 @@ import AlponaDivider from '../ui/AlponaDivider';
 import { useLanguage } from '../../context/LanguageContext';
 
 export default function BenefitsSection() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   const benefits = [
     {
@@ -110,7 +110,7 @@ export default function BenefitsSection() {
 
                   <div className="pt-4 mt-4 border-t border-primary/10 group-hover:border-white/20 flex items-center justify-between relative z-10 transition-colors duration-300">
                     <span className="text-[11px] font-bold text-primary/80 group-hover:text-accent font-bn-sans transition-colors duration-300">
-                      {item.tagBn}
+                      {lang === 'bn' ? item.tagBn : item.tagEn}
                     </span>
                     <div className="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-all duration-300">
                       <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
