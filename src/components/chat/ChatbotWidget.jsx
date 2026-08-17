@@ -154,7 +154,7 @@ export default function ChatbotWidget() {
   if (isCartOpen) return null;
 
   return (
-    <div className="fixed bottom-20 right-4 sm:bottom-24 sm:right-6 z-40 flex flex-col items-end pointer-events-none [&>*]:pointer-events-auto">
+    <div className="fixed bottom-6 right-4 sm:bottom-8 sm:right-6 z-40 flex flex-col items-end pointer-events-none [&>*]:pointer-events-auto">
       
       {/* 1. Chat Window Modal */}
       <AnimatePresence>
@@ -165,7 +165,7 @@ export default function ChatbotWidget() {
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.25 }}
             data-lenis-prevent="true"
-            className="w-[calc(100vw-2rem)] sm:w-[390px] max-w-[390px] h-[70vh] sm:h-[500px] max-h-[540px] bg-surface border border-line rounded-2xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden mb-3 sm:mb-4"
+            className="fixed inset-x-3 bottom-4 sm:inset-auto sm:static w-auto sm:w-[390px] sm:max-w-[390px] h-[calc(100dvh-5rem)] sm:h-[520px] max-h-[560px] bg-surface border border-line rounded-2xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden mb-3 sm:mb-4"
           >
             {/* Header */}
             <div className="bg-primary text-surface p-4 flex items-center justify-between shadow-xs shrink-0">
@@ -334,7 +334,7 @@ export default function ChatbotWidget() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder={lang === 'bn' ? 'আপনার প্রশ্নটি লিখুন...' : 'Type your question...'}
-                  className="flex-1 bg-bg text-ink text-xs px-3.5 py-2.5 rounded-full border border-line focus:border-accent outline-none font-bn-sans"
+                  className="flex-1 bg-bg text-ink text-sm sm:text-xs px-3.5 py-2.5 rounded-full border border-line focus:border-accent outline-none font-bn-sans"
                 />
                 <button
                   type="submit"
