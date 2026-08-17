@@ -99,13 +99,11 @@ export default function Footer() {
         {/* Brand Column */}
         <div className="lg:col-span-2 space-y-4">
           <Link to="/" className="inline-flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-2xl bg-white p-1.5 shadow-md flex items-center justify-center border border-white/20 group-hover:scale-105 transition-transform">
-              <img
-                src="/PB.jpg"
-                alt="Prokriti Barta Logo"
-                className="w-full h-full object-contain"
-              />
-            </div>
+            <img
+              src="/PB.jpg"
+              alt="Prokriti Barta Logo"
+              className="w-11 h-11 object-contain rounded-lg group-hover:scale-105 transition-transform drop-shadow-xs"
+            />
             <div>
               <span className="font-display font-bold text-2xl text-white block leading-tight">
                 {lang === 'bn' ? 'প্রকৃতি বার্তা' : 'Prokriti Barta'}
