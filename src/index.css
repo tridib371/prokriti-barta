@@ -40,6 +40,11 @@
   --color-line: var(--line);
 }
 
+/* Ensure uniform baseline and lining figures for Bengali digits */
+body, [class*="font-bn"], .font-display, .font-body {
+  font-feature-settings: "lnum" 1, "tnum" 1;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

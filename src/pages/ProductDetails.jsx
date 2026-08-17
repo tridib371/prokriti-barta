@@ -115,11 +115,11 @@ export default function ProductDetails() {
 
               {/* Price */}
               <div className="flex items-baseline gap-3 pt-2">
-                <span className="font-display font-bold text-3xl text-accent">৳{n(product.price)}</span>
+                <span className="font-bn-sans font-bold text-3xl text-accent">৳{n(product.price)}</span>
                 {product.originalPrice && (
-                  <span className="text-lg text-muted line-through font-sans">৳{n(product.originalPrice)}</span>
+                  <span className="text-lg text-muted line-through font-bn-sans">৳{n(product.originalPrice)}</span>
                 )}
-                <span className="text-xs text-muted">/ {n(product.weight)}</span>
+                <span className="text-xs text-muted font-bn-sans">/ {n(product.weight)}</span>
               </div>
 
               {/* Short Description */}

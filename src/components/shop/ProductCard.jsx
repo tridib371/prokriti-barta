@@ -91,12 +91,12 @@ export default function ProductCard({ product }) {
         <div className="mt-3 pt-2.5 border-t border-line/60 flex items-center justify-between gap-2 shrink-0">
           <div>
             <div className="flex items-baseline gap-1">
-              <span className="font-display font-bold text-sm sm:text-base text-primary">৳{n(product.price)}</span>
+              <span className="font-bn-sans font-bold text-sm sm:text-base text-primary">৳{n(product.price)}</span>
               {product.originalPrice && (
-                <span className="text-[11px] text-muted line-through font-sans">৳{n(product.originalPrice)}</span>
+                <span className="text-[11px] text-muted line-through font-bn-sans">৳{n(product.originalPrice)}</span>
               )}
             </div>
-            <span className="text-[10px] text-muted block">{n(product.weight)}</span>
+            <span className="text-[10px] text-muted block font-bn-sans">{n(product.weight)}</span>
           </div>
 
           <button
