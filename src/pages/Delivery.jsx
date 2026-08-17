@@ -416,7 +416,7 @@ export default function Delivery() {
                   </span>
                 ) : (
                   <span className="text-accent font-bold">
-                    {Math.round((currentAmount / 1000) * 100)}%
+                    {n(Math.round((currentAmount / 1000) * 100))}%
                   </span>
                 )}
               </span>
@@ -438,12 +438,12 @@ export default function Delivery() {
               />
             </div>
 
-            {/* Scale Markers */}
+            {/* Scale Markers (Bilingual Numbers) */}
             <div className="flex items-center justify-between text-[11px] font-bn-sans font-bold pt-0.5">
-              <span className="text-accent">৳০ ({lang === 'bn' ? 'শুরু' : 'Start'})</span>
-              <span className="text-white/40 font-normal">৳৫০০ (৫০%)</span>
+              <span className="text-accent">৳{n(0)} ({lang === 'bn' ? 'শুরু' : 'Start'})</span>
+              <span className="text-white/40 font-normal">৳{n(500)} ({n(50)}%)</span>
               <span className={currentAmount >= 1000 ? "text-emerald-400 font-bold" : "text-white/60"}>
-                ৳১০০০ ({lang === 'bn' ? 'ফ্রি ডেলিভারি' : 'FREE'})
+                ৳{n(1000)} ({lang === 'bn' ? 'ফ্রি ডেলিভারি' : 'FREE'})
               </span>
             </div>
           </div>
