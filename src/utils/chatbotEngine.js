@@ -1,5 +1,6 @@
 import productsData from '../data/products.json';
 import categoriesData from '../data/categories.json';
+import chatbotFaqData from '../data/chatbotFaq.json';
 
 /**
  * Clean text by removing emojis and converting em-dashes to standard hyphens
@@ -12,38 +13,86 @@ function cleanText(text) {
 }
 
 /**
+ * Normalizes input text for multi-language and Banglish matching
+ */
+function normalizeQuery(input) {
+  return (input || '')
+    .toLowerCase()
+    .trim()
+    .replace(/[?,.!/\\;:_`~*^%$#@!+()]/g, ' ')
+    .replace(/\s+/g, ' ');
+}
+
+/**
+ * Checks if query is within the domain of Prokriti Barta and Organic Food
+ */
+function isRelevantDomainQuery(q) {
+  const domainKeywords = [
+    // Brand & Website
+    'prokriti', 'barta', 'prokiti', 'prakriti', 'barta', 'website', 'store', 'shop', 'brand', 'company',
+    'প্রকৃতি', 'বার্তা', 'ওয়েবসাইট', 'স্টোর', 'দোকান', 'কোম্পানি', 'ব্র্যান্ড',
+    // Products & Food Items
+    'organic', 'food', 'honey', 'modhu', 'ghee', 'oil', 'tel', 'mustard', 'sorisha', 'coconut', 'narkel',
+    'kalijira', 'black seed', 'chia', 'seed', 'pumpkin', 'kumra', 'spice', 'turmeric', 'haldi', 'holud',
+    'chili', 'morich', 'coriander', 'dhonia', 'tea', 'cha', 'blue tea', 'green tea', 'date', 'khejur',
+    'অর্গানিক', 'খাবার', 'খাদ্য', 'মধু', 'ঘি', 'তেল', 'সরিষা', 'নারকেল', 'কালোজিরা', 'চিয়া', 'বীজ', 'কুমড়া',
+    'মসলা', 'হলুদ', 'মরিচ', 'ধনিয়া', 'চা', 'খেজুর', 'খাঁটি', 'বিশুদ্ধ', 'বিলোনা', 'ঘানি', 'কোল্ড প্রেস',
+    // Order, Delivery, Payment, Customer Care
+    'order', 'buy', 'purchase', 'cart', 'checkout', 'delivery', 'shipping', 'charge', 'cost', 'fee',
+    'payment', 'pay', 'cod', 'cash', 'bkash', 'nagad', 'rocket', 'card', 'return', 'refund', 'replace',
+    'helpline', 'contact', 'support', 'phone', 'number', 'address', 'location', 'time', 'hours', 'tracking',
+    'অর্ডার', 'কেনা', 'ক্রয়', 'কার্ট', 'চেকআউট', 'ডেলিভারি', 'শিপিং', 'চার্জ', 'খরচ', 'টাকা', 'পেমেন্ট',
+    'ক্যাশ', 'বিকাশ', 'নগদ', 'রকেট', 'ফেরত', 'রিটার্ন', 'রিফান্ড', 'হেল্পলাইন', 'যোগাযোগ', 'ফোন', 'নম্বর', 'ঠিকানা',
+    // Health & Nutrition
+    'health', 'benefit', 'nutrition', 'purity', 'test', 'pure', 'fresh', 'raw', 'natural', 'chemical', 'weight',
+    'স্বাস্থ্য', 'উপকার', 'উপকারিতা', 'পুষ্টি', 'পরীক্ষা', 'টেস্ট', 'ভেজাল', 'প্রাকৃতিক', 'ওজন', 'ডায়াবেটিস',
+    // Greetings & Common conversational
+    'hi', 'hello', 'hey', 'salam', 'assalam', 'nomoshkar', 'kemon', 'valo', 'help', 'shohayota',
+    'হাই', 'হ্যালো', 'সালাম', 'কেমন', 'ভালো', 'সাহায্য', 'ধন্যবাদ', 'থ্যাংকস', 'thanks', 'thank you'
+  ];
+
+  return domainKeywords.some(keyword => q.includes(keyword));
+}
+
+/**
  * Intelligent Multi-Tier Knowledge & Conversational Engine
  */
 export async function getIntelligentResponse(userInput, lang = 'bn') {
-  const query = (userInput || '').trim().toLowerCase();
+  const query = normalizeQuery(userInput);
 
   if (!query) {
     return {
-      textBn: 'দয়া করে আপনার প্রশ্নটি লিখুন। আমি কীভাবে আপনাকে সাহায্য করতে পারি?',
+      textBn: 'দয়া করে আপনার প্রশ্নটি লিখুন। আমি কীভাবে আপনাকে সাহায্য করতে পারি?',
       textEn: 'Please type your question. How can I help you today?',
       text: lang === 'bn' 
-        ? 'দয়া করে আপনার প্রশ্নটি লিখুন। আমি কীভাবে আপনাকে সাহায্য করতে পারি?' 
+        ? 'দয়া করে আপনার প্রশ্নটি লিখুন। আমি কীভাবে আপনাকে সাহায্য করতে পারি?' 
         : 'Please type your question. How can I help you today?',
     };
   }
 
-  // 1. Try Gemini API if available in env
+  // 1. Check if the question is outside our website and organic food domain
+  const isRelevant = isRelevantDomainQuery(query);
+
+  // 2. Try Gemini API if available in environment
   const geminiApiKey = import.meta.env.VITE_GEMINI_API_KEY || (typeof window !== 'undefined' && window.GEMINI_API_KEY);
   if (geminiApiKey) {
     try {
-      const prompt = `You are 'প্রকৃতি মিত্র' (Prokriti Assistant), the friendly, professional, and knowledgeable AI assistant of 'প্রকৃতি বার্তা' (Prokriti Barta), a 100% natural organic food brand in Bangladesh.
-Store information:
-- Store Name: প্রকৃতি বার্তা (Prokriti Barta)
-- Website: www.prokritibarta.com
-- Delivery: Dhaka City ৳60 (24-36h), Outside Dhaka ৳100 (2-3 days). Free shipping over ৳1000.
-- Payment: Cash on Delivery (COD), bKash, Nagad.
-- Contact Helpline: +880 1717-279166 (9am - 10pm).
-- Products: Sundarban Raw Wild Honey, Vedic Bilona Ghee, Wood-Pressed Mustard/Coconut/Kalijira Oil, Stone-Ground Turmeric & Spices, Organic Chia Seeds, Pumpkin Seeds, Madinah Dates, Sreemangal Tea, Butterfly Pea Blue Tea.
-Rules:
-- Never use em-dashes (—); always use standard hyphens (-).
-- Never use emojis like sparkles.
-- Understand Banglish (Bengali written in English alphabet) naturally.
-- Provide response in JSON format with "textBn" (polite, fluent Bengali) and "textEn" (polite, fluent English).
+      const prompt = `You are 'প্রকৃতি মিত্র' (Prokriti Assistant), the official AI assistant of 'প্রকৃতি বার্তা' (Prokriti Barta), an authentic 100% pure organic food brand in Bangladesh.
+
+Store Knowledge:
+- Name: প্রকৃতি বার্তা (Prokriti Barta)
+- Helpline: +880 1717-279166 (9:00 AM - 10:00 PM)
+- Email: support@prokritibarta.com
+- Address: House 12, Road 5, Dhanmondi, Dhaka - 1205
+- Delivery: Inside Dhaka ৳60 (24-36h), Outside Dhaka ৳100 (2-3 days). FREE nationwide delivery on orders over ৳1,000.
+- Payments: 100% Cash on Delivery (COD), bKash, Nagad, Rocket, Debit/Credit Cards.
+- Products: Sundarban Raw Wild Honey, Vedic Bilona Ghee, Wood-Pressed Mustard/Coconut/Kalijira Oil, Chia Seeds, Pumpkin Seeds, Stone-Ground Spices, Sreemangal Organic Tea.
+
+CRITICAL RULES:
+1. If the user query is unrelated to Prokriti Barta, organic food, nutrition, health benefits of pure foods, store orders, delivery, or policies, POLITELY DECLINE. State that you specialize exclusively in Prokriti Barta and organic food, and provide our helpline (+880 1717-279166) and email (support@prokritibarta.com).
+2. Never use emojis.
+3. Never use em-dashes (—); always use standard hyphens (-).
+4. Provide output in valid JSON with "textBn" and "textEn" keys.
 
 User query: ${userInput}`;
 
@@ -79,314 +128,106 @@ User query: ${userInput}`;
         }
       }
     } catch (e) {
-      console.warn('Gemini API call failed, falling back to comprehensive local AI engine:', e);
+      console.warn('Gemini API fallback to local AI engine:', e);
     }
   }
 
-  // 2. Comprehensive Local Domain & General Intelligence Engine
-  return generateLocalIntelligentResponse(query, userInput, lang);
-}
-
-/**
- * Local Broad Knowledge & Context Matcher with Banglish support
- */
-export function generateLocalIntelligentResponse(query, rawInput, lang = 'bn') {
-  // --- A. Website & Brand Name Queries (Bangla & Banglish) ---
-  if (
-    query.includes('website') || query.includes('web site') || 
-    query.includes('nam ki') || query.includes('name ki') || 
-    query.includes('নাম কি') || query.includes('নাম কী') || 
-    query.includes('কোম্পানির নাম') || query.includes('store name') ||
-    query.includes('ব্র্যান্ড') || query.includes('brand') || query.includes('site er nam')
-  ) {
-    const textBn = 'আমাদের ওয়েবসাইটের নাম "প্রকৃতি বার্তা" (Prokriti Barta)। এটি বাংলাদেশের ১০০% খাঁটি, প্রাকৃতিক ও কেমিক্যাল-মুক্ত অর্গানিক খাবারের একটি বিশ্বস্ত প্রতিষ্ঠান। এখানে আপনি সুন্দরবনের বুনো মধু, বৈদিক বিলোনা ঘি, কাঠের ঘানির তেল, অর্গানিক বীজ ও সুপারফুড পাবেন।';
-    const textEn = 'Our website name is "Prokriti Barta" (প্রকৃতি বার্তা). We are a trusted destination for 100% natural, unadulterated, and organic foods in Bangladesh, offering raw wild honey, Vedic Bilona ghee, wood-pressed oils, stone-ground spices, and superfoods.';
+  // 3. If query is clearly unrelated, return courteous out-of-scope response
+  if (!isRelevant) {
     return {
-      textBn,
-      textEn,
-      text: lang === 'bn' ? textBn : textEn,
-      actionLink: '/about',
-      actionLabelBn: 'আমাদের সম্পর্কে জানুন',
-      actionLabelEn: 'About Prokriti Barta',
-      actionLabel: lang === 'bn' ? 'আমাদের সম্পর্কে জানুন' : 'About Prokriti Barta',
-    };
-  }
-
-  // --- B. Chit-Chat & Greetings ---
-  if (
-    query.includes('কেমন আছেন') || query.includes('how are you') || 
-    query.includes('kemon achen') || query.includes('kemon acho') || 
-    query.includes('what\'s up') || query.includes('কী খবর') || query.includes('ki khobor')
-  ) {
-    const textBn = 'আমি ভালো আছি, ধন্যবাদ! আশা করি আপনিও সুস্থ ও ভালো আছেন। সুস্থ ও প্রাকৃতিক জীবনযাপনের যেকোনো বিষয়ে আপনাকে কীভাবে সাহায্য করতে পারি?';
-    const textEn = 'I am doing well, thank you! I hope you are having a wonderful day. How can I assist you with your organic nutrition or health journey today?';
-    return {
-      textBn,
-      textEn,
-      text: lang === 'bn' ? textBn : textEn,
-    };
-  }
-
-  if (
-    query.includes('hi') || query.includes('hello') || query.includes('hey') || 
-    query.includes('হাই') || query.includes('হ্যালো') || query.includes('salam') || 
-    query.includes('সালাম') || query.includes('নমস্কার') || query.includes('nomoshkar')
-  ) {
-    const textBn = 'প্রকৃতি বার্তায় আপনাকে স্বাগতম! আমি কীভাবে আপনাকে সহায়তা করতে পারি? আপনি আমাদের পণ্য, খাঁটি খাবার চেনার উপায় বা ডেলিভারি সম্পর্কে জানতে পারেন।';
-    const textEn = 'Welcome to Prokriti Barta! How can I help you today? Feel free to ask about our pure organic products, natural health tips, or shipping policies.';
-    return {
-      textBn,
-      textEn,
-      text: lang === 'bn' ? textBn : textEn,
-    };
-  }
-
-  if (
-    query.includes('ধন্যবাদ') || query.includes('thanks') || 
-    query.includes('thank you') || query.includes('shukriya') || query.includes('dhonnobad')
-  ) {
-    const textBn = 'আপনাকে অনেক ধন্যবাদ! সুস্থ থাকুন এবং খাঁটি প্রকৃতির সান্নিধ্যে থাকুন। যেকোনো প্রয়োজনে আমি সবসময় আপনার পাশে আছি।';
-    const textEn = 'You are most welcome! Stay healthy and enjoy pure natural living. Let me know if you need anything else.';
-    return {
-      textBn,
-      textEn,
-      text: lang === 'bn' ? textBn : textEn,
-    };
-  }
-
-  if (
-    query.includes('কে তুমি') || query.includes('who are you') || 
-    query.includes('tumi ke') || query.includes('apni ke') ||
-    query.includes('তোমার পরিচয়') || query.includes('ki korte paro') || query.includes('what can you do')
-  ) {
-    const textBn = 'আমি প্রকৃতি মিত্র - প্রকৃতি বার্তার ভার্চুয়াল অ্যাসিস্ট্যান্ট। আমি অর্গানিক খাদ্য নির্বাচন, ডায়াবেটিস বা ওজন নিয়ন্ত্রণে প্রাকৃতিক পরামর্শ, খাঁটি মধু/ঘি/তেলের গুণাগুণ পরীক্ষা এবং অর্ডার সংক্রান্ত সহায়তায় সাহায্য করি।';
-    const textEn = 'I am Prokriti Assistant - the virtual AI companion for Prokriti Barta. I help you explore organic foods, healthy dietary guidance, purity verification, and seamless ordering.';
-    return {
-      textBn,
-      textEn,
-      text: lang === 'bn' ? textBn : textEn,
-    };
-  }
-
-  // --- C. Diabetes / Blood Sugar queries ---
-  if (
-    query.includes('ডায়াবেটিস') || query.includes('diabetes') || 
-    query.includes('সুগার') || query.includes('sugar') || query.includes('diabetic')
-  ) {
-    const recs = productsData.filter(p => p.id.includes('chia') || p.id.includes('kalijira') || p.id.includes('tea'));
-    const textBn = 'ডায়াবেটিস নিয়ন্ত্রণে সহায়ক প্রাকৃতিক খাবার:\n- কালোজিরা তেল: সকালে কুসুম গরম পানিতে কয়েক ফোঁটা কালোজিরা তেল ইনসুলিন কার্যক্ষমতা বাড়াতে সাহায্য করে।\n- অর্গানিক চিয়া সিড: উচ্চ দ্রবণীয় ফাইবার রক্তে গ্লুকোজের আকস্মিক বৃদ্ধি প্রতিরোধ করে।\n- অপরাজিতা চা / গ্রিন টি: প্রাকৃতিক অ্যান্টিঅক্সিডেন্ট মেটাবলিজম সুস্থ রাখে।';
-    const textEn = 'Natural Foods for Diabetes Management:\n- Cold-Pressed Black Seed Oil: Improves natural insulin sensitivity when taken with warm water.\n- Organic Chia Seeds: Soluble dietary fiber slows down carbohydrate absorption.\n- Green Tea & Butterfly Pea Infusions: Rich in natural antioxidants to boost metabolism.';
-    return {
-      textBn,
-      textEn,
-      text: lang === 'bn' ? textBn : textEn,
-      actionLink: '/shop',
-      actionLabelBn: 'উপকারী পণ্যসমূহ দেখুন',
-      actionLabelEn: 'Explore Suitable Products',
-      actionLabel: lang === 'bn' ? 'উপকারী পণ্যসমূহ দেখুন' : 'Explore Suitable Products',
-      products: recs.slice(0, 2),
-    };
-  }
-
-  // --- D. Weight Loss / Fat Burn / Diet ---
-  if (
-    query.includes('ওজন') || query.includes('weight') || 
-    query.includes('মেদ') || query.includes('diet') || query.includes('ডায়েট') ||
-    query.includes('fat') || query.includes('slimming') || query.includes('ojon')
-  ) {
-    const recs = productsData.filter(p => p.id.includes('chia') || p.id.includes('honey') || p.id.includes('tea'));
-    const textBn = 'প্রাকৃতিক উপায়ে ওজন ব্যবস্থাপনার স্বাস্থ্যকর পরামর্শ:\n১. সকালের ডিটক্স ড্রিংক: হালকা গরম পানিতে ১ চামচ কাঁচা সুন্দরবনের মধু ও লেবুর রস মিশিয়ে পান করুন।\n২. চিয়া সিড: ১ চামচ চিয়া সিড পানিতে ভিজিয়ে খাবারের আগে পান করলে দীর্ঘক্ষণ ক্ষুধা নিয়ন্ত্রণে থাকে।\n৩. রান্না ও ফ্যাট: পরিশোধিত তেলের বদলে ঘানির সরিষার তেল ও পরিমিত বিলোনা গাওয়া ঘি গ্রহণ করুন।';
-    const textEn = 'Natural Weight Management Routine:\n1. Morning Detox Drink: 1 glass warm water with 1 tsp raw wild honey and fresh lemon juice.\n2. Soaked Chia Seeds: Drink 1 tbsp soaked chia seeds before meals for natural satiety.\n3. Healthy Fats: Replace refined vegetable oils with traditional wood-pressed oils and measured Bilona ghee.';
-    return {
-      textBn,
-      textEn,
-      text: lang === 'bn' ? textBn : textEn,
-      actionLink: '/shop?category=nuts-seeds',
-      actionLabelBn: 'চিয়া সিড ও ডায়েট সুপারফুড',
-      actionLabelEn: 'Explore Diet Superfoods',
-      actionLabel: lang === 'bn' ? 'চিয়া সিড ও ডায়েট সুপারফুড' : 'Explore Diet Superfoods',
-      products: recs.slice(0, 2),
-    };
-  }
-
-  // --- E. Digestion, Gas, Acidity & Gut Health ---
-  if (
-    query.includes('গ্যাস') || query.includes('হজম') || query.includes('acidity') || 
-    query.includes('digestion') || query.includes('এসিডিটি') || query.includes('pet') ||
-    query.includes('gastric') || query.includes('gas')
-  ) {
-    const recs = productsData.filter(p => p.id.includes('ghee') || p.id.includes('honey') || p.id.includes('chia'));
-    const textBn = 'হজমশক্তি বৃদ্ধি ও এসিডিটি প্রশমনে সহায়ক খাদ্য:\n- বৈদিক বিলোনা ঘি: এতে থাকা প্রাকৃতিক বুটিরিক এসিড অন্ত্রের আস্তরণ সুস্থ রাখে। রাতে হালকা গরম দুধে ১ চামচ ঘি হজমে খুবই উপকারী।\n- খাঁটি মধু: পাকস্থলীর প্রদাহ শান্ত করে এবং প্রাকৃতিক হজমকারক এনজাইম জোগায়।\n- দ্রবণীয় ফাইবার: চিয়া সিড পেটের স্বাভাবিক ক্রিয়া সচল রাখে।';
-    const textEn = 'Natural Digestive Wellness Solutions:\n- Vedic Bilona Ghee: Rich in butyric acid, which supports intestinal lining health. 1 tsp in warm milk before sleep aids comfortable digestion.\n- Raw Honey: Soothes gastric lining with live natural enzymes.\n- Dietary Fiber: Chia seeds and whole grains support smooth digestion.';
-    return {
-      textBn,
-      textEn,
-      text: lang === 'bn' ? textBn : textEn,
-      actionLink: '/shop?category=ghee-oils',
-      actionLabelBn: 'বিলোনা ঘি ও মধু দেখুন',
-      actionLabelEn: 'Explore Digestion Helpers',
-      actionLabel: lang === 'bn' ? 'বিলোনা ঘি ও মধু দেখুন' : 'Explore Digestion Helpers',
-      products: recs.slice(0, 2),
-    };
-  }
-
-  // --- F. Honey & Purity Tests (Bangla & Banglish) ---
-  if (
-    query.includes('মধু') || query.includes('honey') || 
-    query.includes('modhu') || query.includes('khati') || 
-    query.includes('pure') || query.includes('সুন্দরবন') || query.includes('sundarban')
-  ) {
-    const honeyProducts = productsData.filter(p => p.category === 'honey').slice(0, 3);
-    const textBn = 'সুন্দরবনের খাঁটি বুনো মধু চেনার ৩টি সহজ ঘরোয়া পরীক্ষা:\n১. পানির টেস্ট: এক গ্লাস পানিতে এক চামচ মধু ফেললে খাঁটি মধু সহজে না গুলে সরাসরি নিচে তলিয়ে যাবে।\n২. টিস্যু টেস্ট: টিস্যুতে এক ফোঁটা মধু রাখলে তা কাগজ ভিজিয়ে ছড়িয়ে পড়বে না।\n৩. কাঁচা সুবাস: এতে থাকবে প্রাকৃতিক ম্যানগ্রোভ ফুলের সুবাস ও প্রাকৃতিক এনজাইম।';
-    const textEn = '3 Simple Home Tests for Pure Sundarban Honey:\n1. Water Dispersion Test: Drop 1 spoon of honey in clean water; pure honey settles straight to the bottom.\n2. Tissue Test: Place a drop on blotting paper; pure honey remains intact without soaking through.\n3. Raw Aroma: Features distinct floral mangrove scent with live natural enzymes.';
-    return {
-      textBn,
-      textEn,
-      text: lang === 'bn' ? textBn : textEn,
-      actionLink: '/shop?category=honey',
-      actionLabelBn: 'খাঁটি মধু কালেকশন দেখুন',
-      actionLabelEn: 'Explore Honey Collection',
-      actionLabel: lang === 'bn' ? 'খাঁটি মধু কালেকশন দেখুন' : 'Explore Honey Collection',
-      products: honeyProducts,
-    };
-  }
-
-  // --- G. Ghee & Bilona Queries ---
-  if (
-    query.includes('ঘি') || query.includes('ghee') || 
-    query.includes('বিলোনা') || query.includes('bilona') ||
-    query.includes('গাওয়া') || query.includes('ghi')
-  ) {
-    const gheeProducts = productsData.filter(p => p.category === 'ghee-oils').slice(0, 2);
-    const textBn = 'আমাদের বৈদিক বিলোনা ঘি কেন অনন্য?\n- দেশি গরুর দুধের খাঁটি দই থেকে কাঠের মন্থনী দিয়ে মাখন আলাদা করে মৃদু আঁচে প্রস্তুত করা হয়।\n- এটি শতভাগ ল্যাকটোজ ও কেসিন মুক্ত, সুস্বাদু দানাদার ও সহজে হজমযোগ্য।';
-    const textEn = 'Why Vedic Bilona Ghee is Superior:\n- Churned traditionally from cultured whole Deshi cow milk dahi with wooden churners.\n- 100% lactose & casein free, highly aromatic, golden granular, and easy to digest.';
-    return {
-      textBn,
-      textEn,
-      text: lang === 'bn' ? textBn : textEn,
-      actionLink: '/shop?category=ghee-oils',
-      actionLabelBn: 'বিলোনা ঘি কালেকশন দেখুন',
-      actionLabelEn: 'Explore Bilona Ghee',
-      actionLabel: lang === 'bn' ? 'বিলোনা ঘি কালেকশন দেখুন' : 'Explore Bilona Ghee',
-      products: gheeProducts,
-    };
-  }
-
-  // --- H. Mustard Oil & Cold Pressed Oils ---
-  if (
-    query.includes('সরিষা') || query.includes('mustard') || 
-    query.includes('তেল') || query.includes('oil') || 
-    query.includes('ঘানি') || query.includes('tel') || query.includes('shorisha') || query.includes('sorisha')
-  ) {
-    const oilProducts = productsData.filter(p => p.id.includes('mustard') || p.id.includes('coconut') || p.id.includes('kalijira'));
-    const textBn = 'কাঠের ঘানির কোল্ড-প্রেসড তেল:\n- তেঁতুল কাঠের ঘানিতে ৪০ ডিগ্রি সেলসিয়াসের নিচে ধীরগতিতে কোল্ড-প্রেসড পদ্ধতিতে তেল নিষ্কাশন করা হয়।\n- ফলে ওমেগা-৩ ও প্রাকৃতিক এসেনশিয়াল উপাদান অক্ষুণ্ণ থাকে। কোনো ক্ষতিকর কেমিক্যাল ব্যবহার করা হয় না।';
-    const textEn = 'Traditional Wood-Pressed Oils:\n- Cold-pressed slowly in wooden mills below 40°C.\n- Preserves natural Omega-3, antioxidants, and pungent flavor without chemical refining.';
-    return {
-      textBn,
-      textEn,
-      text: lang === 'bn' ? textBn : textEn,
-      actionLink: '/shop?category=ghee-oils',
-      actionLabelBn: 'ঘানির তেল কালেকশন দেখুন',
-      actionLabelEn: 'Explore Pure Oils',
-      actionLabel: lang === 'bn' ? 'ঘানির তেল কালেকশন দেখুন' : 'Explore Pure Oils',
-      products: oilProducts.slice(0, 2),
-    };
-  }
-
-  // --- I. Delivery, Shipping, Cost & Timeline queries ---
-  if (
-    query.includes('ডেলিভারি') || query.includes('delivery') || 
-    query.includes('shipping') || query.includes('চার্জ') || 
-    query.includes('charge') || query.includes('khoroch') ||
-    query.includes('koto din') || query.includes('how long') || query.includes('courier')
-  ) {
-    const textBn = 'আমাদের ডেলিভারি পলিসি ও চার্জ:\n- ঢাকা সিটি এলাকা: ২৪ - ৩৬ ঘণ্টা (চার্জ ৳৬০)\n- ঢাকার বাইরে সকল জেলা: ২ - ৩ কার্যদিবস (চার্জ ৳১০০)\n- বিশেষ অফার: ৳১০০০ বা তার বেশি অর্ডারে সারা বাংলাদেশে ডেলিভারি ফ্রি!\n- ক্যাশ অন ডেলিভারি (COD) সুবিধা রয়েছে।';
-    const textEn = 'Our Delivery Policy & Shipping Fees:\n- Dhaka City Corporation: 24 - 36 Hours (Delivery Fee ৳60)\n- Outside Dhaka (All Districts): 2 - 3 Business Days (Delivery Fee ৳100)\n- Special Offer: FREE Shipping nationwide on orders over ৳1000!\n- 100% Cash on Delivery (COD) available.';
-    return {
-      textBn,
-      textEn,
-      text: lang === 'bn' ? textBn : textEn,
-      actionLink: '/delivery',
-      actionLabelBn: 'সম্পূর্ণ ডেলিভারি পলিসি দেখুন',
-      actionLabelEn: 'View Full Delivery Policy',
-      actionLabel: lang === 'bn' ? 'সম্পূর্ণ ডেলিভারি পলিসি দেখুন' : 'View Full Delivery Policy',
-    };
-  }
-
-  // --- J. Ordering, Buying & Payment Methods ---
-  if (
-    query.includes('অর্ডার') || query.includes('order') || 
-    query.includes('payment') || query.includes('পেমেন্ট') || 
-    query.includes('kivabe') || query.includes('how to buy') || query.includes('bkash') || query.includes('বিকাশ')
-  ) {
-    const textBn = 'সহজেই অর্ডার করার নিয়ম:\n১. পছন্দের পণ্য Cart-এ যুক্ত করে Checkout পেজে নাম ও ঠিকানা দিন।\n২. পেমেন্ট মেথড: ক্যাশ অন ডেলিভারি (পণ্য হাতে পেয়ে মূল্য দিন), বিকাশ বা নগদ।\n৩. অর্ডার সাবমিট করলে সাথে সাথে এসএমএস ও কনফার্মেশন পাবেন।';
-    const textEn = 'How to Place an Order:\n1. Add desired products to Cart and proceed to Checkout with your delivery address.\n2. Payment: Cash on Delivery (COD), bKash, or Nagad.\n3. You will receive an immediate SMS order confirmation.';
-    return {
-      textBn,
-      textEn,
-      text: lang === 'bn' ? textBn : textEn,
-      actionLink: '/shop',
-      actionLabelBn: 'শপে পণ্য ব্রাউজ করুন',
-      actionLabelEn: 'Browse Shop Products',
-      actionLabel: lang === 'bn' ? 'শপে পণ্য ব্রাউজ করুন' : 'Browse Shop Products',
-    };
-  }
-
-  // --- K. Contact / Helpline / Support queries ---
-  if (
-    query.includes('ফোন') || query.includes('phone') || 
-    query.includes('হেল্পলাইন') || query.includes('helpline') || 
-    query.includes('যোগাযোগ') || query.includes('contact') || 
-    query.includes('নাম্বার') || query.includes('number') || query.includes('thikana') || query.includes('address')
-  ) {
-    const textBn = 'প্রকৃতি বার্তা কাস্টমার সাপোর্ট:\n- সরাসরি কল ও হোয়াটসঅ্যাপ: +880 1717-279166 (সকাল ৯:০০ - রাত ১০:০০ প্রতিদিন)\n- অফিসিয়াল ইমেইল: support@prokritibarta.com\n- কার্যালয়: বনানী, ঢাকা-১২১৩, বাংলাদেশ।';
-    const textEn = 'Prokriti Barta Customer Helpline:\n- Call & WhatsApp: +880 1717-279166 (9:00 AM - 10:00 PM Daily)\n- Official Email: support@prokritibarta.com\n- Office: Banani, Dhaka-1213, Bangladesh.';
-    return {
-      textBn,
-      textEn,
-      text: lang === 'bn' ? textBn : textEn,
+      textBn: 'দুঃখিত, আমি প্রকৃতি বার্তার ভার্চুয়াল অ্যাসিস্ট্যান্ট। আমি শুধুমাত্র প্রকৃতি বার্তার খাঁটি অর্গানিক পণ্য, পুষ্টিগুণ এবং অর্ডার সম্পর্কিত তথ্য প্রদানে বিশেষভাবে নিয়োজিত। আপনার প্রশ্নটি আমাদের আওতাভুক্ত নয়। যেকোনো তথ্যের জন্য সরাসরি আমাদের কাস্টমার হেল্পলাইন +880 1717-279166 অথবা ইমেইল support@prokritibarta.com-এ যোগাযোগ করতে পারেন।',
+      textEn: 'I am the virtual assistant for Prokriti Barta, dedicated exclusively to our pure organic foods, nutrition guidance, and store inquiries. I do not have information regarding outside topics. For further support, please contact our helpline at +880 1717-279166 or email support@prokritibarta.com.',
+      text: lang === 'bn'
+        ? 'দুঃখিত, আমি প্রকৃতি বার্তার ভার্চুয়াল অ্যাসিস্ট্যান্ট। আমি শুধুমাত্র প্রকৃতি বার্তার খাঁটি অর্গানিক পণ্য, পুষ্টিগুণ এবং অর্ডার সম্পর্কিত তথ্য প্রদানে বিশেষভাবে নিয়োজিত। আপনার প্রশ্নটি আমাদের আওতাভুক্ত নয়। যেকোনো তথ্যের জন্য সরাসরি আমাদের কাস্টমার হেল্পলাইন +880 1717-279166 অথবা ইমেইল support@prokritibarta.com-এ যোগাযোগ করতে পারেন।'
+        : 'I am the virtual assistant for Prokriti Barta, dedicated exclusively to our pure organic foods, nutrition guidance, and store inquiries. I do not have information regarding outside topics. For further support, please contact our helpline at +880 1717-279166 or email support@prokritibarta.com.',
       actionLink: '/contact',
-      actionLabelBn: 'কন্টাক্ট পেজ ভিজিট করুন',
-      actionLabelEn: 'Visit Contact Page',
-      actionLabel: lang === 'bn' ? 'কন্টাক্ট পেজ ভিজিট করুন' : 'Visit Contact Page',
+      actionLabelBn: 'কাস্টমার কেয়ারে যোগাযোগ',
+      actionLabelEn: 'Contact Support'
     };
   }
 
-  // --- L. Direct Product Search by name / keyword ---
-  const matchedProduct = productsData.find(p => {
-    const name = (p.name || '').toLowerCase();
-    const bnName = (p.bnName || '').toLowerCase();
-    const tags = (p.tags || []).map(t => t.toLowerCase());
-    return query.includes(name) || name.includes(query) || 
-           query.includes(bnName) || bnName.includes(query) ||
-           tags.some(t => query.includes(t));
+  // 4. Match against FAQ Knowledge Base
+  for (const entry of chatbotFaqData.faqEntries) {
+    const isMatch = entry.keywords.some(k => query.includes(k.toLowerCase()));
+    if (isMatch) {
+      return {
+        textBn: cleanText(entry.answerBn),
+        textEn: cleanText(entry.answerEn),
+        text: lang === 'bn' ? cleanText(entry.answerBn) : cleanText(entry.answerEn),
+        actionLink: entry.actionLink,
+        actionLabelBn: entry.actionLabelBn,
+        actionLabelEn: entry.actionLabelEn,
+        actionLabel: lang === 'bn' ? entry.actionLabelBn : entry.actionLabelEn,
+      };
+    }
+  }
+
+  // 5. Dynamic Product Matcher
+  const matchedProducts = productsData.filter(p => {
+    const pName = p.name.toLowerCase();
+    const pBnName = (p.bnName || '').toLowerCase();
+    const pCategory = p.category.toLowerCase();
+    const pDesc = (p.description || '').toLowerCase();
+
+    const searchTerms = query.split(' ');
+    return searchTerms.some(term => 
+      term.length > 2 && (
+        pName.includes(term) ||
+        pBnName.includes(term) ||
+        pCategory.includes(term) ||
+        pDesc.includes(term)
+      )
+    );
   });
 
-  if (matchedProduct) {
-    const textBn = `${matchedProduct.bnName || matchedProduct.name}\n- মূল্য: ৳${matchedProduct.price}\n- বিবরণ: ${matchedProduct.bnShortDesc || matchedProduct.shortDesc}\n- প্রাপ্যতা: ইন-স্টক (অর্ডার করতে নিচের বাটনে ক্লিক করুন)।`;
-    const textEn = `${matchedProduct.name}\n- Price: ৳${matchedProduct.price}\n- Overview: ${matchedProduct.shortDesc}\n- Status: In Stock (Click below to order).`;
+  if (matchedProducts.length > 0) {
+    const topMatches = matchedProducts.slice(0, 3);
+    const productNamesBn = topMatches.map(p => `${p.bnName || p.name} (৳${p.price})`).join(', ');
+    const productNamesEn = topMatches.map(p => `${p.name} (৳${p.price})`).join(', ');
+
     return {
-      textBn,
-      textEn,
-      text: lang === 'bn' ? textBn : textEn,
-      actionLink: `/product/${matchedProduct.id}`,
-      actionLabelBn: 'পণ্যটি বিস্তারিত দেখুন',
-      actionLabelEn: 'View Product Details',
-      actionLabel: lang === 'bn' ? 'পণ্যটি বিস্তারিত দেখুন' : 'View Product Details',
-      products: [matchedProduct],
+      textBn: `আপনার কাঙ্ক্ষিত সম্পর্কিত পণ্যের তথ্য: ${productNamesBn}। বিস্তারিত দেখতে বা অর্ডার করতে নিচের পণ্য তালিকায় ক্লিক করুন।`,
+      textEn: `Here are relevant organic products for your search: ${productNamesEn}. Click below to view details and order.`,
+      text: lang === 'bn'
+        ? `আপনার কাঙ্ক্ষিত সম্পর্কিত পণ্যের তথ্য: ${productNamesBn}। বিস্তারিত দেখতে বা অর্ডার করতে নিচের পণ্য তালিকায় ক্লিক করুন।`
+        : `Here are relevant organic products for your search: ${productNamesEn}. Click below to view details and order.`,
+      products: topMatches.map(p => ({
+        id: p.id,
+        name: p.name,
+        bnName: p.bnName,
+        price: p.price,
+        image: p.image,
+        category: p.category,
+      })),
+      actionLink: `/shop?category=${topMatches[0].category}`,
+      actionLabelBn: 'সব পণ্য দেখুন',
+      actionLabelEn: 'View All Products'
     };
   }
 
-  // --- M. Polite, Professional Fallback for Unrecognized Inquiries ---
-  const textBn = 'আপনার বার্তার জন্য ধন্যবাদ। এই বিষয়ে আমার কাছে সুনির্দিষ্ট তথ্য নেই। তবে আমাদের অর্গানিক খাদ্যের স্বাস্থ্য উপকারিতা, খাঁটি মধু ও তেলের বিশুদ্ধতা যাচাই অথবা ডেলিভারি ও অর্ডার সংক্রান্ত যেকোনো তথ্যে আমি আপনাকে সাহায্য করতে পারি।\n\nসরাসরি আমাদের কাস্টমার সাপোর্টে কথা বলতে কল বা হোয়াটসঅ্যাপ করুন: +880 1717-279166 নম্বরে।';
-  const textEn = 'Thank you for reaching out. I do not have specific information regarding that topic. However, I am ready to assist you with organic nutrition tips, purity verification (honey, ghee, oils), product recommendations, or delivery and order queries.\n\nYou can also contact our support team directly via Call or WhatsApp at +880 1717-279166.';
+  // 6. Greetings & Standard Help Response
+  if (query.includes('hi') || query.includes('hello') || query.includes('salam') || query.includes('সালাম') || query.includes('হাই')) {
+    return {
+      textBn: 'ওয়ালাইকুম আসসালাম! প্রকৃতি বার্তায় আপনাকে স্বাগতম। সুন্দরবনের খাঁটি মধু, কাঠের ঘানির তেল, বিলোনা ঘি, সিডস ও মসলা সম্পর্কিত যেকোনো তথ্য জানতে আমাকে প্রশ্ন করুন।',
+      textEn: 'Hello and welcome to Prokriti Barta! Ask me anything about our raw wild honey, wood-pressed oils, bilona ghee, organic seeds, or delivery policies.',
+      text: lang === 'bn'
+        ? 'ওয়ালাইকুম আসসালাম! প্রকৃতি বার্তায় আপনাকে স্বাগতম। সুন্দরবনের খাঁটি মধু, কাঠের ঘানির তেল, বিলোনা ঘি, সিডস ও মসলা সম্পর্কিত যেকোনো তথ্য জানতে আমাকে প্রশ্ন করুন।'
+        : 'Hello and welcome to Prokriti Barta! Ask me anything about our raw wild honey, wood-pressed oils, bilona ghee, organic seeds, or delivery policies.',
+      actionLink: '/shop',
+      actionLabelBn: 'শপ ব্রাউজ করুন',
+      actionLabelEn: 'Browse Shop'
+    };
+  }
+
+  // 7. General Domain Helpful Response
   return {
-    textBn,
-    textEn,
-    text: lang === 'bn' ? textBn : textEn,
-    actionLink: '/shop',
-    actionLabelBn: 'সকল পণ্য ব্রাউজ করুন',
-    actionLabelEn: 'Browse All Products',
-    actionLabel: lang === 'bn' ? 'সকল পণ্য ব্রাউজ করুন' : 'Browse All Products',
+    textBn: 'প্রকৃতি বার্তার সকল পণ্য ১০০% প্রাকৃতিক ও ভেজালমুক্ত। পণ্য অর্ডার, মূল্য, মধু ও তেলের বিশুদ্ধতা যাচাই কিংবা ডেলিভারি চার্জ জানতে প্রশ্ন করতে পারেন। সরাসরি সহায়তার জন্য হেল্পলাইন: +880 1717-279166।',
+    textEn: 'All Prokriti Barta products are 100% natural and unadulterated. You can ask about product prices, purity checks, or delivery details. For direct assistance, call our helpline at +880 1717-279166.',
+    text: lang === 'bn'
+      ? 'প্রকৃতি বার্তার সকল পণ্য ১০০% প্রাকৃতিক ও ভেজালমুক্ত। পণ্য অর্ডার, মূল্য, মধু ও তেলের বিশুদ্ধতা যাচাই কিংবা ডেলিভারি চার্জ জানতে প্রশ্ন করতে পারেন। সরাসরি সহায়তার জন্য হেল্পলাইন: +880 1717-279166।'
+      : 'All Prokriti Barta products are 100% natural and unadulterated. You can ask about product prices, purity checks, or delivery details. For direct assistance, call our helpline at +880 1717-279166.',
+    actionLink: '/contact',
+    actionLabelBn: 'কাস্টমার কেয়ারে কল করুন',
+    actionLabelEn: 'Call Customer Support'
   };
 }
