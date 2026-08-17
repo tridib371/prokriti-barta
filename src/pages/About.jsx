@@ -285,26 +285,26 @@ export default function About() {
                   variants={itemVariants}
                   whileHover={{ y: -8, scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 350, damping: 22 }}
-                  className="group relative bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent rounded-3xl p-6 flex flex-col justify-between space-y-4 shadow-[0_4px_18px_-4px_rgba(27,59,43,0.08)] hover:shadow-[0_16px_32px_-6px_rgba(232,152,20,0.22)] transition-all duration-300 overflow-hidden cursor-default"
+                  className="group relative bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent rounded-3xl p-6 flex flex-col justify-between space-y-4 shadow-[0_4px_18px_-4px_rgba(27,59,43,0.08)] hover:shadow-[0_20px_40px_-8px_rgba(27,59,43,0.45)] transition-all duration-500 overflow-hidden cursor-default"
                 >
-                  {/* Top Accent Gradient Border Strip on Hover */}
-                  <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary via-accent to-accent-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="absolute -top-20 -right-20 w-40 h-40 bg-accent/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500 pointer-events-none" />
+                  {/* Full Card Gradient Background on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary via-[#224b37] to-[#11281c] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl z-0" />
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(232,152,20,0.25),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
 
                   <div className="space-y-3 relative z-10">
                     <div className="flex items-center justify-between">
                       <div className="w-14 h-14 rounded-2xl bg-primary text-accent flex items-center justify-center font-bold shadow-md shadow-primary/20 group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
                         <Icon size={26} />
                       </div>
-                      <span className="font-display font-extrabold text-2xl text-primary/15 group-hover:text-accent/30 transition-colors">
+                      <span className="font-display font-extrabold text-2xl text-primary/20 group-hover:text-accent/50 transition-colors duration-300">
                         0{idx + 1}
                       </span>
                     </div>
 
-                    <h3 className="font-display font-bold text-lg text-primary group-hover:text-accent transition-colors duration-200">
+                    <h3 className="font-display font-bold text-lg text-primary group-hover:text-white transition-colors duration-300">
                       {lang === 'bn' ? p.titleBn : p.titleEn}
                     </h3>
-                    <p className="text-xs sm:text-[13px] text-ink/75 font-bn-sans leading-relaxed">
+                    <p className="text-xs sm:text-[13px] text-ink/75 group-hover:text-white/90 font-bn-sans leading-relaxed transition-colors duration-300">
                       {lang === 'bn' ? p.descBn : p.descEn}
                     </p>
                   </div>

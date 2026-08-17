@@ -74,39 +74,37 @@ export default function BenefitsSection() {
                 viewport={{ once: true }}
                 whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 350, damping: 22, delay: idx * 0.08 }}
-                className="group relative bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent rounded-3xl p-6 flex flex-col justify-between shadow-[0_4px_18px_-4px_rgba(27,59,43,0.08)] hover:shadow-[0_16px_32px_-6px_rgba(232,152,20,0.22)] transition-all duration-300 overflow-hidden cursor-default"
+                className="group relative bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent rounded-3xl p-6 flex flex-col justify-between shadow-[0_4px_18px_-4px_rgba(27,59,43,0.08)] hover:shadow-[0_20px_40px_-8px_rgba(27,59,43,0.45)] transition-all duration-500 overflow-hidden cursor-default"
               >
-                {/* Top Accent Gradient Border Strip on Hover */}
-                <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary via-accent to-accent-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                {/* Subtle Hover Radial Shine */}
-                <div className="absolute -top-24 -right-24 w-48 h-48 bg-accent/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500 pointer-events-none" />
+                {/* Full Card Gradient Background on Hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary via-[#224b37] to-[#11281c] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl z-0" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(232,152,20,0.25),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
 
                 <div className="space-y-4 relative z-10">
                   <div className="flex items-center justify-between">
                     <div className="w-14 h-14 rounded-2xl bg-primary text-accent flex items-center justify-center shadow-md shadow-primary/20 group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
                       <Icon size={26} />
                     </div>
-                    <span className="font-display font-extrabold text-2xl text-primary/15 group-hover:text-accent/30 transition-colors">
+                    <span className="font-display font-extrabold text-2xl text-primary/20 group-hover:text-accent/50 transition-colors duration-300">
                       0{idx + 1}
                     </span>
                   </div>
 
                   <div>
-                    <h3 className="font-display font-bold text-lg text-primary group-hover:text-accent transition-colors duration-200">
+                    <h3 className="font-display font-bold text-lg text-primary group-hover:text-white transition-colors duration-300">
                       {item.title}
                     </h3>
-                    <p className="text-xs sm:text-[13px] text-ink/75 font-bn-sans leading-relaxed mt-2">
+                    <p className="text-xs sm:text-[13px] text-ink/75 group-hover:text-white/90 font-bn-sans leading-relaxed mt-2 transition-colors duration-300">
                       {item.description}
                     </p>
                   </div>
                 </div>
 
-                <div className="pt-4 mt-4 border-t border-primary/10 flex items-center justify-between relative z-10">
-                  <span className="text-[11px] font-bold text-primary/80 group-hover:text-primary transition-colors font-bn-sans">
+                <div className="pt-4 mt-4 border-t border-primary/10 group-hover:border-white/20 flex items-center justify-between relative z-10 transition-colors duration-300">
+                  <span className="text-[11px] font-bold text-primary/80 group-hover:text-accent font-bn-sans transition-colors duration-300">
                     {item.tagBn}
                   </span>
-                  <div className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-all">
+                  <div className="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-all duration-300">
                     <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </div>
                 </div>

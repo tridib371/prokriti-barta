@@ -28,47 +28,55 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             
-            <div className="group relative flex items-center gap-3.5 p-4 rounded-2xl bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent shadow-[0_4px_14px_-3px_rgba(27,59,43,0.08)] hover:shadow-[0_12px_24px_-6px_rgba(232,152,20,0.2)] hover:-translate-y-1.5 transition-all duration-300 overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-accent-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="w-12 h-12 rounded-xl bg-primary text-accent flex items-center justify-center shrink-0 shadow-md shadow-primary/20 group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+            <div className="group relative flex items-center gap-3.5 p-4 rounded-2xl bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent shadow-[0_4px_14px_-3px_rgba(27,59,43,0.08)] hover:shadow-[0_16px_32px_-6px_rgba(27,59,43,0.4)] hover:-translate-y-1.5 transition-all duration-500 overflow-hidden cursor-default">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary via-[#224b37] to-[#11281c] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl z-0" />
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(232,152,20,0.25),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
+              
+              <div className="w-12 h-12 rounded-xl bg-primary text-accent flex items-center justify-center shrink-0 shadow-md shadow-primary/20 group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 relative z-10">
                 <ShieldCheck size={24} />
               </div>
-              <div>
-                <h4 className="font-bold text-sm text-primary group-hover:text-accent transition-colors">{t('footer.pure.title')}</h4>
-                <p className="text-xs text-ink/75 font-bn-sans">{t('footer.pure.sub')}</p>
+              <div className="relative z-10">
+                <h4 className="font-bold text-sm text-primary group-hover:text-white transition-colors duration-300">{t('footer.pure.title')}</h4>
+                <p className="text-xs text-ink/75 group-hover:text-white/85 font-bn-sans transition-colors duration-300">{t('footer.pure.sub')}</p>
               </div>
             </div>
 
-            <div className="group relative flex items-center gap-3.5 p-4 rounded-2xl bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent shadow-[0_4px_14px_-3px_rgba(27,59,43,0.08)] hover:shadow-[0_12px_24px_-6px_rgba(232,152,20,0.2)] hover:-translate-y-1.5 transition-all duration-300 overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-accent-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="w-12 h-12 rounded-xl bg-primary text-accent flex items-center justify-center shrink-0 shadow-md shadow-primary/20 group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+            <div className="group relative flex items-center gap-3.5 p-4 rounded-2xl bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent shadow-[0_4px_14px_-3px_rgba(27,59,43,0.08)] hover:shadow-[0_16px_32px_-6px_rgba(27,59,43,0.4)] hover:-translate-y-1.5 transition-all duration-500 overflow-hidden cursor-default">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary via-[#224b37] to-[#11281c] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl z-0" />
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(232,152,20,0.25),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
+              
+              <div className="w-12 h-12 rounded-xl bg-primary text-accent flex items-center justify-center shrink-0 shadow-md shadow-primary/20 group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 relative z-10">
                 <Truck size={24} />
               </div>
-              <div>
-                <h4 className="font-bold text-sm text-primary group-hover:text-accent transition-colors">{t('footer.cod.title')}</h4>
-                <p className="text-xs text-ink/75 font-bn-sans">{t('footer.cod.sub')}</p>
+              <div className="relative z-10">
+                <h4 className="font-bold text-sm text-primary group-hover:text-white transition-colors duration-300">{t('footer.cod.title')}</h4>
+                <p className="text-xs text-ink/75 group-hover:text-white/85 font-bn-sans transition-colors duration-300">{t('footer.cod.sub')}</p>
               </div>
             </div>
 
-            <div className="group relative flex items-center gap-3.5 p-4 rounded-2xl bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent shadow-[0_4px_14px_-3px_rgba(27,59,43,0.08)] hover:shadow-[0_12px_24px_-6px_rgba(232,152,20,0.2)] hover:-translate-y-1.5 transition-all duration-300 overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-accent-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="w-12 h-12 rounded-xl bg-primary text-accent flex items-center justify-center shrink-0 shadow-md shadow-primary/20 group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+            <div className="group relative flex items-center gap-3.5 p-4 rounded-2xl bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent shadow-[0_4px_14px_-3px_rgba(27,59,43,0.08)] hover:shadow-[0_16px_32px_-6px_rgba(27,59,43,0.4)] hover:-translate-y-1.5 transition-all duration-500 overflow-hidden cursor-default">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary via-[#224b37] to-[#11281c] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl z-0" />
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(232,152,20,0.25),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
+              
+              <div className="w-12 h-12 rounded-xl bg-primary text-accent flex items-center justify-center shrink-0 shadow-md shadow-primary/20 group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 relative z-10">
                 <RefreshCw size={24} />
               </div>
-              <div>
-                <h4 className="font-bold text-sm text-primary group-hover:text-accent transition-colors">{t('footer.return.title')}</h4>
-                <p className="text-xs text-ink/75 font-bn-sans">{t('footer.return.sub')}</p>
+              <div className="relative z-10">
+                <h4 className="font-bold text-sm text-primary group-hover:text-white transition-colors duration-300">{t('footer.return.title')}</h4>
+                <p className="text-xs text-ink/75 group-hover:text-white/85 font-bn-sans transition-colors duration-300">{t('footer.return.sub')}</p>
               </div>
             </div>
 
-            <div className="group relative flex items-center gap-3.5 p-4 rounded-2xl bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent shadow-[0_4px_14px_-3px_rgba(27,59,43,0.08)] hover:shadow-[0_12px_24px_-6px_rgba(232,152,20,0.2)] hover:-translate-y-1.5 transition-all duration-300 overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-accent-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="w-12 h-12 rounded-xl bg-primary text-accent flex items-center justify-center shrink-0 shadow-md shadow-primary/20 group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+            <div className="group relative flex items-center gap-3.5 p-4 rounded-2xl bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent shadow-[0_4px_14px_-3px_rgba(27,59,43,0.08)] hover:shadow-[0_16px_32px_-6px_rgba(27,59,43,0.4)] hover:-translate-y-1.5 transition-all duration-500 overflow-hidden cursor-default">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary via-[#224b37] to-[#11281c] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl z-0" />
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(232,152,20,0.25),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
+              
+              <div className="w-12 h-12 rounded-xl bg-primary text-accent flex items-center justify-center shrink-0 shadow-md shadow-primary/20 group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 relative z-10">
                 <Phone size={24} />
               </div>
-              <div>
-                <h4 className="font-bold text-sm text-primary group-hover:text-accent transition-colors">{t('footer.support.title')}</h4>
-                <Link to="/contact" className="text-xs text-accent font-bold hover:underline">
+              <div className="relative z-10">
+                <h4 className="font-bold text-sm text-primary group-hover:text-white transition-colors duration-300">{t('footer.support.title')}</h4>
+                <Link to="/contact" className="text-xs text-accent font-bold hover:underline group-hover:text-accent">
                   {n('+880 1717-279166')}
                 </Link>
               </div>

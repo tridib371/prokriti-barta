@@ -226,38 +226,38 @@ export default function Delivery() {
                 viewport={{ once: true }}
                 whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 350, damping: 22, delay: idx * 0.08 }}
-                className="group relative bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent rounded-3xl p-6 flex flex-col justify-between space-y-4 shadow-[0_4px_18px_-4px_rgba(27,59,43,0.08)] hover:shadow-[0_16px_32px_-6px_rgba(232,152,20,0.22)] transition-all duration-300 overflow-hidden cursor-default"
+                className="group relative bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent rounded-3xl p-6 flex flex-col justify-between space-y-4 shadow-[0_4px_18px_-4px_rgba(27,59,43,0.08)] hover:shadow-[0_20px_40px_-8px_rgba(27,59,43,0.45)] transition-all duration-500 overflow-hidden cursor-default"
               >
-                {/* Top Accent Gradient Border Strip on Hover */}
-                <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary via-accent to-accent-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute -top-20 -right-20 w-40 h-40 bg-accent/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500 pointer-events-none" />
+                {/* Full Card Gradient Background on Hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary via-[#224b37] to-[#11281c] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl z-0" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(232,152,20,0.25),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
 
                 <div className="space-y-3 relative z-10">
                   <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full bg-primary text-white text-[11px] font-bold shadow-xs">
+                    <span className="px-3 py-1 rounded-full bg-primary text-white text-[11px] font-bold shadow-xs group-hover:bg-accent group-hover:text-white transition-colors duration-300">
                       {zone.badge}
                     </span>
-                    <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-all">
+                    <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:bg-white/20 group-hover:text-white transition-all duration-300">
                       <Clock size={16} />
                     </div>
                   </div>
 
-                  <h3 className="font-display font-bold text-lg text-primary leading-snug group-hover:text-accent transition-colors duration-200">
+                  <h3 className="font-display font-bold text-lg text-primary leading-snug group-hover:text-white transition-colors duration-300">
                     {lang === 'bn' ? zone.titleBn : zone.titleEn}
                   </h3>
 
                   <div className="space-y-1.5 pt-1">
-                    <div className="flex items-center gap-1.5 text-xs text-accent font-bold font-bn-sans">
+                    <div className="flex items-center gap-1.5 text-xs text-accent font-bold font-bn-sans group-hover:text-accent transition-colors duration-300">
                       <Clock size={13} className="shrink-0" />
                       <span>{lang === 'bn' ? 'সময়:' : 'Time:'} {lang === 'bn' ? zone.timeBn : zone.timeEn}</span>
                     </div>
-                    <div className="flex items-center gap-1.5 text-xs text-primary font-bold font-bn-sans">
-                      <Truck size={13} className="shrink-0 text-accent" />
+                    <div className="flex items-center gap-1.5 text-xs text-primary font-bold font-bn-sans group-hover:text-white transition-colors duration-300">
+                      <Truck size={13} className="shrink-0 text-accent group-hover:text-accent" />
                       <span>{lang === 'bn' ? 'চার্জ:' : 'Rate:'} {lang === 'bn' ? zone.chargeBn : zone.chargeEn}</span>
                     </div>
                   </div>
 
-                  <p className="text-xs text-ink/75 font-bn-sans leading-relaxed pt-2 border-t border-primary/10">
+                  <p className="text-xs text-ink/75 group-hover:text-white/85 font-bn-sans leading-relaxed pt-2 border-t border-primary/10 group-hover:border-white/15 transition-colors duration-300">
                     {lang === 'bn' ? zone.descBn : zone.descEn}
                   </p>
                 </div>
@@ -290,22 +290,24 @@ export default function Delivery() {
                   key={idx}
                   whileHover={{ y: -6, scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 350, damping: 22 }}
-                  className="group relative p-6 rounded-3xl bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent space-y-3.5 shadow-[0_4px_18px_-4px_rgba(27,59,43,0.08)] hover:shadow-[0_16px_32px_-6px_rgba(232,152,20,0.22)] transition-all duration-300 overflow-hidden cursor-default"
+                  className="group relative p-6 rounded-3xl bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent space-y-3.5 shadow-[0_4px_18px_-4px_rgba(27,59,43,0.08)] hover:shadow-[0_20px_40px_-8px_rgba(27,59,43,0.45)] transition-all duration-500 overflow-hidden cursor-default"
                 >
-                  <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary via-accent to-accent-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  {/* Full Card Gradient Background on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary via-[#224b37] to-[#11281c] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl z-0" />
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(232,152,20,0.25),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
                   
                   <div className="flex items-center justify-between relative z-10">
                     <div className="w-13 h-13 rounded-2xl bg-primary text-accent flex items-center justify-center font-bold shadow-md shadow-primary/20 group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
                       <IconComponent size={24} />
                     </div>
-                    <span className="font-display font-extrabold text-2xl text-primary/15 group-hover:text-accent/30 transition-colors">
+                    <span className="font-display font-extrabold text-2xl text-primary/20 group-hover:text-accent/50 transition-colors duration-300">
                       {step.step}
                     </span>
                   </div>
-                  <h3 className="font-display font-bold text-base text-primary group-hover:text-accent transition-colors relative z-10">
+                  <h3 className="font-display font-bold text-base text-primary group-hover:text-white transition-colors duration-300 relative z-10">
                     {lang === 'bn' ? step.titleBn : step.titleEn}
                   </h3>
-                  <p className="text-xs sm:text-[13px] text-ink/75 font-bn-sans leading-relaxed relative z-10">
+                  <p className="text-xs sm:text-[13px] text-ink/75 group-hover:text-white/85 font-bn-sans leading-relaxed relative z-10 transition-colors duration-300">
                     {lang === 'bn' ? step.descBn : step.descEn}
                   </p>
                 </motion.div>
@@ -392,17 +394,19 @@ export default function Delivery() {
                 key={idx}
                 whileHover={{ y: -6, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 350, damping: 22 }}
-                className="group relative bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent rounded-3xl p-6 space-y-3.5 shadow-[0_4px_18px_-4px_rgba(27,59,43,0.08)] hover:shadow-[0_16px_32px_-6px_rgba(232,152,20,0.22)] transition-all duration-300 overflow-hidden cursor-default"
+                className="group relative bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent rounded-3xl p-6 space-y-3.5 shadow-[0_4px_18px_-4px_rgba(27,59,43,0.08)] hover:shadow-[0_20px_40px_-8px_rgba(27,59,43,0.45)] transition-all duration-500 overflow-hidden cursor-default"
               >
-                <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary via-accent to-accent-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                {/* Full Card Gradient Background on Hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary via-[#224b37] to-[#11281c] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl z-0" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(232,152,20,0.25),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
                 
                 <div className="w-13 h-13 rounded-2xl bg-primary text-accent flex items-center justify-center font-bold shadow-md shadow-primary/20 group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 relative z-10">
                   <IconComponent size={24} />
                 </div>
-                <h3 className="font-display font-bold text-lg text-primary group-hover:text-accent transition-colors relative z-10">
+                <h3 className="font-display font-bold text-lg text-primary group-hover:text-white transition-colors duration-300 relative z-10">
                   {lang === 'bn' ? feat.titleBn : feat.titleEn}
                 </h3>
-                <p className="text-xs sm:text-[13px] text-ink/75 font-bn-sans leading-relaxed relative z-10">
+                <p className="text-xs sm:text-[13px] text-ink/75 group-hover:text-white/85 font-bn-sans leading-relaxed relative z-10 transition-colors duration-300">
                   {lang === 'bn' ? feat.descBn : feat.descEn}
                 </p>
               </motion.div>
