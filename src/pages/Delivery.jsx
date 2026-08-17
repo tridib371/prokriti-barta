@@ -501,27 +501,27 @@ export default function Delivery() {
             </div>
 
             {calcDeliveryFee() === null ? (
-              <div className="text-center sm:text-right text-xs text-white/85 font-bn-sans bg-black/20 px-3.5 py-2.5 rounded-xl border border-white/10 whitespace-nowrap">
+              <div className="text-center sm:text-right text-xs text-white/85 font-bn-sans bg-black/20 px-3.5 py-2.5 rounded-xl border border-white/10 whitespace-nowrap shrink-0">
                 {lang === 'bn' 
                   ? 'উপরে এলাকা ও অর্ডারের পরিমাণ নির্বাচন করুন' 
                   : 'Select area & enter order amount above'}
               </div>
             ) : currentAmount < 1000 ? (
-              <div className="text-center sm:text-right text-xs text-white/85 font-bn-sans bg-black/20 p-3 rounded-xl border border-white/10">
+              <div className="text-center sm:text-right text-xs text-white/85 font-bn-sans bg-black/20 px-3.5 py-2.5 rounded-xl border border-white/10 whitespace-nowrap shrink-0">
                 {lang === 'bn' ? (
                   <span>
-                    আর মাত্র <strong className="text-accent font-bold text-sm">৳{n(1000 - currentAmount)}</strong> টাকার পণ্য অর্ডারে পাবেন <strong className="text-emerald-400 font-bold">১০০% ফ্রি ডেলিভারি!</strong>
+                    আর মাত্র <strong className="text-accent font-bold text-sm">৳{n(1000 - currentAmount)}</strong> অর্ডারে পাবেন <strong className="text-emerald-400 font-bold">ফ্রি ডেলিভারি!</strong>
                   </span>
                 ) : (
                   <span>
-                    Add only <strong className="text-accent font-bold text-sm">৳{n(1000 - currentAmount)}</strong> more to unlock <strong className="text-emerald-400 font-bold">FREE Delivery!</strong>
+                    Add only <strong className="text-accent font-bold text-sm">৳{n(1000 - currentAmount)}</strong> more for <strong className="text-emerald-400 font-bold">FREE Delivery!</strong>
                   </span>
                 )}
               </div>
             ) : (
-              <div className="text-center sm:text-right text-xs font-bold text-emerald-300 font-bn-sans flex items-center gap-1.5 bg-emerald-950/40 px-3.5 py-2 rounded-xl border border-emerald-400/30">
-                <CheckCircle2 size={16} className="text-emerald-400" />
-                <span>{lang === 'bn' ? 'অভিনন্দন! আপনার অর্ডারে ফ্রি ডেলিভারি সক্রিয়।' : 'Congratulations! FREE Delivery is active.'}</span>
+              <div className="text-center sm:text-right text-xs font-bold text-emerald-300 font-bn-sans flex items-center justify-center sm:justify-end gap-1.5 bg-emerald-950/50 px-4 py-2.5 rounded-xl border border-emerald-400/30 whitespace-nowrap shrink-0">
+                <CheckCircle2 size={15} className="text-emerald-400 shrink-0" />
+                <span className="whitespace-nowrap">{lang === 'bn' ? 'অভিনন্দন! ফ্রি ডেলিভারি সক্রিয়।' : 'Congratulations! FREE Delivery is active.'}</span>
               </div>
             )}
           </motion.div>
