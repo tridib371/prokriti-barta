@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Home, Compass, ShoppingBag, ArrowRight, Leaf, SearchX } from 'lucide-react';
+import { Home, ShoppingBag, ArrowRight, Leaf, SearchX } from 'lucide-react';
 import { motion } from 'framer-motion';
 import AlponaDivider from '../components/ui/AlponaDivider';
 import Button from '../components/ui/Button';
@@ -41,30 +41,30 @@ export default function NotFound() {
         className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-primary/30 blur-3xl pointer-events-none"
       />
 
-      {/* Floating Organic Decorative Leaf (Ultra Smooth Float) */}
+      {/* Floating Deep Rich Orange Leaf 1 (Top Left) */}
       <motion.div
         animate={{
-          y: [-10, 10, -10],
-          rotate: [-6, 8, -6],
+          y: [-12, 12, -12],
+          rotate: [-8, 10, -8],
         }}
         transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
         style={{ willChange: 'transform', transform: 'translate3d(0, 0, 0)' }}
-        className="absolute top-20 left-10 sm:left-24 text-accent/40 pointer-events-none hidden sm:block"
+        className="absolute top-16 left-8 sm:left-24 text-accent drop-shadow-[0_8px_16px_rgba(200,109,59,0.35)] pointer-events-none hidden sm:block"
       >
-        <Leaf size={44} />
+        <Leaf size={48} className="fill-accent/20 text-accent stroke-[2.2]" />
       </motion.div>
 
-      {/* Floating Organic Decorative Compass (Ultra Smooth Float) */}
+      {/* Floating Deep Rich Orange Leaf 2 (Bottom Right) */}
       <motion.div
         animate={{
-          y: [10, -10, 10],
-          rotate: [8, -8, 8],
+          y: [12, -12, 12],
+          rotate: [10, -10, 10],
         }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
         style={{ willChange: 'transform', transform: 'translate3d(0, 0, 0)' }}
-        className="absolute bottom-20 right-10 sm:right-24 text-primary/30 pointer-events-none hidden sm:block"
+        className="absolute bottom-16 right-8 sm:right-24 text-accent drop-shadow-[0_8px_16px_rgba(200,109,59,0.35)] pointer-events-none hidden sm:block"
       >
-        <Compass size={52} />
+        <Leaf size={52} className="fill-accent/20 text-accent stroke-[2.2]" />
       </motion.div>
 
       {/* Main 404 Interactive Card */}
@@ -121,7 +121,7 @@ export default function NotFound() {
           >
             <div>
               <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-accent/15 border border-accent/30 text-accent font-bold text-xs uppercase tracking-wider">
-                <Compass size={14} />
+                <Leaf size={13} className="text-accent" />
                 <span>{lang === 'bn' ? 'পৃষ্ঠাটি খুঁজে পাওয়া যায়নি' : 'Page Not Found'}</span>
               </span>
             </div>
