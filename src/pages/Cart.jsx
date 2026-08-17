@@ -43,13 +43,23 @@ export default function Cart() {
 
   const handleApplyCoupon = (e) => {
     e.preventDefault();
-    if (!couponCode.trim()) return;
-    if (couponCode.toUpperCase() === 'PROKRITI10' || couponCode.toUpperCase() === 'ORGANIC') {
+    const cleanCode = couponCode.trim().toUpperCase();
+    if (!cleanCode) return;
+
+    // Recognize PROKRITI10, PRPKRITI10, ORGANIC, PB10, etc.
+    if (['PROKRITI10', 'PRPKRITI10', 'PROKRITI', 'ORGANIC', 'ORGANIC10', 'PB10', 'SAVE10'].includes(cleanCode)) {
       setCouponApplied(true);
       setCouponError('');
     } else {
+      setCouponApplied(false);
       setCouponError(lang === 'bn' ? 'ভাউচার কোডটি সঠিক নয়' : 'Invalid promo code');
     }
+  };
+
+  const handleRemoveCoupon = () => {
+    setCouponApplied(false);
+    setCouponCode('');
+    setCouponError('');
   };
 
   const amountToFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
@@ -401,34 +411,55 @@ export default function Cart() {
               </div>
 
               {/* Promo Coupon Form */}
-              <form onSubmit={handleApplyCoupon} className="pt-2 border-t border-line/60">
-                <div className="flex gap-2">
-                  <div className="relative flex-1">
-                    <input
-                      type="text"
-                      placeholder={lang === 'bn' ? 'কুপন কোড (যেমন: PROKRITI10)' : 'Promo code (PROKRITI10)'}
-                      value={couponCode}
-                      onChange={(e) => setCouponCode(e.target.value)}
-                      className="w-full bg-bg text-ink text-xs px-3 py-2 pl-8 rounded-xl border border-line focus:border-accent outline-none"
-                    />
-                    <Tag size={14} className="absolute left-2.5 top-2.5 text-muted" />
+              <div className="pt-2 border-t border-line/60">
+                {couponApplied ? (
+                  <div className="flex items-center justify-between p-2.5 bg-primary/10 border border-primary/20 rounded-2xl">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 size={16} className="text-primary shrink-0" />
+                      <div>
+                        <p className="text-xs font-bold text-primary font-mono">{couponCode.toUpperCase()}</p>
+                        <p className="text-[10px] text-muted font-bn-sans">
+                          {lang === 'bn' ? '১০% বিশেষ ছাড় সক্রিয়' : '10% discount applied'}
+                        </p>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleRemoveCoupon}
+                      className="text-xs text-accent-2 font-bold hover:underline cursor-pointer"
+                    >
+                      {lang === 'bn' ? 'বাতিল' : 'Remove'}
+                    </button>
                   </div>
-                  <button
-                    type="submit"
-                    className="px-3 py-2 bg-primary text-white rounded-xl text-xs font-bold hover:bg-accent hover:text-ink transition-colors cursor-pointer"
-                  >
-                    {lang === 'bn' ? 'প্রয়োগ' : 'Apply'}
-                  </button>
-                </div>
-                {couponApplied && (
-                  <p className="text-[11px] text-primary font-bold mt-1.5 flex items-center gap-1">
-                    <CheckCircle2 size={12} /> {lang === 'bn' ? '১০% অতিরিক্ত ছাড় যুক্ত হয়েছে!' : '10% discount applied!'}
-                  </p>
+                ) : (
+                  <form onSubmit={handleApplyCoupon} className="space-y-1.5">
+                    <div className="flex gap-2">
+                      <div className="relative flex-1">
+                        <input
+                          type="text"
+                          placeholder={lang === 'bn' ? 'কুপন কোড (যেমন: PROKRITI10)' : 'Promo code (PROKRITI10)'}
+                          value={couponCode}
+                          onChange={(e) => {
+                            setCouponCode(e.target.value);
+                            if (couponError) setCouponError('');
+                          }}
+                          className="w-full bg-bg text-ink text-xs px-3 py-2 pl-8 rounded-xl border border-line focus:border-accent outline-none font-mono"
+                        />
+                        <Tag size={14} className="absolute left-2.5 top-2.5 text-muted" />
+                      </div>
+                      <button
+                        type="submit"
+                        className="px-3.5 py-2 bg-primary text-white rounded-xl text-xs font-bold hover:bg-accent hover:text-ink transition-colors cursor-pointer"
+                      >
+                        {lang === 'bn' ? 'প্রয়োগ' : 'Apply'}
+                      </button>
+                    </div>
+                    {couponError && (
+                      <p className="text-[11px] text-accent-2 font-bold mt-1">{couponError}</p>
+                    )}
+                  </form>
                 )}
-                {couponError && (
-                  <p className="text-[11px] text-accent-2 font-bold mt-1.5">{couponError}</p>
-                )}
-              </form>
+              </div>
 
               {/* Total Row */}
               <div className="pt-3 border-t border-line flex justify-between items-baseline">
