@@ -350,30 +350,21 @@ export default function ChatbotWidget() {
         )}
       </AnimatePresence>
 
-      {/* 2. Floating Launch Button */}
-      {!isOpen && (
-        <motion.button
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          whileHover={{ scale: 1.06 }}
-          whileTap={{ scale: 0.94 }}
-          onClick={() => setIsOpen(true)}
-          className="px-4 py-3 bg-primary text-surface rounded-full shadow-xl flex items-center gap-2.5 hover:bg-primary/90 transition-all border border-line/40 group cursor-pointer"
-          aria-label="Open Live Chatbot"
-        >
-          <div className="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center font-bold shadow-xs">
-            <Bot size={18} />
-          </div>
-          <div className="text-left hidden sm:block">
-            <p className="text-xs font-bold text-surface leading-tight">
-              {lang === 'bn' ? 'প্রকৃতি মিত্র' : 'Prokriti AI'}
-            </p>
-            <p className="text-[10px] text-accent leading-tight font-bn-sans">
-              {lang === 'bn' ? 'সহায়তার জন্য ক্লিক করুন' : 'Click for support'}
-            </p>
-          </div>
-        </motion.button>
-      )}
+      {/* 2. Floating Launcher Trigger Button */}
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={() => setIsOpen((prev) => !prev)}
+        className="w-12 h-12 sm:w-14 sm:h-14 bg-primary text-white rounded-full shadow-xl flex items-center justify-center hover:bg-primary/95 transition-all border-2 border-surface relative group cursor-pointer"
+        aria-label="Open Live Chat"
+      >
+        <div className="absolute -top-0.5 -right-0.5 w-3 h-3 sm:w-3.5 sm:h-3.5 bg-accent rounded-full border-2 border-surface"></div>
+        {isOpen ? (
+          <X size={20} className="text-white sm:w-6 sm:h-6" />
+        ) : (
+          <MessageCircle size={22} className="text-white sm:w-6 sm:h-6 group-hover:rotate-12 transition-transform" />
+        )}
+      </motion.button>
 
     </div>
   );
