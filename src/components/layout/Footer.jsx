@@ -126,7 +126,7 @@ export default function Footer() {
 
         {/* Quick Navigation */}
         <div>
-          <h4 className="font-display font-bold text-sm text-white mb-4 pb-1 border-b border-white/10 inline-block">
+          <h4 className="font-display font-bold text-sm text-white mb-4 pb-1.5 border-b-2 border-accent inline-block">
             {t('footer.quickLinks')}
           </h4>
           <ul className="space-y-2.5 text-xs text-white/80">
@@ -141,7 +141,7 @@ export default function Footer() {
 
         {/* Organic Categories */}
         <div>
-          <h4 className="font-display font-bold text-sm text-white mb-4 pb-1 border-b border-white/10 inline-block">
+          <h4 className="font-display font-bold text-sm text-white mb-4 pb-1.5 border-b-2 border-accent inline-block">
             {t('footer.categories')}
           </h4>
           <ul className="space-y-2.5 text-xs text-white/80 font-bn-sans">
@@ -157,7 +157,7 @@ export default function Footer() {
 
         {/* Newsletter Signup */}
         <div>
-          <h4 className="font-display font-bold text-sm text-white mb-4 pb-1 border-b border-white/10 inline-block">
+          <h4 className="font-display font-bold text-sm text-white mb-4 pb-1.5 border-b-2 border-accent inline-block">
             {t('footer.newsletter')}
           </h4>
           <p className="text-xs text-white/75 mb-3 font-bn-sans leading-relaxed">
