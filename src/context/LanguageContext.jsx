@@ -35,6 +35,13 @@ export function LanguageProvider({ children }) {
     });
   }, []);
 
+  const setLanguage = useCallback((newLang) => {
+    if (newLang === 'bn' || newLang === 'en') {
+      setLang(newLang);
+      try { localStorage.setItem('pb-lang', newLang); } catch {}
+    }
+  }, []);
+
   /** Translate a key. Auto-converts embedded digits if lang === 'bn'. */
   const t = useCallback((key) => {
     if (typeof key !== 'string') return key;
@@ -50,7 +57,7 @@ export function LanguageProvider({ children }) {
   }, [lang]);
 
   return (
-    <LanguageContext.Provider value={{ lang, toggleLang, t, n }}>
+    <LanguageContext.Provider value={{ lang, toggleLang, setLang: setLanguage, t, n }}>
       {children}
     </LanguageContext.Provider>
   );
