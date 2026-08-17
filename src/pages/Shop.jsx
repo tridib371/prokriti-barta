@@ -137,7 +137,7 @@ export default function Shop() {
         </div>
 
         {/* Top Control Bar */}
-        <div className="bg-surface border border-line rounded-2xl p-4 mb-6 space-y-4">
+        <div className="bg-surface border border-line rounded-2xl p-4 mb-6">
           <div className="flex flex-wrap items-center justify-between gap-4">
             {/* Search Box */}
             <div className="relative flex-1 min-w-[240px]">
@@ -183,51 +183,6 @@ export default function Shop() {
                 </select>
               </div>
             </div>
-          </div>
-
-          {/* Quick Collection Filter Tabs */}
-          <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-line/60 text-xs font-bn-sans">
-            <span className="text-muted font-bold text-[11px] uppercase tracking-wider">{lang === 'bn' ? 'কালেকশন:' : 'Collections:'}</span>
-            <button
-              onClick={() => handleTabChange('all')}
-              className={`px-3.5 py-1.5 rounded-full font-bold transition-all cursor-pointer ${
-                activeTab === 'all'
-                  ? 'bg-primary text-white shadow-xs'
-                  : 'bg-bg text-ink border border-line hover:border-primary'
-              }`}
-            >
-              {lang === 'bn' ? 'সকল পণ্য' : 'All Products'}
-            </button>
-            <button
-              onClick={() => handleTabChange('new')}
-              className={`px-3.5 py-1.5 rounded-full font-bold transition-all cursor-pointer ${
-                activeTab === 'new'
-                  ? 'bg-primary text-white shadow-xs'
-                  : 'bg-bg text-ink border border-line hover:border-primary'
-              }`}
-            >
-              {lang === 'bn' ? 'নতুন পণ্য' : 'New Arrivals'}
-            </button>
-            <button
-              onClick={() => handleTabChange('discount')}
-              className={`px-3.5 py-1.5 rounded-full font-bold transition-all cursor-pointer ${
-                activeTab === 'discount'
-                  ? 'bg-primary text-white shadow-xs'
-                  : 'bg-bg text-ink border border-line hover:border-primary'
-              }`}
-            >
-              {lang === 'bn' ? 'বিশেষ ছাড় ও অফার' : 'Discounted Deals'}
-            </button>
-            <button
-              onClick={() => handleTabChange('bestseller')}
-              className={`px-3.5 py-1.5 rounded-full font-bold transition-all cursor-pointer ${
-                activeTab === 'bestseller'
-                  ? 'bg-primary text-white shadow-xs'
-                  : 'bg-bg text-ink border border-line hover:border-primary'
-              }`}
-            >
-              {lang === 'bn' ? 'জনপ্রিয় পণ্য' : 'Bestsellers'}
-            </button>
           </div>
         </div>
 
