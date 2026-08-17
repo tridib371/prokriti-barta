@@ -4,6 +4,7 @@ import { Home, ShoppingBag, ArrowRight, Leaf, SearchX } from 'lucide-react';
 import { motion } from 'framer-motion';
 import AlponaDivider from '../components/ui/AlponaDivider';
 import Button from '../components/ui/Button';
+import FallingLeaves from '../components/ui/FallingLeaves';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function NotFound() {
@@ -18,6 +19,9 @@ export default function NotFound() {
 
   return (
     <div className="min-h-[85vh] bg-bg flex flex-col items-center justify-center text-center p-4 sm:p-6 relative overflow-hidden select-none">
+      
+      {/* Interactive Falling & Floating Leaves Physics Layer */}
+      <FallingLeaves count={30} />
       
       {/* Deep Ambient Background Glow Blobs (Smooth 10s GPU Glide) */}
       <motion.div
