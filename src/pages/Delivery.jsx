@@ -383,7 +383,18 @@ export default function Delivery() {
                 </span>
               </label>
               
-              <div className="relative">
+              <div className="relative flex items-center">
+                <button
+                  type="button"
+                  onClick={() => {
+                    const nextVal = Math.max(0, (Number(calcAmount) || 0) - 100);
+                    setCalcAmount(nextVal.toString());
+                  }}
+                  className="w-10 h-10 rounded-l-2xl bg-white/10 hover:bg-white/20 active:scale-95 border border-r-0 border-white/20 text-white flex items-center justify-center font-bold text-sm transition-all cursor-pointer shrink-0"
+                  title="-৳100"
+                >
+                  -
+                </button>
                 <input
                   type="number"
                   placeholder="1200"
@@ -392,11 +403,19 @@ export default function Delivery() {
                     const val = e.target.value;
                     setCalcAmount(val === '' ? '' : val.replace(/^0+(?=\d)/, ''));
                   }}
-                  className="w-full bg-white/10 backdrop-blur-md text-white px-4 py-2.5 rounded-2xl border border-white/20 focus:border-accent focus:bg-white/15 focus:ring-2 focus:ring-accent/30 outline-none text-base font-bold font-bn-sans transition-all"
+                  className="w-full bg-white/10 backdrop-blur-md text-white text-center py-2.5 border-y border-white/20 focus:border-accent focus:bg-white/15 outline-none text-base font-bold font-bn-sans transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 font-bold text-sm">
-                  BDT
-                </span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const nextVal = (Number(calcAmount) || 0) + 100;
+                    setCalcAmount(nextVal.toString());
+                  }}
+                  className="w-10 h-10 rounded-r-2xl bg-white/10 hover:bg-white/20 active:scale-95 border border-l-0 border-white/20 text-white flex items-center justify-center font-bold text-sm transition-all cursor-pointer shrink-0"
+                  title="+৳100"
+                >
+                  +
+                </button>
               </div>
 
               {/* Quick-Preset Tap Chips */}
