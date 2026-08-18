@@ -110,12 +110,12 @@ export default function Wishlist() {
             <span className="text-primary font-bold">{t('wishlist.title')}</span>
           </div>
 
-          {/* Empty Hero Card Styled with Rich Organic Palette */}
+          {/* Empty Hero Card Styled with Green Border */}
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] rounded-3xl p-8 sm:p-12 text-center max-w-2xl mx-auto shadow-xl relative z-10 space-y-6"
+            className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 hover:border-primary rounded-3xl p-8 sm:p-12 text-center max-w-2xl mx-auto shadow-xl relative z-10 space-y-6 transition-colors"
           >
             <div className="relative inline-block">
               <div className="w-20 h-20 bg-primary text-accent rounded-full flex items-center justify-center mx-auto shadow-md border-2 border-accent/40">
@@ -127,7 +127,7 @@ export default function Wishlist() {
             </div>
 
             <div className="space-y-2">
-              <span className="px-3.5 py-1.5 bg-accent/20 text-accent font-bold text-xs rounded-full inline-block border border-accent/30">
+              <span className="px-3.5 py-1.5 bg-accent/20 text-accent font-bold text-xs rounded-full border border-accent/30 inline-block font-bn-sans">
                 {lang === 'bn' ? 'সংগ্রহ তালিকা খালি' : 'Wishlist is Empty'}
               </span>
               <h1 className="font-display font-bold text-2xl sm:text-3xl text-primary">
@@ -148,14 +148,14 @@ export default function Wishlist() {
                 </Button>
               </Link>
               <Link to="/offers">
-                <Button variant="secondary" size="md" className="rounded-full px-6 py-3 font-bold text-primary border-primary/20 hover:border-accent hover:bg-accent/10 transition-all">
+                <Button variant="secondary" size="md" className="rounded-full px-6 py-3 font-bold text-primary border-primary/30 hover:border-primary hover:bg-primary/10 transition-all">
                   {lang === 'bn' ? 'চলতি অফারসমূহ দেখুন' : 'View Special Offers'}
                 </Button>
               </Link>
             </div>
 
             {/* 3 Trust Badges */}
-            <div className="pt-6 border-t border-primary/10 grid grid-cols-1 sm:grid-cols-3 gap-4 text-left font-bn-sans text-xs text-ink/75">
+            <div className="pt-6 border-t border-primary/20 grid grid-cols-1 sm:grid-cols-3 gap-4 text-left font-bn-sans text-xs text-ink/75">
               <div className="flex items-center gap-2.5">
                 <ShieldCheck size={18} className="text-accent shrink-0" />
                 <span>{lang === 'bn' ? '১০০% ল্যাব-টেস্টেড খাঁটি' : '100% Lab Tested Pure'}</span>
@@ -177,14 +177,14 @@ export default function Wishlist() {
           <div className="space-y-6">
             <div className="flex items-end justify-between">
               <div>
-                <span className="text-xs font-bold text-accent uppercase tracking-wider">
+                <span className="text-xs font-bold text-accent uppercase tracking-wider font-bn-sans">
                   {lang === 'bn' ? 'জনপ্রিয় অর্গানিক সমাহার' : 'Popular Organic Essentials'}
                 </span>
                 <h2 className="font-display font-bold text-2xl text-primary mt-0.5">
                   {lang === 'bn' ? 'আপনার পছন্দের জন্য সেরা পরামর্শ' : 'Recommended For You'}
                 </h2>
               </div>
-              <Link to="/shop" className="text-xs font-bold text-accent hover:underline hidden sm:inline-flex items-center gap-1">
+              <Link to="/shop" className="text-xs font-bold text-accent hover:underline hidden sm:inline-flex items-center gap-1 font-bn-sans">
                 {t('btn.viewAll')} <ArrowRight size={14} />
               </Link>
             </div>
@@ -201,13 +201,13 @@ export default function Wishlist() {
     );
   }
 
-  // 2. Active Wishlist View with Full Features
+  // 2. Active Wishlist View with Green Border Palette
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen bg-bg py-8 sm:py-12 relative overflow-hidden"
+      className="min-h-screen bg-bg py-8 sm:py-12 relative overflow-hidden select-none"
     >
       {/* Ambient Animated Glow Blobs */}
       <motion.div
@@ -221,10 +221,10 @@ export default function Wishlist() {
         className="absolute top-10 left-10 w-96 h-96 rounded-full bg-accent/15 blur-3xl pointer-events-none"
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-8">
         
         {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-xs text-muted mb-6 font-bn-sans">
+        <div className="flex items-center gap-2 text-xs text-muted font-bn-sans">
           <Link to="/" className="hover:text-accent transition-colors">{t('nav.home')}</Link>
           <ChevronRight size={14} />
           <Link to="/shop" className="hover:text-accent transition-colors">{t('nav.shop')}</Link>
@@ -232,15 +232,15 @@ export default function Wishlist() {
           <span className="text-primary font-bold">{t('wishlist.title')}</span>
         </div>
 
-        {/* Hero Header Banner Styled with Organic Cream Gradient */}
-        <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] rounded-3xl p-6 sm:p-8 shadow-lg mb-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+        {/* Hero Header Banner Styled with Green-Bordered Organic Cream */}
+        <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 hover:border-primary rounded-3xl p-6 sm:p-8 shadow-xs flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 transition-colors">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <span className="px-3.5 py-1 bg-accent/15 text-accent font-bold text-xs rounded-full border border-accent/25 flex items-center gap-1.5 leading-none">
+              <span className="px-3.5 py-1 bg-accent/15 text-accent font-bold text-xs rounded-full border border-accent/25 flex items-center gap-1.5 leading-none font-bn-sans">
                 <Heart size={13} className="fill-accent text-accent" />
                 <span>{lang === 'bn' ? 'সংরক্ষিত অর্গানিক কালেকশন' : 'Saved Organic Favorites'}</span>
               </span>
-              <span className="text-xs bg-white/80 text-primary px-2.5 py-1 rounded-full border border-[#E5DCB8] font-mono font-bold">
+              <span className="text-xs bg-white/85 text-primary px-2.5 py-1 rounded-full border border-primary/20 font-mono font-bold">
                 {n(wishlist.length)} {t('cart.items')}
               </span>
             </div>
@@ -258,7 +258,7 @@ export default function Wishlist() {
 
           {/* Quick Metrics & Actions */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full lg:w-auto">
-            <div className="bg-white/90 border border-[#E5DCB8] rounded-2xl px-4 py-2.5 flex flex-col justify-center shadow-2xs">
+            <div className="bg-white/90 border border-primary/25 rounded-2xl px-4 py-2.5 flex flex-col justify-center shadow-2xs">
               <span className="text-[11px] text-muted font-bn-sans">{lang === 'bn' ? 'মোট আনুমানিক মূল্য' : 'Total Est. Value'}</span>
               <span className="font-display font-bold text-lg text-accent">৳{n(totalValue)}</span>
             </div>
@@ -277,7 +277,7 @@ export default function Wishlist() {
               variant="secondary"
               size="md"
               onClick={clearWishlist}
-              className="rounded-xl px-4 py-3 font-bold text-muted hover:text-accent-2 border-[#E5DCB8] bg-white/80 hover:bg-white transition-colors shrink-0 cursor-pointer"
+              className="rounded-xl px-4 py-3 font-bold text-muted hover:text-accent-2 border border-primary/25 bg-white/80 hover:bg-white transition-colors shrink-0 cursor-pointer"
               title={lang === 'bn' ? 'সম্পূর্ণ তালিকা মুছুন' : 'Clear entire list'}
             >
               <Trash2 size={16} />
@@ -287,7 +287,7 @@ export default function Wishlist() {
         </div>
 
         {/* Filter Pills */}
-        <div className="flex items-center justify-between gap-4 mb-6 pb-2 border-b border-line/40">
+        <div className="flex items-center justify-between gap-4 pb-2 border-b border-line">
           <div className="flex items-center gap-2 text-xs font-bn-sans">
             <button
               onClick={() => setFilterInStock(false)}
@@ -311,7 +311,7 @@ export default function Wishlist() {
             </button>
           </div>
 
-          <Link to="/shop" className="text-xs font-bold text-accent hover:underline hidden sm:inline-flex items-center gap-1">
+          <Link to="/shop" className="text-xs font-bold text-accent hover:underline hidden sm:inline-flex items-center gap-1 font-bn-sans">
             {lang === 'bn' ? '+ আরো পণ্য খুঁজুন' : '+ Add More Items'}
           </Link>
         </div>
@@ -327,7 +327,7 @@ export default function Wishlist() {
 
         <AlponaDivider className="my-16" />
 
-        {/* Gorgeous 4 Trust & Guarantee Cards Styled with Core Promises Palette */}
+        {/* 4 Trust & Guarantee Cards with Signature Green Border */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {guarantees.map((item, idx) => {
             const Icon = item.icon;
@@ -342,7 +342,7 @@ export default function Wishlist() {
               >
                 <Link
                   to={item.path}
-                  className="group relative bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent rounded-3xl p-6 flex flex-col justify-between h-full shadow-[0_4px_18px_-4px_rgba(27,59,43,0.08)] hover:shadow-[0_20px_40px_-8px_rgba(27,59,43,0.45)] transition-all duration-500 overflow-hidden cursor-pointer block"
+                  className="group relative bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 hover:border-primary rounded-3xl p-6 flex flex-col justify-between h-full shadow-[0_4px_18px_-4px_rgba(27,59,43,0.08)] hover:shadow-[0_20px_40px_-8px_rgba(27,59,43,0.45)] transition-all duration-500 overflow-hidden cursor-pointer block"
                 >
                   {/* Full Card Gradient Background on Hover */}
                   <div className="absolute inset-0 bg-gradient-to-br from-primary via-[#224b37] to-[#11281c] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl z-0" />
