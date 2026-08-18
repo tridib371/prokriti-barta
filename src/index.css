@@ -53,16 +53,38 @@ body, [class*="font-bn"], .font-display, .font-body {
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
   background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--line);
+  background: var(--primary);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--muted);
+  background: var(--ink);
+}
+
+/* Distinct Dark Slidebar Utility for visible horizontal scrolling */
+.scrollbar-dark {
+  scrollbar-width: thin;
+  scrollbar-color: #111C16 rgba(27, 59, 43, 0.15);
+}
+.scrollbar-dark::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.scrollbar-dark::-webkit-scrollbar-track {
+  background: rgba(27, 59, 43, 0.12);
+  border-radius: 9999px;
+}
+.scrollbar-dark::-webkit-scrollbar-thumb {
+  background: #111C16;
+  border-radius: 9999px;
+}
+.scrollbar-dark::-webkit-scrollbar-thumb:hover {
+  background: #000000;
 }
 
 /* Lenis Smooth Scroll Rules */

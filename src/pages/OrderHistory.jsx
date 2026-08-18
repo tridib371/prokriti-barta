@@ -88,21 +88,21 @@ export default function OrderHistory() {
         </div>
 
         {/* 1. Gorgeous Brand Hero Header Banner (Compact in Y-Axis) */}
-        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-primary via-[#1c4230] to-[#0f2319] text-white p-4 sm:p-6 shadow-md border-2 border-primary/30">
+        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-primary via-[#1c4230] to-[#0f2319] text-white p-3.5 sm:p-4.5 shadow-md border-2 border-primary/30">
           <div className="absolute top-0 right-0 w-80 h-80 bg-accent/20 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -bottom-20 -left-20 w-72 h-72 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />
 
-          <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div className="space-y-1">
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] font-bold text-amber-300 font-bn-sans">
-                <ReceiptText size={12} />
+          <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4">
+            <div className="space-y-0.5">
+              <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[9px] font-bold text-amber-300 font-bn-sans">
+                <ReceiptText size={11} />
                 <span>{lang === 'bn' ? 'অর্ডার ট্র্যাকিং ও ইতিহাস' : 'Order History & Real-Time Tracking'}</span>
               </div>
-              <h1 className="font-display font-bold text-lg sm:text-2xl text-white">
+              <h1 className="font-display font-bold text-base sm:text-xl text-white">
                 {t('orders.title')}
               </h1>
-              <p className="text-xs text-white/80 font-bn-sans max-w-xl">
+              <p className="text-[11px] sm:text-xs text-white/80 font-bn-sans max-w-xl leading-snug">
                 {lang === 'bn' 
                   ? 'আপনার সম্পন্ন ও প্রক্রিয়াধীন সকল অর্গানিক অর্ডারের বিস্তারিত তথ্য এবং ডেলিভারি স্ট্যাটাস।' 
                   : 'Track your organic purchases, live delivery updates, and view invoices seamlessly.'}
@@ -110,20 +110,20 @@ export default function OrderHistory() {
             </div>
 
             {/* Quick Metrics Strip */}
-            <div className="grid grid-cols-3 gap-2.5 shrink-0">
-              <div className="bg-white/10 backdrop-blur-md border border-white/15 px-3 py-2 rounded-xl text-center min-w-[85px] sm:min-w-[100px]">
-                <span className="text-[10px] text-white/70 block uppercase font-bold">{lang === 'bn' ? 'মোট অর্ডার' : 'Total Orders'}</span>
-                <span className="font-display font-bold text-base sm:text-xl text-white mt-0.5 block">{n(orders.length)}</span>
+            <div className="grid grid-cols-3 gap-2 sm:gap-2.5 shrink-0">
+              <div className="bg-white/10 backdrop-blur-md border border-white/15 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl text-center min-w-[75px] sm:min-w-[90px]">
+                <span className="text-[9px] text-white/70 block uppercase font-bold">{lang === 'bn' ? 'মোট অর্ডার' : 'Total Orders'}</span>
+                <span className="font-display font-bold text-sm sm:text-lg text-white mt-0.5 block">{n(orders.length)}</span>
               </div>
 
-              <div className="bg-white/10 backdrop-blur-md border border-white/15 px-3 py-2 rounded-xl text-center min-w-[85px] sm:min-w-[100px]">
-                <span className="text-[10px] text-white/70 block uppercase font-bold">{lang === 'bn' ? 'প্রক্রিয়াধীন' : 'Processing'}</span>
-                <span className="font-display font-bold text-base sm:text-xl text-amber-300 mt-0.5 block">{n(processingCount)}</span>
+              <div className="bg-white/10 backdrop-blur-md border border-white/15 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl text-center min-w-[75px] sm:min-w-[90px]">
+                <span className="text-[9px] text-white/70 block uppercase font-bold">{lang === 'bn' ? 'প্রক্রিয়াধীন' : 'Processing'}</span>
+                <span className="font-display font-bold text-sm sm:text-lg text-amber-300 mt-0.5 block">{n(processingCount)}</span>
               </div>
 
-              <div className="bg-white/10 backdrop-blur-md border border-white/15 px-3 py-2 rounded-xl text-center min-w-[85px] sm:min-w-[100px]">
-                <span className="text-[10px] text-white/70 block uppercase font-bold">{lang === 'bn' ? 'ডেলিভারি সম্পন্ন' : 'Delivered'}</span>
-                <span className="font-display font-bold text-base sm:text-xl text-emerald-400 mt-0.5 block">{n(deliveredCount)}</span>
+              <div className="bg-white/10 backdrop-blur-md border border-white/15 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl text-center min-w-[75px] sm:min-w-[90px]">
+                <span className="text-[9px] text-white/70 block uppercase font-bold">{lang === 'bn' ? 'ডেলিভারি সম্পন্ন' : 'Delivered'}</span>
+                <span className="font-display font-bold text-sm sm:text-lg text-emerald-400 mt-0.5 block">{n(deliveredCount)}</span>
               </div>
             </div>
           </div>
@@ -131,12 +131,12 @@ export default function OrderHistory() {
 
         {/* 2. Filter Tabs & Search Bar - Green Bordered Cream Palette */}
         {orders.length > 0 && (
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 hover:border-primary rounded-3xl p-4 sm:p-5 shadow-xs transition-colors">
-            {/* Status Filter Tabs */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 hover:border-primary rounded-3xl p-3.5 sm:p-4.5 shadow-xs transition-colors">
+            {/* Status Filter Tabs with Black/Dark Scrollbar Slider */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0 scrollbar-dark">
               <button
                 onClick={() => setFilterStatus('all')}
-                className={`px-4 py-2 rounded-2xl text-xs font-bold font-bn-sans transition-all cursor-pointer whitespace-nowrap ${
+                className={`px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-2xl text-xs font-bold font-bn-sans transition-all cursor-pointer whitespace-nowrap ${
                   filterStatus === 'all'
                     ? 'bg-primary text-white shadow-xs'
                     : 'bg-white/80 border border-primary/20 text-ink hover:bg-white'
@@ -147,7 +147,7 @@ export default function OrderHistory() {
 
               <button
                 onClick={() => setFilterStatus('Processing')}
-                className={`px-4 py-2 rounded-2xl text-xs font-bold font-bn-sans transition-all cursor-pointer whitespace-nowrap ${
+                className={`px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-2xl text-xs font-bold font-bn-sans transition-all cursor-pointer whitespace-nowrap ${
                   filterStatus === 'Processing'
                     ? 'bg-primary text-white shadow-xs'
                     : 'bg-white/80 border border-primary/20 text-ink hover:bg-white'
@@ -158,7 +158,7 @@ export default function OrderHistory() {
 
               <button
                 onClick={() => setFilterStatus('Delivered')}
-                className={`px-4 py-2 rounded-2xl text-xs font-bold font-bn-sans transition-all cursor-pointer whitespace-nowrap ${
+                className={`px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-2xl text-xs font-bold font-bn-sans transition-all cursor-pointer whitespace-nowrap ${
                   filterStatus === 'Delivered'
                     ? 'bg-primary text-white shadow-xs'
                     : 'bg-white/80 border border-primary/20 text-ink hover:bg-white'
