@@ -154,7 +154,7 @@ export default function ChatbotWidget() {
   if (isCartOpen) return null;
 
   return (
-    <div className="fixed bottom-36 right-4 sm:bottom-28 sm:right-6 z-40 flex flex-col items-end pointer-events-none [&>*]:pointer-events-auto">
+    <div className="fixed bottom-20 right-4 sm:bottom-24 sm:right-6 z-50 flex flex-col items-end pointer-events-none [&>*]:pointer-events-auto">
       
       {/* 1. Chat Window Modal */}
       <AnimatePresence>
@@ -165,7 +165,7 @@ export default function ChatbotWidget() {
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.25 }}
             data-lenis-prevent="true"
-            className="fixed inset-x-3 bottom-24 sm:inset-auto sm:static w-auto sm:w-[390px] sm:max-w-[390px] h-[calc(100dvh-8rem)] sm:h-[500px] max-h-[540px] bg-surface border border-line rounded-2xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden mb-3 sm:mb-4"
+            className="fixed inset-x-3 bottom-20 sm:inset-auto sm:static w-auto sm:w-[390px] sm:max-w-[390px] h-[calc(100dvh-7rem)] sm:h-[500px] max-h-[540px] bg-surface border-2 border-primary/40 rounded-2xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden mb-3 sm:mb-4 z-50"
           >
             {/* Header */}
             <div className="bg-primary text-surface p-4 flex items-center justify-between shadow-xs shrink-0">
@@ -350,15 +350,15 @@ export default function ChatbotWidget() {
         )}
       </AnimatePresence>
 
-      {/* 2. Floating Launcher Trigger Button */}
+      {/* 2. Floating Launcher Trigger Button (Fixed mobile right clipping) */}
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen((prev) => !prev)}
-        className="w-12 h-12 sm:w-14 sm:h-14 bg-primary text-white rounded-full shadow-xl flex items-center justify-center hover:bg-primary/95 transition-all border-2 border-surface relative group cursor-pointer"
+        className="w-12 h-12 sm:w-14 sm:h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:bg-primary/95 transition-all border-2 border-surface relative group cursor-pointer shrink-0"
         aria-label="Open Live Chat"
       >
-        <div className="absolute -top-0.5 -right-0.5 w-3 h-3 sm:w-3.5 sm:h-3.5 bg-accent rounded-full border-2 border-surface"></div>
+        <span className="absolute top-0 right-0 w-3 h-3 sm:w-3.5 sm:h-3.5 bg-accent rounded-full border-2 border-surface"></span>
         {isOpen ? (
           <X size={20} className="text-white sm:w-6 sm:h-6" />
         ) : (
