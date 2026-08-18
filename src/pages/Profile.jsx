@@ -152,44 +152,44 @@ export default function Profile() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
-        {/* 1. Gorgeous Brand Hero Header Banner */}
-        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-primary via-[#1c4230] to-[#0f2319] text-white p-6 sm:p-10 shadow-[0_20px_50px_-10px_rgba(27,59,43,0.4)] border-2 border-primary/30">
+        {/* 1. Gorgeous Brand Hero Header Banner (Compact in Y-Axis) */}
+        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-primary via-[#1c4230] to-[#0f2319] text-white p-4 sm:p-6 shadow-md border-2 border-primary/30">
           <div className="absolute top-0 right-0 w-80 h-80 bg-accent/20 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -bottom-20 -left-20 w-72 h-72 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />
 
-          <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
             {/* User Identity Column */}
-            <div className="flex items-center gap-4 sm:gap-6">
+            <div className="flex items-center gap-3.5 sm:gap-4">
               <div className="relative shrink-0">
-                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-accent text-white font-display font-bold text-xl sm:text-2xl flex items-center justify-center ring-4 ring-white/20 shadow-xl">
+                <div className="w-12 h-12 sm:w-13 sm:h-13 rounded-full bg-accent text-white font-display font-bold text-lg sm:text-xl flex items-center justify-center ring-4 ring-white/20 shadow-md">
                   {userInitial}
                 </div>
-                <div className="absolute bottom-0 right-0 w-4.5 h-4.5 rounded-full bg-emerald-500 border-2 border-primary shadow-xs flex items-center justify-center">
-                  <Check size={10} className="text-white stroke-[3]" />
+                <div className="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-emerald-500 border-2 border-primary shadow-xs flex items-center justify-center">
+                  <Check size={9} className="text-white stroke-[3]" />
                 </div>
               </div>
 
               {/* Text Info */}
-              <div className="space-y-1">
+              <div className="space-y-0.5">
                 <div className="flex flex-wrap items-center gap-2">
-                  <h1 className="font-display font-bold text-xl sm:text-3xl text-white tracking-wide">
+                  <h1 className="font-display font-bold text-lg sm:text-2xl text-white tracking-wide">
                     {displayName}
                   </h1>
-                  <span className="inline-flex items-center gap-1 text-[11px] font-bold text-amber-300 bg-amber-400/20 border border-amber-400/40 px-2.5 py-0.5 rounded-full shadow-2xs font-bn-sans">
-                    <Award size={13} className="text-amber-300" />
+                  <span className="inline-flex items-center gap-1 text-[10px] font-bold text-amber-300 bg-amber-400/20 border border-amber-400/40 px-2 py-0.5 rounded-full shadow-2xs font-bn-sans">
+                    <Award size={12} className="text-amber-300" />
                     <span>{lang === 'bn' ? 'অর্গানিক সদস্য' : 'Organic Member'}</span>
                   </span>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-white/80 font-bn-sans">
-                  <span className="flex items-center gap-1.5">
-                    <Mail size={14} className="text-accent" />
+                <div className="flex flex-wrap items-center gap-x-3.5 gap-y-0.5 text-xs text-white/80 font-bn-sans">
+                  <span className="flex items-center gap-1">
+                    <Mail size={13} className="text-accent" />
                     {user?.email || 'user@gmail.com'}
                   </span>
                   {(user?.phone || formData.phone) && (
-                    <span className="flex items-center gap-1.5">
-                      <Phone size={14} className="text-accent" />
+                    <span className="flex items-center gap-1">
+                      <Phone size={13} className="text-accent" />
                       {n(user?.phone || formData.phone)}
                     </span>
                   )}
@@ -198,55 +198,55 @@ export default function Profile() {
             </div>
 
             {/* Quick Action Header Buttons */}
-            <div className="flex items-center gap-3 self-start md:self-auto shrink-0">
+            <div className="flex items-center gap-2.5 self-start md:self-auto shrink-0">
               <button
                 onClick={() => {
                   setIsEditing(true);
                   setActiveTab('overview');
                 }}
-                className="px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-bold rounded-2xl transition-all flex items-center gap-1.5 shadow-xs cursor-pointer active:scale-95"
+                className="px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-bold rounded-xl transition-all flex items-center gap-1.5 shadow-xs cursor-pointer active:scale-95"
               >
-                <Edit3 size={15} />
+                <Edit3 size={13} />
                 <span>{lang === 'bn' ? 'প্রোফাইল এডিট' : 'Edit Profile'}</span>
               </button>
 
               <button
                 onClick={handleLogout}
-                className="p-2 sm:px-4 sm:py-2 bg-accent/90 hover:bg-accent text-white text-xs font-bold rounded-2xl transition-all flex items-center gap-1.5 shadow-xs cursor-pointer active:scale-95"
+                className="p-1.5 sm:px-3.5 sm:py-1.5 bg-accent/90 hover:bg-accent text-white text-xs font-bold rounded-xl transition-all flex items-center gap-1.5 shadow-xs cursor-pointer active:scale-95"
                 title={t('nav.logout')}
               >
-                <LogOut size={15} />
+                <LogOut size={13} />
                 <span className="hidden sm:inline">{t('nav.logout')}</span>
               </button>
             </div>
           </div>
 
-          {/* Metric Stats Banner Strip */}
-          <div className="mt-8 pt-6 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-4 relative z-10">
-            <div className="bg-white/10 backdrop-blur-md border border-white/10 p-3.5 sm:p-4 rounded-2xl">
-              <span className="text-[11px] text-white/70 block font-bn-sans">{lang === 'bn' ? 'মোট অর্ডার' : 'Total Orders'}</span>
-              <p className="font-display font-bold text-lg sm:text-2xl text-white mt-0.5">
+          {/* Metric Stats Banner Strip (Compact Height) */}
+          <div className="mt-4 pt-3.5 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 relative z-10">
+            <div className="bg-white/10 backdrop-blur-md border border-white/10 px-3 py-2 sm:py-2.5 rounded-xl">
+              <span className="text-[10px] text-white/70 block font-bn-sans">{lang === 'bn' ? 'মোট অর্ডার' : 'Total Orders'}</span>
+              <p className="font-display font-bold text-base sm:text-xl text-white mt-0.5">
                 {n(orders.length)}
               </p>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-md border border-white/10 p-3.5 sm:p-4 rounded-2xl">
-              <span className="text-[11px] text-white/70 block font-bn-sans">{lang === 'bn' ? 'সর্বমোট কেনাকাটা' : 'Total Spend'}</span>
-              <p className="font-bn-sans font-bold text-lg sm:text-2xl text-accent mt-0.5">
+            <div className="bg-white/10 backdrop-blur-md border border-white/10 px-3 py-2 sm:py-2.5 rounded-xl">
+              <span className="text-[10px] text-white/70 block font-bn-sans">{lang === 'bn' ? 'সর্বমোট কেনাকাটা' : 'Total Spend'}</span>
+              <p className="font-bn-sans font-bold text-base sm:text-xl text-accent mt-0.5">
                 ৳{n(totalSpent)}
               </p>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-md border border-white/10 p-3.5 sm:p-4 rounded-2xl">
-              <span className="text-[11px] text-white/70 block font-bn-sans">{lang === 'bn' ? 'ইকো রিওয়ার্ড পয়েন্ট' : 'Eco Reward Points'}</span>
-              <p className="font-display font-bold text-lg sm:text-2xl text-amber-300 mt-0.5">
-                {n(ecoPoints)} <span className="text-xs font-normal text-white/70">Pts</span>
+            <div className="bg-white/10 backdrop-blur-md border border-white/10 px-3 py-2 sm:py-2.5 rounded-xl">
+              <span className="text-[10px] text-white/70 block font-bn-sans">{lang === 'bn' ? 'ইকো রিওয়ার্ড পয়েন্ট' : 'Eco Reward Points'}</span>
+              <p className="font-display font-bold text-base sm:text-xl text-amber-300 mt-0.5">
+                {n(ecoPoints)} <span className="text-[10px] font-normal text-white/70">Pts</span>
               </p>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-md border border-white/10 p-3.5 sm:p-4 rounded-2xl">
-              <span className="text-[11px] text-white/70 block font-bn-sans">{lang === 'bn' ? 'পছন্দের পণ্য' : 'Wishlist Items'}</span>
-              <p className="font-display font-bold text-lg sm:text-2xl text-white mt-0.5">
+            <div className="bg-white/10 backdrop-blur-md border border-white/10 px-3 py-2 sm:py-2.5 rounded-xl">
+              <span className="text-[10px] text-white/70 block font-bn-sans">{lang === 'bn' ? 'পছন্দের পণ্য' : 'Wishlist Items'}</span>
+              <p className="font-display font-bold text-base sm:text-xl text-white mt-0.5">
                 {n(wishlist.length)}
               </p>
             </div>
