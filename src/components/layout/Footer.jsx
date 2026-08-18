@@ -217,13 +217,13 @@ export default function Footer() {
       <div className="border-t border-white/10 bg-black/30 py-5 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/70">
           <p>© {n(new Date().getFullYear())} {lang === 'bn' ? 'প্রকৃতি বার্তা' : 'Prokriti Barta'}. {t('footer.rights')}</p>
-          <div className="flex flex-wrap items-center justify-center gap-2 text-[10px] uppercase font-bold tracking-wider">
-            <span className="px-2.5 py-1 bg-white/10 border border-white/15 rounded-md text-white/90">bKash</span>
-            <span className="px-2.5 py-1 bg-white/10 border border-white/15 rounded-md text-white/90">Nagad</span>
-            <span className="px-2.5 py-1 bg-white/10 border border-white/15 rounded-md text-white/90">Rocket</span>
-            <span className="px-2.5 py-1 bg-white/10 border border-white/15 rounded-md text-white/90">Visa</span>
-            <span className="px-2.5 py-1 bg-white/10 border border-white/15 rounded-md text-white/90">Mastercard</span>
-            <span className="px-2.5 py-1 bg-white/10 border border-white/15 rounded-md text-white/90">Cash on Delivery</span>
+          <div className="flex flex-wrap items-center justify-center gap-2 text-[10px] uppercase font-bold tracking-wider font-bn-sans">
+            <span className="px-2.5 py-1 bg-white/10 border border-white/15 rounded-md text-white/90">{lang === 'bn' ? 'বিকাশ' : 'bKash'}</span>
+            <span className="px-2.5 py-1 bg-white/10 border border-white/15 rounded-md text-white/90">{lang === 'bn' ? 'নগদ' : 'Nagad'}</span>
+            <span className="px-2.5 py-1 bg-white/10 border border-white/15 rounded-md text-white/90">{lang === 'bn' ? 'রকেট' : 'Rocket'}</span>
+            <span className="px-2.5 py-1 bg-white/10 border border-white/15 rounded-md text-white/90">{lang === 'bn' ? 'ভিসা' : 'Visa'}</span>
+            <span className="px-2.5 py-1 bg-white/10 border border-white/15 rounded-md text-white/90">{lang === 'bn' ? 'মাস্টারকার্ড' : 'Mastercard'}</span>
+            <span className="px-2.5 py-1 bg-white/10 border border-white/15 rounded-md text-white/90">{lang === 'bn' ? 'ক্যাশ অন ডেলিভারি' : 'Cash on Delivery'}</span>
           </div>
         </div>
       </div>
