@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { 
   Package, 
   Calendar, 
@@ -16,7 +16,8 @@ import {
   ShieldCheck, 
   ChevronRight,
   Filter,
-  ReceiptText
+  ReceiptText,
+  ListFilter
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
@@ -27,8 +28,12 @@ export default function OrderHistory() {
   const [orders, setOrders] = useState([]);
   const [filterStatus, setFilterStatus] = useState('all'); // 'all' | 'Processing' | 'Delivered'
   const [searchQuery, setSearchQuery] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
   const { user } = useAuth();
   const { t, n, lang } = useLanguage();
+
+  // Query parameter for single order tracking
+  const trackingOrderId = searchParams.get('orderId') || searchParams.get('tracking') || '';
 
   useEffect(() => {
     try {
@@ -60,6 +65,11 @@ export default function OrderHistory() {
   const deliveredCount = orders.filter(o => o.status === 'Delivered').length;
   const processingCount = orders.filter(o => o.status !== 'Delivered').length;
 
+  // Single tracked order if in tracking mode
+  const trackedOrder = trackingOrderId 
+    ? orders.find(o => o.id?.toLowerCase() === trackingOrderId.toLowerCase()) 
+    : null;
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -71,16 +81,28 @@ export default function OrderHistory() {
         
         {/* Top Navigation Row - Fully Visible Clear Labels on Mobile & Desktop */}
         <div className="flex items-center justify-between gap-2.5 sm:gap-4 w-full">
-          <Link 
-            to="/profile" 
-            className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-2xl bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 text-xs sm:text-sm font-bold text-ink hover:text-primary transition-all shadow-xs cursor-pointer active:scale-95 text-center shrink-0"
-          >
-            <ArrowLeft size={15} className="text-accent shrink-0" />
-            <span className="whitespace-nowrap font-bn-sans">
-              <span className="sm:hidden">{lang === 'bn' ? 'ড্যাশবোর্ড' : 'Dashboard'}</span>
-              <span className="hidden sm:inline">{lang === 'bn' ? 'ড্যাশবোর্ডে ফিরুন' : 'Back to Dashboard'}</span>
-            </span>
-          </Link>
+          {trackingOrderId ? (
+            <button 
+              onClick={() => setSearchParams({})}
+              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-2xl bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 text-xs sm:text-sm font-bold text-ink hover:text-primary transition-all shadow-xs cursor-pointer active:scale-95 text-center shrink-0"
+            >
+              <ArrowLeft size={15} className="text-accent shrink-0" />
+              <span className="whitespace-nowrap font-bn-sans">
+                {lang === 'bn' ? 'সকল অর্ডার ইতিহাস দেখুন' : 'View Full History'}
+              </span>
+            </button>
+          ) : (
+            <Link 
+              to="/profile" 
+              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-2xl bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 text-xs sm:text-sm font-bold text-ink hover:text-primary transition-all shadow-xs cursor-pointer active:scale-95 text-center shrink-0"
+            >
+              <ArrowLeft size={15} className="text-accent shrink-0" />
+              <span className="whitespace-nowrap font-bn-sans">
+                <span className="sm:hidden">{lang === 'bn' ? 'ড্যাশবোর্ড' : 'Dashboard'}</span>
+                <span className="hidden sm:inline">{lang === 'bn' ? 'ড্যাশবোর্ডে ফিরুন' : 'Back to Dashboard'}</span>
+              </span>
+            </Link>
+          )}
 
           <Link to="/shop" className="flex-1 sm:flex-initial shrink-0">
             <Button 
@@ -107,40 +129,63 @@ export default function OrderHistory() {
             <div className="space-y-0.5">
               <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[9px] font-bold text-amber-300 font-bn-sans">
                 <ReceiptText size={11} />
-                <span>{lang === 'bn' ? 'অর্ডার ট্র্যাকিং ও ইতিহাস' : 'Order History & Real-Time Tracking'}</span>
+                <span>
+                  {trackingOrderId 
+                    ? (lang === 'bn' ? 'লাইভ অর্ডার ট্র্যাকিং ও বিস্তারিত' : 'Order Tracking & Live Status')
+                    : (lang === 'bn' ? 'অর্ডার ট্র্যাকিং ও ইতিহাস' : 'Order History & Real-Time Tracking')
+                  }
+                </span>
               </div>
               <h1 className="font-display font-bold text-base sm:text-xl text-white">
-                {t('orders.title')}
+                {trackingOrderId 
+                  ? (lang === 'bn' ? `অর্ডার বিবরণী #${n(trackingOrderId)}` : `Order Tracking #${n(trackingOrderId)}`)
+                  : t('orders.title')
+                }
               </h1>
               <p className="text-[11px] sm:text-xs text-white/80 font-bn-sans max-w-xl leading-snug">
-                {lang === 'bn' 
-                  ? 'আপনার সম্পন্ন ও প্রক্রিয়াধীন সকল অর্গানিক অর্ডারের বিস্তারিত তথ্য এবং ডেলিভারি স্ট্যাটাস।' 
-                  : 'Track your organic purchases, live delivery updates, and view invoices seamlessly.'}
+                {trackingOrderId 
+                  ? (lang === 'bn' 
+                      ? 'এই নির্দিষ্ট অর্ডারের লাইভ শিপিং অগ্রগতি ও আইটেমাইজড ইনভয়েস বিবরণী।' 
+                      : 'Live delivery timeline, items breakdown, and courier tracking details for this order.')
+                  : (lang === 'bn' 
+                      ? 'আপনার সম্পন্ন ও প্রক্রিয়াধীন সকল অর্গানিক অর্ডারের বিস্তারিত তথ্য এবং ডেলিভারি স্ট্যাটাস।' 
+                      : 'Track your organic purchases, live delivery updates, and view invoices seamlessly.')
+                }
               </p>
             </div>
 
-            {/* Quick Metrics Strip */}
-            <div className="grid grid-cols-3 gap-2 sm:gap-2.5 shrink-0">
-              <div className="bg-white/10 backdrop-blur-md border border-white/15 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl text-center min-w-[75px] sm:min-w-[90px]">
-                <span className="text-[9px] text-white/70 block uppercase font-bold">{lang === 'bn' ? 'মোট অর্ডার' : 'Total Orders'}</span>
-                <span className="font-display font-bold text-sm sm:text-lg text-white mt-0.5 block">{n(orders.length)}</span>
-              </div>
+            {/* Quick Metrics Strip or Back Button */}
+            {!trackingOrderId ? (
+              <div className="grid grid-cols-3 gap-2 sm:gap-2.5 shrink-0">
+                <div className="bg-white/10 backdrop-blur-md border border-white/15 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl text-center min-w-[75px] sm:min-w-[90px]">
+                  <span className="text-[9px] text-white/70 block uppercase font-bold">{lang === 'bn' ? 'মোট অর্ডার' : 'Total Orders'}</span>
+                  <span className="font-display font-bold text-sm sm:text-lg text-white mt-0.5 block">{n(orders.length)}</span>
+                </div>
 
-              <div className="bg-white/10 backdrop-blur-md border border-white/15 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl text-center min-w-[75px] sm:min-w-[90px]">
-                <span className="text-[9px] text-white/70 block uppercase font-bold">{lang === 'bn' ? 'প্রক্রিয়াধীন' : 'Processing'}</span>
-                <span className="font-display font-bold text-sm sm:text-lg text-amber-300 mt-0.5 block">{n(processingCount)}</span>
-              </div>
+                <div className="bg-white/10 backdrop-blur-md border border-white/15 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl text-center min-w-[75px] sm:min-w-[90px]">
+                  <span className="text-[9px] text-white/70 block uppercase font-bold">{lang === 'bn' ? 'প্রক্রিয়াধীন' : 'Processing'}</span>
+                  <span className="font-display font-bold text-sm sm:text-lg text-amber-300 mt-0.5 block">{n(processingCount)}</span>
+                </div>
 
-              <div className="bg-white/10 backdrop-blur-md border border-white/15 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl text-center min-w-[75px] sm:min-w-[90px]">
-                <span className="text-[9px] text-white/70 block uppercase font-bold">{lang === 'bn' ? 'ডেলিভারি সম্পন্ন' : 'Delivered'}</span>
-                <span className="font-display font-bold text-sm sm:text-lg text-emerald-400 mt-0.5 block">{n(deliveredCount)}</span>
+                <div className="bg-white/10 backdrop-blur-md border border-white/15 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl text-center min-w-[75px] sm:min-w-[90px]">
+                  <span className="text-[9px] text-white/70 block uppercase font-bold">{lang === 'bn' ? 'ডেলিভারি সম্পন্ন' : 'Delivered'}</span>
+                  <span className="font-display font-bold text-sm sm:text-lg text-emerald-400 mt-0.5 block">{n(deliveredCount)}</span>
+                </div>
               </div>
-            </div>
+            ) : (
+              <button
+                onClick={() => setSearchParams({})}
+                className="px-3.5 py-2 rounded-xl bg-white/15 hover:bg-white/25 border border-white/20 text-xs font-bold text-white transition-all flex items-center gap-1.5 shrink-0 cursor-pointer self-start md:self-auto font-bn-sans"
+              >
+                <ListFilter size={14} />
+                <span>{lang === 'bn' ? 'সকল অর্ডারের তালিকা' : 'All Orders List'}</span>
+              </button>
+            )}
           </div>
         </div>
 
-        {/* 2. Filter Tabs & Search Bar - Green Bordered Cream Palette */}
-        {orders.length > 0 && (
+        {/* 2. Filter Tabs & Search Bar (ONLY Shown in Full History Mode) */}
+        {!trackingOrderId && orders.length > 0 && (
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 hover:border-primary rounded-3xl p-3.5 sm:p-4.5 shadow-xs transition-colors">
             {/* Status Filter Tabs with Black/Dark Scrollbar Slider */}
             <div className="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0 scrollbar-dark">
@@ -192,189 +237,259 @@ export default function OrderHistory() {
           </div>
         )}
 
-        {/* 3. Orders List & Cards - Green Bordered Cream Palette */}
-        {orders.length === 0 ? (
-          <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 rounded-3xl p-12 sm:p-16 text-center space-y-4 shadow-xs">
-            <div className="w-16 h-16 rounded-full bg-white/80 border border-primary/20 text-primary flex items-center justify-center mx-auto shadow-2xs">
-              <ShoppingBag size={30} className="text-accent" />
-            </div>
-            <h3 className="font-display font-bold text-xl text-primary">{t('orders.empty')}</h3>
-            <p className="text-xs sm:text-sm text-muted font-bn-sans max-w-md mx-auto leading-relaxed">
-              {lang === 'bn' 
-                ? 'আপনার একাউন্টে এখনো কোনো অর্ডার করা হয়নি। আমাদের তাজা ও খাঁটি অর্গানিক পণ্য এখনই অর্ডার করুন।' 
-                : 'You have not placed any orders yet. Discover our 100% natural and certified organic goods.'}
-            </p>
-            <Link to="/shop">
-              <Button variant="accent" size="md" className="rounded-full font-bold mt-2 shadow-xs">
-                <ShoppingBag size={16} />
-                <span>{lang === 'bn' ? 'পণ্য কেনাকাটা শুরু করুন' : 'Explore Organic Shop'}</span>
-              </Button>
-            </Link>
-          </div>
-        ) : filteredOrders.length === 0 ? (
-          <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 rounded-3xl p-12 text-center space-y-3 shadow-xs">
-            <Filter size={32} className="mx-auto text-muted" />
-            <h4 className="font-bold text-base text-primary">
-              {lang === 'bn' ? 'কোনো অর্ডার খুঁজে পাওয়া যায়নি' : 'No matching orders found'}
-            </h4>
-            <p className="text-xs text-muted font-bn-sans">
-              {lang === 'bn' ? 'অনুগ্রহ করে অন্য শব্দ দিয়ে অনুসন্ধান করুন।' : 'Try adjusting your search query or filter.'}
-            </p>
+        {/* 3. Orders Content Area */}
+        {trackingOrderId ? (
+          /* SINGLE ORDER TRACKING VIEW - EXACT ORDER DETAILS ONLY */
+          <div>
+            {!trackedOrder ? (
+              <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 rounded-3xl p-12 text-center space-y-4 shadow-xs">
+                <div className="w-16 h-16 rounded-full bg-white/80 border border-primary/20 text-primary flex items-center justify-center mx-auto shadow-2xs">
+                  <Package size={30} className="text-accent" />
+                </div>
+                <h3 className="font-display font-bold text-xl text-primary">
+                  {lang === 'bn' ? 'অর্ডারটি পাওয়া যায়নি' : 'Order Not Found'}
+                </h3>
+                <p className="text-xs text-muted font-bn-sans max-w-md mx-auto">
+                  {lang === 'bn' 
+                    ? `অর্ডার নম্বর #${trackingOrderId} এর কোনো তথ্য খুঁজে পাওয়া যায়নি।` 
+                    : `No record found for order ID #${trackingOrderId}.`}
+                </p>
+                <button
+                  onClick={() => setSearchParams({})}
+                  className="px-5 py-2.5 bg-primary text-white rounded-2xl text-xs font-bold font-bn-sans hover:bg-primary/90 transition-all cursor-pointer"
+                >
+                  {lang === 'bn' ? 'সকল অর্ডার ইতিহাস দেখুন' : 'View Full Order History'}
+                </button>
+              </div>
+            ) : (
+              <div className="space-y-6">
+                <OrderCard 
+                  ord={trackedOrder} 
+                  t={t} 
+                  n={n} 
+                  lang={lang} 
+                  isSingleTrackingView={true}
+                  onViewFullHistory={() => setSearchParams({})}
+                />
+              </div>
+            )}
           </div>
         ) : (
-          <div className="space-y-6">
-            {filteredOrders.map((ord) => {
-              const isDelivered = ord.status === 'Delivered';
-
-              return (
-                <div 
-                  key={ord.id} 
-                  className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 hover:border-primary rounded-3xl p-6 sm:p-8 space-y-6 shadow-xs transition-all"
-                >
-                  {/* Card Header Strip */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b-2 border-primary/20 gap-3">
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs text-muted font-bold uppercase tracking-wider font-mono">{t('orders.id')}:</span>
-                        <h3 className="font-display font-bold text-lg sm:text-xl text-primary">{n(ord.id)}</h3>
-                      </div>
-                      <span className="text-xs text-muted flex items-center gap-1.5 font-bn-sans">
-                        <Calendar size={14} className="text-accent" />
-                        <span>{lang === 'bn' ? 'অর্ডারের তারিখ:' : 'Order Date:'} {n(ord.date)}</span>
-                      </span>
-                    </div>
-
-                    <div className="flex flex-wrap items-center gap-3">
-                      {/* Status Pill */}
-                      <span className={`px-3.5 py-1 rounded-full text-xs font-bold font-bn-sans flex items-center gap-1.5 shadow-2xs ${
-                        isDelivered
-                          ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
-                          : 'bg-amber-100 text-amber-800 border border-amber-300'
-                      }`}>
-                        {isDelivered ? <CheckCircle2 size={14} className="text-emerald-700" /> : <Clock size={14} className="text-amber-700" />}
-                        <span>{isDelivered ? (lang === 'bn' ? 'ডেলিভারি সম্পন্ন' : 'Delivered') : (lang === 'bn' ? 'প্রক্রিয়াধীন' : 'Processing')}</span>
-                      </span>
-
-                      {/* Payment Method Badge */}
-                      <span className="px-3 py-1 rounded-full text-xs font-medium font-bn-sans bg-white/80 border border-primary/20 text-ink flex items-center gap-1.5 shadow-2xs">
-                        <CreditCard size={13} className="text-accent" />
-                        <span>{ord.paymentMethod}</span>
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Delivery Stepper Progress Bar */}
-                  <div className="bg-white/80 border border-primary/20 rounded-2xl p-4 sm:p-5 shadow-2xs">
-                    <div className="grid grid-cols-3 gap-2 relative">
-                      <div className="text-center space-y-1 z-10">
-                        <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center mx-auto text-xs font-bold shadow-xs">
-                          <CheckCircle2 size={16} />
-                        </div>
-                        <span className="text-[11px] font-bold text-primary block font-bn-sans">{lang === 'bn' ? 'অর্ডার গৃহীত' : 'Confirmed'}</span>
-                      </div>
-
-                      <div className="text-center space-y-1 z-10">
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center mx-auto text-xs font-bold shadow-xs ${
-                          isDelivered ? 'bg-primary text-white' : 'bg-accent text-white animate-pulse'
-                        }`}>
-                          <Truck size={16} />
-                        </div>
-                        <span className="text-[11px] font-bold text-primary block font-bn-sans">{lang === 'bn' ? 'প্রক্রিয়াধীন ও শিপিং' : 'Processing'}</span>
-                      </div>
-
-                      <div className="text-center space-y-1 z-10">
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center mx-auto text-xs font-bold shadow-xs ${
-                          isDelivered ? 'bg-emerald-600 text-white' : 'bg-black/10 text-muted'
-                        }`}>
-                          <Package size={16} />
-                        </div>
-                        <span className={`text-[11px] font-bold block font-bn-sans ${isDelivered ? 'text-emerald-700' : 'text-muted'}`}>
-                          {lang === 'bn' ? 'ডেলিভারি সম্পন্ন' : 'Delivered'}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Items List & Details Layout */}
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                    
-                    {/* Left: Purchased Products List */}
-                    <div className="lg:col-span-7 space-y-3">
-                      <span className="text-xs font-bold text-primary uppercase tracking-wider block font-bn-sans">
-                        {lang === 'bn' ? 'অর্ডারকৃত পণ্যসমূহ' : 'Ordered Products'} ({n(ord.items?.length || 0)})
-                      </span>
-
-                      <div className="space-y-2.5">
-                        {ord.items?.map((item, idx) => (
-                          <div 
-                            key={idx} 
-                            className="flex items-center justify-between p-3.5 rounded-2xl bg-white/85 border border-primary/20 shadow-2xs"
-                          >
-                            <div className="flex items-center gap-3 min-w-0 pr-2">
-                              <div className="w-9 h-9 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-xs shrink-0">
-                                {idx + 1}
-                              </div>
-                              <div className="min-w-0">
-                                <h4 className="font-bold text-primary text-xs sm:text-sm truncate font-bn-sans">{item.name}</h4>
-                                <span className="text-[11px] text-muted font-bn-sans">
-                                  ৳{n(item.price)} × {n(item.quantity)}
-                                </span>
-                              </div>
-                            </div>
-
-                            <span className="font-bold font-bn-sans text-xs sm:text-sm text-primary shrink-0">
-                              ৳{n(item.price * item.quantity)}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Right: Shipping Address & Cost Summary */}
-                    <div className="lg:col-span-5 space-y-4">
-                      {/* Shipping Address Pill */}
-                      {ord.shippingAddress && (
-                        <div className="p-4 rounded-2xl bg-white/85 border border-primary/20 space-y-2 shadow-2xs">
-                          <span className="text-[11px] font-bold text-accent uppercase tracking-wider block font-bn-sans flex items-center gap-1.5">
-                            <MapPin size={13} />
-                            <span>{lang === 'bn' ? 'ডেলিভারি ঠিকানা' : 'Shipping Destination'}</span>
-                          </span>
-                          <p className="font-bold text-xs sm:text-sm text-primary font-bn-sans">{ord.shippingAddress.name}</p>
-                          <p className="text-xs text-muted font-bn-sans leading-relaxed">{ord.shippingAddress.address}, {ord.shippingAddress.city}</p>
-                          <p className="text-xs text-primary font-bold font-bn-sans flex items-center gap-1 pt-1 border-t border-primary/20">
-                            <Phone size={12} className="text-accent" /> {n(ord.shippingAddress.phone)}
-                          </p>
-                        </div>
-                      )}
-
-                      {/* Financial Cost Strip */}
-                      <div className="p-4 rounded-2xl bg-white/85 border-2 border-primary/20 space-y-2 text-xs font-bn-sans shadow-2xs">
-                        <div className="flex justify-between text-muted">
-                          <span>{t('cart.subtotal')}:</span>
-                          <span className="font-bold text-primary">৳{n(ord.subtotal || ord.total)}</span>
-                        </div>
-                        {ord.deliveryCharge !== undefined && (
-                          <div className="flex justify-between text-muted">
-                            <span>{t('cart.delivery')}:</span>
-                            <span className="font-bold text-primary">{ord.deliveryCharge === 0 ? (lang === 'bn' ? 'ফ্রি' : 'Free') : `৳${n(ord.deliveryCharge)}`}</span>
-                          </div>
-                        )}
-                        <div className="pt-2 border-t border-primary/20 flex justify-between items-center text-sm font-bold text-primary">
-                          <span>{t('orders.total')}:</span>
-                          <span className="text-base sm:text-lg text-accent font-display">৳{n(ord.total)}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-
+          /* FULL ORDERS HISTORY LIST VIEW */
+          <div>
+            {orders.length === 0 ? (
+              <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 rounded-3xl p-12 sm:p-16 text-center space-y-4 shadow-xs">
+                <div className="w-16 h-16 rounded-full bg-white/80 border border-primary/20 text-primary flex items-center justify-center mx-auto shadow-2xs">
+                  <ShoppingBag size={30} className="text-accent" />
                 </div>
-              );
-            })}
+                <h3 className="font-display font-bold text-xl text-primary">{t('orders.empty')}</h3>
+                <p className="text-xs sm:text-sm text-muted font-bn-sans max-w-md mx-auto leading-relaxed">
+                  {lang === 'bn' 
+                    ? 'আপনার একাউন্টে এখনো কোনো অর্ডার করা হয়নি। আমাদের তাজা ও খাঁটি অর্গানিক পণ্য এখনই অর্ডার করুন।' 
+                    : 'You have not placed any orders yet. Discover our 100% natural and certified organic goods.'}
+                </p>
+                <Link to="/shop">
+                  <Button variant="accent" size="md" className="rounded-full font-bold mt-2 shadow-xs">
+                    <ShoppingBag size={16} />
+                    <span>{lang === 'bn' ? 'পণ্য কেনাকাটা শুরু করুন' : 'Explore Organic Shop'}</span>
+                  </Button>
+                </Link>
+              </div>
+            ) : filteredOrders.length === 0 ? (
+              <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 rounded-3xl p-12 text-center space-y-3 shadow-xs">
+                <Filter size={32} className="mx-auto text-muted" />
+                <h4 className="font-bold text-base text-primary">
+                  {lang === 'bn' ? 'কোনো অর্ডার খুঁজে পাওয়া যায়নি' : 'No matching orders found'}
+                </h4>
+                <p className="text-xs text-muted font-bn-sans">
+                  {lang === 'bn' ? 'অনুগ্রহ করে অন্য শব্দ দিয়ে অনুসন্ধান করুন।' : 'Try adjusting your search query or filter.'}
+                </p>
+              </div>
+            ) : (
+              <div className="space-y-6">
+                {filteredOrders.map((ord) => (
+                  <OrderCard 
+                    key={ord.id} 
+                    ord={ord} 
+                    t={t} 
+                    n={n} 
+                    lang={lang} 
+                    isSingleTrackingView={false}
+                    onTrackOrder={() => setSearchParams({ orderId: ord.id })}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         )}
 
       </div>
     </motion.div>
+  );
+}
+
+// Subcomponent: Dedicated Reusable Order Card with Full Tracking & Details
+function OrderCard({ ord, t, n, lang, isSingleTrackingView, onTrackOrder, onViewFullHistory }) {
+  const isDelivered = ord.status === 'Delivered';
+
+  return (
+    <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 hover:border-primary rounded-3xl p-5 sm:p-8 space-y-6 shadow-xs transition-all">
+      {/* Card Header Strip */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b-2 border-primary/20 gap-3">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-muted font-bold uppercase tracking-wider font-mono">{t('orders.id')}:</span>
+            <h3 className="font-display font-bold text-lg sm:text-xl text-primary">{n(ord.id)}</h3>
+          </div>
+          <span className="text-xs text-muted flex items-center gap-1.5 font-bn-sans">
+            <Calendar size={14} className="text-accent" />
+            <span>{lang === 'bn' ? 'অর্ডারের তারিখ:' : 'Order Date:'} {n(ord.date)}</span>
+          </span>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2.5">
+          {/* Status Pill */}
+          <span className={`px-3.5 py-1 rounded-full text-xs font-bold font-bn-sans flex items-center gap-1.5 shadow-2xs ${
+            isDelivered
+              ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
+              : 'bg-amber-100 text-amber-800 border border-amber-300'
+          }`}>
+            {isDelivered ? <CheckCircle2 size={14} className="text-emerald-700" /> : <Clock size={14} className="text-amber-700" />}
+            <span>{isDelivered ? (lang === 'bn' ? 'ডেলিভারি সম্পন্ন' : 'Delivered') : (lang === 'bn' ? 'প্রক্রিয়াধীন' : 'Processing')}</span>
+          </span>
+
+          {/* Payment Method Badge */}
+          <span className="px-3 py-1 rounded-full text-xs font-medium font-bn-sans bg-white/80 border border-primary/20 text-ink flex items-center gap-1.5 shadow-2xs">
+            <CreditCard size={13} className="text-accent" />
+            <span>{ord.paymentMethod}</span>
+          </span>
+        </div>
+      </div>
+
+      {/* Delivery Stepper Progress Bar */}
+      <div className="bg-white/80 border border-primary/20 rounded-2xl p-4 sm:p-5 shadow-2xs">
+        <div className="grid grid-cols-3 gap-2 relative">
+          <div className="text-center space-y-1 z-10">
+            <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center mx-auto text-xs font-bold shadow-xs">
+              <CheckCircle2 size={16} />
+            </div>
+            <span className="text-[11px] font-bold text-primary block font-bn-sans">{lang === 'bn' ? 'অর্ডার গৃহীত' : 'Confirmed'}</span>
+          </div>
+
+          <div className="text-center space-y-1 z-10">
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center mx-auto text-xs font-bold shadow-xs ${
+              isDelivered ? 'bg-primary text-white' : 'bg-accent text-white animate-pulse'
+            }`}>
+              <Truck size={16} />
+            </div>
+            <span className="text-[11px] font-bold text-primary block font-bn-sans">{lang === 'bn' ? 'প্রক্রিয়াধীন ও শিপিং' : 'Processing'}</span>
+          </div>
+
+          <div className="text-center space-y-1 z-10">
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center mx-auto text-xs font-bold shadow-xs ${
+              isDelivered ? 'bg-emerald-600 text-white' : 'bg-black/10 text-muted'
+            }`}>
+              <Package size={16} />
+            </div>
+            <span className={`text-[11px] font-bold block font-bn-sans ${isDelivered ? 'text-emerald-700' : 'text-muted'}`}>
+              {lang === 'bn' ? 'ডেলিভারি সম্পন্ন' : 'Delivered'}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Items List & Details Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        {/* Left: Purchased Products List */}
+        <div className="lg:col-span-7 space-y-3">
+          <span className="text-xs font-bold text-primary uppercase tracking-wider block font-bn-sans">
+            {lang === 'bn' ? 'অর্ডারকৃত পণ্যসমূহ' : 'Ordered Products'} ({n(ord.items?.length || 0)})
+          </span>
+
+          <div className="space-y-2.5">
+            {ord.items?.map((item, idx) => (
+              <div 
+                key={idx} 
+                className="flex items-center justify-between p-3.5 rounded-2xl bg-white/85 border border-primary/20 shadow-2xs"
+              >
+                <div className="flex items-center gap-3 min-w-0 pr-2">
+                  <div className="w-9 h-9 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-xs shrink-0">
+                    {idx + 1}
+                  </div>
+                  <div className="min-w-0">
+                    <h4 className="font-bold text-primary text-xs sm:text-sm truncate font-bn-sans">{item.name}</h4>
+                    <span className="text-[11px] text-muted font-bn-sans">
+                      ৳{n(item.price)} × {n(item.quantity)}
+                    </span>
+                  </div>
+                </div>
+
+                <span className="font-bold font-bn-sans text-xs sm:text-sm text-primary shrink-0">
+                  ৳{n(item.price * item.quantity)}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Right: Shipping Address & Cost Summary */}
+        <div className="lg:col-span-5 space-y-4">
+          {/* Shipping Address Pill */}
+          {ord.shippingAddress && (
+            <div className="p-4 rounded-2xl bg-white/85 border border-primary/20 space-y-2 shadow-2xs">
+              <span className="text-[11px] font-bold text-accent uppercase tracking-wider block font-bn-sans flex items-center gap-1.5">
+                <MapPin size={13} />
+                <span>{lang === 'bn' ? 'ডেলিভারি ঠিকানা' : 'Shipping Destination'}</span>
+              </span>
+              <p className="font-bold text-xs sm:text-sm text-primary font-bn-sans">{ord.shippingAddress.name}</p>
+              <p className="text-xs text-muted font-bn-sans leading-relaxed">{ord.shippingAddress.address}, {ord.shippingAddress.city}</p>
+              <p className="text-xs text-primary font-bold font-bn-sans flex items-center gap-1 pt-1 border-t border-primary/20">
+                <Phone size={12} className="text-accent" /> {n(ord.shippingAddress.phone)}
+              </p>
+            </div>
+          )}
+
+          {/* Financial Cost Strip */}
+          <div className="p-4 rounded-2xl bg-white/85 border-2 border-primary/20 space-y-2 text-xs font-bn-sans shadow-2xs">
+            <div className="flex justify-between text-muted">
+              <span>{t('cart.subtotal')}:</span>
+              <span className="font-bold text-primary">৳{n(ord.subtotal || ord.total)}</span>
+            </div>
+            {ord.deliveryCharge !== undefined && (
+              <div className="flex justify-between text-muted">
+                <span>{t('cart.delivery')}:</span>
+                <span className="font-bold text-primary">{ord.deliveryCharge === 0 ? (lang === 'bn' ? 'ফ্রি' : 'Free') : `৳${n(ord.deliveryCharge)}`}</span>
+              </div>
+            )}
+            <div className="pt-2 border-t border-primary/20 flex justify-between items-center text-sm font-bold text-primary">
+              <span>{t('orders.total')}:</span>
+              <span className="text-base sm:text-lg text-accent font-display">৳{n(ord.total)}</span>
+            </div>
+          </div>
+
+          {/* Action Button: View Tracking vs Back to Full History */}
+          {!isSingleTrackingView ? (
+            <button
+              onClick={onTrackOrder}
+              className="w-full py-2.5 px-4 rounded-2xl bg-primary text-white hover:bg-primary/90 text-xs font-bold font-bn-sans flex items-center justify-center gap-2 shadow-xs cursor-pointer transition-all active:scale-95"
+            >
+              <Truck size={15} className="text-accent" />
+              <span>{lang === 'bn' ? 'বিস্তারিত লাইভ ট্র্যাকিং দেখুন' : 'View Live Tracking'}</span>
+              <ChevronRight size={15} />
+            </button>
+          ) : (
+            <button
+              onClick={onViewFullHistory}
+              className="w-full py-2.5 px-4 rounded-2xl bg-white border border-primary/30 text-primary hover:bg-primary/5 text-xs font-bold font-bn-sans flex items-center justify-center gap-2 shadow-2xs cursor-pointer transition-all active:scale-95"
+            >
+              <ListFilter size={15} />
+              <span>{lang === 'bn' ? 'সকল অর্ডার তালিকায় ফিরুন' : 'Back to All Orders'}</span>
+            </button>
+          )}
+        </div>
+
+      </div>
+    </div>
   );
 }

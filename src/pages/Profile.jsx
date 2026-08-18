@@ -702,7 +702,7 @@ export default function Profile() {
                             {lang === 'bn' ? 'সর্বমোট পরিশোধ:' : 'Total Amount:'}{' '}
                             <strong className="text-primary font-bold text-sm font-bn-sans">৳{n(ord.total)}</strong>
                           </div>
-                          <Link to="/profile/orders" className="text-xs font-bold text-accent hover:underline font-bn-sans">
+                          <Link to={`/profile/orders?orderId=${ord.id}`} className="text-xs font-bold text-accent hover:underline font-bn-sans">
                             {lang === 'bn' ? 'বিস্তারিত ট্র্যাকিং' : 'View Tracking'} →
                           </Link>
                         </div>
