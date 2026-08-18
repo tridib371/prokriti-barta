@@ -261,22 +261,23 @@ export default function Profile() {
           
           {/* Left Navigation Sidebar */}
           <div className="lg:col-span-4 space-y-4">
-            <div className="bg-surface border-2 border-line rounded-3xl p-5 sm:p-6 space-y-2 shadow-xs">
-              <span className="text-xs font-bold text-muted uppercase tracking-wider block px-3 pb-2 border-b border-line">
+            {/* Account Menu Card - Warm Organic Cream Palette */}
+            <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] dark:from-[#17261D] dark:via-[#132018] dark:to-[#0F1A13] border-2 border-[#E5DCB8] dark:border-[#284334] rounded-3xl p-5 sm:p-6 space-y-2 shadow-[0_6px_24px_-4px_rgba(27,59,43,0.08)]">
+              <span className="text-xs font-bold text-primary uppercase tracking-wider block px-3 pb-2.5 border-b-2 border-[#E0D5AF] dark:border-[#284334]">
                 {lang === 'bn' ? 'অ্যাকাউন্ট মেনু' : 'Account Menu'}
               </span>
 
-              <nav className="space-y-1.5 pt-1 text-xs sm:text-sm font-bold font-bn-sans">
+              <nav className="space-y-1.5 pt-2 text-xs sm:text-sm font-bold font-bn-sans">
                 <button
                   onClick={() => { setActiveTab('overview'); setIsEditing(false); }}
                   className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl transition-all cursor-pointer ${
                     activeTab === 'overview'
-                      ? 'bg-primary text-white shadow-md'
-                      : 'text-ink hover:bg-bg'
+                      ? 'bg-primary text-white shadow-md shadow-primary/25 border border-primary'
+                      : 'text-ink hover:bg-white/80 dark:hover:bg-white/10 hover:text-primary'
                   }`}
                 >
                   <span className="flex items-center gap-3">
-                    <User size={17} className={activeTab === 'overview' ? 'text-accent' : 'text-muted'} />
+                    <User size={17} className={activeTab === 'overview' ? 'text-accent' : 'text-primary/70'} />
                     {lang === 'bn' ? 'ব্যক্তিগত তথ্য ও নিরাপত্তা' : 'Personal Info & Security'}
                   </span>
                   <ChevronRight size={15} className={activeTab === 'overview' ? 'text-accent' : 'text-muted/40'} />
@@ -286,15 +287,17 @@ export default function Profile() {
                   onClick={() => { setActiveTab('orders'); setIsEditing(false); }}
                   className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl transition-all cursor-pointer ${
                     activeTab === 'orders'
-                      ? 'bg-primary text-white shadow-md'
-                      : 'text-ink hover:bg-bg'
+                      ? 'bg-primary text-white shadow-md shadow-primary/25 border border-primary'
+                      : 'text-ink hover:bg-white/80 dark:hover:bg-white/10 hover:text-primary'
                   }`}
                 >
                   <span className="flex items-center gap-3">
-                    <Package size={17} className={activeTab === 'orders' ? 'text-accent' : 'text-muted'} />
+                    <Package size={17} className={activeTab === 'orders' ? 'text-accent' : 'text-primary/70'} />
                     {t('profile.orders')}
                   </span>
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-accent/20 text-accent font-mono font-bold">
+                  <span className={`text-xs px-2 py-0.5 rounded-full font-mono font-bold ${
+                    activeTab === 'orders' ? 'bg-accent text-white' : 'bg-accent/20 text-accent'
+                  }`}>
                     {n(orders.length)}
                   </span>
                 </button>
@@ -303,12 +306,12 @@ export default function Profile() {
                   onClick={() => { setActiveTab('addresses'); setIsEditing(false); }}
                   className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl transition-all cursor-pointer ${
                     activeTab === 'addresses'
-                      ? 'bg-primary text-white shadow-md'
-                      : 'text-ink hover:bg-bg'
+                      ? 'bg-primary text-white shadow-md shadow-primary/25 border border-primary'
+                      : 'text-ink hover:bg-white/80 dark:hover:bg-white/10 hover:text-primary'
                   }`}
                 >
                   <span className="flex items-center gap-3">
-                    <MapPin size={17} className={activeTab === 'addresses' ? 'text-accent' : 'text-muted'} />
+                    <MapPin size={17} className={activeTab === 'addresses' ? 'text-accent' : 'text-primary/70'} />
                     {lang === 'bn' ? 'সংরক্ষিত ঠিকানা' : 'Saved Addresses'}
                   </span>
                   <ChevronRight size={15} className={activeTab === 'addresses' ? 'text-accent' : 'text-muted/40'} />
@@ -318,25 +321,27 @@ export default function Profile() {
                   onClick={() => { setActiveTab('rewards'); setIsEditing(false); }}
                   className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl transition-all cursor-pointer ${
                     activeTab === 'rewards'
-                      ? 'bg-primary text-white shadow-md'
-                      : 'text-ink hover:bg-bg'
+                      ? 'bg-primary text-white shadow-md shadow-primary/25 border border-primary'
+                      : 'text-ink hover:bg-white/80 dark:hover:bg-white/10 hover:text-primary'
                   }`}
                 >
                   <span className="flex items-center gap-3">
-                    <Gift size={17} className={activeTab === 'rewards' ? 'text-accent' : 'text-muted'} />
+                    <Gift size={17} className={activeTab === 'rewards' ? 'text-accent' : 'text-primary/70'} />
                     {lang === 'bn' ? 'ইকো ক্লাব ও রিওয়ার্ড' : 'Eco Club & Rewards'}
                   </span>
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-500 font-bold">
+                  <span className={`text-xs px-2 py-0.5 rounded-full font-bold ${
+                    activeTab === 'rewards' ? 'bg-amber-400 text-primary' : 'bg-amber-400/20 text-amber-600 dark:text-amber-400'
+                  }`}>
                     {n(ecoPoints)} Pts
                   </span>
                 </button>
 
                 <Link
                   to="/wishlist"
-                  className="w-full flex items-center justify-between px-4 py-3 rounded-2xl text-ink hover:bg-bg transition-all font-bn-sans"
+                  className="w-full flex items-center justify-between px-4 py-3 rounded-2xl text-ink hover:bg-white/80 dark:hover:bg-white/10 hover:text-primary transition-all font-bn-sans"
                 >
                   <span className="flex items-center gap-3">
-                    <Heart size={17} className="text-muted" />
+                    <Heart size={17} className="text-accent-2" />
                     {t('btn.wishlist')}
                   </span>
                   <span className="text-xs px-2 py-0.5 rounded-full bg-accent-2/20 text-accent-2 font-mono font-bold">
@@ -347,7 +352,7 @@ export default function Profile() {
             </div>
 
             {/* Organic Assurance Card */}
-            <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] rounded-3xl p-5 space-y-3 shadow-xs">
+            <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] dark:from-[#17261D] dark:via-[#132018] dark:to-[#0F1A13] border-2 border-[#E5DCB8] dark:border-[#284334] rounded-3xl p-5 space-y-3 shadow-xs">
               <div className="flex items-center gap-2.5 text-primary">
                 <ShieldCheck size={20} className="text-accent shrink-0" />
                 <h4 className="font-display font-bold text-sm">
@@ -377,9 +382,9 @@ export default function Profile() {
                 transition={{ duration: 0.3 }}
                 className="space-y-6"
               >
-                {/* Personal Information Box / Edit Form */}
-                <div className="bg-surface border-2 border-line rounded-3xl p-6 sm:p-8 space-y-6 shadow-xs relative">
-                  <div className="flex items-center justify-between pb-4 border-b border-line">
+                {/* Personal Information Box - Warm Organic Cream Palette */}
+                <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] dark:from-[#17261D] dark:via-[#132018] dark:to-[#0F1A13] border-2 border-[#E5DCB8] dark:border-[#284334] rounded-3xl p-6 sm:p-8 space-y-6 shadow-[0_8px_30px_-6px_rgba(27,59,43,0.08)] relative overflow-hidden">
+                  <div className="flex items-center justify-between pb-4 border-b-2 border-[#E0D5AF] dark:border-[#284334]">
                     <div>
                       <h2 className="font-display font-bold text-xl text-primary">
                         {lang === 'bn' ? 'ব্যক্তিগত তথ্য' : 'Personal Information'}
@@ -392,7 +397,7 @@ export default function Profile() {
                     {!isEditing && (
                       <button
                         onClick={() => setIsEditing(true)}
-                        className="px-3.5 py-1.5 bg-accent/15 hover:bg-accent/25 text-accent rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 cursor-pointer"
+                        className="px-4 py-2 bg-accent hover:bg-accent/90 text-white rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer active:scale-95"
                       >
                         <Edit3 size={14} />
                         <span>{lang === 'bn' ? 'সম্পাদনা' : 'Edit'}</span>
@@ -404,56 +409,56 @@ export default function Profile() {
                     <form onSubmit={handleSaveProfile} className="space-y-4">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div className="space-y-1">
-                          <label className="block font-bold text-ink text-xs">{t('register.name')} *</label>
+                          <label className="block font-bold text-primary text-xs">{t('register.name')} *</label>
                           <input
                             type="text"
                             placeholder={lang === 'bn' ? 'আপনার পূর্ণ নাম' : 'Full Name'}
                             value={formData.name}
                             onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                            className={`w-full bg-bg text-ink px-4 py-2.5 rounded-2xl border ${editErrors.name ? 'border-accent-2' : 'border-line focus:border-accent'} outline-none text-xs sm:text-sm font-bn-sans`}
+                            className={`w-full bg-white dark:bg-[#0F1A13] text-ink px-4 py-2.5 rounded-2xl border-2 ${editErrors.name ? 'border-accent-2' : 'border-[#E2D7B5] dark:border-[#284334] focus:border-accent'} outline-none text-xs sm:text-sm font-bn-sans`}
                           />
                           {editErrors.name && <p className="text-[11px] text-accent-2 font-bold">{editErrors.name}</p>}
                         </div>
 
                         <div className="space-y-1">
-                          <label className="block font-bold text-ink text-xs">{t('register.phone')} ({lang === 'bn' ? '১১ ডিজিট' : '11 Digits'}) *</label>
+                          <label className="block font-bold text-primary text-xs">{t('register.phone')} ({lang === 'bn' ? '১১ ডিজিট' : '11 Digits'}) *</label>
                           <input
                             type="tel"
                             maxLength={11}
                             placeholder="01XXXXXXXXX"
                             value={formData.phone}
                             onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value.replace(/\D/g, '').slice(0, 11) }))}
-                            className={`w-full bg-bg text-ink px-4 py-2.5 rounded-2xl border ${editErrors.phone ? 'border-accent-2' : 'border-line focus:border-accent'} outline-none text-xs sm:text-sm font-bn-sans`}
+                            className={`w-full bg-white dark:bg-[#0F1A13] text-ink px-4 py-2.5 rounded-2xl border-2 ${editErrors.phone ? 'border-accent-2' : 'border-[#E2D7B5] dark:border-[#284334] focus:border-accent'} outline-none text-xs sm:text-sm font-bn-sans`}
                           />
                           {editErrors.phone && <p className="text-[11px] text-accent-2 font-bold">{editErrors.phone}</p>}
                         </div>
 
                         <div className="space-y-1 sm:col-span-2">
-                          <label className="block font-bold text-ink text-xs">{t('login.email')} (Gmail)</label>
+                          <label className="block font-bold text-primary text-xs">{t('login.email')} (Gmail)</label>
                           <input
                             type="email"
                             disabled
                             value={user?.email || 'user@gmail.com'}
-                            className="w-full bg-bg/50 text-muted px-4 py-2.5 rounded-2xl border border-line outline-none text-xs sm:text-sm cursor-not-allowed"
+                            className="w-full bg-black/5 dark:bg-white/5 text-muted px-4 py-2.5 rounded-2xl border border-line outline-none text-xs sm:text-sm cursor-not-allowed"
                           />
                           <span className="text-[10px] text-muted font-bn-sans">{lang === 'bn' ? 'ইমেইল পরিবর্তন করতে সাপোর্টে যোগাযোগ করুন।' : 'Contact support to modify primary email.'}</span>
                         </div>
 
                         <div className="space-y-1 sm:col-span-2">
-                          <label className="block font-bold text-ink text-xs">{lang === 'bn' ? 'ডেলিভারি ঠিকানা' : 'Shipping Address'} *</label>
+                          <label className="block font-bold text-primary text-xs">{lang === 'bn' ? 'ডেলিভারি ঠিকানা' : 'Shipping Address'} *</label>
                           <textarea
                             rows={3}
                             placeholder={lang === 'bn' ? 'বাসা/রোড নম্বর, এলাকা, জেলা' : 'House/Road number, Area, District'}
                             value={formData.address}
                             onChange={(e) => setFormData(prev => ({ ...prev, address: e.target.value }))}
-                            className={`w-full bg-bg text-ink px-4 py-2.5 rounded-2xl border ${editErrors.address ? 'border-accent-2' : 'border-line focus:border-accent'} outline-none text-xs sm:text-sm font-bn-sans`}
+                            className={`w-full bg-white dark:bg-[#0F1A13] text-ink px-4 py-2.5 rounded-2xl border-2 ${editErrors.address ? 'border-accent-2' : 'border-[#E2D7B5] dark:border-[#284334] focus:border-accent'} outline-none text-xs sm:text-sm font-bn-sans`}
                           />
                           {editErrors.address && <p className="text-[11px] text-accent-2 font-bold">{editErrors.address}</p>}
                         </div>
                       </div>
 
                       <div className="flex items-center gap-3 pt-3">
-                        <Button type="submit" variant="accent" size="sm" className="rounded-xl font-bold">
+                        <Button type="submit" variant="accent" size="sm" className="rounded-xl font-bold shadow-sm">
                           {lang === 'bn' ? 'সংরক্ষণ করুন' : 'Save Changes'}
                         </Button>
                         <Button type="button" variant="ghost" size="sm" onClick={() => setIsEditing(false)} className="rounded-xl font-bold">
@@ -462,38 +467,38 @@ export default function Profile() {
                       </div>
                     </form>
                   ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs sm:text-sm font-bn-sans">
-                      <div className="p-4 rounded-2xl bg-bg/60 border border-line/60">
-                        <span className="text-muted text-[11px] font-bold block mb-1">{t('register.name')}:</span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 text-xs sm:text-sm font-bn-sans">
+                      <div className="p-4 rounded-2xl bg-white/80 dark:bg-black/20 border-2 border-[#E2D7B5] dark:border-[#284334] shadow-2xs hover:border-accent/40 transition-colors">
+                        <span className="text-accent text-[11px] font-bold uppercase tracking-wider block mb-1">{t('register.name')}:</span>
                         <p className="font-bold text-primary text-base">{user?.name || formData.name || '-'}</p>
                       </div>
 
-                      <div className="p-4 rounded-2xl bg-bg/60 border border-line/60">
-                        <span className="text-muted text-[11px] font-bold block mb-1">{t('register.phone')}:</span>
+                      <div className="p-4 rounded-2xl bg-white/80 dark:bg-black/20 border-2 border-[#E2D7B5] dark:border-[#284334] shadow-2xs hover:border-accent/40 transition-colors">
+                        <span className="text-accent text-[11px] font-bold uppercase tracking-wider block mb-1">{t('register.phone')}:</span>
                         <p className="font-bold text-primary text-base flex items-center gap-1.5">
                           <Phone size={15} className="text-accent shrink-0" />
                           <span>{(user?.phone || formData.phone) ? n(user?.phone || formData.phone) : <span className="text-muted text-xs italic">{lang === 'bn' ? 'যুক্ত করা হয়নি' : 'Not set'}</span>}</span>
                         </p>
                       </div>
 
-                      <div className="p-4 rounded-2xl bg-bg/60 border border-line/60">
-                        <span className="text-muted text-[11px] font-bold block mb-1">{t('login.email')}:</span>
+                      <div className="p-4 rounded-2xl bg-white/80 dark:bg-black/20 border-2 border-[#E2D7B5] dark:border-[#284334] shadow-2xs hover:border-accent/40 transition-colors">
+                        <span className="text-accent text-[11px] font-bold uppercase tracking-wider block mb-1">{t('login.email')}:</span>
                         <p className="font-bold text-primary text-sm flex items-center gap-1.5">
                           <Mail size={15} className="text-accent shrink-0" />
                           <span>{user?.email || 'user@gmail.com'}</span>
                         </p>
                       </div>
 
-                      <div className="p-4 rounded-2xl bg-bg/60 border border-line/60">
-                        <span className="text-muted text-[11px] font-bold block mb-1">{lang === 'bn' ? 'মেম্বারশিপ শুরু:' : 'Member Since:'}</span>
+                      <div className="p-4 rounded-2xl bg-white/80 dark:bg-black/20 border-2 border-[#E2D7B5] dark:border-[#284334] shadow-2xs hover:border-accent/40 transition-colors">
+                        <span className="text-accent text-[11px] font-bold uppercase tracking-wider block mb-1">{lang === 'bn' ? 'মেম্বারশিপ শুরু:' : 'Member Since:'}</span>
                         <p className="font-bold text-primary text-sm flex items-center gap-1.5">
                           <Calendar size={15} className="text-accent shrink-0" />
                           <span>{user?.joinedDate ? n(user.joinedDate) : (lang === 'bn' ? 'আজ' : 'Today')}</span>
                         </p>
                       </div>
 
-                      <div className="sm:col-span-2 p-4 rounded-2xl bg-bg/60 border border-line/60">
-                        <span className="text-muted text-[11px] font-bold block mb-1">{lang === 'bn' ? 'ডিফল্ট ডেলিভারি ঠিকানা:' : 'Default Delivery Address:'}</span>
+                      <div className="sm:col-span-2 p-4 rounded-2xl bg-white/80 dark:bg-black/20 border-2 border-[#E2D7B5] dark:border-[#284334] shadow-2xs hover:border-accent/40 transition-colors">
+                        <span className="text-accent text-[11px] font-bold uppercase tracking-wider block mb-1">{lang === 'bn' ? 'ডিফল্ট ডেলিভারি ঠিকানা:' : 'Default Delivery Address:'}</span>
                         {(user?.address || formData.address) ? (
                           <p className="font-bold text-primary text-sm flex items-start gap-2">
                             <MapPin size={17} className="text-accent shrink-0 mt-0.5" />
@@ -506,7 +511,7 @@ export default function Profile() {
                             </span>
                             <button
                               onClick={() => setIsEditing(true)}
-                              className="text-xs font-bold text-accent hover:underline flex items-center gap-1 cursor-pointer"
+                              className="px-3 py-1 bg-accent/15 text-accent rounded-lg text-xs font-bold hover:bg-accent/25 flex items-center gap-1 cursor-pointer transition-colors"
                             >
                               <Plus size={13} />
                               <span>{lang === 'bn' ? 'ঠিকানা যোগ করুন' : 'Add Address'}</span>
@@ -518,33 +523,45 @@ export default function Profile() {
                   )}
                 </div>
 
-                {/* Account Security & Health */}
-                <div className="bg-surface border-2 border-line rounded-3xl p-6 sm:p-8 space-y-4 shadow-xs">
-                  <div className="flex items-center justify-between pb-3 border-b border-line">
+                {/* Account Security & Health Card - Emerald Protected Theme */}
+                <div className="bg-gradient-to-br from-emerald-950/20 via-emerald-900/10 to-teal-950/15 dark:from-emerald-950/40 dark:via-emerald-900/25 dark:to-teal-950/30 border-2 border-emerald-500/40 rounded-3xl p-6 sm:p-8 space-y-5 shadow-[0_8px_30px_-6px_rgba(16,185,129,0.15)] relative overflow-hidden">
+                  <div className="flex items-center justify-between pb-3.5 border-b-2 border-emerald-500/20">
                     <div className="flex items-center gap-2.5">
-                      <ShieldCheck size={22} className="text-emerald-500" />
-                      <h3 className="font-display font-bold text-base sm:text-lg text-primary">
-                        {lang === 'bn' ? 'অ্যাকাউন্ট নিরাপত্তা ও সুরক্ষা' : 'Account Security & Health'}
-                      </h3>
+                      <div className="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shadow-xs">
+                        <ShieldCheck size={20} />
+                      </div>
+                      <div>
+                        <h3 className="font-display font-bold text-base sm:text-lg text-primary dark:text-emerald-200">
+                          {lang === 'bn' ? 'অ্যাকাউন্ট নিরাপত্তা ও সুরক্ষা' : 'Account Security & Health'}
+                        </h3>
+                        <p className="text-[11px] text-muted font-bn-sans">
+                          {lang === 'bn' ? 'এনক্রিপ্টেড ও সম্পূর্ণ সুরক্ষিত ক্রেতা অ্যাকাউন্ট' : 'Encrypted & completely protected user account'}
+                        </p>
+                      </div>
                     </div>
-                    <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-300 font-bn-sans">
-                      {lang === 'bn' ? '১০০% সুরক্ষিত' : '100% Secure'}
+                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500 text-white shadow-xs font-bn-sans flex items-center gap-1">
+                      <CheckCircle2 size={13} />
+                      <span>{lang === 'bn' ? '১০০% সুরক্ষিত' : '100% Secure'}</span>
                     </span>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-bn-sans">
-                    <div className="flex items-center gap-3 p-3 rounded-2xl bg-bg/60 border border-line/60">
-                      <CheckCircle2 size={16} className="text-emerald-500 shrink-0" />
+                    <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-white/90 dark:bg-surface/90 border-2 border-emerald-400/30 shadow-2xs hover:border-emerald-500 transition-colors">
+                      <div className="w-8 h-8 rounded-xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                        <CheckCircle2 size={16} />
+                      </div>
                       <div>
-                        <p className="font-bold text-primary">{lang === 'bn' ? 'কঠোর পাসওয়ার্ড মানদণ্ড' : 'Strict Password Standards'}</p>
+                        <p className="font-bold text-primary text-xs sm:text-sm">{lang === 'bn' ? 'কঠোর পাসওয়ার্ড মানদণ্ড' : 'Strict Password Standards'}</p>
                         <p className="text-[11px] text-muted">{lang === 'bn' ? 'বড়, ছোট অক্ষর, সংখ্যা ও স্পেশাল চিহ্ন সক্রিয়' : 'Upper, lower, number & symbol enforced'}</p>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-3 p-3 rounded-2xl bg-bg/60 border border-line/60">
-                      <CheckCircle2 size={16} className="text-emerald-500 shrink-0" />
+                    <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-white/90 dark:bg-surface/90 border-2 border-emerald-400/30 shadow-2xs hover:border-emerald-500 transition-colors">
+                      <div className="w-8 h-8 rounded-xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                        <CheckCircle2 size={16} />
+                      </div>
                       <div>
-                        <p className="font-bold text-primary">{lang === 'bn' ? 'ভেরিফাইড জিমেইল ডোমেইন' : 'Verified Gmail Domain'}</p>
+                        <p className="font-bold text-primary text-xs sm:text-sm">{lang === 'bn' ? 'ভেরিফাইড জিমেইল ডোমেইন' : 'Verified Gmail Domain'}</p>
                         <p className="text-[11px] text-muted">{lang === 'bn' ? 'নিরাপদ অর্গানিক নোটিফিকেশন চালু' : 'Secure order notifications active'}</p>
                       </div>
                     </div>
