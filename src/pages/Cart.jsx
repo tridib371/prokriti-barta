@@ -190,52 +190,57 @@ export default function Cart() {
           
           {/* Left Column: Cart Items List */}
           <div className="lg:col-span-7 bg-surface border border-line rounded-3xl p-4 sm:p-5 shadow-xs space-y-3">
-            <div className="flex items-center justify-between pb-2 border-b border-line">
-              <div className="flex items-center gap-2">
-                <ShoppingCart size={16} className="text-accent" />
-                <h2 className="font-display font-bold text-base text-primary">{t('cart.title')}</h2>
-                <span className="text-xs bg-bg text-muted px-2 py-0.5 rounded-full border border-line font-mono font-bold">
-                  {n(cart.length)} {t('cart.items')}
+            <div className="flex items-center justify-between pb-2 border-b border-line gap-2">
+              <div className="flex items-center gap-2 min-w-0">
+                <ShoppingCart size={16} className="text-accent shrink-0" />
+                <h2 className="font-display font-bold text-sm sm:text-base text-primary truncate">{t('cart.title')}</h2>
+                <span className="text-[11px] sm:text-xs bg-bg text-muted px-2 py-0.5 rounded-full border border-line font-mono font-bold shrink-0">
+                  {n(cart.reduce((a, b) => a + b.quantity, 0))} {t('cart.items')}
                 </span>
               </div>
               <button
                 onClick={clearCart}
-                className="text-xs text-muted hover:text-accent-2 font-medium flex items-center gap-1 transition-colors cursor-pointer"
+                className="text-xs text-muted hover:text-accent-2 font-medium flex items-center gap-1 transition-colors cursor-pointer shrink-0"
               >
-                <Trash2 size={12} />
+                <Trash2 size={13} />
                 <span>{t('btn.clearCart')}</span>
               </button>
             </div>
 
-            {/* Scrollable Items Container (Prevents Endless Page Height) */}
-            <div className="divide-y divide-line/60 max-h-[380px] overflow-y-auto pr-1">
+            {/* Scrollable Items Container (Prevents Endless Page Height & Fixes Mobile Overlap) */}
+            <div className="divide-y divide-line/60 max-h-[420px] overflow-y-auto pr-1">
               {cart.map(({ product, quantity }) => (
-                <div key={product.id} className="py-3 first:pt-0 last:pb-0 flex items-center justify-between gap-3">
+                <div key={product.id} className="py-3 first:pt-0 last:pb-0 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3">
+                  
+                  {/* Product Thumbnail & Details */}
                   <div className="flex items-center gap-3 min-w-0 flex-1">
                     <img
                       src={(product.images && product.images[0]) || product.image || '/PB.jpg'}
                       alt={product.name}
-                      className="w-14 h-14 object-cover rounded-xl bg-bg border border-line shrink-0"
+                      className="w-14 h-14 sm:w-15 sm:h-15 object-cover rounded-xl bg-bg border border-line shrink-0"
                     />
                     <div className="min-w-0 flex-1">
-                      <Link to={`/product/${product.slug}`} className="font-display font-bold text-xs sm:text-sm text-primary hover:text-accent transition-colors line-clamp-1">
+                      <Link to={`/product/${product.slug}`} className="font-display font-bold text-xs sm:text-sm text-primary hover:text-accent transition-colors line-clamp-1 block">
                         {lang === 'bn' ? (product.bnName || product.name) : product.name}
                       </Link>
                       <div className="flex items-center gap-2 mt-0.5">
                         <span className="text-xs font-bold text-accent">৳{n(product.price)}</span>
-                        <span className="text-[10px] text-muted bg-bg px-1.5 py-0.5 rounded border border-line font-mono">
-                          {n(product.weight)}
-                        </span>
+                        {product.weight && (
+                          <span className="text-[10px] text-muted bg-bg px-1.5 py-0.5 rounded border border-line font-mono">
+                            {n(product.weight)}
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 shrink-0">
+                  {/* Mobile-Friendly Stepper, Subtotal & Remove Controls */}
+                  <div className="flex items-center justify-between sm:justify-end gap-2.5 sm:gap-3 pl-17 sm:pl-0">
                     {/* Stepper */}
-                    <div className="flex items-center border border-line rounded-lg bg-bg p-0.5">
+                    <div className="flex items-center border border-line rounded-xl bg-bg p-0.5 shadow-2xs">
                       <button
                         onClick={() => updateQuantity(product.id, quantity - 1)}
-                        className="w-6 h-6 flex items-center justify-center text-muted hover:text-ink hover:bg-surface rounded transition-colors cursor-pointer"
+                        className="w-6 h-6 flex items-center justify-center text-muted hover:text-ink hover:bg-surface rounded-lg transition-colors cursor-pointer"
                         aria-label="Decrease quantity"
                       >
                         <Minus size={11} />
@@ -245,29 +250,30 @@ export default function Cart() {
                       </span>
                       <button
                         onClick={() => updateQuantity(product.id, quantity + 1)}
-                        className="w-6 h-6 flex items-center justify-center text-muted hover:text-ink hover:bg-surface rounded transition-colors cursor-pointer"
+                        className="w-6 h-6 flex items-center justify-center text-muted hover:text-ink hover:bg-surface rounded-lg transition-colors cursor-pointer"
                         aria-label="Increase quantity"
                       >
                         <Plus size={11} />
                       </button>
                     </div>
 
-                    {/* Total */}
-                    <div className="text-right min-w-[55px]">
+                    {/* Subtotal */}
+                    <div className="text-right min-w-[50px] sm:min-w-[60px]">
                       <span className="font-display font-bold text-xs sm:text-sm text-primary block">
                         ৳{n(product.price * quantity)}
                       </span>
                     </div>
 
-                    {/* Remove */}
+                    {/* Remove Action */}
                     <button
                       onClick={() => removeFromCart(product.id)}
-                      className="text-muted hover:text-accent-2 transition-colors p-1 rounded hover:bg-bg cursor-pointer"
+                      className="text-muted hover:text-accent-2 transition-colors p-1.5 rounded-lg hover:bg-accent-2/10 cursor-pointer"
                       title={lang === 'bn' ? 'মুছুন' : 'Remove'}
                     >
-                      <Trash2 size={14} />
+                      <Trash2 size={15} />
                     </button>
                   </div>
+
                 </div>
               ))}
             </div>
