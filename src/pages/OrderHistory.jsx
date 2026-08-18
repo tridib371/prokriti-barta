@@ -69,24 +69,30 @@ export default function OrderHistory() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
-        {/* Top Navigation Row - Balanced Mobile Layout */}
+        {/* Top Navigation Row - Fully Visible Clear Labels on Mobile & Desktop */}
         <div className="flex items-center justify-between gap-2.5 sm:gap-4 w-full">
           <Link 
             to="/profile" 
-            className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3 py-2 sm:px-4 sm:py-2.5 rounded-2xl bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 text-xs sm:text-sm font-bold text-ink hover:text-primary transition-all shadow-xs cursor-pointer active:scale-95 text-center min-w-0"
+            className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-2xl bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 text-xs sm:text-sm font-bold text-ink hover:text-primary transition-all shadow-xs cursor-pointer active:scale-95 text-center shrink-0"
           >
             <ArrowLeft size={15} className="text-accent shrink-0" />
-            <span className="truncate">{lang === 'bn' ? 'ড্যাশবোর্ডে ফিরুন' : 'Back to Dashboard'}</span>
+            <span className="whitespace-nowrap font-bn-sans">
+              <span className="sm:hidden">{lang === 'bn' ? 'ড্যাশবোর্ড' : 'Dashboard'}</span>
+              <span className="hidden sm:inline">{lang === 'bn' ? 'ড্যাশবোর্ডে ফিরুন' : 'Back to Dashboard'}</span>
+            </span>
           </Link>
 
-          <Link to="/shop" className="flex-1 sm:flex-initial min-w-0">
+          <Link to="/shop" className="flex-1 sm:flex-initial shrink-0">
             <Button 
               variant="accent" 
               size="sm" 
-              className="w-full sm:w-auto rounded-2xl font-bold shadow-xs px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm gap-1.5 cursor-pointer active:scale-95 justify-center"
+              className="w-full sm:w-auto rounded-2xl font-bold shadow-xs px-3.5 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm gap-1.5 cursor-pointer active:scale-95 justify-center"
             >
               <ShoppingBag size={15} className="shrink-0" />
-              <span className="truncate">{lang === 'bn' ? 'নতুন কেনাকাটা' : 'Continue Shopping'}</span>
+              <span className="whitespace-nowrap font-bn-sans">
+                <span className="sm:hidden">{lang === 'bn' ? 'কেনাকাটা' : 'Shop Now'}</span>
+                <span className="hidden sm:inline">{lang === 'bn' ? 'নতুন কেনাকাটা' : 'Continue Shopping'}</span>
+              </span>
             </Button>
           </Link>
         </div>
