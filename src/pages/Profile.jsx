@@ -34,13 +34,13 @@ export default function Profile() {
           {/* Account Menu Navigation */}
           <div className="lg:col-span-4">
             <div className="bg-surface border border-line rounded-3xl p-6 space-y-4">
-              <div className="flex items-center gap-4 pb-4 border-b border-line">
-                <div className="w-14 h-14 bg-accent/20 text-accent rounded-full flex items-center justify-center font-bold text-xl ring-2 ring-accent/30 shadow-sm shrink-0">
+              <div className="flex items-center gap-3 pb-4 border-b border-line">
+                <div className="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center font-bold text-sm ring-2 ring-accent/25 shadow-xs shrink-0">
                   {profileData.name.charAt(0)}
                 </div>
-                <div>
-                  <h3 className="font-bold text-base text-primary">{profileData.name}</h3>
-                  <p className="text-xs text-muted">{profileData.email}</p>
+                <div className="min-w-0">
+                  <h3 className="font-bold text-sm text-primary truncate">{profileData.name}</h3>
+                  <p className="text-xs text-muted truncate">{profileData.email}</p>
                 </div>
               </div>
 
