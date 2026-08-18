@@ -54,11 +54,20 @@ export default function Profile() {
   useEffect(() => {
     try {
       const stored = JSON.parse(localStorage.getItem('pb_orders') || '[]');
-      setOrders(Array.isArray(stored) ? stored : []);
+      if (Array.isArray(stored) && user?.email) {
+        const userOrders = stored.filter(ord => 
+          ord.userEmail?.toLowerCase() === user.email.toLowerCase() ||
+          ord.userId === user.id ||
+          ord.shippingAddress?.email?.toLowerCase() === user.email.toLowerCase()
+        );
+        setOrders(userOrders);
+      } else {
+        setOrders([]);
+      }
     } catch (e) {
       setOrders([]);
     }
-  }, []);
+  }, [user]);
 
   // Sync user state with formData
   useEffect(() => {

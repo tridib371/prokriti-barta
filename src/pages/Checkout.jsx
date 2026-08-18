@@ -79,6 +79,8 @@ export default function Checkout() {
 
       const newOrder = {
         id: orderId,
+        userId: user?.id || null,
+        userEmail: (user?.email || formData.email || '').toLowerCase(),
         date: new Date().toISOString().split('T')[0],
         status: 'Processing',
         paymentMethod: paymentMethod === 'cod' ? 'Cash on Delivery' : paymentMethod === 'mbanking' ? 'Mobile Banking (bKash/Nagad)' : 'Card Payment',
@@ -94,6 +96,7 @@ export default function Checkout() {
         shippingAddress: {
           name: formData.name.trim(),
           phone: cleanedPhone,
+          email: (user?.email || formData.email || '').toLowerCase(),
           address: formData.address.trim(),
           city: formData.division
         }

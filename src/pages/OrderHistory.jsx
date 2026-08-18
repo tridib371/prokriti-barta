@@ -3,20 +3,31 @@ import { Link } from 'react-router-dom';
 import { Package, Calendar, ArrowLeft, ShoppingBag } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
+import { useAuth } from '../context/AuthContext';
 import Button from '../components/ui/Button';
 
 export default function OrderHistory() {
   const [orders, setOrders] = useState([]);
+  const { user } = useAuth();
   const { t, n, lang } = useLanguage();
 
   useEffect(() => {
     try {
       const stored = JSON.parse(localStorage.getItem('pb_orders') || '[]');
-      setOrders(Array.isArray(stored) ? stored : []);
+      if (Array.isArray(stored) && user?.email) {
+        const userOrders = stored.filter(ord => 
+          ord.userEmail?.toLowerCase() === user.email.toLowerCase() ||
+          ord.userId === user.id ||
+          ord.shippingAddress?.email?.toLowerCase() === user.email.toLowerCase()
+        );
+        setOrders(userOrders);
+      } else {
+        setOrders([]);
+      }
     } catch (e) {
       setOrders([]);
     }
-  }, []);
+  }, [user]);
 
   return (
     <motion.div
