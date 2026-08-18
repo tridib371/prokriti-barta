@@ -21,7 +21,8 @@ import {
   ShoppingBag,
   ExternalLink,
   Plus,
-  Lock
+  Lock,
+  CheckCircle
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
@@ -253,44 +254,44 @@ export default function Profile() {
           </div>
         </div>
 
-        {/* 2. Interactive Navigation Tabs & Content Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* 2. Interactive Navigation Tabs & Content Layout with Pixel-Perfect Alignment */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
           {/* Left Navigation Sidebar */}
-          <div className="lg:col-span-4 space-y-4">
-            {/* Account Menu Card - Matches Brand Surface & Forest-Green Theme */}
-            <div className="bg-surface border-2 border-line hover:border-primary/30 rounded-3xl p-5 sm:p-6 space-y-3 shadow-xs transition-colors">
-              <span className="text-xs font-bold text-primary uppercase tracking-wider block px-3 pb-2.5 border-b border-line">
+          <div className="lg:col-span-4 flex flex-col gap-6">
+            {/* Account Menu Card */}
+            <div className="bg-surface border-2 border-line hover:border-primary/30 rounded-3xl p-6 space-y-4 shadow-xs transition-colors">
+              <span className="text-xs font-bold text-primary uppercase tracking-wider block pb-3 border-b border-line">
                 {lang === 'bn' ? 'অ্যাকাউন্ট মেনু' : 'Account Menu'}
               </span>
 
-              <nav className="space-y-1.5 pt-1 text-xs sm:text-sm font-bold font-bn-sans">
+              <nav className="space-y-2 text-xs sm:text-sm font-bold font-bn-sans">
                 <button
                   onClick={() => { setActiveTab('overview'); setIsEditing(false); }}
-                  className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl transition-all cursor-pointer ${
+                  className={`w-full flex items-center justify-between px-4 py-3.5 rounded-2xl transition-all cursor-pointer ${
                     activeTab === 'overview'
                       ? 'bg-primary text-white shadow-md shadow-primary/20'
                       : 'text-ink hover:bg-bg hover:text-primary'
                   }`}
                 >
                   <span className="flex items-center gap-3">
-                    <User size={17} className={activeTab === 'overview' ? 'text-accent' : 'text-primary/70'} />
-                    {lang === 'bn' ? 'ব্যক্তিগত তথ্য ও নিরাপত্তা' : 'Personal Info & Security'}
+                    <User size={18} className={activeTab === 'overview' ? 'text-accent' : 'text-primary/70'} />
+                    <span>{lang === 'bn' ? 'ব্যক্তিগত তথ্য ও নিরাপত্তা' : 'Personal Info & Security'}</span>
                   </span>
-                  <ChevronRight size={15} className={activeTab === 'overview' ? 'text-accent' : 'text-muted/40'} />
+                  <ChevronRight size={16} className={activeTab === 'overview' ? 'text-accent' : 'text-muted/40'} />
                 </button>
 
                 <button
                   onClick={() => { setActiveTab('orders'); setIsEditing(false); }}
-                  className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl transition-all cursor-pointer ${
+                  className={`w-full flex items-center justify-between px-4 py-3.5 rounded-2xl transition-all cursor-pointer ${
                     activeTab === 'orders'
                       ? 'bg-primary text-white shadow-md shadow-primary/20'
                       : 'text-ink hover:bg-bg hover:text-primary'
                   }`}
                 >
                   <span className="flex items-center gap-3">
-                    <Package size={17} className={activeTab === 'orders' ? 'text-accent' : 'text-primary/70'} />
-                    {t('profile.orders')}
+                    <Package size={18} className={activeTab === 'orders' ? 'text-accent' : 'text-primary/70'} />
+                    <span>{t('profile.orders')}</span>
                   </span>
                   <span className={`text-xs px-2.5 py-0.5 rounded-full font-mono font-bold ${
                     activeTab === 'orders' ? 'bg-accent text-white' : 'bg-primary/10 text-primary'
@@ -301,30 +302,30 @@ export default function Profile() {
 
                 <button
                   onClick={() => { setActiveTab('addresses'); setIsEditing(false); }}
-                  className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl transition-all cursor-pointer ${
+                  className={`w-full flex items-center justify-between px-4 py-3.5 rounded-2xl transition-all cursor-pointer ${
                     activeTab === 'addresses'
                       ? 'bg-primary text-white shadow-md shadow-primary/20'
                       : 'text-ink hover:bg-bg hover:text-primary'
                   }`}
                 >
                   <span className="flex items-center gap-3">
-                    <MapPin size={17} className={activeTab === 'addresses' ? 'text-accent' : 'text-primary/70'} />
-                    {lang === 'bn' ? 'সংরক্ষিত ঠিকানা' : 'Saved Addresses'}
+                    <MapPin size={18} className={activeTab === 'addresses' ? 'text-accent' : 'text-primary/70'} />
+                    <span>{lang === 'bn' ? 'সংরক্ষিত ঠিকানা' : 'Saved Addresses'}</span>
                   </span>
-                  <ChevronRight size={15} className={activeTab === 'addresses' ? 'text-accent' : 'text-muted/40'} />
+                  <ChevronRight size={16} className={activeTab === 'addresses' ? 'text-accent' : 'text-muted/40'} />
                 </button>
 
                 <button
                   onClick={() => { setActiveTab('rewards'); setIsEditing(false); }}
-                  className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl transition-all cursor-pointer ${
+                  className={`w-full flex items-center justify-between px-4 py-3.5 rounded-2xl transition-all cursor-pointer ${
                     activeTab === 'rewards'
                       ? 'bg-primary text-white shadow-md shadow-primary/20'
                       : 'text-ink hover:bg-bg hover:text-primary'
                   }`}
                 >
                   <span className="flex items-center gap-3">
-                    <Gift size={17} className={activeTab === 'rewards' ? 'text-accent' : 'text-primary/70'} />
-                    {lang === 'bn' ? 'ইকো ক্লাব ও রিওয়ার্ড' : 'Eco Club & Rewards'}
+                    <Gift size={18} className={activeTab === 'rewards' ? 'text-accent' : 'text-primary/70'} />
+                    <span>{lang === 'bn' ? 'ইকো ক্লাব ও রিওয়ার্ড' : 'Eco Club & Rewards'}</span>
                   </span>
                   <span className={`text-xs px-2 py-0.5 rounded-full font-bold ${
                     activeTab === 'rewards' ? 'bg-amber-400 text-primary' : 'bg-amber-400/20 text-amber-700'
@@ -335,11 +336,11 @@ export default function Profile() {
 
                 <Link
                   to="/wishlist"
-                  className="w-full flex items-center justify-between px-4 py-3 rounded-2xl text-ink hover:bg-bg hover:text-primary transition-all font-bn-sans"
+                  className="w-full flex items-center justify-between px-4 py-3.5 rounded-2xl text-ink hover:bg-bg hover:text-primary transition-all font-bn-sans"
                 >
                   <span className="flex items-center gap-3">
-                    <Heart size={17} className="text-accent" />
-                    {t('btn.wishlist')}
+                    <Heart size={18} className="text-accent" />
+                    <span>{t('btn.wishlist')}</span>
                   </span>
                   <span className="text-xs px-2.5 py-0.5 rounded-full bg-accent/15 text-accent font-mono font-bold">
                     {n(wishlist.length)}
@@ -348,20 +349,24 @@ export default function Profile() {
               </nav>
             </div>
 
-            {/* Organic Assurance Card */}
-            <div className="bg-surface border-2 border-line hover:border-primary/30 rounded-3xl p-5 space-y-3 shadow-xs transition-colors">
-              <div className="flex items-center gap-2.5 text-primary">
-                <ShieldCheck size={20} className="text-accent shrink-0" />
-                <h4 className="font-display font-bold text-sm text-primary">
-                  {lang === 'bn' ? 'নিরাপদ অর্গানিক সেবা' : '100% Organic Guarantee'}
-                </h4>
+            {/* Organic Assurance Card - Symmetrically Aligned */}
+            <div className="bg-surface border-2 border-line hover:border-primary/30 rounded-3xl p-6 space-y-3.5 shadow-xs transition-colors flex-1 flex flex-col justify-between">
+              <div className="space-y-2.5">
+                <div className="flex items-center gap-3 text-primary">
+                  <div className="w-9 h-9 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                    <ShieldCheck size={20} className="text-accent" />
+                  </div>
+                  <h4 className="font-display font-bold text-sm text-primary">
+                    {lang === 'bn' ? 'নিরাপদ অর্গানিক সেবা' : '100% Organic Guarantee'}
+                  </h4>
+                </div>
+                <p className="text-xs text-muted font-bn-sans leading-relaxed">
+                  {lang === 'bn' 
+                    ? 'আপনার প্রতিটি অর্ডার সর্বোচ্চ প্রাকৃতিক বিশুদ্ধতায় প্রক্রিয়াজাত ও দ্রুত ডেলিভারি করা হয়।' 
+                    : 'Every organic harvest is authentic, lab-tested, and freshly packaged upon your order.'}
+                </p>
               </div>
-              <p className="text-xs text-muted font-bn-sans leading-relaxed">
-                {lang === 'bn' 
-                  ? 'আপনার প্রতিটি অর্ডার সর্বোচ্চ প্রাকৃতিক বিশুদ্ধতায় প্রক্রিয়াজাত ও দ্রুত ডেলিভারি করা হয়।' 
-                  : 'Every organic harvest is authentic, lab-tested, and freshly packaged upon your order.'}
-              </p>
-              <Link to="/contact" className="inline-flex items-center gap-1.5 text-xs font-bold text-accent hover:underline font-bn-sans">
+              <Link to="/contact" className="inline-flex items-center gap-1.5 text-xs font-bold text-accent hover:underline font-bn-sans pt-2 border-t border-line">
                 <span>{lang === 'bn' ? 'কাস্টমার কেয়ার হেল্পলাইন' : 'Contact Customer Care'}</span>
                 <ExternalLink size={13} />
               </Link>
@@ -383,7 +388,7 @@ export default function Profile() {
                 <div className="bg-surface border-2 border-line hover:border-primary/30 rounded-3xl p-6 sm:p-8 space-y-6 shadow-xs transition-colors">
                   <div className="flex items-center justify-between pb-4 border-b border-line">
                     <div>
-                      <h2 className="font-display font-bold text-xl text-primary">
+                      <h2 className="font-display font-bold text-xl sm:text-2xl text-primary">
                         {lang === 'bn' ? 'ব্যক্তিগত তথ্য' : 'Personal Information'}
                       </h2>
                       <p className="text-xs text-muted font-bn-sans mt-0.5">
@@ -465,67 +470,89 @@ export default function Profile() {
                     </form>
                   ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm font-bn-sans">
-                      <div className="p-4.5 rounded-2xl bg-bg/70 border border-line">
-                        <span className="text-muted text-xs font-semibold block mb-1">{t('register.name')}:</span>
-                        <p className="font-bold text-primary text-base">{user?.name || formData.name || '-'}</p>
+                      {/* Name Tile */}
+                      <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-bg/70 border border-line">
+                        <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                          <User size={18} className="text-accent" />
+                        </div>
+                        <div className="min-w-0">
+                          <span className="text-muted text-[11px] font-semibold block">{t('register.name')}:</span>
+                          <p className="font-bold text-primary text-sm sm:text-base truncate">{user?.name || formData.name || '-'}</p>
+                        </div>
                       </div>
 
-                      <div className="p-4.5 rounded-2xl bg-bg/70 border border-line">
-                        <span className="text-muted text-xs font-semibold block mb-1">{t('register.phone')}:</span>
-                        <p className="font-bold text-primary text-base flex items-center gap-1.5">
-                          <Phone size={15} className="text-accent shrink-0" />
-                          <span>{(user?.phone || formData.phone) ? n(user?.phone || formData.phone) : <span className="text-muted text-xs italic">{lang === 'bn' ? 'যুক্ত করা হয়নি' : 'Not set'}</span>}</span>
-                        </p>
-                      </div>
-
-                      <div className="p-4.5 rounded-2xl bg-bg/70 border border-line">
-                        <span className="text-muted text-xs font-semibold block mb-1">{t('login.email')}:</span>
-                        <p className="font-bold text-primary text-sm flex items-center gap-1.5">
-                          <Mail size={15} className="text-accent shrink-0" />
-                          <span>{user?.email || 'user@gmail.com'}</span>
-                        </p>
-                      </div>
-
-                      <div className="p-4.5 rounded-2xl bg-bg/70 border border-line">
-                        <span className="text-muted text-xs font-semibold block mb-1">{lang === 'bn' ? 'মেম্বারশিপ শুরু:' : 'Member Since:'}</span>
-                        <p className="font-bold text-primary text-sm flex items-center gap-1.5">
-                          <Calendar size={15} className="text-accent shrink-0" />
-                          <span>{user?.joinedDate ? n(user.joinedDate) : (lang === 'bn' ? 'আজ' : 'Today')}</span>
-                        </p>
-                      </div>
-
-                      <div className="sm:col-span-2 p-4.5 rounded-2xl bg-bg/70 border border-line">
-                        <span className="text-muted text-xs font-semibold block mb-1">{lang === 'bn' ? 'ডিফল্ট ডেলিভারি ঠিকানা:' : 'Default Delivery Address:'}</span>
-                        {(user?.address || formData.address) ? (
-                          <p className="font-bold text-primary text-sm flex items-start gap-2">
-                            <MapPin size={17} className="text-accent shrink-0 mt-0.5" />
-                            <span>{user?.address || formData.address}</span>
+                      {/* Phone Tile */}
+                      <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-bg/70 border border-line">
+                        <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                          <Phone size={18} className="text-accent" />
+                        </div>
+                        <div className="min-w-0">
+                          <span className="text-muted text-[11px] font-semibold block">{t('register.phone')}:</span>
+                          <p className="font-bold text-primary text-sm sm:text-base truncate">
+                            {(user?.phone || formData.phone) ? n(user?.phone || formData.phone) : <span className="text-muted text-xs italic">{lang === 'bn' ? 'যুক্ত করা হয়নি' : 'Not set'}</span>}
                           </p>
-                        ) : (
-                          <div className="flex items-center justify-between pt-1">
-                            <span className="text-muted italic text-xs">
-                              {lang === 'bn' ? 'কোনো ডেলিভারি ঠিকানা এখনো সেট করা হয়নি।' : 'No delivery address added yet.'}
-                            </span>
-                            <button
-                              onClick={() => setIsEditing(true)}
-                              className="px-3 py-1 bg-accent/15 text-accent rounded-lg text-xs font-bold hover:bg-accent/25 flex items-center gap-1 cursor-pointer transition-colors"
-                            >
-                              <Plus size={13} />
-                              <span>{lang === 'bn' ? 'ঠিকানা যোগ করুন' : 'Add Address'}</span>
-                            </button>
-                          </div>
-                        )}
+                        </div>
+                      </div>
+
+                      {/* Email Tile */}
+                      <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-bg/70 border border-line">
+                        <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                          <Mail size={18} className="text-accent" />
+                        </div>
+                        <div className="min-w-0">
+                          <span className="text-muted text-[11px] font-semibold block">{t('login.email')}:</span>
+                          <p className="font-bold text-primary text-sm sm:text-base truncate">{user?.email || 'user@gmail.com'}</p>
+                        </div>
+                      </div>
+
+                      {/* Member Since Tile */}
+                      <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-bg/70 border border-line">
+                        <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                          <Calendar size={18} className="text-accent" />
+                        </div>
+                        <div className="min-w-0">
+                          <span className="text-muted text-[11px] font-semibold block">{lang === 'bn' ? 'মেম্বারশিপ শুরু:' : 'Member Since:'}</span>
+                          <p className="font-bold text-primary text-sm sm:text-base truncate">{user?.joinedDate ? n(user.joinedDate) : (lang === 'bn' ? 'আজ' : 'Today')}</p>
+                        </div>
+                      </div>
+
+                      {/* Default Delivery Address Tile */}
+                      <div className="sm:col-span-2 flex items-start gap-3.5 p-4.5 rounded-2xl bg-bg/70 border border-line">
+                        <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
+                          <MapPin size={18} className="text-accent" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <span className="text-muted text-[11px] font-semibold block">{lang === 'bn' ? 'ডিফল্ট ডেলিভারি ঠিকানা:' : 'Default Delivery Address:'}</span>
+                          {(user?.address || formData.address) ? (
+                            <p className="font-bold text-primary text-sm sm:text-base mt-0.5">
+                              {user?.address || formData.address}
+                            </p>
+                          ) : (
+                            <div className="flex items-center justify-between pt-1">
+                              <span className="text-muted italic text-xs">
+                                {lang === 'bn' ? 'কোনো ডেলিভারি ঠিকানা এখনো সেট করা হয়নি।' : 'No delivery address added yet.'}
+                              </span>
+                              <button
+                                onClick={() => setIsEditing(true)}
+                                className="px-3 py-1 bg-accent/15 text-accent rounded-lg text-xs font-bold hover:bg-accent/25 flex items-center gap-1 cursor-pointer transition-colors"
+                              >
+                                <Plus size={13} />
+                                <span>{lang === 'bn' ? 'ঠিকানা যোগ করুন' : 'Add Address'}</span>
+                              </button>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                   )}
                 </div>
 
-                {/* Account Security & Health Card - Matching Brand Guidelines */}
+                {/* Account Security & Health Card - Symmetrically Aligned */}
                 <div className="bg-surface border-2 border-line hover:border-primary/30 rounded-3xl p-6 sm:p-8 space-y-5 shadow-xs transition-colors">
                   <div className="flex items-center justify-between pb-3.5 border-b border-line">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-2xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                        <ShieldCheck size={22} />
+                        <ShieldCheck size={22} className="text-accent" />
                       </div>
                       <div>
                         <h3 className="font-display font-bold text-base sm:text-lg text-primary">
@@ -536,7 +563,7 @@ export default function Profile() {
                         </p>
                       </div>
                     </div>
-                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary border border-primary/20 font-bn-sans flex items-center gap-1">
+                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary border border-primary/20 font-bn-sans flex items-center gap-1.5">
                       <CheckCircle2 size={13} className="text-accent" />
                       <span>{lang === 'bn' ? '১০০% সুরক্ষিত' : '100% Secure'}</span>
                     </span>
@@ -544,20 +571,20 @@ export default function Profile() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-bn-sans">
                     <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-bg/70 border border-line hover:border-primary/30 transition-colors">
-                      <div className="w-8 h-8 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                        <Lock size={16} className="text-accent" />
+                      <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                        <Lock size={18} className="text-accent" />
                       </div>
-                      <div>
+                      <div className="min-w-0">
                         <p className="font-bold text-primary text-xs sm:text-sm">{lang === 'bn' ? 'কঠোর পাসওয়ার্ড মানদণ্ড' : 'Strict Password Standards'}</p>
                         <p className="text-[11px] text-muted">{lang === 'bn' ? 'বড়, ছোট অক্ষর, সংখ্যা ও স্পেশাল চিহ্ন সক্রিয়' : 'Upper, lower, number & symbol enforced'}</p>
                       </div>
                     </div>
 
                     <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-bg/70 border border-line hover:border-primary/30 transition-colors">
-                      <div className="w-8 h-8 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                        <Mail size={16} className="text-accent" />
+                      <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                        <Mail size={18} className="text-accent" />
                       </div>
-                      <div>
+                      <div className="min-w-0">
                         <p className="font-bold text-primary text-xs sm:text-sm">{lang === 'bn' ? 'ভেরিফাইড জিমেইল ডোমেইন' : 'Verified Gmail Domain'}</p>
                         <p className="text-[11px] text-muted">{lang === 'bn' ? 'নিরাপদ অর্গানিক নোটিফিকেশন চালু' : 'Secure order notifications active'}</p>
                       </div>
