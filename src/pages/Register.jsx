@@ -223,7 +223,7 @@ export default function Register() {
             </div>
 
             <div className="space-y-1">
-              <label className="block font-bold text-ink text-xs">{t('register.phone')} (১১ ডিজিট) *</label>
+              <label className="block font-bold text-ink text-xs">{t('register.phone')} ({lang === 'bn' ? '১১ ডিজিট' : '11 Digits'}) *</label>
               <div className="relative group">
                 <input
                   type="tel"
