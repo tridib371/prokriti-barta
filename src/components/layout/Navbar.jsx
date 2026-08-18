@@ -337,7 +337,12 @@ export default function Navbar() {
                     <p className="text-[10px] text-muted">{user?.email}</p>
                   </div>
                 </div>
-                <button onClick={logout} className="text-xs text-accent-2 font-bold px-3 py-1 bg-surface border border-line rounded-full hover:bg-accent-2/10 transition-colors">{t('nav.logout')}</button>
+                <button 
+                  onClick={logout} 
+                  className="text-xs text-accent-2 font-bold px-3.5 py-1.5 bg-surface border border-line rounded-full hover:bg-accent-2/10 transition-colors shrink-0 whitespace-nowrap font-bn-sans cursor-pointer"
+                >
+                  {t('nav.logout')}
+                </button>
               </div>
             )}
 
