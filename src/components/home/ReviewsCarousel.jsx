@@ -1,6 +1,6 @@
 import React from 'react';
 import MarqueeComponent from 'react-fast-marquee';
-import { Quote, CheckCircle } from 'lucide-react';
+import { Quote, CheckCircle, Sparkles, MessageSquareHeart } from 'lucide-react';
 import RatingStars from '../ui/RatingStars';
 import reviews from '../../data/reviews.json';
 import { useLanguage } from '../../context/LanguageContext';
@@ -11,13 +11,16 @@ export default function ReviewsCarousel() {
   const { t, lang } = useLanguage();
 
   return (
-    <section className="py-14 bg-bg border-t border-line overflow-hidden">
+    <section className="py-14 bg-bg border-t border-line overflow-hidden select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 text-center">
-        <span className="text-xs font-bold text-accent uppercase tracking-wider">{t('reviews.tag')}</span>
-        <h2 className="font-display font-bold text-2xl sm:text-3xl text-primary mt-1">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/15 border border-accent/30 text-accent font-bold text-xs uppercase tracking-wider mb-2">
+          <MessageSquareHeart size={14} className="text-accent" />
+          <span>{t('reviews.tag')}</span>
+        </div>
+        <h2 className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl text-primary">
           {t('reviews.title')}
         </h2>
-        <p className="text-xs text-muted font-bn-sans mt-1.5 max-w-lg mx-auto">
+        <p className="text-xs sm:text-sm text-muted font-bn-sans mt-2 max-w-lg mx-auto leading-relaxed">
           {lang === 'bn' 
             ? 'সারাদেশের শত শত পরিবারের খাঁটি ও নিরাপদ খাবারের বিশ্বস্ত অভিজ্ঞতা।' 
             : 'Authentic feedback and verified experiences from organic food lovers nationwide.'}
@@ -26,45 +29,70 @@ export default function ReviewsCarousel() {
 
       <div className="w-full py-2">
         <Marquee
-          speed={38}
+          speed={36}
           pauseOnHover={true}
           pauseOnClick={true}
           autoFill={true}
           gradient={true}
-          gradientWidth={60}
+          gradientWidth={70}
           className="overflow-y-visible"
         >
-          {reviews.map((rev) => (
-            <div
-              key={rev.id}
-              className="mx-3.5 w-[300px] sm:w-[350px] bg-surface border border-line p-5 rounded-3xl flex flex-col justify-between shadow-xs hover:shadow-md hover:border-accent/40 transition-all relative select-none"
-            >
-              <Quote className="text-accent/20 absolute top-4 right-4" size={28} />
+          {reviews.map((rev, idx) => {
+            const userName = lang === 'bn' ? (rev.userNameBn || rev.userName) : (rev.userNameEn || rev.userName);
+            const userInitial = userName.trim().charAt(0);
 
-              <div className="space-y-3 relative z-10">
-                <RatingStars rating={rev.rating} size={15} />
-                <p className="text-xs text-ink leading-relaxed font-bn-sans italic min-h-[48px]">
-                  "{lang === 'bn' ? (rev.commentBn || rev.comment) : (rev.commentEn || rev.comment)}"
-                </p>
-              </div>
+            return (
+              <div
+                key={rev.id || idx}
+                className="mx-3.5 w-[310px] sm:w-[360px] bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent p-5 sm:p-6 rounded-3xl flex flex-col justify-between shadow-[0_4px_16px_-3px_rgba(27,59,43,0.08)] hover:shadow-[0_14px_30px_-5px_rgba(200,109,59,0.22)] hover:-translate-y-1.5 transition-all duration-300 relative group overflow-hidden"
+              >
+                {/* Top Subtle Amber Glow Backlight */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-2xl pointer-events-none group-hover:bg-accent/20 transition-all duration-500" />
 
-              <div className="mt-4 pt-3 border-t border-line/60 flex items-center justify-between">
-                <div>
-                  <h4 className="font-bold text-xs text-primary">
-                    {lang === 'bn' ? (rev.userNameBn || rev.userName) : (rev.userNameEn || rev.userName)}
-                  </h4>
-                  <p className="text-[10px] text-muted">
-                    {lang === 'bn' ? (rev.userLocationBn || rev.userLocation) : (rev.userLocationEn || rev.userLocation)}
+                {/* Top Row: Rating & Quote Badge */}
+                <div className="flex items-center justify-between gap-3 relative z-10">
+                  <RatingStars rating={rev.rating} size={15} />
+                  
+                  <div className="w-8 h-8 rounded-xl bg-accent text-white flex items-center justify-center shadow-sm shadow-accent/30 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shrink-0">
+                    <Quote size={16} className="fill-white" />
+                  </div>
+                </div>
+
+                {/* Customer Comment Body */}
+                <div className="my-3.5 relative z-10">
+                  <p className="text-xs sm:text-[13px] text-ink font-bn-sans italic leading-relaxed min-h-[54px]">
+                    "{lang === 'bn' ? (rev.commentBn || rev.comment) : (rev.commentEn || rev.comment)}"
                   </p>
                 </div>
-                {rev.verifiedPurchase && (
-                  <span className="flex items-center gap-1 text-[10px] text-accent font-medium bg-accent/10 px-2 py-0.5 rounded-md">
-                    <CheckCircle size={11} /> {t('reviews.verified')}
-                  </span>
-                )}
+
+                {/* Bottom User Info & Verified Badge */}
+                <div className="pt-3.5 border-t-2 border-[#D8CEAB] flex items-center justify-between gap-2.5 relative z-10">
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    {/* User Initial Avatar Badge */}
+                    <div className="w-9 h-9 rounded-full bg-primary text-accent font-display font-bold text-xs flex items-center justify-center shrink-0 border border-accent/40 shadow-xs">
+                      {userInitial}
+                    </div>
+                    
+                    <div className="min-w-0">
+                      <h4 className="font-display font-bold text-xs sm:text-[13px] text-primary truncate group-hover:text-accent transition-colors">
+                        {userName}
+                      </h4>
+                      <p className="text-[10px] sm:text-[11px] text-muted font-bn-sans truncate">
+                        {lang === 'bn' ? (rev.userLocationBn || rev.userLocation) : (rev.userLocationEn || rev.userLocation)}
+                      </p>
+                    </div>
+                  </div>
+
+                  {rev.verifiedPurchase && (
+                    <span className="flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-100/90 border border-emerald-300 px-2 py-0.5 rounded-full shrink-0 shadow-2xs font-bn-sans">
+                      <CheckCircle size={11} className="text-emerald-700" />
+                      <span>{t('reviews.verified')}</span>
+                    </span>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </Marquee>
       </div>
     </section>
