@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { ShieldCheck, Truck, CreditCard, Banknote, Smartphone, ArrowLeft, CheckCircle2, ArrowRight, AlertCircle } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { motion } from 'framer-motion';
 import Button from '../components/ui/Button';
@@ -9,25 +10,39 @@ import AlponaLoader from '../components/ui/AlponaLoader';
 
 export default function Checkout() {
   const { cart, subtotal, deliveryCharge, total, clearCart } = useCart();
+  const { user, updateUser } = useAuth();
   const { t, n, lang } = useLanguage();
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
+    name: user?.name || '',
+    phone: user?.phone || '',
+    email: user?.email || '',
     division: 'Dhaka',
-    address: '',
+    address: user?.address || '',
     notes: '',
   });
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    if (user) {
+      setFormData(prev => ({
+        ...prev,
+        name: prev.name || user.name || '',
+        phone: prev.phone || user.phone || '',
+        email: prev.email || user.email || '',
+        address: prev.address || user.address || ''
+      }));
+    }
+  }, [user]);
 
   const [paymentMethod, setPaymentMethod] = useState('cod');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const finalVal = name === 'phone' ? value.replace(/\D/g, '').slice(0, 11) : value;
+    setFormData((prev) => ({ ...prev, [name]: finalVal }));
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: null }));
     }
@@ -35,13 +50,15 @@ export default function Checkout() {
 
   const validate = () => {
     const newErrors = {};
+    const cleanedPhone = formData.phone.replace(/\D/g, '');
+
     if (!formData.name.trim()) {
       newErrors.name = lang === 'bn' ? 'দয়া করে আপনার পূর্ণ নাম লিখুন' : 'Please enter your full name';
     }
     if (!formData.phone.trim()) {
       newErrors.phone = lang === 'bn' ? 'দয়া করে আপনার ফোন নম্বর লিখুন' : 'Please enter your phone number';
-    } else if (formData.phone.trim().length < 10) {
-      newErrors.phone = lang === 'bn' ? 'সঠিক ফোন নম্বর প্রদান করুন (কমপক্ষে ১১ ডিজিট)' : 'Please enter a valid phone number';
+    } else if (cleanedPhone.length !== 11) {
+      newErrors.phone = lang === 'bn' ? 'ফোন নম্বরটি অবশ্যই ১১ ডিজিটের হতে হবে' : 'Phone number must be exactly 11 digits';
     }
     if (!formData.address.trim()) {
       newErrors.address = lang === 'bn' ? 'দয়া করে পূর্ণ ডেলিভারি ঠিকানা লিখুন' : 'Please enter your full delivery address';
@@ -58,6 +75,8 @@ export default function Checkout() {
 
     setTimeout(() => {
       const orderId = `PB-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+      const cleanedPhone = formData.phone.replace(/\D/g, '');
+
       const newOrder = {
         id: orderId,
         date: new Date().toISOString().split('T')[0],
@@ -73,9 +92,9 @@ export default function Checkout() {
         deliveryCharge,
         total,
         shippingAddress: {
-          name: formData.name,
-          phone: formData.phone,
-          address: formData.address,
+          name: formData.name.trim(),
+          phone: cleanedPhone,
+          address: formData.address.trim(),
           city: formData.division
         }
       };
@@ -85,6 +104,16 @@ export default function Checkout() {
         localStorage.setItem('pb_orders', JSON.stringify([newOrder, ...existing]));
       } catch (err) {
         console.error('Failed to store order in localStorage:', err);
+      }
+
+      // Auto-save user shipping details to their profile if not present
+      if (user && updateUser) {
+        updateUser({
+          name: user.name || formData.name.trim(),
+          phone: user.phone || cleanedPhone,
+          address: user.address || formData.address.trim(),
+          city: formData.division
+        });
       }
 
       clearCart();

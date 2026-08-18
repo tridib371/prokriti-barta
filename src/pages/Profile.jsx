@@ -29,7 +29,6 @@ import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { useWishlist } from '../context/WishlistContext';
 import Button from '../components/ui/Button';
-import initialOrders from '../data/orders.json';
 
 export default function Profile() {
   const { user, updateUser, logout } = useAuth();
@@ -42,12 +41,12 @@ export default function Profile() {
   const [orders, setOrders] = useState([]);
   const [showToast, setShowToast] = useState(false);
 
-  // Edit form state
+  // Edit form state with strictly real user data
   const [formData, setFormData] = useState({
-    name: user?.name || (lang === 'bn' ? 'সাব্বির রহমান' : 'Sabbir Rahman'),
-    phone: user?.phone || '01717279166',
-    address: user?.address || 'House 42, Road 11, Block D, Banani, Dhaka-1213',
-    city: user?.city || 'Dhaka'
+    name: user?.name || '',
+    phone: user?.phone || '',
+    address: user?.address || '',
+    city: user?.city || ''
   });
 
   const [editErrors, setEditErrors] = useState({});
@@ -55,10 +54,9 @@ export default function Profile() {
   useEffect(() => {
     try {
       const stored = JSON.parse(localStorage.getItem('pb_orders') || '[]');
-      const combined = [...stored, ...initialOrders];
-      setOrders(combined);
+      setOrders(Array.isArray(stored) ? stored : []);
     } catch (e) {
-      setOrders(initialOrders);
+      setOrders([]);
     }
   }, []);
 
@@ -118,7 +116,9 @@ export default function Profile() {
   };
 
   const totalSpent = orders.reduce((acc, curr) => acc + (curr.total || 0), 0);
-  const userInitial = (user?.name || formData.name || 'U').trim().charAt(0);
+  const ecoPoints = Math.floor(totalSpent * 0.1);
+  const displayName = user?.name || formData.name || (user?.email ? user.email.split('@')[0] : 'User');
+  const userInitial = displayName.trim().charAt(0).toUpperCase() || 'U';
 
   return (
     <motion.div
@@ -154,13 +154,13 @@ export default function Profile() {
           <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
             {/* User Identity Column */}
             <div className="flex items-center gap-4 sm:gap-6">
-              {/* Perfectly Proportioned Avatar with Status Ring */}
+              {/* Perfectly Proportioned Circular Avatar */}
               <div className="relative shrink-0">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-accent text-white font-display font-bold text-2xl sm:text-3xl flex items-center justify-center ring-4 ring-white/20 shadow-xl">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-accent text-white font-display font-bold text-xl sm:text-2xl flex items-center justify-center ring-4 ring-white/20 shadow-xl">
                   {userInitial}
                 </div>
-                <div className="absolute bottom-0 right-0 w-5 h-5 rounded-full bg-emerald-500 border-2 border-primary shadow-xs flex items-center justify-center">
-                  <Check size={11} className="text-white stroke-[3]" />
+                <div className="absolute bottom-0 right-0 w-4.5 h-4.5 rounded-full bg-emerald-500 border-2 border-primary shadow-xs flex items-center justify-center">
+                  <Check size={10} className="text-white stroke-[3]" />
                 </div>
               </div>
 
@@ -168,11 +168,11 @@ export default function Profile() {
               <div className="space-y-1">
                 <div className="flex flex-wrap items-center gap-2">
                   <h1 className="font-display font-bold text-xl sm:text-3xl text-white tracking-wide">
-                    {user?.name || formData.name}
+                    {displayName}
                   </h1>
                   <span className="inline-flex items-center gap-1 text-[11px] font-bold text-amber-300 bg-amber-400/20 border border-amber-400/40 px-2.5 py-0.5 rounded-full shadow-2xs font-bn-sans">
                     <Award size={13} className="text-amber-300" />
-                    <span>{lang === 'bn' ? 'খাঁটি গ্রাহক গোল্ড' : 'Verified Gold Member'}</span>
+                    <span>{lang === 'bn' ? 'অর্গানিক সদস্য' : 'Organic Member'}</span>
                   </span>
                 </div>
 
@@ -181,10 +181,12 @@ export default function Profile() {
                     <Mail size={14} className="text-accent" />
                     {user?.email || 'user@gmail.com'}
                   </span>
-                  <span className="flex items-center gap-1.5">
-                    <Phone size={14} className="text-accent" />
-                    {n(user?.phone || formData.phone)}
-                  </span>
+                  {(user?.phone || formData.phone) && (
+                    <span className="flex items-center gap-1.5">
+                      <Phone size={14} className="text-accent" />
+                      {n(user?.phone || formData.phone)}
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
@@ -232,7 +234,7 @@ export default function Profile() {
             <div className="bg-white/10 backdrop-blur-md border border-white/10 p-3.5 sm:p-4 rounded-2xl">
               <span className="text-[11px] text-white/70 block font-bn-sans">{lang === 'bn' ? 'ইকো রিওয়ার্ড পয়েন্ট' : 'Eco Reward Points'}</span>
               <p className="font-display font-bold text-lg sm:text-2xl text-amber-300 mt-0.5">
-                {n(240)} <span className="text-xs font-normal text-white/70">Pts</span>
+                {n(ecoPoints)} <span className="text-xs font-normal text-white/70">Pts</span>
               </p>
             </div>
 
@@ -316,7 +318,7 @@ export default function Profile() {
                     {lang === 'bn' ? 'ইকো ক্লাব ও রিওয়ার্ড' : 'Eco Club & Rewards'}
                   </span>
                   <span className="text-xs px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-500 font-bold">
-                    Gold
+                    {n(ecoPoints)} Pts
                   </span>
                 </button>
 
@@ -335,7 +337,7 @@ export default function Profile() {
               </nav>
             </div>
 
-            {/* Quick Organic Support Card */}
+            {/* Organic Assurance Card */}
             <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] rounded-3xl p-5 space-y-3 shadow-xs">
               <div className="flex items-center gap-2.5 text-primary">
                 <ShieldCheck size={20} className="text-accent shrink-0" />
@@ -345,8 +347,8 @@ export default function Profile() {
               </div>
               <p className="text-xs text-muted font-bn-sans leading-relaxed">
                 {lang === 'bn' 
-                  ? 'আপনার প্রতিটি অর্ডার সর্বোচ্চ প্রাকৃতিক বিশুদ্ধতায় প্রক্রিয়াজাত ও প্যাকেজিং করা হয়।' 
-                  : 'Every item you order is authentically lab-tested, chemical-free, and carefully packaged.'}
+                  ? 'আপনার প্রতিটি অর্ডার সর্বোচ্চ প্রাকৃতিক বিশুদ্ধতায় প্রক্রিয়াজাত ও দ্রুত ডেলিভারি করা হয়।' 
+                  : 'Every organic harvest is authentic, lab-tested, and freshly packaged upon your order.'}
               </p>
               <Link to="/contact" className="inline-flex items-center gap-1.5 text-xs font-bold text-accent hover:underline font-bn-sans">
                 <span>{lang === 'bn' ? 'কাস্টমার কেয়ার হেল্পলাইন' : 'Contact Customer Care'}</span>
@@ -396,6 +398,7 @@ export default function Profile() {
                           <label className="block font-bold text-ink text-xs">{t('register.name')} *</label>
                           <input
                             type="text"
+                            placeholder={lang === 'bn' ? 'আপনার পূর্ণ নাম' : 'Full Name'}
                             value={formData.name}
                             onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                             className={`w-full bg-bg text-ink px-4 py-2.5 rounded-2xl border ${editErrors.name ? 'border-accent-2' : 'border-line focus:border-accent'} outline-none text-xs sm:text-sm font-bn-sans`}
@@ -408,6 +411,7 @@ export default function Profile() {
                           <input
                             type="tel"
                             maxLength={11}
+                            placeholder="01XXXXXXXXX"
                             value={formData.phone}
                             onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value.replace(/\D/g, '').slice(0, 11) }))}
                             className={`w-full bg-bg text-ink px-4 py-2.5 rounded-2xl border ${editErrors.phone ? 'border-accent-2' : 'border-line focus:border-accent'} outline-none text-xs sm:text-sm font-bn-sans`}
@@ -430,6 +434,7 @@ export default function Profile() {
                           <label className="block font-bold text-ink text-xs">{lang === 'bn' ? 'ডেলিভারি ঠিকানা' : 'Shipping Address'} *</label>
                           <textarea
                             rows={3}
+                            placeholder={lang === 'bn' ? 'বাসা/রোড নম্বর, এলাকা, জেলা' : 'House/Road number, Area, District'}
                             value={formData.address}
                             onChange={(e) => setFormData(prev => ({ ...prev, address: e.target.value }))}
                             className={`w-full bg-bg text-ink px-4 py-2.5 rounded-2xl border ${editErrors.address ? 'border-accent-2' : 'border-line focus:border-accent'} outline-none text-xs sm:text-sm font-bn-sans`}
@@ -451,14 +456,14 @@ export default function Profile() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs sm:text-sm font-bn-sans">
                       <div className="p-4 rounded-2xl bg-bg/60 border border-line/60">
                         <span className="text-muted text-[11px] font-bold block mb-1">{t('register.name')}:</span>
-                        <p className="font-bold text-primary text-base">{user?.name || formData.name}</p>
+                        <p className="font-bold text-primary text-base">{user?.name || formData.name || '-'}</p>
                       </div>
 
                       <div className="p-4 rounded-2xl bg-bg/60 border border-line/60">
                         <span className="text-muted text-[11px] font-bold block mb-1">{t('register.phone')}:</span>
                         <p className="font-bold text-primary text-base flex items-center gap-1.5">
                           <Phone size={15} className="text-accent shrink-0" />
-                          <span>{n(user?.phone || formData.phone)}</span>
+                          <span>{(user?.phone || formData.phone) ? n(user?.phone || formData.phone) : <span className="text-muted text-xs italic">{lang === 'bn' ? 'যুক্ত করা হয়নি' : 'Not set'}</span>}</span>
                         </p>
                       </div>
 
@@ -471,25 +476,40 @@ export default function Profile() {
                       </div>
 
                       <div className="p-4 rounded-2xl bg-bg/60 border border-line/60">
-                        <span className="text-muted text-[11px] font-bold block mb-1">{lang === 'bn' ? 'মেম্বারশিপ সক্রিয়:' : 'Member Since:'}</span>
+                        <span className="text-muted text-[11px] font-bold block mb-1">{lang === 'bn' ? 'মেম্বারশিপ শুরু:' : 'Member Since:'}</span>
                         <p className="font-bold text-primary text-sm flex items-center gap-1.5">
                           <Calendar size={15} className="text-accent shrink-0" />
-                          <span>{user?.joinedDate ? n(user.joinedDate) : (lang === 'bn' ? 'ফেব্রুয়ারি ২০২৬' : 'February 2026')}</span>
+                          <span>{user?.joinedDate ? n(user.joinedDate) : (lang === 'bn' ? 'আজ' : 'Today')}</span>
                         </p>
                       </div>
 
                       <div className="sm:col-span-2 p-4 rounded-2xl bg-bg/60 border border-line/60">
                         <span className="text-muted text-[11px] font-bold block mb-1">{lang === 'bn' ? 'ডিফল্ট ডেলিভারি ঠিকানা:' : 'Default Delivery Address:'}</span>
-                        <p className="font-bold text-primary text-sm flex items-start gap-2">
-                          <MapPin size={17} className="text-accent shrink-0 mt-0.5" />
-                          <span>{user?.address || formData.address}</span>
-                        </p>
+                        {(user?.address || formData.address) ? (
+                          <p className="font-bold text-primary text-sm flex items-start gap-2">
+                            <MapPin size={17} className="text-accent shrink-0 mt-0.5" />
+                            <span>{user?.address || formData.address}</span>
+                          </p>
+                        ) : (
+                          <div className="flex items-center justify-between pt-1">
+                            <span className="text-muted italic text-xs">
+                              {lang === 'bn' ? 'কোনো ডেলিভারি ঠিকানা এখনো সেট করা হয়নি।' : 'No delivery address added yet.'}
+                            </span>
+                            <button
+                              onClick={() => setIsEditing(true)}
+                              className="text-xs font-bold text-accent hover:underline flex items-center gap-1 cursor-pointer"
+                            >
+                              <Plus size={13} />
+                              <span>{lang === 'bn' ? 'ঠিকানা যোগ করুন' : 'Add Address'}</span>
+                            </button>
+                          </div>
+                        )}
                       </div>
                     </div>
                   )}
                 </div>
 
-                {/* Account Security & Quality Assurance Card */}
+                {/* Account Security & Health */}
                 <div className="bg-surface border-2 border-line rounded-3xl p-6 sm:p-8 space-y-4 shadow-xs">
                   <div className="flex items-center justify-between pb-3 border-b border-line">
                     <div className="flex items-center gap-2.5">
@@ -507,7 +527,7 @@ export default function Profile() {
                     <div className="flex items-center gap-3 p-3 rounded-2xl bg-bg/60 border border-line/60">
                       <CheckCircle2 size={16} className="text-emerald-500 shrink-0" />
                       <div>
-                        <p className="font-bold text-primary">{lang === 'bn' ? 'কঠোর পাসওয়ার্ড নিয়মাবলী' : 'Strict Password Standards'}</p>
+                        <p className="font-bold text-primary">{lang === 'bn' ? 'কঠোর পাসওয়ার্ড মানদণ্ড' : 'Strict Password Standards'}</p>
                         <p className="text-[11px] text-muted">{lang === 'bn' ? 'বড়, ছোট অক্ষর, সংখ্যা ও স্পেশাল চিহ্ন সক্রিয়' : 'Upper, lower, number & symbol enforced'}</p>
                       </div>
                     </div>
@@ -515,7 +535,7 @@ export default function Profile() {
                     <div className="flex items-center gap-3 p-3 rounded-2xl bg-bg/60 border border-line/60">
                       <CheckCircle2 size={16} className="text-emerald-500 shrink-0" />
                       <div>
-                        <p className="font-bold text-primary">{lang === 'bn' ? 'ভেরিফাইড ইমেইল ঠিকানা' : 'Verified Gmail Domain'}</p>
+                        <p className="font-bold text-primary">{lang === 'bn' ? 'ভেরিফাইড জিমেইল ডোমেইন' : 'Verified Gmail Domain'}</p>
                         <p className="text-[11px] text-muted">{lang === 'bn' ? 'নিরাপদ অর্গানিক নোটিফিকেশন চালু' : 'Secure order notifications active'}</p>
                       </div>
                     </div>
@@ -524,7 +544,7 @@ export default function Profile() {
               </motion.div>
             )}
 
-            {/* TAB 2: RECENT ORDERS SNEAK PEEK */}
+            {/* TAB 2: RECENT ORDERS */}
             {activeTab === 'orders' && (
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
@@ -536,10 +556,12 @@ export default function Profile() {
                   <h2 className="font-display font-bold text-xl text-primary">
                     {t('profile.orders')} ({n(orders.length)})
                   </h2>
-                  <Link to="/profile/orders" className="text-xs font-bold text-accent hover:underline font-bn-sans flex items-center gap-1">
-                    <span>{lang === 'bn' ? 'সকল অর্ডার দেখুন' : 'View Full History'}</span>
-                    <ExternalLink size={13} />
-                  </Link>
+                  {orders.length > 0 && (
+                    <Link to="/profile/orders" className="text-xs font-bold text-accent hover:underline font-bn-sans flex items-center gap-1">
+                      <span>{lang === 'bn' ? 'সকল অর্ডার দেখুন' : 'View Full History'}</span>
+                      <ExternalLink size={13} />
+                    </Link>
+                  )}
                 </div>
 
                 {orders.length === 0 ? (
@@ -576,7 +598,7 @@ export default function Profile() {
                                 ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
                                 : 'bg-amber-100 text-amber-800 border border-amber-300'
                             }`}>
-                              {ord.status === 'Delivered' ? (lang === 'bn' ? 'ডেলিভারি সম্পন্ন' : 'Delivered') : (lang === 'bn' ? 'প্রক্রিয়াধীন' : 'In Transit')}
+                              {ord.status === 'Delivered' ? (lang === 'bn' ? 'ডেলিভারি সম্পন্ন' : 'Delivered') : (lang === 'bn' ? 'প্রক্রিয়াধীন' : 'Processing')}
                             </span>
                           </div>
                         </div>
@@ -624,46 +646,50 @@ export default function Profile() {
                     className="px-3.5 py-1.5 bg-accent text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-xs cursor-pointer active:scale-95"
                   >
                     <Plus size={14} />
-                    <span>{lang === 'bn' ? 'ঠিকানা পরিবর্তন' : 'Edit Address'}</span>
+                    <span>{(user?.address || formData.address) ? (lang === 'bn' ? 'ঠিকানা পরিবর্তন' : 'Edit Address') : (lang === 'bn' ? 'ঠিকানা যোগ করুন' : 'Add Address')}</span>
                   </button>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* Primary Address Card */}
-                  <div className="bg-surface border-2 border-accent/50 rounded-3xl p-5 space-y-3 shadow-xs relative">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-bold text-accent bg-accent/15 px-2.5 py-0.5 rounded-full font-bn-sans">
-                        {lang === 'bn' ? 'ডিফল্ট প্রাইমারি ঠিকানা' : 'Primary Home Address'}
-                      </span>
-                      <CheckCircle2 size={16} className="text-accent" />
+                  {(user?.address || formData.address) ? (
+                    <div className="bg-surface border-2 border-accent/50 rounded-3xl p-5 space-y-3 shadow-xs relative sm:col-span-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[11px] font-bold text-accent bg-accent/15 px-2.5 py-0.5 rounded-full font-bn-sans">
+                          {lang === 'bn' ? 'ডিফল্ট ডেলিভারি ঠিকানা' : 'Primary Delivery Address'}
+                        </span>
+                        <CheckCircle2 size={16} className="text-accent" />
+                      </div>
+
+                      <h4 className="font-bold text-sm text-primary">{user?.name || formData.name}</h4>
+                      <p className="text-xs text-muted font-bn-sans leading-relaxed">
+                        {user?.address || formData.address}
+                      </p>
+                      <p className="text-xs text-primary font-bold font-bn-sans flex items-center gap-1.5 pt-2 border-t border-line/60">
+                        <Phone size={13} className="text-accent" /> {n(user?.phone || formData.phone)}
+                      </p>
                     </div>
-
-                    <h4 className="font-bold text-sm text-primary">{user?.name || formData.name}</h4>
-                    <p className="text-xs text-muted font-bn-sans leading-relaxed">
-                      {user?.address || formData.address}
-                    </p>
-                    <p className="text-xs text-primary font-bold font-bn-sans flex items-center gap-1.5 pt-2 border-t border-line/60">
-                      <Phone size={13} className="text-accent" /> {n(user?.phone || formData.phone)}
-                    </p>
-                  </div>
-
-                  {/* Secondary Office Address Card */}
-                  <div className="bg-surface border-2 border-line rounded-3xl p-5 space-y-3 shadow-xs relative">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-bold text-muted bg-line/50 px-2.5 py-0.5 rounded-full font-bn-sans">
-                        {lang === 'bn' ? 'অফিস / সেকেন্ডারি' : 'Office Address'}
-                      </span>
-                      <MapPin size={16} className="text-muted" />
+                  ) : (
+                    <div className="bg-surface border-2 border-dashed border-line rounded-3xl p-8 text-center space-y-3 sm:col-span-2">
+                      <div className="w-12 h-12 rounded-full bg-accent/15 text-accent flex items-center justify-center mx-auto">
+                        <MapPin size={22} />
+                      </div>
+                      <h4 className="font-display font-bold text-sm text-primary">
+                        {lang === 'bn' ? 'কোনো সংরক্ষিত ঠিকানা নেই' : 'No Saved Address Yet'}
+                      </h4>
+                      <p className="text-xs text-muted font-bn-sans max-w-xs mx-auto">
+                        {lang === 'bn' ? 'দ্রুত চেকআউট ও পণ্য ডেলিভারির সুবিধার্থে আপনার ঠিকানা যুক্ত করুন।' : 'Add your primary home delivery address for seamless checkout.'}
+                      </p>
+                      <Button
+                        onClick={() => { setIsEditing(true); setActiveTab('overview'); }}
+                        variant="accent"
+                        size="sm"
+                        className="rounded-xl font-bold"
+                      >
+                        <Plus size={14} />
+                        <span>{lang === 'bn' ? 'ঠিকানা যোগ করুন' : 'Add Delivery Address'}</span>
+                      </Button>
                     </div>
-
-                    <h4 className="font-bold text-sm text-primary">{user?.name || formData.name}</h4>
-                    <p className="text-xs text-muted font-bn-sans leading-relaxed">
-                      {lang === 'bn' ? 'লেভেল ৪, গ্রিন টাওয়ার, গুলশান-২, ঢাকা-১২১২' : 'Level 4, Green Tower, Gulshan-2, Dhaka-1212'}
-                    </p>
-                    <p className="text-xs text-primary font-bold font-bn-sans flex items-center gap-1.5 pt-2 border-t border-line/60">
-                      <Phone size={13} className="text-accent" /> {n(user?.phone || formData.phone)}
-                    </p>
-                  </div>
+                  )}
                 </div>
               </motion.div>
             )}
@@ -676,7 +702,7 @@ export default function Profile() {
                 transition={{ duration: 0.3 }}
                 className="space-y-6"
               >
-                {/* Eco Gold Membership Card */}
+                {/* Eco Club Membership Card */}
                 <div className="rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-[#2D5A43] via-[#1B3B2B] to-[#10241A] text-white border-2 border-amber-400/50 shadow-xl relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-60 h-60 bg-amber-400/20 rounded-full blur-3xl pointer-events-none" />
                   
@@ -687,16 +713,18 @@ export default function Profile() {
                         <span>{lang === 'bn' ? 'প্রকৃতি বার্তা ইকো ক্লাব' : 'Prokriti Barta Eco Club'}</span>
                       </div>
                       <h3 className="font-display font-bold text-2xl text-white">
-                        {lang === 'bn' ? 'গোল্ড মেম্বারশিপ সুবিধাসমূহ' : 'Gold Tier Member Privileges'}
+                        {lang === 'bn' ? 'ইকো ক্লাব সদস্য সুবিধাসমূহ' : 'Eco Club Privileges'}
                       </h3>
                       <p className="text-xs text-white/80 font-bn-sans mt-1">
-                        {lang === 'bn' ? 'আপনার ব্যালেন্সে রয়েছে ২৪০ অর্গানিক রিওয়ার্ড পয়েন্ট (৳২৪০ সমমূল্য)' : 'You have 240 active reward points worth ৳240 off next order'}
+                        {orders.length > 0 
+                          ? (lang === 'bn' ? `আপনার কেনাকাটায় মোট ${n(ecoPoints)} পয়েন্ট অর্জিত হয়েছে` : `You have earned ${n(ecoPoints)} points on your orders`)
+                          : (lang === 'bn' ? 'প্রতিটি অর্ডারে ১০% হারে অর্গানিক রিওয়ার্ড পয়েন্ট অর্জন করুন' : 'Earn 10% eco points on every order you place')}
                       </p>
                     </div>
 
                     <div className="bg-white/10 backdrop-blur-md px-4 py-3 rounded-2xl border border-white/20 text-center shrink-0">
                       <span className="text-[10px] text-white/70 block uppercase font-bold">{lang === 'bn' ? 'রিওয়ার্ড ব্যালেন্স' : 'Points Balance'}</span>
-                      <span className="font-display font-bold text-2xl text-amber-300">{n(240)} Pts</span>
+                      <span className="font-display font-bold text-2xl text-amber-300">{n(ecoPoints)} Pts</span>
                     </div>
                   </div>
 
@@ -708,7 +736,7 @@ export default function Profile() {
                     </div>
                     <div className="flex items-center gap-2.5 bg-white/10 p-3 rounded-2xl border border-white/10">
                       <Gift size={17} className="text-amber-300 shrink-0" />
-                      <span>{lang === 'bn' ? '৫% স্পেশাল মেম্বার ক্যাশব্যাক' : '5% Eco Member Cashback'}</span>
+                      <span>{lang === 'bn' ? 'অর্ডার প্রতি ১০% রিওয়ার্ড পয়েন্ট' : '10% Eco Reward Points'}</span>
                     </div>
                     <div className="flex items-center gap-2.5 bg-white/10 p-3 rounded-2xl border border-white/10">
                       <Clock size={17} className="text-teal-300 shrink-0" />

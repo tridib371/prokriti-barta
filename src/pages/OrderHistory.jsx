@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Package, Calendar, ArrowLeft } from 'lucide-react';
-import initialOrders from '../data/orders.json';
+import { Package, Calendar, ArrowLeft, ShoppingBag } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
+import Button from '../components/ui/Button';
 
 export default function OrderHistory() {
   const [orders, setOrders] = useState([]);
@@ -12,10 +12,9 @@ export default function OrderHistory() {
   useEffect(() => {
     try {
       const stored = JSON.parse(localStorage.getItem('pb_orders') || '[]');
-      const combined = [...stored, ...initialOrders];
-      setOrders(combined);
+      setOrders(Array.isArray(stored) ? stored : []);
     } catch (e) {
-      setOrders(initialOrders);
+      setOrders([]);
     }
   }, []);
 
