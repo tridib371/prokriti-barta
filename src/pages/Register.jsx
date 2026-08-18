@@ -29,13 +29,19 @@ export default function Register() {
   const handleRegister = (e) => {
     e.preventDefault();
     const errs = {};
+    const trimmedEmail = email.trim();
+    const isGmail = /^[a-zA-Z0-9._%+-]+@gmail\.com$/i.test(trimmedEmail);
     const cleanedPhone = phone.replace(/\D/g, '');
 
     if (!name.trim()) {
       errs.name = lang === 'bn' ? 'দয়া করে আপনার পূর্ণ নাম লিখুন' : 'Please enter your full name';
     }
-    if (!email.trim()) {
+    if (!trimmedEmail) {
       errs.email = lang === 'bn' ? 'দয়া করে আপনার ইমেইল এড্রেস লিখুন' : 'Please enter your email address';
+    } else if (!isGmail) {
+      errs.email = lang === 'bn' 
+        ? 'ইমেইল অবশ্যই @gmail.com যুক্ত হতে হবে (যেমন: example@gmail.com)' 
+        : 'Email must be a valid Gmail address ending with @gmail.com';
     }
     if (!phone.trim()) {
       errs.phone = lang === 'bn' ? 'দয়া করে আপনার ফোন নম্বর লিখুন' : 'Please enter your phone number';

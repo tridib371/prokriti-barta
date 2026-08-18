@@ -27,8 +27,15 @@ export default function Login() {
   const handleLogin = (e) => {
     e.preventDefault();
     const errs = {};
-    if (!email.trim()) {
+    const trimmedEmail = email.trim();
+    const isGmail = /^[a-zA-Z0-9._%+-]+@gmail\.com$/i.test(trimmedEmail);
+
+    if (!trimmedEmail) {
       errs.email = lang === 'bn' ? 'দয়া করে আপনার ইমেইল এড্রেস লিখুন' : 'Please enter your email';
+    } else if (!isGmail) {
+      errs.email = lang === 'bn' 
+        ? 'ইমেইল অবশ্যই @gmail.com যুক্ত হতে হবে (যেমন: example@gmail.com)' 
+        : 'Email must be a valid Gmail address ending with @gmail.com';
     }
     if (!password) {
       errs.password = lang === 'bn' ? 'দয়া করে আপনার পাসওয়ার্ড লিখুন' : 'Please enter your password';
