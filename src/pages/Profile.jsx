@@ -128,6 +128,26 @@ export default function Profile() {
     navigate('/');
   };
 
+  // Helper to smoothly scroll to exact section in mobile view
+  const scrollToSection = (elementId = 'profile-tab-content') => {
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+      setTimeout(() => {
+        const el = document.getElementById(elementId) || document.getElementById('profile-tab-content');
+        if (el) {
+          const yOffset = -80;
+          const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }, 80);
+    }
+  };
+
+  const handleTabChange = (tabName, editMode = false, targetId = 'profile-tab-content') => {
+    setActiveTab(tabName);
+    setIsEditing(editMode);
+    scrollToSection(targetId);
+  };
+
   const totalSpent = orders.reduce((acc, curr) => acc + (curr.total || 0), 0);
   const ecoPoints = Math.floor(totalSpent * 0.1);
   const displayName = user?.name || formData.name || (user?.email ? user.email.split('@')[0] : 'User');
@@ -205,10 +225,7 @@ export default function Profile() {
             {/* Quick Action Header Buttons */}
             <div className="flex items-center gap-2.5 self-start md:self-auto shrink-0">
               <button
-                onClick={() => {
-                  setIsEditing(true);
-                  setActiveTab('overview');
-                }}
+                onClick={() => handleTabChange('overview', true, 'profile-personal-info')}
                 className="px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-bold rounded-xl transition-all flex items-center gap-1.5 shadow-xs cursor-pointer active:scale-95"
               >
                 <Edit3 size={13} />
@@ -228,33 +245,45 @@ export default function Profile() {
 
           {/* Metric Stats Banner Strip (Compact Height) */}
           <div className="mt-4 pt-3.5 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 relative z-10">
-            <div className="bg-white/10 backdrop-blur-md border border-white/10 px-3 py-2 sm:py-2.5 rounded-xl">
+            <div 
+              onClick={() => handleTabChange('orders', false, 'profile-orders-section')}
+              className="bg-white/10 hover:bg-white/15 transition-colors cursor-pointer backdrop-blur-md border border-white/10 px-3 py-2 sm:py-2.5 rounded-xl"
+            >
               <span className="text-[10px] text-white/70 block font-bn-sans">{lang === 'bn' ? 'মোট অর্ডার' : 'Total Orders'}</span>
               <p className="font-display font-bold text-base sm:text-xl text-white mt-0.5">
                 {n(orders.length)}
               </p>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-md border border-white/10 px-3 py-2 sm:py-2.5 rounded-xl">
+            <div 
+              onClick={() => handleTabChange('orders', false, 'profile-orders-section')}
+              className="bg-white/10 hover:bg-white/15 transition-colors cursor-pointer backdrop-blur-md border border-white/10 px-3 py-2 sm:py-2.5 rounded-xl"
+            >
               <span className="text-[10px] text-white/70 block font-bn-sans">{lang === 'bn' ? 'সর্বমোট কেনাকাটা' : 'Total Spend'}</span>
               <p className="font-bn-sans font-bold text-base sm:text-xl text-accent mt-0.5">
                 ৳{n(totalSpent)}
               </p>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-md border border-white/10 px-3 py-2 sm:py-2.5 rounded-xl">
+            <div 
+              onClick={() => handleTabChange('rewards', false, 'profile-rewards-section')}
+              className="bg-white/10 hover:bg-white/15 transition-colors cursor-pointer backdrop-blur-md border border-white/10 px-3 py-2 sm:py-2.5 rounded-xl"
+            >
               <span className="text-[10px] text-white/70 block font-bn-sans">{lang === 'bn' ? 'ইকো রিওয়ার্ড পয়েন্ট' : 'Eco Reward Points'}</span>
               <p className="font-display font-bold text-base sm:text-xl text-amber-300 mt-0.5">
                 {n(ecoPoints)} <span className="text-[10px] font-normal text-white/70">Pts</span>
               </p>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-md border border-white/10 px-3 py-2 sm:py-2.5 rounded-xl">
+            <Link 
+              to="/wishlist"
+              className="bg-white/10 hover:bg-white/15 transition-colors backdrop-blur-md border border-white/10 px-3 py-2 sm:py-2.5 rounded-xl block"
+            >
               <span className="text-[10px] text-white/70 block font-bn-sans">{lang === 'bn' ? 'পছন্দের পণ্য' : 'Wishlist Items'}</span>
               <p className="font-display font-bold text-base sm:text-xl text-white mt-0.5">
                 {n(wishlist.length)}
               </p>
-            </div>
+            </Link>
           </div>
         </div>
 
@@ -271,7 +300,7 @@ export default function Profile() {
 
               <nav className="space-y-2 text-xs sm:text-sm font-bold font-bn-sans">
                 <button
-                  onClick={() => { setActiveTab('overview'); setIsEditing(false); }}
+                  onClick={() => handleTabChange('overview', false, 'profile-personal-info')}
                   className={`w-full flex items-center justify-between px-4 py-3.5 rounded-2xl transition-all cursor-pointer ${
                     activeTab === 'overview'
                       ? 'bg-primary text-white shadow-md shadow-primary/20'
@@ -286,7 +315,7 @@ export default function Profile() {
                 </button>
 
                 <button
-                  onClick={() => { setActiveTab('orders'); setIsEditing(false); }}
+                  onClick={() => handleTabChange('orders', false, 'profile-orders-section')}
                   className={`w-full flex items-center justify-between px-4 py-3.5 rounded-2xl transition-all cursor-pointer ${
                     activeTab === 'orders'
                       ? 'bg-primary text-white shadow-md shadow-primary/20'
@@ -305,7 +334,7 @@ export default function Profile() {
                 </button>
 
                 <button
-                  onClick={() => { setActiveTab('addresses'); setIsEditing(false); }}
+                  onClick={() => handleTabChange('addresses', false, 'profile-addresses-section')}
                   className={`w-full flex items-center justify-between px-4 py-3.5 rounded-2xl transition-all cursor-pointer ${
                     activeTab === 'addresses'
                       ? 'bg-primary text-white shadow-md shadow-primary/20'
@@ -320,7 +349,7 @@ export default function Profile() {
                 </button>
 
                 <button
-                  onClick={() => { setActiveTab('rewards'); setIsEditing(false); }}
+                  onClick={() => handleTabChange('rewards', false, 'profile-rewards-section')}
                   className={`w-full flex items-center justify-between px-4 py-3.5 rounded-2xl transition-all cursor-pointer ${
                     activeTab === 'rewards'
                       ? 'bg-primary text-white shadow-md shadow-primary/20'
@@ -378,7 +407,7 @@ export default function Profile() {
           </div>
 
           {/* Right Detailed Tab Content Area */}
-          <div className="lg:col-span-8 space-y-6">
+          <div id="profile-tab-content" className="lg:col-span-8 space-y-6 scroll-mt-24">
             
             {/* TAB 1: OVERVIEW & PERSONAL INFORMATION */}
             {activeTab === 'overview' && (
@@ -389,7 +418,7 @@ export default function Profile() {
                 className="space-y-6"
               >
                 {/* Personal Information Box - Green Border */}
-                <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 hover:border-primary rounded-3xl p-6 sm:p-8 space-y-6 shadow-xs transition-colors">
+                <div id="profile-personal-info" className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 hover:border-primary rounded-3xl p-6 sm:p-8 space-y-6 shadow-xs transition-colors scroll-mt-24">
                   <div className="flex items-center justify-between pb-4 border-b-2 border-primary/20">
                     <div>
                       <h2 className="font-display font-bold text-xl sm:text-2xl text-primary">
@@ -402,7 +431,7 @@ export default function Profile() {
 
                     {!isEditing && (
                       <button
-                        onClick={() => setIsEditing(true)}
+                        onClick={() => { setIsEditing(true); scrollToSection('profile-personal-info'); }}
                         className="px-4 py-2 bg-primary hover:bg-primary/90 text-white rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer active:scale-95"
                       >
                         <Edit3 size={14} />
@@ -552,7 +581,7 @@ export default function Profile() {
                 </div>
 
                 {/* Account Security & Health Card - Green Border */}
-                <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 hover:border-primary rounded-3xl p-6 sm:p-8 space-y-5 shadow-xs transition-colors">
+                <div id="profile-security-section" className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 hover:border-primary rounded-3xl p-6 sm:p-8 space-y-5 shadow-xs transition-colors scroll-mt-24">
                   <div className="flex items-center justify-between pb-3.5 border-b-2 border-primary/20">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-2xl bg-white/80 border border-primary/20 text-primary flex items-center justify-center shrink-0 shadow-2xs">
@@ -604,7 +633,8 @@ export default function Profile() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
-                className="space-y-4"
+                id="profile-orders-section"
+                className="space-y-4 scroll-mt-24"
               >
                 <div className="flex items-center justify-between">
                   <h2 className="font-display font-bold text-xl text-primary">
@@ -689,14 +719,15 @@ export default function Profile() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
-                className="space-y-5"
+                id="profile-addresses-section"
+                className="space-y-5 scroll-mt-24"
               >
                 <div className="flex items-center justify-between">
                   <h2 className="font-display font-bold text-xl text-primary">
                     {lang === 'bn' ? 'সংরক্ষিত ডেলিভারি ঠিকানা' : 'Saved Shipping Addresses'}
                   </h2>
                   <button
-                    onClick={() => { setIsEditing(true); setActiveTab('overview'); }}
+                    onClick={() => handleTabChange('overview', true, 'profile-personal-info')}
                     className="px-3.5 py-1.5 bg-accent text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-xs cursor-pointer active:scale-95"
                   >
                     <Plus size={14} />
@@ -734,7 +765,7 @@ export default function Profile() {
                         {lang === 'bn' ? 'দ্রুত চেকআউট ও পণ্য ডেলিভারির সুবিধার্থে আপনার ঠিকানা যুক্ত করুন।' : 'Add your primary home delivery address for seamless checkout.'}
                       </p>
                       <Button
-                        onClick={() => { setIsEditing(true); setActiveTab('overview'); }}
+                        onClick={() => handleTabChange('overview', true, 'profile-personal-info')}
                         variant="accent"
                         size="sm"
                         className="rounded-xl font-bold"
@@ -754,7 +785,8 @@ export default function Profile() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
-                className="space-y-6"
+                id="profile-rewards-section"
+                className="space-y-6 scroll-mt-24"
               >
                 {/* Eco Club Membership Card */}
                 <div className="rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-[#2D5A43] via-[#1B3B2B] to-[#10241A] text-white border-2 border-amber-400/50 shadow-xl relative overflow-hidden">
