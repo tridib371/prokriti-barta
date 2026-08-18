@@ -297,93 +297,115 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* 4. Mobile Drawer Menu */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 flex md:hidden">
-          <div className="fixed inset-0 bg-ink/60 backdrop-blur-xs" onClick={() => setMobileMenuOpen(false)} />
-          <div className="relative w-4/5 max-w-sm bg-surface h-full shadow-2xl flex flex-col p-5 overflow-y-auto">
-            <div className="flex items-center justify-between pb-4 border-b border-line">
-              <span className="font-display font-bold text-lg text-primary">{t('nav.menu')}</span>
-              <div className="flex items-center gap-2">
-                <LanguageToggle />
-                <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-muted hover:text-ink">
-                  <X size={20} />
-                </button>
+      {/* 4. Mobile Drawer Menu with Full Mouse Wheel & Touch Scrolling Support */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <div className="fixed inset-0 z-50 flex md:hidden" data-lenis-prevent="true">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-ink/60 backdrop-blur-xs cursor-pointer" 
+              onClick={() => setMobileMenuOpen(false)} 
+            />
+            <motion.div 
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 280 }}
+              data-lenis-prevent="true"
+              className="relative w-4/5 max-w-sm bg-surface h-full shadow-2xl flex flex-col z-10 overflow-hidden"
+            >
+              {/* Fixed Header */}
+              <div className="flex items-center justify-between p-5 pb-4 border-b border-line shrink-0">
+                <span className="font-display font-bold text-lg text-primary">{t('nav.menu')}</span>
+                <div className="flex items-center gap-2">
+                  <LanguageToggle />
+                  <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-muted hover:text-ink cursor-pointer">
+                    <X size={20} />
+                  </button>
+                </div>
               </div>
-            </div>
 
-            {/* Mobile Auth status */}
-            {!isAuthenticated ? (
-              <div className="my-4 flex gap-2">
-                <Link to="/login" onClick={() => setMobileMenuOpen(false)} className="flex-1">
-                  <button className="w-full py-2.5 bg-bg border border-line rounded-xl text-xs font-bold text-primary flex items-center justify-center gap-1.5 hover:bg-line/20">
-                    <LogIn size={15} /> {t('nav.signin')}
-                  </button>
-                </Link>
-                <Link to="/register" onClick={() => setMobileMenuOpen(false)} className="flex-1">
-                  <button className="w-full py-2.5 bg-accent text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs hover:bg-accent/90">
-                    <UserPlus size={15} /> {t('nav.signup')}
-                  </button>
-                </Link>
-              </div>
-            ) : (
-              <div className="my-4 p-3 bg-bg rounded-2xl flex items-center justify-between border border-line">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-full bg-accent text-white font-bold flex items-center justify-center text-xs ring-2 ring-accent/30 shadow-xs">
-                    {user?.name?.charAt(0) || 'U'}
+              {/* Scrollable Body with Native & Lenis-Prevented Mouse Scrolling */}
+              <div 
+                data-lenis-prevent="true"
+                className="flex-1 min-h-0 overflow-y-auto overscroll-contain p-5 space-y-4"
+              >
+                {/* Mobile Auth status */}
+                {!isAuthenticated ? (
+                  <div className="flex gap-2">
+                    <Link to="/login" onClick={() => setMobileMenuOpen(false)} className="flex-1">
+                      <button className="w-full py-2.5 bg-bg border border-line rounded-xl text-xs font-bold text-primary flex items-center justify-center gap-1.5 hover:bg-line/20 cursor-pointer">
+                        <LogIn size={15} /> {t('nav.signin')}
+                      </button>
+                    </Link>
+                    <Link to="/register" onClick={() => setMobileMenuOpen(false)} className="flex-1">
+                      <button className="w-full py-2.5 bg-accent text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs hover:bg-accent/90 cursor-pointer">
+                        <UserPlus size={15} /> {t('nav.signup')}
+                      </button>
+                    </Link>
                   </div>
-                  <div>
-                    <p className="font-bold text-xs text-primary">{user?.name}</p>
-                    <p className="text-[10px] text-muted">{user?.email}</p>
+                ) : (
+                  <div className="p-3 bg-bg rounded-2xl flex items-center justify-between border border-line">
+                    <div className="flex items-center gap-2.5 min-w-0 pr-2">
+                      <div className="w-9 h-9 rounded-full bg-accent text-white font-bold flex items-center justify-center text-xs ring-2 ring-accent/30 shadow-xs shrink-0">
+                        {user?.name?.charAt(0) || 'U'}
+                      </div>
+                      <div className="min-w-0">
+                        <p className="font-bold text-xs text-primary truncate">{user?.name}</p>
+                        <p className="text-[10px] text-muted truncate">{user?.email}</p>
+                      </div>
+                    </div>
+                    <button 
+                      onClick={logout} 
+                      className="text-xs text-accent-2 font-bold px-3.5 py-1.5 bg-surface border border-line rounded-full hover:bg-accent-2/10 transition-colors shrink-0 whitespace-nowrap font-bn-sans cursor-pointer"
+                    >
+                      {t('nav.logout')}
+                    </button>
+                  </div>
+                )}
+
+                {/* Mobile Nav Links */}
+                <div className="flex flex-col space-y-1 font-medium pt-1">
+                  {navLinks.map((link) => (
+                    <Link
+                      key={link.path}
+                      to={link.path}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="py-2.5 text-ink hover:text-accent border-b border-line/40 flex items-center justify-between font-bn-sans text-sm transition-colors"
+                    >
+                      <span>{t(link.key)}</span>
+                      {link.badge && (
+                        <span className="text-[10px] bg-accent-2 text-white px-1.5 py-0.5 rounded font-bold">
+                          {link.badge}
+                        </span>
+                      )}
+                    </Link>
+                  ))}
+                </div>
+
+                {/* Mobile Categories */}
+                <div className="pt-2 border-t border-line">
+                  <h4 className="text-xs uppercase tracking-wider text-muted font-bold mb-3">{t('nav.categories.mobile')}</h4>
+                  <div className="space-y-1">
+                    {categories.map((cat) => (
+                      <Link
+                        key={cat.id}
+                        to={`/shop?category=${cat.slug}`}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="block text-sm text-ink hover:text-accent py-2 border-b border-line/20 font-bn-sans transition-colors"
+                      >
+                        {lang === 'bn' ? cat.bnName : cat.name}
+                      </Link>
+                    ))}
                   </div>
                 </div>
-                <button 
-                  onClick={logout} 
-                  className="text-xs text-accent-2 font-bold px-3.5 py-1.5 bg-surface border border-line rounded-full hover:bg-accent-2/10 transition-colors shrink-0 whitespace-nowrap font-bn-sans cursor-pointer"
-                >
-                  {t('nav.logout')}
-                </button>
               </div>
-            )}
-
-            {/* Mobile Nav Links */}
-            <div className="flex flex-col space-y-3 font-medium my-2">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="py-2 text-ink hover:text-accent border-b border-line/40 flex items-center justify-between font-bn-sans text-sm"
-                >
-                  <span>{t(link.key)}</span>
-                  {link.badge && (
-                    <span className="text-[10px] bg-accent-2 text-white px-1.5 py-0.5 rounded font-bold">
-                      {link.badge}
-                    </span>
-                  )}
-                </Link>
-              ))}
-            </div>
-
-            {/* Mobile Categories */}
-            <div className="mt-4 pt-4 border-t border-line">
-              <h4 className="text-xs uppercase tracking-wider text-muted font-bold mb-3">{t('nav.categories.mobile')}</h4>
-              <div className="space-y-2">
-                {categories.map((cat) => (
-                  <Link
-                    key={cat.id}
-                    to={`/shop?category=${cat.slug}`}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="block text-sm text-ink hover:text-accent py-1.5 border-b border-line/20 font-bn-sans"
-                  >
-                    {lang === 'bn' ? cat.bnName : cat.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
+            </motion.div>
           </div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
     </header>
   );
 }
