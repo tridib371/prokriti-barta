@@ -345,7 +345,7 @@ export default function Checkout() {
                 {t('checkout.orderSummary')}
               </h2>
 
-              <div className="max-h-60 overflow-y-auto space-y-3 pr-1">
+              <div className="space-y-3">
                 {cart.map(({ product, quantity }) => (
                   <div key={product.id} className="flex justify-between items-center text-xs">
                     <div className="flex items-center gap-2">

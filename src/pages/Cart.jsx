@@ -207,8 +207,8 @@ export default function Cart() {
               </button>
             </div>
 
-            {/* Scrollable Items Container (Prevents Endless Page Height & Fixes Mobile Overlap) */}
-            <div className="divide-y divide-line/60 max-h-[420px] overflow-y-auto pr-1">
+            {/* Items Container - Flows naturally with the page to avoid duplicate scrollbars */}
+            <div className="divide-y divide-line/60">
               {cart.map(({ product, quantity }) => (
                 <div key={product.id} className="py-3 first:pt-0 last:pb-0 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3">
                   
