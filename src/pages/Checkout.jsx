@@ -41,7 +41,7 @@ export default function Checkout() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const finalVal = name === 'phone' ? value.replace(/\D/g, '').slice(0, 11) : value;
+    const finalVal = name === 'phone' ? value.replace(/\D/g, '') : value;
     setFormData((prev) => ({ ...prev, [name]: finalVal }));
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: null }));
@@ -51,6 +51,7 @@ export default function Checkout() {
   const validate = () => {
     const newErrors = {};
     const cleanedPhone = formData.phone.replace(/\D/g, '');
+    const isValidBDMobile = /^01[3-9]\d{8}$/.test(cleanedPhone);
 
     if (!formData.name.trim()) {
       newErrors.name = lang === 'bn' ? 'দয়া করে আপনার পূর্ণ নাম লিখুন' : 'Please enter your full name';
@@ -58,7 +59,13 @@ export default function Checkout() {
     if (!formData.phone.trim()) {
       newErrors.phone = lang === 'bn' ? 'দয়া করে আপনার ফোন নম্বর লিখুন' : 'Please enter your phone number';
     } else if (cleanedPhone.length !== 11) {
-      newErrors.phone = lang === 'bn' ? 'ফোন নম্বরটি অবশ্যই ১১ ডিজিটের হতে হবে' : 'Phone number must be exactly 11 digits';
+      newErrors.phone = lang === 'bn' 
+        ? `ফোন নম্বরটি অবশ্যই ঠিক ১১ ডিজিটের হতে হবে (আপনি ${cleanedPhone.length} ডিজিট দিয়েছেন)` 
+        : `Phone number must be exactly 11 digits (you entered ${cleanedPhone.length} digits)`;
+    } else if (!isValidBDMobile) {
+      newErrors.phone = lang === 'bn'
+        ? 'অবৈধ মোবাইল নম্বর। ০১ দিয়ে শুরু হওয়া ১১ ডিজিটের সঠিক নম্বর দিন (যেমন: ০১৭১৭২৭৯১৬৬)'
+        : 'Invalid mobile number. Must start with 013-019 and have exactly 11 digits';
     }
     if (!formData.address.trim()) {
       newErrors.address = lang === 'bn' ? 'দয়া করে পূর্ণ ডেলিভারি ঠিকানা লিখুন' : 'Please enter your full delivery address';

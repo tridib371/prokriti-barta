@@ -32,6 +32,7 @@ export default function Register() {
     const trimmedEmail = email.trim();
     const isGmail = /^[a-zA-Z0-9._%+-]+@gmail\.com$/i.test(trimmedEmail);
     const cleanedPhone = phone.replace(/\D/g, '');
+    const isValidBDMobile = /^01[3-9]\d{8}$/.test(cleanedPhone);
 
     if (!name.trim()) {
       errs.name = lang === 'bn' ? 'দয়া করে আপনার পূর্ণ নাম লিখুন' : 'Please enter your full name';
@@ -47,8 +48,12 @@ export default function Register() {
       errs.phone = lang === 'bn' ? 'দয়া করে আপনার ফোন নম্বর লিখুন' : 'Please enter your phone number';
     } else if (cleanedPhone.length !== 11) {
       errs.phone = lang === 'bn' 
-        ? 'ফোন নম্বরটি অবশ্যই ১১ ডিজিটের হতে হবে (যেমন: ০১৭১৭২৭৯১৬৬)' 
-        : 'Phone number must be exactly 11 digits (e.g. 01717279166)';
+        ? `ফোন নম্বরটি অবশ্যই ঠিক ১১ ডিজিটের হতে হবে (আপনি ${cleanedPhone.length} ডিজিট দিয়েছেন)` 
+        : `Phone number must be exactly 11 digits (you entered ${cleanedPhone.length} digits)`;
+    } else if (!isValidBDMobile) {
+      errs.phone = lang === 'bn'
+        ? 'অবৈধ মোবাইল নম্বর। ০১ দিয়ে শুরু হওয়া ১১ ডিজিটের সঠিক নম্বর দিন (যেমন: ০১৭১৭২৭৯১৬৬)'
+        : 'Invalid mobile number. Must start with 013-019 and have exactly 11 digits (e.g. 01717279166)';
     }
 
     if (!password) {
@@ -234,10 +239,10 @@ export default function Register() {
                 <input
                   type="tel"
                   placeholder="01717279166"
-                  maxLength={11}
+                  maxLength={15}
                   value={phone}
                   onChange={(e) => {
-                    const val = e.target.value.replace(/\D/g, '').slice(0, 11);
+                    const val = e.target.value.replace(/\D/g, '');
                     setPhone(val);
                     if (fieldErrors.phone) setFieldErrors(prev => ({ ...prev, phone: null }));
                   }}

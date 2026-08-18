@@ -85,6 +85,7 @@ export default function Profile() {
     e.preventDefault();
     const errs = {};
     const cleanedPhone = formData.phone.replace(/\D/g, '');
+    const isValidBDMobile = /^01[3-9]\d{8}$/.test(cleanedPhone);
 
     if (!formData.name.trim()) {
       errs.name = lang === 'bn' ? 'দয়া করে নাম লিখুন' : 'Name is required';
@@ -93,8 +94,12 @@ export default function Profile() {
       errs.phone = lang === 'bn' ? 'দয়া করে ফোন নম্বর লিখুন' : 'Phone is required';
     } else if (cleanedPhone.length !== 11) {
       errs.phone = lang === 'bn' 
-        ? 'ফোন নম্বরটি অবশ্যই ১১ ডিজিটের হতে হবে' 
-        : 'Phone number must be exactly 11 digits';
+        ? `ফোন নম্বরটি অবশ্যই ঠিক ১১ ডিজিটের হতে হবে (আপনি ${cleanedPhone.length} ডিজিট দিয়েছেন)` 
+        : `Phone number must be exactly 11 digits (you entered ${cleanedPhone.length} digits)`;
+    } else if (!isValidBDMobile) {
+      errs.phone = lang === 'bn'
+        ? 'অবৈধ মোবাইল নম্বর। ০১ দিয়ে শুরু হওয়া ১১ ডিজিটের সঠিক নম্বর দিন (যেমন: ০১৭১৭২৭৯১৬৬)'
+        : 'Invalid mobile number. Must start with 013-019 and have exactly 11 digits';
     }
     if (!formData.address.trim()) {
       errs.address = lang === 'bn' ? 'দয়া করে ঠিকানা লিখুন' : 'Address is required';
@@ -425,10 +430,10 @@ export default function Profile() {
                           <label className="block font-bold text-primary text-xs">{t('register.phone')} ({lang === 'bn' ? '১১ ডিজিট' : '11 Digits'}) *</label>
                           <input
                             type="tel"
-                            maxLength={11}
+                            maxLength={15}
                             placeholder="01XXXXXXXXX"
                             value={formData.phone}
-                            onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value.replace(/\D/g, '').slice(0, 11) }))}
+                            onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value.replace(/\D/g, '') }))}
                             className={`w-full bg-white text-ink px-4 py-2.5 rounded-2xl border-2 ${editErrors.phone ? 'border-accent-2' : 'border-primary/30 focus:border-primary'} outline-none text-xs sm:text-sm font-bn-sans`}
                           />
                           {editErrors.phone && <p className="text-[11px] text-accent-2 font-bold">{editErrors.phone}</p>}
