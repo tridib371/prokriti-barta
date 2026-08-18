@@ -155,14 +155,22 @@ export default function Navbar() {
           {isAuthenticated ? (
             <Link
               to="/profile"
-              className="md:hidden p-1 hover:bg-bg rounded-full border border-line transition-colors"
+              className="md:hidden p-1 hover:bg-bg rounded-full border border-line transition-colors flex items-center justify-center cursor-pointer"
               title="My Profile"
             >
-              <div className="w-7 h-7 rounded-full bg-accent text-white font-bold flex items-center justify-center text-xs shadow-xs ring-1 ring-accent/30">
+              <div className="w-7 h-7 rounded-full bg-accent text-white font-bold flex items-center justify-center text-xs shadow-xs ring-1 ring-accent/30 pointer-events-none">
                 {user?.name?.charAt(0) || 'U'}
               </div>
             </Link>
-          ) : null}
+          ) : (
+            <Link
+              to="/login"
+              className="md:hidden p-1.5 hover:bg-bg rounded-full border border-line text-muted hover:text-primary transition-colors flex items-center justify-center cursor-pointer"
+              title="Sign In"
+            >
+              <User size={17} />
+            </Link>
+          )}
 
           {/* Desktop User Auth Buttons */}
           {isAuthenticated ? (
@@ -179,7 +187,7 @@ export default function Navbar() {
               </Link>
               <button
                 onClick={logout}
-                className="p-2 text-muted hover:text-accent-2 transition-colors"
+                className="p-2 text-muted hover:text-accent-2 transition-colors cursor-pointer"
                 title={t('nav.logout')}
               >
                 <LogOut size={18} />
@@ -188,12 +196,12 @@ export default function Navbar() {
           ) : (
             <div className="hidden md:flex items-center gap-1.5 pl-2 border-l border-line">
               <Link to="/login">
-                <button className="px-3.5 py-2 text-xs font-bold text-primary hover:bg-bg rounded-xl transition-colors flex items-center gap-1.5">
+                <button className="px-3.5 py-2 text-xs font-bold text-primary hover:bg-bg rounded-xl transition-colors flex items-center gap-1.5 cursor-pointer">
                   <LogIn size={15} /> {t('nav.signin')}
                 </button>
               </Link>
               <Link to="/register">
-                <button className="px-4 py-2 bg-accent text-white hover:bg-accent/90 text-xs font-bold rounded-xl transition-colors flex items-center gap-1.5 shadow-sm">
+                <button className="px-4 py-2 bg-accent text-white hover:bg-accent/90 text-xs font-bold rounded-xl transition-colors flex items-center gap-1.5 shadow-sm cursor-pointer">
                   <UserPlus size={15} /> {t('nav.signup')}
                 </button>
               </Link>
@@ -217,9 +225,9 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setSearchQuery('')}
-              className="absolute right-3 text-muted hover:text-ink text-xs font-bold"
+              className="absolute right-3 text-muted hover:text-ink cursor-pointer"
             >
-              <X size={14} />
+              <X size={13} />
             </button>
           )}
         </form>
@@ -349,17 +357,24 @@ export default function Navbar() {
                   </div>
                 ) : (
                   <div className="p-3 bg-bg rounded-2xl flex items-center justify-between border border-line">
-                    <div className="flex items-center gap-2.5 min-w-0 pr-2">
-                      <div className="w-9 h-9 rounded-full bg-accent text-white font-bold flex items-center justify-center text-xs ring-2 ring-accent/30 shadow-xs shrink-0">
+                    <Link 
+                      to="/profile" 
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center gap-2.5 min-w-0 pr-2 flex-1 cursor-pointer group hover:opacity-90 transition-opacity"
+                    >
+                      <div className="w-9 h-9 rounded-full bg-accent text-white font-bold flex items-center justify-center text-xs ring-2 ring-accent/30 shadow-xs shrink-0 group-hover:scale-105 transition-transform">
                         {user?.name?.charAt(0) || 'U'}
                       </div>
                       <div className="min-w-0">
-                        <p className="font-bold text-xs text-primary truncate">{user?.name}</p>
+                        <p className="font-bold text-xs text-primary truncate group-hover:text-accent transition-colors">{user?.name}</p>
                         <p className="text-[10px] text-muted truncate">{user?.email}</p>
                       </div>
-                    </div>
+                    </Link>
                     <button 
-                      onClick={logout} 
+                      onClick={() => {
+                        logout();
+                        setMobileMenuOpen(false);
+                      }} 
                       className="text-xs text-accent-2 font-bold px-3.5 py-1.5 bg-surface border border-line rounded-full hover:bg-accent-2/10 transition-colors shrink-0 whitespace-nowrap font-bn-sans cursor-pointer"
                     >
                       {t('nav.logout')}
@@ -369,6 +384,18 @@ export default function Navbar() {
 
                 {/* Mobile Nav Links */}
                 <div className="flex flex-col space-y-1 font-medium pt-1">
+                  {isAuthenticated && (
+                    <Link
+                      to="/profile"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="py-2.5 text-accent font-bold border-b border-line/40 flex items-center justify-between font-bn-sans text-sm transition-colors"
+                    >
+                      <span className="flex items-center gap-2">
+                        <User size={16} />
+                        {lang === 'bn' ? 'আমার প্রোফাইল / ড্যাশবোর্ড' : 'My Profile & Dashboard'}
+                      </span>
+                    </Link>
+                  )}
                   {navLinks.map((link) => (
                     <Link
                       key={link.path}
