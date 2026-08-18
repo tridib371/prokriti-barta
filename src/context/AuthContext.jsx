@@ -84,41 +84,44 @@ export function AuthProvider({ children }) {
 
     saveRegisteredUsers(users);
     setUser(userRecord);
-    return userRecord;
+    return { success: true, user: userRecord };
   };
 
-  // 3. User Login (Retrieves registered user's real name, phone, address, etc.)
+  // 3. User Login - Strictly validates that account exists and password matches
   const login = (email, password) => {
     const trimmedEmail = email.trim().toLowerCase();
     const users = getRegisteredUsers();
     const existingUser = users.find(u => u.email.toLowerCase() === trimmedEmail);
 
-    let loggedInUser;
-    if (existingUser) {
-      // Restore previously saved real name, phone, address, and joinedDate
-      loggedInUser = {
-        ...existingUser,
-        isLoggedIn: true
+    // If account not found in database
+    if (!existingUser) {
+      return {
+        success: false,
+        errorBn: 'এই ইমেইল দিয়ে কোনো অ্যাকাউন্ট পাওয়া যায়নি। অনুগ্রহ করে সাইন আপ করুন।',
+        errorEn: 'No account found with this email. Please register first.'
       };
-    } else {
-      // Fallback: Create and persist new user record
-      loggedInUser = {
-        id: `usr_${Date.now()}`,
-        name: email.split('@')[0] || 'Organic Member',
-        email: email.trim(),
-        phone: '',
-        address: '',
-        city: '',
-        password: password || '',
-        isLoggedIn: true,
-        joinedDate: new Date().toISOString().split('T')[0]
-      };
-      users.push(loggedInUser);
-      saveRegisteredUsers(users);
     }
 
+    // If password does not match
+    if (existingUser.password && existingUser.password !== password) {
+      return {
+        success: false,
+        errorBn: 'পাসওয়ার্ড সঠিক নয়। অনুগ্রহ করে সঠিক পাসওয়ার্ড দিয়ে চেষ্টা করুন।',
+        errorEn: 'Incorrect password. Please verify and try again.'
+      };
+    }
+
+    // Restore previously saved real name, phone, address, and joinedDate
+    const loggedInUser = {
+      ...existingUser,
+      isLoggedIn: true
+    };
+
     setUser(loggedInUser);
-    return loggedInUser;
+    return {
+      success: true,
+      user: loggedInUser
+    };
   };
 
   // 4. Update Profile & Sync into Persistent User Database

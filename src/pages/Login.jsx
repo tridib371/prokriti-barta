@@ -26,6 +26,7 @@ export default function Login() {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    setError('');
     const errs = {};
     const trimmedEmail = email.trim();
     const isGmail = /^[a-zA-Z0-9._%+-]+@gmail\.com$/i.test(trimmedEmail);
@@ -49,8 +50,14 @@ export default function Login() {
       return;
     }
     setFieldErrors({});
-    login(email, password);
-    const destination = location.state?.from || '/shop';
+
+    const result = login(trimmedEmail, password);
+    if (!result.success) {
+      setError(lang === 'bn' ? result.errorBn : result.errorEn);
+      return;
+    }
+
+    const destination = location.state?.from || '/profile';
     navigate(destination, { replace: true });
   };
 
