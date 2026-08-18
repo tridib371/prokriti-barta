@@ -253,14 +253,14 @@ export default function Profile() {
           </div>
         </div>
 
-        {/* 2. Interactive Navigation Tabs & Content Layout with Warm Organic Cream Cards */}
+        {/* 2. Interactive Navigation Tabs & Content Layout with Green-Bordered Cream Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
           {/* Left Navigation Sidebar */}
           <div className="lg:col-span-4 flex flex-col gap-6">
-            {/* Account Menu Card - Warm Organic Cream Palette */}
-            <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] rounded-3xl p-6 space-y-4 shadow-xs">
-              <span className="text-xs font-bold text-primary uppercase tracking-wider block pb-3 border-b-2 border-[#E0D5AF]">
+            {/* Account Menu Card - Organic Cream with Signature Green Border */}
+            <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 hover:border-primary rounded-3xl p-6 space-y-4 shadow-xs transition-colors">
+              <span className="text-xs font-bold text-primary uppercase tracking-wider block pb-3 border-b-2 border-primary/20">
                 {lang === 'bn' ? 'অ্যাকাউন্ট মেনু' : 'Account Menu'}
               </span>
 
@@ -293,7 +293,7 @@ export default function Profile() {
                     <span>{t('profile.orders')}</span>
                   </span>
                   <span className={`text-xs px-2.5 py-0.5 rounded-full font-mono font-bold ${
-                    activeTab === 'orders' ? 'bg-accent text-white' : 'bg-accent/20 text-accent'
+                    activeTab === 'orders' ? 'bg-accent text-white' : 'bg-primary/10 text-primary'
                   }`}>
                     {n(orders.length)}
                   </span>
@@ -348,11 +348,11 @@ export default function Profile() {
               </nav>
             </div>
 
-            {/* Organic Assurance Card - Warm Organic Cream Palette */}
-            <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] rounded-3xl p-6 space-y-3.5 shadow-xs flex-1 flex flex-col justify-between">
+            {/* Organic Assurance Card - Green Border */}
+            <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 hover:border-primary rounded-3xl p-6 space-y-3.5 shadow-xs flex-1 flex flex-col justify-between transition-colors">
               <div className="space-y-2.5">
                 <div className="flex items-center gap-3 text-primary">
-                  <div className="w-9 h-9 rounded-xl bg-white/80 border border-[#E2D7B5] text-primary flex items-center justify-center shrink-0 shadow-2xs">
+                  <div className="w-9 h-9 rounded-xl bg-white/80 border border-primary/20 text-primary flex items-center justify-center shrink-0 shadow-2xs">
                     <ShieldCheck size={20} className="text-accent" />
                   </div>
                   <h4 className="font-display font-bold text-sm text-primary">
@@ -365,7 +365,7 @@ export default function Profile() {
                     : 'Every organic harvest is authentic, lab-tested, and freshly packaged upon your order.'}
                 </p>
               </div>
-              <Link to="/contact" className="inline-flex items-center gap-1.5 text-xs font-bold text-accent hover:underline font-bn-sans pt-2 border-t border-[#E0D5AF]">
+              <Link to="/contact" className="inline-flex items-center gap-1.5 text-xs font-bold text-accent hover:underline font-bn-sans pt-2 border-t border-primary/20">
                 <span>{lang === 'bn' ? 'কাস্টমার কেয়ার হেল্পলাইন' : 'Contact Customer Care'}</span>
                 <ExternalLink size={13} />
               </Link>
@@ -383,9 +383,9 @@ export default function Profile() {
                 transition={{ duration: 0.3 }}
                 className="space-y-6"
               >
-                {/* Personal Information Box - Warm Organic Cream Palette */}
-                <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] rounded-3xl p-6 sm:p-8 space-y-6 shadow-xs">
-                  <div className="flex items-center justify-between pb-4 border-b-2 border-[#E0D5AF]">
+                {/* Personal Information Box - Green Border */}
+                <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 hover:border-primary rounded-3xl p-6 sm:p-8 space-y-6 shadow-xs transition-colors">
+                  <div className="flex items-center justify-between pb-4 border-b-2 border-primary/20">
                     <div>
                       <h2 className="font-display font-bold text-xl sm:text-2xl text-primary">
                         {lang === 'bn' ? 'ব্যক্তিগত তথ্য' : 'Personal Information'}
@@ -416,7 +416,7 @@ export default function Profile() {
                             placeholder={lang === 'bn' ? 'আপনার পূর্ণ নাম' : 'Full Name'}
                             value={formData.name}
                             onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                            className={`w-full bg-white text-ink px-4 py-2.5 rounded-2xl border-2 ${editErrors.name ? 'border-accent-2' : 'border-[#E2D7B5] focus:border-primary'} outline-none text-xs sm:text-sm font-bn-sans`}
+                            className={`w-full bg-white text-ink px-4 py-2.5 rounded-2xl border-2 ${editErrors.name ? 'border-accent-2' : 'border-primary/30 focus:border-primary'} outline-none text-xs sm:text-sm font-bn-sans`}
                           />
                           {editErrors.name && <p className="text-[11px] text-accent-2 font-bold">{editErrors.name}</p>}
                         </div>
@@ -429,7 +429,7 @@ export default function Profile() {
                             placeholder="01XXXXXXXXX"
                             value={formData.phone}
                             onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value.replace(/\D/g, '').slice(0, 11) }))}
-                            className={`w-full bg-white text-ink px-4 py-2.5 rounded-2xl border-2 ${editErrors.phone ? 'border-accent-2' : 'border-[#E2D7B5] focus:border-primary'} outline-none text-xs sm:text-sm font-bn-sans`}
+                            className={`w-full bg-white text-ink px-4 py-2.5 rounded-2xl border-2 ${editErrors.phone ? 'border-accent-2' : 'border-primary/30 focus:border-primary'} outline-none text-xs sm:text-sm font-bn-sans`}
                           />
                           {editErrors.phone && <p className="text-[11px] text-accent-2 font-bold">{editErrors.phone}</p>}
                         </div>
@@ -440,7 +440,7 @@ export default function Profile() {
                             type="email"
                             disabled
                             value={user?.email || 'user@gmail.com'}
-                            className="w-full bg-black/5 text-muted px-4 py-2.5 rounded-2xl border border-[#E2D7B5] outline-none text-xs sm:text-sm cursor-not-allowed"
+                            className="w-full bg-black/5 text-muted px-4 py-2.5 rounded-2xl border border-primary/20 outline-none text-xs sm:text-sm cursor-not-allowed"
                           />
                           <span className="text-[10px] text-muted font-bn-sans">{lang === 'bn' ? 'ইমেইল পরিবর্তন করতে সাপোর্টে যোগাযোগ করুন।' : 'Contact support to modify primary email.'}</span>
                         </div>
@@ -452,7 +452,7 @@ export default function Profile() {
                             placeholder={lang === 'bn' ? 'বাসা/রোড নম্বর, এলাকা, জেলা' : 'House/Road number, Area, District'}
                             value={formData.address}
                             onChange={(e) => setFormData(prev => ({ ...prev, address: e.target.value }))}
-                            className={`w-full bg-white text-ink px-4 py-2.5 rounded-2xl border-2 ${editErrors.address ? 'border-accent-2' : 'border-[#E2D7B5] focus:border-primary'} outline-none text-xs sm:text-sm font-bn-sans`}
+                            className={`w-full bg-white text-ink px-4 py-2.5 rounded-2xl border-2 ${editErrors.address ? 'border-accent-2' : 'border-primary/30 focus:border-primary'} outline-none text-xs sm:text-sm font-bn-sans`}
                           />
                           {editErrors.address && <p className="text-[11px] text-accent-2 font-bold">{editErrors.address}</p>}
                         </div>
@@ -470,7 +470,7 @@ export default function Profile() {
                   ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm font-bn-sans">
                       {/* Name Tile */}
-                      <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/85 border border-[#E2D7B5] shadow-2xs">
+                      <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/85 border border-primary/20 shadow-2xs">
                         <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
                           <User size={18} className="text-accent" />
                         </div>
@@ -481,7 +481,7 @@ export default function Profile() {
                       </div>
 
                       {/* Phone Tile */}
-                      <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/85 border border-[#E2D7B5] shadow-2xs">
+                      <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/85 border border-primary/20 shadow-2xs">
                         <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
                           <Phone size={18} className="text-accent" />
                         </div>
@@ -494,7 +494,7 @@ export default function Profile() {
                       </div>
 
                       {/* Email Tile */}
-                      <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/85 border border-[#E2D7B5] shadow-2xs">
+                      <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/85 border border-primary/20 shadow-2xs">
                         <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
                           <Mail size={18} className="text-accent" />
                         </div>
@@ -505,7 +505,7 @@ export default function Profile() {
                       </div>
 
                       {/* Member Since Tile */}
-                      <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/85 border border-[#E2D7B5] shadow-2xs">
+                      <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/85 border border-primary/20 shadow-2xs">
                         <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
                           <Calendar size={18} className="text-accent" />
                         </div>
@@ -516,7 +516,7 @@ export default function Profile() {
                       </div>
 
                       {/* Default Delivery Address Tile */}
-                      <div className="sm:col-span-2 flex items-start gap-3.5 p-4.5 rounded-2xl bg-white/85 border border-[#E2D7B5] shadow-2xs">
+                      <div className="sm:col-span-2 flex items-start gap-3.5 p-4.5 rounded-2xl bg-white/85 border border-primary/20 shadow-2xs">
                         <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
                           <MapPin size={18} className="text-accent" />
                         </div>
@@ -546,11 +546,11 @@ export default function Profile() {
                   )}
                 </div>
 
-                {/* Account Security & Health Card - Warm Organic Cream Palette */}
-                <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] rounded-3xl p-6 sm:p-8 space-y-5 shadow-xs">
-                  <div className="flex items-center justify-between pb-3.5 border-b-2 border-[#E0D5AF]">
+                {/* Account Security & Health Card - Green Border */}
+                <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 hover:border-primary rounded-3xl p-6 sm:p-8 space-y-5 shadow-xs transition-colors">
+                  <div className="flex items-center justify-between pb-3.5 border-b-2 border-primary/20">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-2xl bg-white/80 border border-[#E2D7B5] text-primary flex items-center justify-center shrink-0 shadow-2xs">
+                      <div className="w-10 h-10 rounded-2xl bg-white/80 border border-primary/20 text-primary flex items-center justify-center shrink-0 shadow-2xs">
                         <ShieldCheck size={22} className="text-accent" />
                       </div>
                       <div>
@@ -562,14 +562,14 @@ export default function Profile() {
                         </p>
                       </div>
                     </div>
-                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-white/90 text-primary border border-[#E2D7B5] font-bn-sans flex items-center gap-1.5 shadow-2xs">
+                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-white/90 text-primary border border-primary/20 font-bn-sans flex items-center gap-1.5 shadow-2xs">
                       <CheckCircle2 size={13} className="text-accent" />
                       <span>{lang === 'bn' ? '১০০% সুরক্ষিত' : '100% Secure'}</span>
                     </span>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-bn-sans">
-                    <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/85 border border-[#E2D7B5] shadow-2xs">
+                    <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/85 border border-primary/20 shadow-2xs">
                       <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
                         <Lock size={18} className="text-accent" />
                       </div>
@@ -579,7 +579,7 @@ export default function Profile() {
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/85 border border-[#E2D7B5] shadow-2xs">
+                    <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/85 border border-primary/20 shadow-2xs">
                       <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
                         <Mail size={18} className="text-accent" />
                       </div>
@@ -614,8 +614,8 @@ export default function Profile() {
                 </div>
 
                 {orders.length === 0 ? (
-                  <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] rounded-3xl p-12 text-center space-y-4 shadow-xs">
-                    <div className="w-16 h-16 rounded-full bg-white/80 border border-[#E2D7B5] text-primary flex items-center justify-center mx-auto shadow-2xs">
+                  <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 rounded-3xl p-12 text-center space-y-4 shadow-xs">
+                    <div className="w-16 h-16 rounded-full bg-white/80 border border-primary/20 text-primary flex items-center justify-center mx-auto shadow-2xs">
                       <ShoppingBag size={28} className="text-accent" />
                     </div>
                     <h3 className="font-display font-bold text-lg text-primary">{t('orders.empty')}</h3>
@@ -631,8 +631,8 @@ export default function Profile() {
                 ) : (
                   <div className="space-y-4">
                     {orders.slice(0, 3).map((ord) => (
-                      <div key={ord.id} className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] rounded-3xl p-5 sm:p-6 space-y-4 shadow-xs transition-all">
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-[#E0D5AF] gap-2">
+                      <div key={ord.id} className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 hover:border-primary rounded-3xl p-5 sm:p-6 space-y-4 shadow-xs transition-all">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-primary/20 gap-2">
                           <div>
                             <span className="text-xs text-muted font-mono">{t('orders.id')}:</span>
                             <h3 className="font-display font-bold text-base sm:text-lg text-primary">{n(ord.id)}</h3>
@@ -655,14 +655,14 @@ export default function Profile() {
                         {/* Items preview */}
                         <div className="space-y-2">
                           {ord.items?.map((item, i) => (
-                            <div key={i} className="flex items-center justify-between text-xs font-bn-sans text-ink bg-white/60 p-2.5 rounded-xl border border-[#E2D7B5]">
+                            <div key={i} className="flex items-center justify-between text-xs font-bn-sans text-ink bg-white/60 p-2.5 rounded-xl border border-primary/20">
                               <span className="truncate pr-2 font-medium">{item.name} × {n(item.quantity)}</span>
                               <span className="font-bold font-bn-sans shrink-0 text-primary">৳{n(item.price * item.quantity)}</span>
                             </div>
                           ))}
                         </div>
 
-                        <div className="pt-3 border-t border-[#E0D5AF] flex items-center justify-between">
+                        <div className="pt-3 border-t border-primary/20 flex items-center justify-between">
                           <div className="text-xs text-muted font-bn-sans">
                             {lang === 'bn' ? 'সর্বমোট পরিশোধ:' : 'Total Amount:'}{' '}
                             <strong className="text-primary font-bold text-sm font-bn-sans">৳{n(ord.total)}</strong>
@@ -701,9 +701,9 @@ export default function Profile() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {(user?.address || formData.address) ? (
-                    <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] rounded-3xl p-5 space-y-3 shadow-xs relative sm:col-span-2">
+                    <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 hover:border-primary rounded-3xl p-5 space-y-3 shadow-xs relative sm:col-span-2 transition-colors">
                       <div className="flex items-center justify-between">
-                        <span className="text-[11px] font-bold text-primary bg-white/80 border border-[#E2D7B5] px-2.5 py-0.5 rounded-full font-bn-sans shadow-2xs">
+                        <span className="text-[11px] font-bold text-primary bg-white/80 border border-primary/20 px-2.5 py-0.5 rounded-full font-bn-sans shadow-2xs">
                           {lang === 'bn' ? 'ডিফল্ট ডেলিভারি ঠিকানা' : 'Primary Delivery Address'}
                         </span>
                         <CheckCircle2 size={16} className="text-primary" />
@@ -713,13 +713,13 @@ export default function Profile() {
                       <p className="text-xs text-muted font-bn-sans leading-relaxed">
                         {user?.address || formData.address}
                       </p>
-                      <p className="text-xs text-primary font-bold font-bn-sans flex items-center gap-1.5 pt-2 border-t border-[#E0D5AF]">
+                      <p className="text-xs text-primary font-bold font-bn-sans flex items-center gap-1.5 pt-2 border-t border-primary/20">
                         <Phone size={13} className="text-accent" /> {n(user?.phone || formData.phone)}
                       </p>
                     </div>
                   ) : (
-                    <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-dashed border-[#E5DCB8] rounded-3xl p-8 text-center space-y-3 sm:col-span-2 shadow-xs">
-                      <div className="w-12 h-12 rounded-full bg-white/80 border border-[#E2D7B5] text-primary flex items-center justify-center mx-auto shadow-2xs">
+                    <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-dashed border-primary/40 rounded-3xl p-8 text-center space-y-3 sm:col-span-2 shadow-xs">
+                      <div className="w-12 h-12 rounded-full bg-white/80 border border-primary/20 text-primary flex items-center justify-center mx-auto shadow-2xs">
                         <MapPin size={22} className="text-accent" />
                       </div>
                       <h4 className="font-display font-bold text-sm text-primary">

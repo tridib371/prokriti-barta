@@ -73,7 +73,7 @@ export default function OrderHistory() {
         <div className="flex items-center justify-between">
           <Link 
             to="/profile" 
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] text-xs sm:text-sm font-bold text-ink hover:text-primary transition-all shadow-xs"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 text-xs sm:text-sm font-bold text-ink hover:text-primary transition-all shadow-xs"
           >
             <ArrowLeft size={16} className="text-accent" />
             <span>{lang === 'bn' ? 'প্রোফাইল ড্যাশবোর্ডে ফিরুন' : 'Back to Dashboard'}</span>
@@ -129,9 +129,9 @@ export default function OrderHistory() {
           </div>
         </div>
 
-        {/* 2. Filter Tabs & Search Bar - Warm Organic Cream Palette */}
+        {/* 2. Filter Tabs & Search Bar - Green Bordered Cream Palette */}
         {orders.length > 0 && (
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] rounded-3xl p-4 sm:p-5 shadow-xs">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 hover:border-primary rounded-3xl p-4 sm:p-5 shadow-xs transition-colors">
             {/* Status Filter Tabs */}
             <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
               <button
@@ -139,7 +139,7 @@ export default function OrderHistory() {
                 className={`px-4 py-2 rounded-2xl text-xs font-bold font-bn-sans transition-all cursor-pointer whitespace-nowrap ${
                   filterStatus === 'all'
                     ? 'bg-primary text-white shadow-xs'
-                    : 'bg-white/80 border border-[#E2D7B5] text-ink hover:bg-white'
+                    : 'bg-white/80 border border-primary/20 text-ink hover:bg-white'
                 }`}
               >
                 {lang === 'bn' ? 'সকল অর্ডার' : 'All Orders'} ({n(orders.length)})
@@ -150,7 +150,7 @@ export default function OrderHistory() {
                 className={`px-4 py-2 rounded-2xl text-xs font-bold font-bn-sans transition-all cursor-pointer whitespace-nowrap ${
                   filterStatus === 'Processing'
                     ? 'bg-primary text-white shadow-xs'
-                    : 'bg-white/80 border border-[#E2D7B5] text-ink hover:bg-white'
+                    : 'bg-white/80 border border-primary/20 text-ink hover:bg-white'
                 }`}
               >
                 {lang === 'bn' ? 'প্রক্রিয়াধীন' : 'Processing'} ({n(processingCount)})
@@ -161,7 +161,7 @@ export default function OrderHistory() {
                 className={`px-4 py-2 rounded-2xl text-xs font-bold font-bn-sans transition-all cursor-pointer whitespace-nowrap ${
                   filterStatus === 'Delivered'
                     ? 'bg-primary text-white shadow-xs'
-                    : 'bg-white/80 border border-[#E2D7B5] text-ink hover:bg-white'
+                    : 'bg-white/80 border border-primary/20 text-ink hover:bg-white'
                 }`}
               >
                 {lang === 'bn' ? 'ডেলিভারি সম্পন্ন' : 'Delivered'} ({n(deliveredCount)})
@@ -176,16 +176,16 @@ export default function OrderHistory() {
                 placeholder={lang === 'bn' ? 'অর্ডার আইডি বা পণ্য খুঁজুন...' : 'Search by Order ID or Product...'}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-white text-ink pl-9 pr-4 py-2 rounded-2xl border-2 border-[#E2D7B5] focus:border-primary outline-none text-xs font-bn-sans transition-colors"
+                className="w-full bg-white text-ink pl-9 pr-4 py-2 rounded-2xl border-2 border-primary/20 focus:border-primary outline-none text-xs font-bn-sans transition-colors"
               />
             </div>
           </div>
         )}
 
-        {/* 3. Orders List & Cards - Warm Organic Cream Palette */}
+        {/* 3. Orders List & Cards - Green Bordered Cream Palette */}
         {orders.length === 0 ? (
-          <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] rounded-3xl p-12 sm:p-16 text-center space-y-4 shadow-xs">
-            <div className="w-16 h-16 rounded-full bg-white/80 border border-[#E2D7B5] text-primary flex items-center justify-center mx-auto shadow-2xs">
+          <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 rounded-3xl p-12 sm:p-16 text-center space-y-4 shadow-xs">
+            <div className="w-16 h-16 rounded-full bg-white/80 border border-primary/20 text-primary flex items-center justify-center mx-auto shadow-2xs">
               <ShoppingBag size={30} className="text-accent" />
             </div>
             <h3 className="font-display font-bold text-xl text-primary">{t('orders.empty')}</h3>
@@ -202,7 +202,7 @@ export default function OrderHistory() {
             </Link>
           </div>
         ) : filteredOrders.length === 0 ? (
-          <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] rounded-3xl p-12 text-center space-y-3 shadow-xs">
+          <div className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 rounded-3xl p-12 text-center space-y-3 shadow-xs">
             <Filter size={32} className="mx-auto text-muted" />
             <h4 className="font-bold text-base text-primary">
               {lang === 'bn' ? 'কোনো অর্ডার খুঁজে পাওয়া যায়নি' : 'No matching orders found'}
@@ -219,10 +219,10 @@ export default function OrderHistory() {
               return (
                 <div 
                   key={ord.id} 
-                  className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] rounded-3xl p-6 sm:p-8 space-y-6 shadow-xs transition-all"
+                  className="bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 hover:border-primary rounded-3xl p-6 sm:p-8 space-y-6 shadow-xs transition-all"
                 >
                   {/* Card Header Strip */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b-2 border-[#E0D5AF] gap-3">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b-2 border-primary/20 gap-3">
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
                         <span className="text-xs text-muted font-bold uppercase tracking-wider font-mono">{t('orders.id')}:</span>
@@ -246,7 +246,7 @@ export default function OrderHistory() {
                       </span>
 
                       {/* Payment Method Badge */}
-                      <span className="px-3 py-1 rounded-full text-xs font-medium font-bn-sans bg-white/80 border border-[#E2D7B5] text-ink flex items-center gap-1.5 shadow-2xs">
+                      <span className="px-3 py-1 rounded-full text-xs font-medium font-bn-sans bg-white/80 border border-primary/20 text-ink flex items-center gap-1.5 shadow-2xs">
                         <CreditCard size={13} className="text-accent" />
                         <span>{ord.paymentMethod}</span>
                       </span>
@@ -254,7 +254,7 @@ export default function OrderHistory() {
                   </div>
 
                   {/* Delivery Stepper Progress Bar */}
-                  <div className="bg-white/80 border border-[#E2D7B5] rounded-2xl p-4 sm:p-5 shadow-2xs">
+                  <div className="bg-white/80 border border-primary/20 rounded-2xl p-4 sm:p-5 shadow-2xs">
                     <div className="grid grid-cols-3 gap-2 relative">
                       <div className="text-center space-y-1 z-10">
                         <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center mx-auto text-xs font-bold shadow-xs">
@@ -298,7 +298,7 @@ export default function OrderHistory() {
                         {ord.items?.map((item, idx) => (
                           <div 
                             key={idx} 
-                            className="flex items-center justify-between p-3.5 rounded-2xl bg-white/85 border border-[#E2D7B5] shadow-2xs"
+                            className="flex items-center justify-between p-3.5 rounded-2xl bg-white/85 border border-primary/20 shadow-2xs"
                           >
                             <div className="flex items-center gap-3 min-w-0 pr-2">
                               <div className="w-9 h-9 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-xs shrink-0">
@@ -324,21 +324,21 @@ export default function OrderHistory() {
                     <div className="lg:col-span-5 space-y-4">
                       {/* Shipping Address Pill */}
                       {ord.shippingAddress && (
-                        <div className="p-4 rounded-2xl bg-white/85 border border-[#E2D7B5] space-y-2 shadow-2xs">
+                        <div className="p-4 rounded-2xl bg-white/85 border border-primary/20 space-y-2 shadow-2xs">
                           <span className="text-[11px] font-bold text-accent uppercase tracking-wider block font-bn-sans flex items-center gap-1.5">
                             <MapPin size={13} />
                             <span>{lang === 'bn' ? 'ডেলিভারি ঠিকানা' : 'Shipping Destination'}</span>
                           </span>
                           <p className="font-bold text-xs sm:text-sm text-primary font-bn-sans">{ord.shippingAddress.name}</p>
                           <p className="text-xs text-muted font-bn-sans leading-relaxed">{ord.shippingAddress.address}, {ord.shippingAddress.city}</p>
-                          <p className="text-xs text-primary font-bold font-bn-sans flex items-center gap-1 pt-1 border-t border-[#E0D5AF]">
+                          <p className="text-xs text-primary font-bold font-bn-sans flex items-center gap-1 pt-1 border-t border-primary/20">
                             <Phone size={12} className="text-accent" /> {n(ord.shippingAddress.phone)}
                           </p>
                         </div>
                       )}
 
                       {/* Financial Cost Strip */}
-                      <div className="p-4 rounded-2xl bg-white/85 border-2 border-[#E2D7B5] space-y-2 text-xs font-bn-sans shadow-2xs">
+                      <div className="p-4 rounded-2xl bg-white/85 border-2 border-primary/20 space-y-2 text-xs font-bn-sans shadow-2xs">
                         <div className="flex justify-between text-muted">
                           <span>{t('cart.subtotal')}:</span>
                           <span className="font-bold text-primary">৳{n(ord.subtotal || ord.total)}</span>
@@ -349,7 +349,7 @@ export default function OrderHistory() {
                             <span className="font-bold text-primary">{ord.deliveryCharge === 0 ? (lang === 'bn' ? 'ফ্রি' : 'Free') : `৳${n(ord.deliveryCharge)}`}</span>
                           </div>
                         )}
-                        <div className="pt-2 border-t border-[#E0D5AF] flex justify-between items-center text-sm font-bold text-primary">
+                        <div className="pt-2 border-t border-primary/20 flex justify-between items-center text-sm font-bold text-primary">
                           <span>{t('orders.total')}:</span>
                           <span className="text-base sm:text-lg text-accent font-display">৳{n(ord.total)}</span>
                         </div>
