@@ -42,53 +42,54 @@ export default function ReviewsCarousel() {
             const userInitial = userName.trim().charAt(0);
 
             return (
-              <div
-                key={rev.id || idx}
-                className="mx-3.5 w-[310px] sm:w-[360px] bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-primary p-5 sm:p-6 rounded-3xl flex flex-col justify-between shadow-[0_4px_16px_-3px_rgba(27,59,43,0.08)] hover:shadow-[0_14px_30px_-5px_rgba(27,59,43,0.25)] hover:-translate-y-1.5 transition-all duration-300 relative group overflow-hidden"
-              >
-                {/* Top Subtle Amber Glow Backlight */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl pointer-events-none group-hover:bg-primary/15 transition-all duration-500" />
+              <div key={rev.id || idx} className="py-5 px-1.5 flex items-center justify-center">
+                <div
+                  className="w-[310px] sm:w-[360px] bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-primary p-5 sm:p-6 rounded-3xl flex flex-col justify-between shadow-[0_4px_16px_-3px_rgba(27,59,43,0.08)] hover:shadow-[0_14px_30px_-5px_rgba(27,59,43,0.25)] hover:-translate-y-2 transition-all duration-300 relative group overflow-hidden"
+                >
+                  {/* Top Subtle Amber Glow Backlight */}
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl pointer-events-none group-hover:bg-primary/15 transition-all duration-500" />
 
-                {/* Top Row: Rating & Quote Badge */}
-                <div className="flex items-center justify-between gap-3 relative z-10">
-                  <RatingStars rating={rev.rating} size={15} />
-                  
-                  <div className="w-8 h-8 rounded-xl bg-accent text-white flex items-center justify-center shadow-sm shadow-accent/30 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shrink-0">
-                    <Quote size={16} className="fill-white" />
-                  </div>
-                </div>
-
-                {/* Customer Comment Body */}
-                <div className="my-3.5 relative z-10">
-                  <p className="text-xs sm:text-[13px] text-ink font-bn-sans italic leading-relaxed min-h-[54px]">
-                    "{lang === 'bn' ? (rev.commentBn || rev.comment) : (rev.commentEn || rev.comment)}"
-                  </p>
-                </div>
-
-                {/* Bottom User Info & Verified Badge */}
-                <div className="pt-3.5 border-t-2 border-[#D8CEAB] flex items-center justify-between gap-2.5 relative z-10">
-                  <div className="flex items-center gap-2.5 min-w-0">
-                    {/* User Initial Avatar Badge */}
-                    <div className="w-9 h-9 rounded-full bg-primary text-accent font-display font-bold text-xs flex items-center justify-center shrink-0 border border-accent/40 shadow-xs">
-                      {userInitial}
-                    </div>
+                  {/* Top Row: Rating & Quote Badge */}
+                  <div className="flex items-center justify-between gap-3 relative z-10">
+                    <RatingStars rating={rev.rating} size={15} />
                     
-                    <div className="min-w-0">
-                      <h4 className="font-display font-bold text-xs sm:text-[13px] text-primary truncate group-hover:text-accent transition-colors">
-                        {userName}
-                      </h4>
-                      <p className="text-[10px] sm:text-[11px] text-muted font-bn-sans truncate">
-                        {lang === 'bn' ? (rev.userLocationBn || rev.userLocation) : (rev.userLocationEn || rev.userLocation)}
-                      </p>
+                    <div className="w-8 h-8 rounded-xl bg-accent text-white flex items-center justify-center shadow-sm shadow-accent/30 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shrink-0">
+                      <Quote size={16} className="fill-white" />
                     </div>
                   </div>
 
-                  {rev.verifiedPurchase && (
-                    <span className="flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-100/90 border border-emerald-300 px-2 py-0.5 rounded-full shrink-0 shadow-2xs font-bn-sans">
-                      <CheckCircle size={11} className="text-emerald-700" />
-                      <span>{t('reviews.verified')}</span>
-                    </span>
-                  )}
+                  {/* Customer Comment Body */}
+                  <div className="my-3.5 relative z-10">
+                    <p className="text-xs sm:text-[13px] text-ink font-bn-sans italic leading-relaxed min-h-[54px]">
+                      "{lang === 'bn' ? (rev.commentBn || rev.comment) : (rev.commentEn || rev.comment)}"
+                    </p>
+                  </div>
+
+                  {/* Bottom User Info & Verified Badge */}
+                  <div className="pt-3.5 border-t-2 border-[#D8CEAB] flex items-center justify-between gap-2.5 relative z-10">
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      {/* User Initial Avatar Badge */}
+                      <div className="w-9 h-9 rounded-full bg-primary text-accent font-display font-bold text-xs flex items-center justify-center shrink-0 border border-accent/40 shadow-xs">
+                        {userInitial}
+                      </div>
+                      
+                      <div className="min-w-0">
+                        <h4 className="font-display font-bold text-xs sm:text-[13px] text-primary truncate group-hover:text-accent transition-colors">
+                          {userName}
+                        </h4>
+                        <p className="text-[10px] sm:text-[11px] text-muted font-bn-sans truncate">
+                          {lang === 'bn' ? (rev.userLocationBn || rev.userLocation) : (rev.userLocationEn || rev.userLocation)}
+                        </p>
+                      </div>
+                    </div>
+
+                    {rev.verifiedPurchase && (
+                      <span className="flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-100/90 border border-emerald-300 px-2 py-0.5 rounded-full shrink-0 shadow-2xs font-bn-sans">
+                        <CheckCircle size={11} className="text-emerald-700" />
+                        <span>{t('reviews.verified')}</span>
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
             );
