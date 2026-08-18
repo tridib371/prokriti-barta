@@ -4,6 +4,7 @@
 ### *100% Pure, Farm-Fresh & Traditional Organic Food E-Commerce Platform*
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-prokriti--barta.vercel.app-1B3B2B?style=for-the-badge&logo=vercel&logoColor=white)](https://prokriti-barta.vercel.app/)
+[![Frontend Project](https://img.shields.io/badge/Architecture-100%25_Frontend_SPA-C86D3B?style=for-the-badge&logo=react&logoColor=white)](https://prokriti-barta.vercel.app/)
 [![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite_8-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
@@ -21,6 +22,10 @@
 <br/>
 
 ## 🍃 About The Project
+
+> [!NOTE]
+> **💻 100% Frontend Web Application**:  
+> **Prokriti Barta** is built entirely as a rich, client-side Single Page Application (SPA). All user authentication, persistent databases (`pb_users_db`, `pb_orders`), real-time cart calculations, checkout workflows, bilingual i18n translations, live order tracking, and AI chatbot responses operate completely on the frontend using React Context and Browser Storage APIs without requiring an external backend or database server.
 
 **প্রকৃতি বার্তা (Prokriti Barta)** is a modern, high-performance, and culturally resonant organic e-commerce web application built for conscious consumers across Bangladesh. Rooted in traditional Bengali aesthetic heritage with **Alpona motifs**, hand-curated typography (**Noto Serif Bengali** & **Fraunces**), and a rich **Forest Green & Terracotta** palette, the platform delivers an extraordinary user experience for shopping chemical-free organic groceries, Vedic raw honey, mustard oil, ghee, and traditional spices.
 
