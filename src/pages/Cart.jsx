@@ -323,7 +323,9 @@ export default function Cart() {
                 <div className="flex items-center justify-between p-2 bg-emerald-50 border border-emerald-300 rounded-xl">
                   <div className="flex items-center gap-1.5">
                     <CheckCircle2 size={14} className="text-emerald-600 shrink-0" />
-                    <span className="text-xs font-bold text-emerald-800 font-mono">{couponCode.toUpperCase()} (১০% ছাড়)</span>
+                    <span className="text-xs font-bold text-emerald-800 font-mono">
+                      {couponCode.toUpperCase()} ({lang === 'bn' ? '১০% ছাড়' : '10% OFF'})
+                    </span>
                   </div>
                   <button
                     type="button"
