@@ -92,12 +92,16 @@ export default function FeaturedGrid() {
           </AnimatePresence>
         </motion.div>
 
-        {/* Mobile View All Link */}
-        <div className="mt-8 text-center sm:hidden">
+        {/* Mobile View All Link - Centered and Compact */}
+        <div className="mt-7 flex justify-center sm:hidden">
           <Link to="/shop">
-            <Button variant="outline" size="md" className="w-full rounded-2xl gap-1 text-xs font-bold py-2.5">
+            <Button
+              variant="outline"
+              size="sm"
+              className="rounded-full px-6 py-2 gap-1.5 text-xs font-bold shadow-2xs hover:scale-105 active:scale-95 transition-all cursor-pointer border-primary/30 text-primary"
+            >
               <span>{t('btn.viewAll')}</span>
-              <ArrowRight size={14} />
+              <ArrowRight size={13} />
             </Button>
           </Link>
         </div>
