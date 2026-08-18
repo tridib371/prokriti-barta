@@ -17,6 +17,13 @@ export default function Login() {
   const [error, setError] = useState('');
   const [fieldErrors, setFieldErrors] = useState({});
 
+  const hasUpper = /[A-Z]/.test(password);
+  const hasLower = /[a-z]/.test(password);
+  const hasNumber = /[0-9]/.test(password);
+  const hasSpecial = /[^A-Za-z0-9]/.test(password);
+  const hasMinLength = password.length >= 6;
+  const isPasswordValid = hasUpper && hasLower && hasNumber && hasSpecial && hasMinLength;
+
   const handleLogin = (e) => {
     e.preventDefault();
     const errs = {};
@@ -25,6 +32,10 @@ export default function Login() {
     }
     if (!password) {
       errs.password = lang === 'bn' ? 'দয়া করে আপনার পাসওয়ার্ড লিখুন' : 'Please enter your password';
+    } else if (!isPasswordValid) {
+      errs.password = lang === 'bn'
+        ? 'পাসওয়ার্ডে বড় হাতের অক্ষর, ছোট হাতের অক্ষর, সংখ্যা ও বিশেষ চিহ্ন থাকতে হবে'
+        : 'Password must include uppercase, lowercase, number and special character';
     }
     if (Object.keys(errs).length > 0) {
       setFieldErrors(errs);
@@ -184,6 +195,28 @@ export default function Login() {
                 <p className="text-[11px] text-accent-2 font-bold mt-1 flex items-center gap-1 font-bn-sans">
                   <span>{fieldErrors.password}</span>
                 </p>
+              )}
+
+              {/* Real-time Password Requirement Checklist */}
+              {password && (
+                <div className="pt-2 p-2.5 rounded-xl bg-bg/80 border border-line/70 grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-[11px] font-bn-sans">
+                  <div className={`flex items-center gap-1.5 transition-colors ${hasUpper ? 'text-emerald-700 dark:text-emerald-400 font-bold' : 'text-muted'}`}>
+                    <CheckCircle2 size={13} className={hasUpper ? 'text-emerald-600 dark:text-emerald-400' : 'text-muted/40'} />
+                    <span>{lang === 'bn' ? 'বড় হাতের অক্ষর (A-Z)' : 'Uppercase (A-Z)'}</span>
+                  </div>
+                  <div className={`flex items-center gap-1.5 transition-colors ${hasLower ? 'text-emerald-700 dark:text-emerald-400 font-bold' : 'text-muted'}`}>
+                    <CheckCircle2 size={13} className={hasLower ? 'text-emerald-600 dark:text-emerald-400' : 'text-muted/40'} />
+                    <span>{lang === 'bn' ? 'ছোট হাতের অক্ষর (a-z)' : 'Lowercase (a-z)'}</span>
+                  </div>
+                  <div className={`flex items-center gap-1.5 transition-colors ${hasNumber ? 'text-emerald-700 dark:text-emerald-400 font-bold' : 'text-muted'}`}>
+                    <CheckCircle2 size={13} className={hasNumber ? 'text-emerald-600 dark:text-emerald-400' : 'text-muted/40'} />
+                    <span>{lang === 'bn' ? 'সংখ্যা (০-৯ / 0-9)' : 'Number (0-9)'}</span>
+                  </div>
+                  <div className={`flex items-center gap-1.5 transition-colors ${hasSpecial ? 'text-emerald-700 dark:text-emerald-400 font-bold' : 'text-muted'}`}>
+                    <CheckCircle2 size={13} className={hasSpecial ? 'text-emerald-600 dark:text-emerald-400' : 'text-muted/40'} />
+                    <span>{lang === 'bn' ? 'বিশেষ চিহ্ন (!@#$%^&*)' : 'Special char (!@#$)'}</span>
+                  </div>
+                </div>
               )}
             </div>
 

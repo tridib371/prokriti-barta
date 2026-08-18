@@ -19,21 +19,18 @@ export default function Register() {
   const [error, setError] = useState('');
   const [fieldErrors, setFieldErrors] = useState({});
 
-  // Password strength calculation
-  const getPasswordStrength = () => {
-    if (!password) return 0;
-    let score = 0;
-    if (password.length >= 6) score += 1;
-    if (/[A-Z]/.test(password) || /[0-9]/.test(password)) score += 1;
-    if (/[^A-Za-z0-9]/.test(password) || password.length >= 8) score += 1;
-    return score;
-  };
-
-  const strength = getPasswordStrength();
+  const hasUpper = /[A-Z]/.test(password);
+  const hasLower = /[a-z]/.test(password);
+  const hasNumber = /[0-9]/.test(password);
+  const hasSpecial = /[^A-Za-z0-9]/.test(password);
+  const hasMinLength = password.length >= 6;
+  const isPasswordValid = hasUpper && hasLower && hasNumber && hasSpecial && hasMinLength;
 
   const handleRegister = (e) => {
     e.preventDefault();
     const errs = {};
+    const cleanedPhone = phone.replace(/\D/g, '');
+
     if (!name.trim()) {
       errs.name = lang === 'bn' ? 'দয়া করে আপনার পূর্ণ নাম লিখুন' : 'Please enter your full name';
     }
@@ -42,11 +39,18 @@ export default function Register() {
     }
     if (!phone.trim()) {
       errs.phone = lang === 'bn' ? 'দয়া করে আপনার ফোন নম্বর লিখুন' : 'Please enter your phone number';
+    } else if (cleanedPhone.length !== 11) {
+      errs.phone = lang === 'bn' 
+        ? 'ফোন নম্বরটি অবশ্যই ১১ ডিজিটের হতে হবে (যেমন: ০১৭১৭২৭৯১৬৬)' 
+        : 'Phone number must be exactly 11 digits (e.g. 01717279166)';
     }
+
     if (!password) {
       errs.password = lang === 'bn' ? 'দয়া করে একটি শক্তিশালী পাসওয়ার্ড লিখুন' : 'Please enter a password';
-    } else if (password.length < 6) {
-      errs.password = lang === 'bn' ? 'পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে' : 'Password must be at least 6 characters';
+    } else if (!isPasswordValid) {
+      errs.password = lang === 'bn' 
+        ? 'পাসওয়ার্ডে বড় হাতের অক্ষর, ছোট হাতের অক্ষর, সংখ্যা ও বিশেষ চিহ্ন থাকতে হবে' 
+        : 'Password must include uppercase, lowercase, number and special character';
     }
 
     if (Object.keys(errs).length > 0) {
@@ -55,7 +59,7 @@ export default function Register() {
     }
 
     setFieldErrors({});
-    register(name, email, phone, password);
+    register(name, email, cleanedPhone, password);
     const destination = location.state?.from || '/shop';
     navigate(destination, { replace: true });
   };
@@ -219,14 +223,16 @@ export default function Register() {
             </div>
 
             <div className="space-y-1">
-              <label className="block font-bold text-ink text-xs">{t('register.phone')} *</label>
+              <label className="block font-bold text-ink text-xs">{t('register.phone')} (১১ ডিজিট) *</label>
               <div className="relative group">
                 <input
                   type="tel"
-                  placeholder="01717-279166"
+                  placeholder="01717279166"
+                  maxLength={11}
                   value={phone}
                   onChange={(e) => {
-                    setPhone(e.target.value);
+                    const val = e.target.value.replace(/\D/g, '').slice(0, 11);
+                    setPhone(val);
                     if (fieldErrors.phone) setFieldErrors(prev => ({ ...prev, phone: null }));
                   }}
                   className={`w-full bg-bg text-ink px-4 py-2.5 pl-10 rounded-2xl border ${fieldErrors.phone ? 'border-accent-2/80 bg-accent-2/5' : 'border-line focus:border-accent'} focus:bg-surface outline-none transition-all`}
@@ -268,21 +274,25 @@ export default function Register() {
                 </p>
               )}
 
-              {/* Password Strength Indicator */}
-              {password && (
-                <div className="pt-1 flex items-center gap-1.5">
-                  <div className="flex-1 h-1 bg-line rounded-full overflow-hidden flex gap-1">
-                    <div className={`h-full flex-1 transition-all ${strength >= 1 ? (strength === 1 ? 'bg-amber-500' : 'bg-emerald-500') : 'bg-transparent'}`} />
-                    <div className={`h-full flex-1 transition-all ${strength >= 2 ? (strength === 2 ? 'bg-emerald-500' : 'bg-emerald-600') : 'bg-transparent'}`} />
-                    <div className={`h-full flex-1 transition-all ${strength >= 3 ? 'bg-emerald-600' : 'bg-transparent'}`} />
-                  </div>
-                  <span className="text-[10px] text-muted">
-                    {strength === 1 && (lang === 'bn' ? 'সাধারণ' : 'Weak')}
-                    {strength === 2 && (lang === 'bn' ? 'মাঝারি' : 'Good')}
-                    {strength === 3 && (lang === 'bn' ? 'শক্তিশালী' : 'Strong')}
-                  </span>
+              {/* Real-time Password Requirement Checklist */}
+              <div className="pt-2 p-2.5 rounded-xl bg-bg/80 border border-line/70 grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-[11px] font-bn-sans">
+                <div className={`flex items-center gap-1.5 transition-colors ${hasUpper ? 'text-emerald-700 dark:text-emerald-400 font-bold' : 'text-muted'}`}>
+                  <CheckCircle2 size={13} className={hasUpper ? 'text-emerald-600 dark:text-emerald-400' : 'text-muted/40'} />
+                  <span>{lang === 'bn' ? 'বড় হাতের অক্ষর (A-Z)' : 'Uppercase (A-Z)'}</span>
                 </div>
-              )}
+                <div className={`flex items-center gap-1.5 transition-colors ${hasLower ? 'text-emerald-700 dark:text-emerald-400 font-bold' : 'text-muted'}`}>
+                  <CheckCircle2 size={13} className={hasLower ? 'text-emerald-600 dark:text-emerald-400' : 'text-muted/40'} />
+                  <span>{lang === 'bn' ? 'ছোট হাতের অক্ষর (a-z)' : 'Lowercase (a-z)'}</span>
+                </div>
+                <div className={`flex items-center gap-1.5 transition-colors ${hasNumber ? 'text-emerald-700 dark:text-emerald-400 font-bold' : 'text-muted'}`}>
+                  <CheckCircle2 size={13} className={hasNumber ? 'text-emerald-600 dark:text-emerald-400' : 'text-muted/40'} />
+                  <span>{lang === 'bn' ? 'সংখ্যা (০-৯ / 0-9)' : 'Number (0-9)'}</span>
+                </div>
+                <div className={`flex items-center gap-1.5 transition-colors ${hasSpecial ? 'text-emerald-700 dark:text-emerald-400 font-bold' : 'text-muted'}`}>
+                  <CheckCircle2 size={13} className={hasSpecial ? 'text-emerald-600 dark:text-emerald-400' : 'text-muted/40'} />
+                  <span>{lang === 'bn' ? 'বিশেষ চিহ্ন (!@#$%^&*)' : 'Special char (!@#$)'}</span>
+                </div>
+              </div>
             </div>
 
             {/* Short Centered Register Button */}
