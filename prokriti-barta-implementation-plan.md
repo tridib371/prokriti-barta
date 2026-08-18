@@ -1,52 +1,39 @@
-
 prokriti-barta/
-├─ public/
-│  └─ images/
-├─ src/
-│  ├─ main.jsx
-│  ├─ App.jsx
-│  ├─ index.css                 // Tailwind + CSS var tokens + font-face
-│  ├─ lib/
-│  │  ├─ lenis.js                // Lenis init + RAF loop hook
-│  │  └─ motionVariants.js       // shared Framer Motion variants
-│  ├─ context/
-│  │  ├─ ThemeContext.jsx
-│  │  ├─ CartContext.jsx
-│  │  └─ WishlistContext.jsx
-│  ├─ data/
-│  │  ├─ products.json
-│  │  ├─ categories.json
-│  │  ├─ reviews.json
-│  │  └─ orders.json             // dummy order history
-│  ├─ hooks/
-│  │  ├─ useLocalStorage.js
-│  │  └─ useTheme.js
-│  ├─ components/
-│  │  ├─ layout/  (Navbar, Footer, MobileMenu, ThemeToggle)
-│  │  ├─ home/    (HeroSlider, CategoryStrip, FeaturedGrid, BenefitsSection,
-│  │  │            WhyChooseUs, ReviewsCarousel, NewsletterBox)
-│  │  ├─ shop/    (ProductCard, FilterSidebar, SortDropdown, SearchBar)
-│  │  ├─ product/ (ImageGallery, QuantitySelector, RelatedProducts)
-│  │  ├─ cart/    (CartDrawer, CartItemRow, CartSummary)
-│  │  ├─ checkout/(CheckoutForm, PaymentMethodPicker, OrderSummary)
-│  │  ├─ account/ (ProfileCard, OrderHistoryTable, AddressBook)
-│  │  └─ ui/      (Button, Badge, RatingStars, AlponaDivider, AlponaLoader,
-│  │               CountdownTimer, Skeleton)
-│  └─ pages/
-│     ├─ Home.jsx
-│     ├─ Shop.jsx
-│     ├─ ProductDetails.jsx
-│     ├─ Cart.jsx
-│     ├─ Wishlist.jsx
-│     ├─ Checkout.jsx
-│     ├─ OrderSuccess.jsx
-│     ├─ Profile.jsx
-│     ├─ OrderHistory.jsx
-│     ├─ About.jsx
-│     ├─ Blog.jsx (+ BlogPost.jsx)
-│     ├─ Contact.jsx
-│     ├─ Offers.jsx
-│     ├─ Delivery.jsx
-│     ├─ Login.jsx
-│     ├─ Register.jsx
-│     └─ NotFound.jsx
+├── public/                
+├── src/
+│   ├── components/        
+│   │   ├── auth/         
+│   │   ├── cart/         
+│   │   ├── chat/          
+│   │   ├── home/         
+│   │   ├── layout/        
+│   │   ├── shop/          
+│   │   └── ui/            
+│   ├── context/           
+│   │   ├── AuthContext.jsx       
+│   │   ├── CartContext.jsx       
+│   │   ├── LanguageContext.jsx   
+│   │   ├── ThemeContext.jsx      
+│   │   └── WishlistContext.jsx   
+│   ├── data/             
+│   ├── i18n/              
+│   ├── lib/               
+│   ├── pages/             
+│   │   ├── Home.jsx              
+│   │   ├── Shop.jsx              
+│   │   ├── ProductDetails.jsx    
+│   │   ├── Cart.jsx              
+│   │   ├── Checkout.jsx          
+│   │   ├── OrderHistory.jsx      
+│   │   ├── Profile.jsx           
+│   │   ├── Wishlist.jsx          
+│   │   ├── Blog.jsx              
+│   │   ├── Contact.jsx           
+│   │   ├── Delivery.jsx          
+│   │   ├── Offers.jsx            
+│   │   └── NotFound.jsx          
+│   ├── App.jsx            
+│   ├── index.css          
+│   └── main.jsx           
+├── vercel.json            
+└── package.json           
