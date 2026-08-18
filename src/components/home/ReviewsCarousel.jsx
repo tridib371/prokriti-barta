@@ -27,7 +27,7 @@ export default function ReviewsCarousel() {
         </p>
       </div>
 
-      <div className="w-full py-2">
+      <div className="w-full py-6">
         <Marquee
           speed={36}
           pauseOnHover={true}
@@ -35,7 +35,7 @@ export default function ReviewsCarousel() {
           autoFill={true}
           gradient={true}
           gradientWidth={70}
-          className="overflow-y-visible"
+          className="overflow-y-visible py-2"
         >
           {reviews.map((rev, idx) => {
             const userName = lang === 'bn' ? (rev.userNameBn || rev.userName) : (rev.userNameEn || rev.userName);
@@ -44,10 +44,10 @@ export default function ReviewsCarousel() {
             return (
               <div
                 key={rev.id || idx}
-                className="mx-3.5 w-[310px] sm:w-[360px] bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-accent p-5 sm:p-6 rounded-3xl flex flex-col justify-between shadow-[0_4px_16px_-3px_rgba(27,59,43,0.08)] hover:shadow-[0_14px_30px_-5px_rgba(200,109,59,0.22)] hover:-translate-y-1.5 transition-all duration-300 relative group overflow-hidden"
+                className="mx-3.5 w-[310px] sm:w-[360px] bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-[#E5DCB8] hover:border-primary p-5 sm:p-6 rounded-3xl flex flex-col justify-between shadow-[0_4px_16px_-3px_rgba(27,59,43,0.08)] hover:shadow-[0_14px_30px_-5px_rgba(27,59,43,0.25)] hover:-translate-y-1.5 transition-all duration-300 relative group overflow-hidden"
               >
                 {/* Top Subtle Amber Glow Backlight */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-2xl pointer-events-none group-hover:bg-accent/20 transition-all duration-500" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl pointer-events-none group-hover:bg-primary/15 transition-all duration-500" />
 
                 {/* Top Row: Rating & Quote Badge */}
                 <div className="flex items-center justify-between gap-3 relative z-10">
