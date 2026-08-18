@@ -147,34 +147,35 @@ export default function ProductDetails() {
                 </div>
               </div>
 
-              {/* Action CTAs */}
-              <div className="flex flex-wrap gap-3 pt-4">
+              {/* Action CTAs - Perfectly Sized & Proportioned */}
+              <div className="flex flex-wrap items-center gap-3 pt-3">
                 <Button
                   variant="accent"
-                  size="md"
+                  size="sm"
                   onClick={() => addToCart(product, quantity)}
-                  className="flex-1 max-w-xs shadow-md"
+                  className="px-5 py-2.5 rounded-2xl shadow-xs text-xs font-bold whitespace-nowrap cursor-pointer hover:scale-102 active:scale-95 transition-all gap-1.5"
                 >
-                  <ShoppingBag size={16} /> {t('btn.addToCart')}
+                  <ShoppingBag size={15} />
+                  <span>{t('btn.addToCart')}</span>
                 </Button>
                 <Button
                   variant="primary"
-                  size="md"
+                  size="sm"
                   onClick={handleBuyNow}
-                  className="flex-1 max-w-xs"
+                  className="px-5 py-2.5 rounded-2xl text-xs font-bold whitespace-nowrap cursor-pointer hover:scale-102 active:scale-95 transition-all"
                 >
-                  {t('btn.buyNow')}
+                  <span>{t('btn.buyNow')}</span>
                 </Button>
                 <button
                   onClick={() => toggleWishlist(product)}
-                  className={`p-2.5 rounded-xl border transition-colors ${
+                  className={`p-2.5 rounded-2xl border transition-colors cursor-pointer ${
                     isLiked
                       ? 'bg-accent-2/15 border-accent-2 text-accent-2'
                       : 'border-line text-muted hover:text-accent-2 hover:bg-bg'
                   }`}
                   title="Wishlist"
                 >
-                  <Heart size={18} className={isLiked ? 'fill-accent-2' : ''} />
+                  <Heart size={17} className={isLiked ? 'fill-accent-2' : ''} />
                 </button>
               </div>
 
