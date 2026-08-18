@@ -27,7 +27,7 @@ export default function ReviewsCarousel() {
         </p>
       </div>
 
-      <div className="w-full py-6 overflow-hidden [scrollbar-width:none]">
+      <div className="w-full py-4 sm:py-6 overflow-hidden [scrollbar-width:none]">
         <Marquee
           speed={36}
           pauseOnHover={true}
@@ -35,7 +35,7 @@ export default function ReviewsCarousel() {
           autoFill={true}
           gradient={true}
           gradientWidth={70}
-          className="overflow-hidden py-2 [scrollbar-width:none]"
+          className="overflow-hidden py-4 sm:py-5 [scrollbar-width:none]"
         >
           {reviews.map((rev, idx) => {
             const userName = lang === 'bn' ? (rev.userNameBn || rev.userName) : (rev.userNameEn || rev.userName);

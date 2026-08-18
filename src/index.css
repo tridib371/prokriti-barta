@@ -65,10 +65,12 @@ body, [class*="font-bn"], .font-display, .font-body {
   background: var(--ink);
 }
 
-/* Ensure React Fast Marquee never renders an unwanted horizontal scrollbar */
+/* Ensure React Fast Marquee never renders an unwanted horizontal scrollbar & has ample room for hover effects */
 .rfm-marquee-container, .rfm-marquee, .rfm-initial-child-container {
   overflow-x: hidden !important;
   scrollbar-width: none !important;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 .rfm-marquee-container::-webkit-scrollbar,
 .rfm-marquee::-webkit-scrollbar {
