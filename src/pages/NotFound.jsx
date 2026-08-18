@@ -122,27 +122,27 @@ export default function NotFound() {
                 <span>{lang === 'bn' ? 'পৃষ্ঠাটি খুঁজে পাওয়া যায়নি' : 'Page Not Found'}</span>
               </span>
 
-              {/* Primary Action Buttons (Sleek & perfectly proportioned) */}
-              <div className="pt-2 flex flex-row items-center justify-center gap-2.5 w-full">
-                <Link to="/" className="inline-block">
+              {/* Primary Action Buttons (Sleek, centered & responsive on all mobile screens) */}
+              <div className="pt-2 flex flex-row items-center justify-center gap-2 sm:gap-2.5 w-full max-w-sm">
+                <Link to="/" className="flex-1 sm:flex-initial min-w-0">
                   <Button
                     variant="accent"
                     size="sm"
-                    className="rounded-full shadow-sm hover:shadow-md hover:scale-105 active:scale-95 transition-all gap-1.5 font-bold px-4 py-2 text-xs cursor-pointer whitespace-nowrap"
+                    className="w-full rounded-2xl shadow-sm hover:shadow-md hover:scale-102 active:scale-95 transition-all gap-1.5 font-bold px-3 sm:px-4 py-2 text-[11px] sm:text-xs cursor-pointer justify-center whitespace-nowrap"
                   >
-                    <Home size={14} />
+                    <Home size={14} className="shrink-0" />
                     <span>{t('btn.backToHome')}</span>
                   </Button>
                 </Link>
-                <Link to="/shop" className="inline-block">
+                <Link to="/shop" className="flex-1 sm:flex-initial min-w-0">
                   <Button
                     variant="secondary"
                     size="sm"
-                    className="rounded-full bg-white/90 text-primary border-primary/20 hover:border-accent hover:bg-accent/10 transition-all gap-1.5 font-bold px-4 py-2 text-xs cursor-pointer whitespace-nowrap"
+                    className="w-full rounded-2xl bg-white/90 text-primary border-2 border-primary/20 hover:border-accent hover:bg-accent/10 transition-all gap-1.5 font-bold px-3 sm:px-4 py-2 text-[11px] sm:text-xs cursor-pointer justify-center whitespace-nowrap"
                   >
-                    <ShoppingBag size={14} />
+                    <ShoppingBag size={14} className="shrink-0" />
                     <span>{lang === 'bn' ? 'শপ দেখুন' : 'Explore Shop'}</span>
-                    <ArrowRight size={12} />
+                    <ArrowRight size={12} className="shrink-0" />
                   </Button>
                 </Link>
               </div>
