@@ -58,7 +58,11 @@ export default function Register() {
 
     if (!password) {
       errs.password = lang === 'bn' ? 'দয়া করে একটি শক্তিশালী পাসওয়ার্ড লিখুন' : 'Please enter a password';
-    } else if (!isPasswordValid) {
+    } else if (!hasMinLength) {
+      errs.password = lang === 'bn' 
+        ? `পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে (বর্তমানে ${password.length} অক্ষর)` 
+        : `Password must be at least 6 characters long (currently ${password.length} characters)`;
+    } else if (!hasUpper || !hasLower || !hasNumber || !hasSpecial) {
       errs.password = lang === 'bn' 
         ? 'পাসওয়ার্ডে বড় হাতের অক্ষর, ছোট হাতের অক্ষর, সংখ্যা ও বিশেষ চিহ্ন থাকতে হবে' 
         : 'Password must include uppercase, lowercase, number and special character';
@@ -287,6 +291,10 @@ export default function Register() {
 
               {/* Real-time Password Requirement Checklist */}
               <div className="pt-2 p-2.5 rounded-xl bg-bg/80 border border-line/70 grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-[11px] font-bn-sans">
+                <div className={`flex items-center gap-1.5 transition-colors ${hasMinLength ? 'text-emerald-700 dark:text-emerald-400 font-bold' : 'text-muted'}`}>
+                  <CheckCircle2 size={13} className={hasMinLength ? 'text-emerald-600 dark:text-emerald-400' : 'text-muted/40'} />
+                  <span>{lang === 'bn' ? 'কমপক্ষে ৬ অক্ষর (Min 6 chars)' : 'Min 6 characters'}</span>
+                </div>
                 <div className={`flex items-center gap-1.5 transition-colors ${hasUpper ? 'text-emerald-700 dark:text-emerald-400 font-bold' : 'text-muted'}`}>
                   <CheckCircle2 size={13} className={hasUpper ? 'text-emerald-600 dark:text-emerald-400' : 'text-muted/40'} />
                   <span>{lang === 'bn' ? 'বড় হাতের অক্ষর (A-Z)' : 'Uppercase (A-Z)'}</span>
@@ -299,7 +307,7 @@ export default function Register() {
                   <CheckCircle2 size={13} className={hasNumber ? 'text-emerald-600 dark:text-emerald-400' : 'text-muted/40'} />
                   <span>{lang === 'bn' ? 'সংখ্যা (০-৯ / 0-9)' : 'Number (0-9)'}</span>
                 </div>
-                <div className={`flex items-center gap-1.5 transition-colors ${hasSpecial ? 'text-emerald-700 dark:text-emerald-400 font-bold' : 'text-muted'}`}>
+                <div className={`flex items-center gap-1.5 transition-colors sm:col-span-2 ${hasSpecial ? 'text-emerald-700 dark:text-emerald-400 font-bold' : 'text-muted'}`}>
                   <CheckCircle2 size={13} className={hasSpecial ? 'text-emerald-600 dark:text-emerald-400' : 'text-muted/40'} />
                   <span>{lang === 'bn' ? 'বিশেষ চিহ্ন (!@#$%^&*)' : 'Special char (!@#$)'}</span>
                 </div>
