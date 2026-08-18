@@ -53,7 +53,6 @@ body, [class*="font-bn"], .font-display, .font-body {
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
-  height: 6px;
 }
 ::-webkit-scrollbar-track {
   background: var(--bg);
@@ -64,6 +63,17 @@ body, [class*="font-bn"], .font-display, .font-body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--ink);
+}
+
+/* Ensure React Fast Marquee never renders an unwanted horizontal scrollbar */
+.rfm-marquee-container, .rfm-marquee, .rfm-initial-child-container {
+  overflow-x: hidden !important;
+  scrollbar-width: none !important;
+}
+.rfm-marquee-container::-webkit-scrollbar,
+.rfm-marquee::-webkit-scrollbar {
+  display: none !important;
+  height: 0 !important;
 }
 
 /* Distinct Dark Slidebar Utility for visible horizontal scrolling */
