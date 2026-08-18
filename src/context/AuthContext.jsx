@@ -54,6 +54,14 @@ export function AuthProvider({ children }) {
     return newUser;
   };
 
+  const updateUser = (updatedFields) => {
+    setUser((prev) => {
+      if (!prev) return null;
+      const updated = { ...prev, ...updatedFields };
+      return updated;
+    });
+  };
+
   const logout = () => {
     setUser(null);
   };
@@ -65,6 +73,7 @@ export function AuthProvider({ children }) {
         isAuthenticated: !!user,
         login,
         register,
+        updateUser,
         logout
       }}
     >
