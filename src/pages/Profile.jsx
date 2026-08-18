@@ -35,7 +35,7 @@ export default function Profile() {
           <div className="lg:col-span-4">
             <div className="bg-surface border border-line rounded-3xl p-6 space-y-4">
               <div className="flex items-center gap-4 pb-4 border-b border-line">
-                <div className="w-14 h-14 bg-accent/20 text-accent rounded-2xl flex items-center justify-center font-bold text-xl">
+                <div className="w-14 h-14 bg-accent/20 text-accent rounded-full flex items-center justify-center font-bold text-xl ring-2 ring-accent/30 shadow-sm shrink-0">
                   {profileData.name.charAt(0)}
                 </div>
                 <div>

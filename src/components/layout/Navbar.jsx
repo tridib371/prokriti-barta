@@ -154,10 +154,10 @@ export default function Navbar() {
           {isAuthenticated ? (
             <Link
               to="/profile"
-              className="md:hidden p-1.5 hover:bg-bg rounded-xl border border-line transition-colors"
+              className="md:hidden p-1 hover:bg-bg rounded-full border border-line transition-colors"
               title="My Profile"
             >
-              <div className="w-7 h-7 rounded-lg bg-accent text-white font-bold flex items-center justify-center text-xs shadow-xs">
+              <div className="w-7 h-7 rounded-full bg-accent text-white font-bold flex items-center justify-center text-xs shadow-xs ring-1 ring-accent/30">
                 {user?.name?.charAt(0) || 'U'}
               </div>
             </Link>
@@ -168,13 +168,13 @@ export default function Navbar() {
             <div className="hidden md:flex items-center gap-2 pl-2 border-l border-line">
               <Link
                 to="/profile"
-                className="flex items-center gap-2 p-1.5 hover:bg-bg rounded-2xl border border-transparent hover:border-line transition-colors"
+                className="flex items-center gap-2 p-1.5 hover:bg-bg rounded-full border border-transparent hover:border-line transition-colors"
                 title="My Account"
               >
-                <div className="w-8 h-8 rounded-xl bg-accent text-white font-bold flex items-center justify-center text-xs shadow-xs">
+                <div className="w-8 h-8 rounded-full bg-accent text-white font-bold flex items-center justify-center text-xs shadow-xs ring-2 ring-accent/30">
                   {user?.name?.charAt(0) || 'U'}
                 </div>
-                <span className="hidden xl:inline text-xs font-bold text-primary line-clamp-1">{user?.name}</span>
+                <span className="hidden xl:inline text-xs font-bold text-primary line-clamp-1 pr-1">{user?.name}</span>
               </Link>
               <button
                 onClick={logout}
@@ -327,9 +327,9 @@ export default function Navbar() {
                 </Link>
               </div>
             ) : (
-              <div className="my-4 p-3 bg-bg rounded-xl flex items-center justify-between border border-line">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-accent text-white font-bold flex items-center justify-center text-xs">
+              <div className="my-4 p-3 bg-bg rounded-2xl flex items-center justify-between border border-line">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-9 h-9 rounded-full bg-accent text-white font-bold flex items-center justify-center text-xs ring-2 ring-accent/30 shadow-xs">
                     {user?.name?.charAt(0) || 'U'}
                   </div>
                   <div>
@@ -337,7 +337,7 @@ export default function Navbar() {
                     <p className="text-[10px] text-muted">{user?.email}</p>
                   </div>
                 </div>
-                <button onClick={logout} className="text-xs text-accent-2 font-bold px-2 py-1 bg-surface border border-line rounded-lg">{t('nav.logout')}</button>
+                <button onClick={logout} className="text-xs text-accent-2 font-bold px-3 py-1 bg-surface border border-line rounded-full hover:bg-accent-2/10 transition-colors">{t('nav.logout')}</button>
               </div>
             )}
 
