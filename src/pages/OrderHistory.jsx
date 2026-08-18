@@ -69,24 +69,24 @@ export default function OrderHistory() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
-        {/* Top Navigation Row */}
-        <div className="flex flex-row items-center justify-between gap-3 sm:gap-4">
+        {/* Top Navigation Row - Balanced Mobile Layout */}
+        <div className="flex items-center justify-between gap-2.5 sm:gap-4 w-full">
           <Link 
             to="/profile" 
-            className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-2 sm:px-4 sm:py-2 rounded-2xl bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 text-[11px] sm:text-xs md:text-sm font-bold text-ink hover:text-primary transition-all shadow-xs shrink-0 whitespace-nowrap cursor-pointer hover:scale-102 active:scale-95"
+            className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3 py-2 sm:px-4 sm:py-2.5 rounded-2xl bg-gradient-to-b from-[#FBF8F1] via-[#F6F1E5] to-[#EFE8D8] border-2 border-primary/50 text-xs sm:text-sm font-bold text-ink hover:text-primary transition-all shadow-xs cursor-pointer active:scale-95 text-center min-w-0"
           >
             <ArrowLeft size={15} className="text-accent shrink-0" />
-            <span>{lang === 'bn' ? 'ড্যাশবোর্ডে ফিরুন' : 'Back to Dashboard'}</span>
+            <span className="truncate">{lang === 'bn' ? 'ড্যাশবোর্ডে ফিরুন' : 'Back to Dashboard'}</span>
           </Link>
 
-          <Link to="/shop" className="shrink-0">
+          <Link to="/shop" className="flex-1 sm:flex-initial min-w-0">
             <Button 
               variant="accent" 
               size="sm" 
-              className="rounded-2xl font-bold shadow-xs px-3 py-2 sm:px-4 sm:py-2 text-[11px] sm:text-xs md:text-sm gap-1.5 whitespace-nowrap cursor-pointer hover:scale-102 active:scale-95"
+              className="w-full sm:w-auto rounded-2xl font-bold shadow-xs px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm gap-1.5 cursor-pointer active:scale-95 justify-center"
             >
-              <ShoppingBag size={14} className="shrink-0" />
-              <span>{lang === 'bn' ? 'নতুন কেনাকাটা' : 'Continue Shopping'}</span>
+              <ShoppingBag size={15} className="shrink-0" />
+              <span className="truncate">{lang === 'bn' ? 'নতুন কেনাকাটা' : 'Continue Shopping'}</span>
             </Button>
           </Link>
         </div>
